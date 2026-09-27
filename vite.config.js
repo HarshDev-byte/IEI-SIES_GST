@@ -24,6 +24,7 @@ function inquiryApiPlugin() {
 }
 
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/IEI-SIES_GST/' : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
