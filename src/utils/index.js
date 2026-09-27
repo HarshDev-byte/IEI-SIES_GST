@@ -1,2 +1,2 @@
 export { audioEngine } from './audioEngine';
-export { lightingEngine } from './lightingEngine';
+export { LIGHTING_MODES, getAutomaticLightingMode } from './lightingEngine';

@@ -25,15 +25,6 @@ export default function EventsPage() {
       
       {/* HEADER SECTION */}
       <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
-          <span className="badge-minimal badge-blue">
-            03 // CONCLAVES &amp; SYMPOSIA
-          </span>
-          <span className="badge-minimal badge-gold">
-            TENURE 1 · 2026–2027
-          </span>
-        </div>
-
         <h1 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight mb-4">
           Events &amp; Symposia
         </h1>

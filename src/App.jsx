@@ -5,8 +5,7 @@ import {
   Footer, 
   SearchModal, 
   LoginModal, 
-  VerifyModal, 
-  MembershipModal 
+  VerifyModal 
 } from '@/components';
 
 import { 
@@ -14,8 +13,8 @@ import {
   ActivitiesPage, 
   EventsPage, 
   TeamPage, 
-  ResourcesPage, 
-  StudentHubPage 
+  ResourcesPage,
+  MemberProfilePage 
 } from '@/pages';
 
 import { audioEngine } from '@/utils';
@@ -31,29 +30,31 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isVerifyOpen, setIsVerifyOpen] = useState(false);
-  const [isMembershipOpen, setIsMembershipOpen] = useState(false);
-  const [selectedMembershipTier, setSelectedMembershipTier] = useState(null);
 
-  // Router: Determine active route from URL hash
-  const getRouteFromHash = () => {
+  // Router: Determine active route and member ID from URL hash
+  const getRouteState = () => {
     const rawHash = window.location.hash.replace(/^#\/?/, '').split('?')[0];
-    if (!rawHash || rawHash === 'about' || rawHash === 'about-iei' || rawHash === 'what-we-do' || rawHash === 'membership' || rawHash === 'gallery' || rawHash === 'contact') {
-      return 'home';
+    if (rawHash.startsWith('member/') || rawHash.startsWith('m/') || rawHash.startsWith('profile/')) {
+      const memberId = rawHash.replace(/^(member|m|profile)\//, '');
+      return { route: 'member-profile', memberId };
     }
-    if (rawHash === 'activities' || rawHash === 'programs') return 'activities';
-    if (rawHash === 'events' || rawHash === 'symposia') return 'events';
-    if (rawHash === 'team' || rawHash === 'governance' || rawHash === 'faculty') return 'team';
-    if (rawHash === 'resources' || rawHash === 'publications' || rawHash === 'downloads') return 'resources';
-    if (rawHash === 'hub' || rawHash === 'student-hub' || rawHash === 'pass') return 'hub';
-    return 'home';
+    if (!rawHash || rawHash === 'about' || rawHash === 'about-iei' || rawHash === 'what-we-do' || rawHash === 'membership' || rawHash === 'gallery' || rawHash === 'contact') {
+      return { route: 'home', memberId: null };
+    }
+    if (rawHash === 'activities' || rawHash === 'programs') return { route: 'activities', memberId: null };
+    if (rawHash === 'events' || rawHash === 'symposia') return { route: 'events', memberId: null };
+    if (rawHash.startsWith('team') || rawHash === 'governance' || rawHash === 'faculty') return { route: 'team', memberId: null };
+    if (rawHash === 'resources' || rawHash === 'publications' || rawHash === 'downloads') return { route: 'resources', memberId: null };
+    return { route: 'home', memberId: null };
   };
 
-  const [currentRoute, setCurrentRoute] = useState(getRouteFromHash);
+  const [routeState, setRouteState] = useState(getRouteState);
+  const currentRoute = routeState.route;
 
   useEffect(() => {
     const handleHashChange = () => {
-      const route = getRouteFromHash();
-      setCurrentRoute(route);
+      const nextState = getRouteState();
+      setRouteState(nextState);
       window.scrollTo({ top: 0, behavior: 'instant' });
     };
 
@@ -78,29 +79,6 @@ export default function App() {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [showLoader]);
-
-  // Forward all membership requests directly to Campus Headquarters (Communication Desk)
-  const handleOpenMembership = (tier = 'Student Member (SMIE)') => {
-    if (currentRoute !== 'home') {
-      setCurrentRoute('home');
-      window.location.hash = '#contact';
-    }
-    setTimeout(() => {
-      const contactEl = document.getElementById('contact');
-      if (contactEl) {
-        contactEl.scrollIntoView({ behavior: 'smooth' });
-      }
-      window.dispatchEvent(
-        new CustomEvent('iei-open-inquiry', {
-          detail: {
-            category: 'Student Membership (SMIE)',
-            tier: tier || 'Student Member (SMIE)',
-            query: `I would like to apply for the ${tier || 'Student Member (SMIE)'} membership at SIES GST. Please guide me through the registration and fee verification process.`
-          }
-        })
-      );
-    }, 80);
-  };
 
   // Event registration handler
   const handleRegisterEvent = (eventName) => {
@@ -143,22 +121,18 @@ export default function App() {
           setIdentityTheme(prev => prev === 'default' ? 'signature' : 'default');
         }}
         onOpenSearch={() => setIsSearchOpen(true)}
-        onOpenMembership={() => handleOpenMembership()}
       />
 
       {/* Main Dynamic Viewport Stream */}
       <main className="relative z-10 min-h-[85vh] pb-32 sm:pb-40">
         {currentRoute === 'home' && (
           <HomePage 
-            onOpenMembership={() => handleOpenMembership()}
             onOpenVerify={() => setIsVerifyOpen(true)}
           />
         )}
 
         {currentRoute === 'activities' && (
-          <ActivitiesPage 
-            onOpenMembership={() => handleOpenMembership()}
-          />
+          <ActivitiesPage />
         )}
 
         {currentRoute === 'events' && (
@@ -175,10 +149,8 @@ export default function App() {
           <ResourcesPage />
         )}
 
-        {currentRoute === 'hub' && (
-          <StudentHubPage 
-            onApplyStudentMembership={(details) => handleOpenMembership(details)}
-          />
+        {currentRoute === 'member-profile' && (
+          <MemberProfilePage memberId={routeState.memberId} />
         )}
       </main>
 
@@ -205,11 +177,7 @@ export default function App() {
         onClose={() => setIsVerifyOpen(false)}
       />
 
-      <MembershipModal 
-        isOpen={isMembershipOpen}
-        selectedTier={selectedMembershipTier}
-        onClose={() => setIsMembershipOpen(false)}
-      />
+
 
     </div>
   );

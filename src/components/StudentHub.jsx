@@ -50,15 +50,6 @@ export default function StudentHub({ onApplyStudentMembership }) {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="badge-minimal badge-blue">
-              STUDENT CHAPTER HUB
-            </span>
-            <span className="badge-minimal">
-              INNOVATION &amp; PASS
-            </span>
-          </div>
-
           <h2 className="font-display text-4xl sm:text-5xl font-black text-zinc-950 tracking-ultra-tight">
             Student Innovation Lab
           </h2>

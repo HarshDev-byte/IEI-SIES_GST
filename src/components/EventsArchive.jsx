@@ -145,18 +145,6 @@ export default function EventsArchive({ onRegisterEvent }) {
       {/* SECTION HEADER WITH TELEMETRY CHIPS */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="badge-minimal badge-blue font-bold">
-              06 CHAPTER SYMPOSIA
-            </span>
-            <span className="badge-minimal badge-gold">
-              TENURE 1 · 2026–2027
-            </span>
-            <span className="badge-minimal hidden sm:inline-flex">
-              ACCREDITED TECHNICAL CALENDAR
-            </span>
-          </div>
-
           <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight leading-tight">
             Flagship Events &amp; Symposia
           </h2>

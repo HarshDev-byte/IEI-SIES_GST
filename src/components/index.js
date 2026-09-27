@@ -56,3 +56,4 @@ export { default as GovernanceTeam } from './GovernanceTeam';
 export { default as ResourcesRepository } from './ResourcesRepository';
 export { default as StudentHub } from './StudentHub';
 export { default as FuturisticComingSoon } from './FuturisticComingSoon';
+export { default as SponsorsSection } from './SponsorsSection';

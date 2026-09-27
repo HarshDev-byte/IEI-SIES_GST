@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Search, Volume2, VolumeX, ArrowRight, Compass, 
-  Layers, Calendar, Users, Sparkles, FolderDown, 
+  Layers, Calendar, Users, FolderDown, 
   Cpu, Menu, X, ChevronRight, Radio, Building2, Award, Camera
 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
@@ -10,8 +10,7 @@ export default function Navbar({
   currentRoute = 'home',
   identityTheme = 'default',
   onToggleTheme,
-  onOpenSearch, 
-  onOpenMembership 
+  onOpenSearch
 }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isSoundOn, setIsSoundOn] = useState(() => audioEngine.isActive);
@@ -62,8 +61,7 @@ export default function Navbar({
     { label: 'Activities', href: '#/activities', id: 'activities', icon: Cpu },
     { label: 'Events', href: '#/events', id: 'events', icon: Calendar },
     { label: 'Team', href: '#/team', id: 'team', icon: Users },
-    { label: 'Resources', href: '#/resources', id: 'resources', icon: FolderDown },
-    { label: 'Student Hub', href: '#/hub', id: 'hub', icon: Sparkles }
+    { label: 'Resources', href: '#/resources', id: 'resources', icon: FolderDown }
   ];
 
   return (
@@ -169,24 +167,8 @@ export default function Navbar({
             })}
           </div>
 
-          {/* DIVIDER */}
-          <div className="h-5 w-[1px] bg-black/10 shrink-0" />
-
-          {/* UTILITY CONTROLS: JOIN & MOBILE TOGGLE ONLY */}
+          {/* UTILITY CONTROLS */}
           <div className="flex items-center gap-1 shrink-0">
-            {/* Primary Action: Join */}
-            <button
-              type="button"
-              onClick={() => {
-                audioEngine.playClick();
-                onOpenMembership();
-              }}
-              className="ml-0.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-zinc-950 hover:bg-[#0062FF] text-white font-mono text-xs font-bold transition-all shadow-xs hover:shadow-sm cursor-pointer flex items-center gap-1 shrink-0"
-            >
-              <span>JOIN</span>
-              <ArrowRight size={12} />
-            </button>
-
             {/* Mobile Expand Drawer Trigger */}
             <button
               type="button"
@@ -255,18 +237,6 @@ export default function Navbar({
               <span>SIES GST, NERUL</span>
               <span>19.0330° N, 73.0297° E</span>
             </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                setMobileDrawerOpen(false);
-                onOpenMembership();
-              }}
-              className="w-full bg-zinc-950 hover:bg-[#0062FF] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 shadow-sm transition-colors cursor-pointer"
-            >
-              <span>APPLY FOR STUDENT MEMBERSHIP</span>
-              <ArrowRight size={14} />
-            </button>
           </div>
 
         </div>

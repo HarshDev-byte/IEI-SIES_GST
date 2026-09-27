@@ -8,3 +8,4 @@ export { default as StudentHubPage } from './StudentHubPage';
 export { default as WhatWeDoPage } from './WhatWeDoPage';
 export { default as MembershipPage } from './MembershipPage';
 export { default as GalleryPage } from './GalleryPage';
+export { default as MemberProfilePage } from './MemberProfilePage';

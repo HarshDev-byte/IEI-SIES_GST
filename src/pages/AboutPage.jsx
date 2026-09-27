@@ -2,6 +2,7 @@ import React from 'react';
 import AboutIEIOverview from '../components/AboutIEIOverview';
 import NationalQuickFacts from '../components/NationalQuickFacts';
 import CampusHeadquarters from '../components/CampusHeadquarters';
+import SponsorsSection from '../components/SponsorsSection';
 
 export default function AboutPage({ onOpenMembership }) {
   return (
@@ -14,6 +15,9 @@ export default function AboutPage({ onOpenMembership }) {
 
       {/* 03. Campus Headquarters & Contact */}
       <CampusHeadquarters />
+
+      {/* 04. Major Sponsors Section */}
+      <SponsorsSection />
     </div>
   );
 }

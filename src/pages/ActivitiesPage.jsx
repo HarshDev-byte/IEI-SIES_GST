@@ -98,15 +98,6 @@ export default function ActivitiesPage({ onOpenMembership }) {
       <section className="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.08]">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="badge-minimal badge-blue">
-                FULL SPECTRUM
-              </span>
-              <span className="badge-minimal">
-                8 KEY ACTIVITY STREAMS
-              </span>
-            </div>
-
             <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight">
               Major Chapter Initiatives
             </h2>

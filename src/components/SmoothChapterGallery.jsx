@@ -50,15 +50,6 @@ export default function SmoothChapterGallery() {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 pb-6 border-b border-black/[0.08]">
         <div>
-          <div className="flex items-center gap-2 mb-2.5">
-            <span className="badge-minimal badge-blue">
-              CHAPTER VISUAL ARCHIVE
-            </span>
-            <span className="badge-minimal badge-gold">
-              TENURE 1 · 2026–2027
-            </span>
-          </div>
-
           <h3 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight">
             Chapter Photographic Archive
           </h3>

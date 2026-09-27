@@ -51,7 +51,6 @@ export default function Footer() {
               <li><a href="#/" className="hover:text-black transition-colors">Home Page</a></li>
               <li><a href="#/about" className="hover:text-black transition-colors">About IEI &amp; Heritage</a></li>
               <li><a href="#/what-we-do" className="hover:text-black transition-colors">What IEI Does (AMIE / CEng)</a></li>
-              <li><a href="#/membership" className="hover:text-black transition-colors">Membership Grades &amp; SMIE</a></li>
             </ul>
           </div>
 
@@ -65,7 +64,6 @@ export default function Footer() {
               <li><a href="#/events" className="hover:text-black transition-colors">Events &amp; Symposia</a></li>
               <li><a href="#/team" className="hover:text-black transition-colors">Leadership &amp; 7 Wings</a></li>
               <li><a href="#/resources" className="hover:text-black transition-colors">Resources &amp; Publications</a></li>
-              <li><a href="#/hub" className="hover:text-black transition-colors">Student Hub &amp; Digital Pass</a></li>
             </ul>
           </div>
 

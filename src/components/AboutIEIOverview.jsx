@@ -118,18 +118,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="badge-minimal badge-blue">
-              02 // CENTENNIAL HERITAGE &amp; CHARTER
-            </span>
-            <span className="badge-minimal badge-gold">
-              EST. 1920 · ROYAL CHARTER 1935
-            </span>
-            <span className="hidden sm:inline-flex badge-minimal text-zinc-500">
-              ARTICLE 372 BODY CORPORATE
-            </span>
-          </div>
-
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-950 tracking-ultra-tight">
             About IEI &amp; SIES GST
           </h2>

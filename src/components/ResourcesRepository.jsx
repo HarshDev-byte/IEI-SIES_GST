@@ -73,15 +73,6 @@ export default function ResourcesRepository() {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="badge-minimal badge-blue">
-              09 DOCUMENT REPOSITORY
-            </span>
-            <span className="badge-minimal">
-              OFFICIAL ARCHIVES
-            </span>
-          </div>
-
           <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight">
             Resources &amp; Publications
           </h2>

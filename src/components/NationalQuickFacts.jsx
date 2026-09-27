@@ -94,15 +94,6 @@ export default function NationalQuickFacts() {
       {/* 02. SECTION HEADER: NATIONAL IEI FACTS */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="badge-minimal badge-blue">
-              01 // NATIONAL COUNCIL DOSSIER
-            </span>
-            <span className="badge-minimal badge-gold">
-              ROYAL CHARTERED ARCHIVE
-            </span>
-          </div>
-
           <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-ultra-tight">
             The Institution of Engineers (India)
           </h2>
