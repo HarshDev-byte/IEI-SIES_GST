@@ -1,0 +1,10 @@
+export { default as HomePage } from './HomePage';
+export { default as AboutPage } from './AboutPage';
+export { default as ActivitiesPage } from './ActivitiesPage';
+export { default as EventsPage } from './EventsPage';
+export { default as TeamPage } from './TeamPage';
+export { default as ResourcesPage } from './ResourcesPage';
+export { default as StudentHubPage } from './StudentHubPage';
+export { default as WhatWeDoPage } from './WhatWeDoPage';
+export { default as MembershipPage } from './MembershipPage';
+export { default as GalleryPage } from './GalleryPage';

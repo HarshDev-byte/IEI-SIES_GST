@@ -1,0 +1,76 @@
+[
+  {
+    "id": "INQ-1790499457662",
+    "name": "Aarav Patel",
+    "email": "aarav@siesgst.ac.in",
+    "category": "Student Membership",
+    "query": "Testing council leadership dispatch for Tejraj and Sarang",
+    "timestamp": "2026-09-27T08:57:37.662Z",
+    "recipients": [
+      {
+        "name": "Tejraj Gujar",
+        "role": "Vice Chairperson"
+      },
+      {
+        "name": "Sarang Patil",
+        "role": "Chairperson"
+      }
+    ]
+  },
+  {
+    "id": "INQ-1790499508487",
+    "name": "Pooja Iyer",
+    "email": "pooja.i@siesgst.ac.in",
+    "category": "Research",
+    "query": "Inquiring regarding SIRO Grant-in-Aid paper submission",
+    "timestamp": "2026-09-27T08:58:28.487Z",
+    "recipients": [
+      {
+        "name": "Tejraj Gujar",
+        "role": "Vice Chairperson"
+      },
+      {
+        "name": "Sarang Patil",
+        "role": "Chairperson"
+      }
+    ]
+  },
+  {
+    "id": "INQ-1790499630315",
+    "name": "Harsh Mhatre",
+    "email": "harshpmecs123@gst.sies.edu.in",
+    "category": "Membership",
+    "query": "Hi..",
+    "timestamp": "2026-09-27T09:00:30.315Z",
+    "recipients": [
+      {
+        "name": "Tejraj Gujar",
+        "role": "Vice Chairperson"
+      },
+      {
+        "name": "Sarang Patil",
+        "role": "Chairperson"
+      }
+    ]
+  },
+  {
+    "id": "IEI-INQ-470145",
+    "name": "Ananya Deshmukh",
+    "email": "ananya.d@siesgst.ac.in",
+    "category": "Student Membership (SMIE)",
+    "query": "Inquiring about 4-year SMIE collegiate pass registration process and verification.",
+    "targetEmail": "iei@siesgst.ac.in",
+    "timestamp": "2026-09-27T09:12:27.380Z",
+    "channel": "email"
+  },
+  {
+    "id": "IEI-INQ-356620",
+    "name": "Siddharth Verma",
+    "email": "siddharth.v@siesgst.ac.in",
+    "category": "Student Membership (SMIE)",
+    "query": "Need help with SMIE membership fee verification.",
+    "targetEmail": "iei@siesgst.ac.in",
+    "timestamp": "2026-09-27T09:14:09.319Z",
+    "channel": "email"
+  }
+]

@@ -1,0 +1,422 @@
+/* ==========================================================================
+   THE INSTITUTION OF ENGINEERS (INDIA) — SIES GST STUDENT CHAPTER
+   Gallery-Grade All-White & Pure Light Architectural Design System
+   ========================================================================== */
+
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAFC;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #FFFFFF;
+  
+  --fg-primary: #09090B;
+  --fg-secondary: #52525B;
+  --fg-muted: #71717A;
+  --fg-subtle: #A1A1AA;
+
+  --accent-blue: #0062FF;
+  --accent-blue-hover: #0052D6;
+  --accent-blue-subtle: rgba(0, 98, 255, 0.08);
+
+  --accent-gold: #C28B38;
+  --accent-gold-subtle: rgba(194, 139, 56, 0.08);
+
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.14);
+  --border-hover: rgba(0, 98, 255, 0.4);
+
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Rajdhani', 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-futuristic: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-syne: 'Syne', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--fg-primary);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--fg-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Global Crisp White Background */
+.global-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #FFFFFF;
+}
+
+.global-warm-ambient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50vh;
+  background: radial-gradient(ellipse 75% 45% at 50% 0%, rgba(0, 98, 255, 0.035) 0%, transparent 100%);
+}
+
+.global-noise-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: 0.012;
+  mix-blend-mode: multiply;
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background: #E4E4E7;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A1A1AA;
+}
+
+/* Minimalist & Futuristic Typography */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-futuristic {
+  font-family: var(--font-futuristic);
+}
+
+.font-syne {
+  font-family: var(--font-syne);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.tracking-ultra-tight {
+  letter-spacing: -0.025em;
+}
+
+/* Minimalist Badges (Light Theme) */
+.badge-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--fg-secondary);
+}
+
+.badge-blue {
+  background: rgba(0, 98, 255, 0.06);
+  border: 1px solid rgba(0, 98, 255, 0.22);
+  color: var(--accent-blue);
+}
+
+.badge-gold {
+  background: rgba(194, 139, 56, 0.08);
+  border: 1px solid rgba(194, 139, 56, 0.25);
+  color: var(--accent-gold);
+}
+
+/* Sleek Buttons (Light Theme) */
+.btn-minimal-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: #09090B;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.btn-minimal-primary:hover {
+  background-color: var(--accent-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 98, 255, 0.25);
+}
+
+.btn-minimal-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fg-primary);
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+.btn-minimal-secondary:hover {
+  background: #FAFAFC;
+  border-color: var(--border-medium);
+  color: #000000;
+}
+
+/* Minimal Card Surfaces (Light Theme) */
+.minimal-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.minimal-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.minimal-card-elevated {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   AEROSPACE FLOATING COMMAND CAPSULE & INTERACTIVE HUD STYLING
+   ========================================================================== */
+
+/* Quantum Shimmer Sweep */
+@keyframes quantumShimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  50%, 100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.quantum-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: quantumShimmer 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Equalizer Bars */
+@keyframes eqBar1 {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+@keyframes eqBar2 {
+  0%, 100% { height: 14px; }
+  50% { height: 6px; }
+}
+@keyframes eqBar3 {
+  0%, 100% { height: 8px; }
+  50% { height: 18px; }
+}
+@keyframes eqBar4 {
+  0%, 100% { height: 16px; }
+  50% { height: 4px; }
+}
+
+.eq-bar-1 { animation: eqBar1 0.8s ease-in-out infinite; }
+.eq-bar-2 { animation: eqBar2 0.65s ease-in-out infinite 0.15s; }
+.eq-bar-3 { animation: eqBar3 0.9s ease-in-out infinite 0.05s; }
+.eq-bar-4 { animation: eqBar4 0.75s ease-in-out infinite 0.2s; }
+
+/* Hazard Stripes for Classified Overdrive Trigger */
+.hazard-stripes-hover:hover {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(245, 158, 11, 0.12),
+    rgba(245, 158, 11, 0.12) 8px,
+    rgba(255, 255, 255, 0.9) 8px,
+    rgba(255, 255, 255, 0.9) 16px
+  );
+}
+
+/* Laser Pulse Glow */
+@keyframes laserPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(0, 98, 255, 0.8), 0 0 12px rgba(0, 240, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 98, 255, 1), 0 0 20px rgba(0, 240, 255, 0.9);
+  }
+}
+
+.laser-bead {
+  animation: laserPulseGlow 1.8s ease-in-out infinite;
+}
+
+/* Radar Sweep Keyframe */
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep-beam {
+  transform-origin: center center;
+  animation: radarSweep 3.2s linear infinite;
+}
+
+/* Equalizer Dynamic Wave */
+@keyframes eqBarDynamic {
+  0%, 100% { height: 15%; opacity: 0.5; }
+  50% { height: 95%; opacity: 1; }
+}
+
+.eq-bar-dynamic {
+  animation: eqBarDynamic 0.9s ease-in-out infinite alternate;
+}
+
+/* Dock Underglow Breathing */
+@keyframes dockUnderglow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+.dock-underglow {
+  animation: dockUnderglow 4.5s ease-in-out infinite;
+}
+
+/* Quantum Core Pulse */
+@keyframes quantumCorePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.quantum-core-pulse {
+  animation: quantumCorePulse 3s ease-in-out infinite;
+}
+
+/* Hologram Scanline */
+@keyframes scanlineSweep {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+.scanline-sweep {
+  animation: scanlineSweep 8s linear infinite;
+}
+
+/* Cyber Quantum Reticle Spin */
+@keyframes quantumReticleSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.quantum-reticle-spin {
+  animation: quantumReticleSpin 40s linear infinite;
+}
+
+.quantum-reticle-spin-reverse {
+  animation: quantumReticleSpin 28s linear infinite reverse;
+}
+
+/* Waveform Oscillating Flux */
+@keyframes waveformFlux {
+  0%, 100% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+  50% {
+    stroke-dashoffset: 40;
+    opacity: 1;
+  }
+}
+
+.waveform-flux-line {
+  stroke-dasharray: 8 4;
+  animation: waveformFlux 2.5s ease-in-out infinite;
+}
+
+/* Infinite Futuristic Loading Bar */
+@keyframes infiniteLoadingBar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+.animate-infinite-loader {
+  animation: infiniteLoadingBar 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Institutional & Academic Design System Tokens */
+.editorial-accent-text {
+  color: var(--accent-blue);
+  font-weight: 800;
+}
+
+.shadow-prestigious {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
