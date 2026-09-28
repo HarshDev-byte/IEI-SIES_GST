@@ -32,7 +32,7 @@ export default function MemberProfilePage({ memberId }) {
     // e.g. VITE_SITE_URL=https://ieisiesgst.org
     const PRODUCTION_BASE =
       import.meta.env.VITE_SITE_URL ||
-      'https://harshdev-byte.github.io/IEI-SIES_GST';
+      'https://iei-sies-gst.vercel.app';
     const profileUrl = `${PRODUCTION_BASE}/#/member/${member.id}`;
 
     QRCode.toDataURL(profileUrl, {
