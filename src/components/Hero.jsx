@@ -1,103 +1,341 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
 /*
- * IEI SIES GST — Chapter Identity Animation
- * 4-phase animation, CSS-only, respects prefers-reduced-motion.
- * Only the top identity block is animated; all other hero content is unchanged.
+ * IEI SIES GST — HOMEPAGE HERO MOTION CHOREOGRAPHY
+ * Sequential reveal sequence (0.00s – 2.65s). All entrance motions play once,
+ * then everything settles into a completely calm, static editorial state.
  */
 
-const IDENTITY_STYLES = `
-  /* Phase 1 (0–0.35s): Emblem reveals left → right via clip-path */
-  @keyframes iei-emblem-reveal {
-    from { clip-path: inset(0 100% 0 0); opacity: 0; }
-    to   { clip-path: inset(0 0% 0 0);   opacity: 1; }
+const HERO_MOTION_STYLES = `
+  /* 01. Emblem entrance: scale 0.92 -> 1, opacity 0 -> 1 (0.00s - 0.50s) */
+  @keyframes hero-emblem-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
-  /* Phase 3 (0.65–1.1s): Text slides in from left + fades */
-  @keyframes iei-text-in {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0);     }
+  /* 02. IEI SIES GST wordmark: translateY 10px -> 0, opacity 0 -> 1 (0.35s - 0.80s) */
+  @keyframes hero-title-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  /* Phase 4 (0.9–1.3s): Single blue highlight sweep left → right */
-  @keyframes iei-sweep {
-    0%   { background-position: -200% center; }
-    100% { background-position:  200% center; }
+  /* 03. Single subtle blue light sweep across title (0.80s - 1.25s) */
+  @keyframes hero-sweep-pass {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
   }
 
-  .iei-emblem-animate {
-    animation: iei-emblem-reveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+  /* 04. Institution line: horizontal clip-path left -> right (1.00s - 1.40s) */
+  @keyframes hero-institution-clip {
+    0% {
+      clip-path: inset(0 100% 0 0);
+      opacity: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    100% {
+      clip-path: inset(0 0% 0 0);
+      opacity: 1;
+    }
   }
 
-  .iei-text-animate {
-    animation: iei-text-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+  /* 05. Main headline lines inside overflow:hidden (1.15s, 1.23s, 1.31s) */
+  @keyframes hero-line-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .iei-sweep-animate {
+  /* 06. Innovation blue word: subtle clip-path reveal (1.35s - 1.75s) */
+  @keyframes hero-innovation-reveal {
+    0% {
+      clip-path: inset(0 100% 0 0);
+      opacity: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    100% {
+      clip-path: inset(0 0% 0 0);
+      opacity: 1;
+    }
+  }
+
+  /* 07. Department context line: translateY 10px -> 0 (1.55s - 1.95s) */
+  @keyframes hero-dept-up {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 08. Description paragraph block: translateY 12px -> 0 (1.70s - 2.15s) */
+  @keyframes hero-desc-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 09. CTA button: translateY 12px -> 0, scale 0.98 -> 1 (1.95s - 2.35s) */
+  @keyframes hero-cta-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* 10. Bottom facts divider: scaleX 0 -> 1 from center (2.15s - 2.55s) */
+  @keyframes hero-divider-scale {
+    0% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  /* 10b. Bottom facts items staggered: translateY 6px -> 0 (2.25s - 2.65s) */
+  @keyframes hero-fact-stagger {
+    0% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Pre-animation resting state when waiting for startup loader */
+  .hero-waiting .hero-anim-emblem,
+  .hero-waiting .hero-anim-title,
+  .hero-waiting .hero-anim-institution,
+  .hero-waiting .hero-anim-line-1,
+  .hero-waiting .hero-anim-line-2,
+  .hero-waiting .hero-anim-line-3,
+  .hero-waiting .hero-anim-innovation,
+  .hero-waiting .hero-anim-dept,
+  .hero-waiting .hero-anim-desc,
+  .hero-waiting .hero-anim-cta,
+  .hero-waiting .hero-anim-divider,
+  .hero-waiting [class*="hero-anim-fact-"],
+  .hero-waiting [class*="hero-anim-dot-"] {
+    opacity: 0 !important;
+  }
+
+  /* Active sequence timing */
+  .hero-active .hero-anim-emblem {
+    animation: hero-emblem-in 0.50s cubic-bezier(0.16, 1, 0.3, 1) 0.00s both;
+  }
+
+  .hero-active .hero-anim-title {
+    animation: hero-title-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  }
+
+  .hero-active .hero-anim-sweep {
     background: linear-gradient(
       90deg,
-      #1a1a1a 0%,
-      #1a1a1a 38%,
+      #09090b 0%,
+      #09090b 40%,
       #0052D6 48%,
-      #ffffff 52%,
-      #0052D6 56%,
-      #1a1a1a 66%,
-      #1a1a1a 100%
+      #70a6ff 50%,
+      #0052D6 52%,
+      #09090b 60%,
+      #09090b 100%
     );
     background-size: 300% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation:
-      iei-text-in  0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both,
-      iei-sweep    0.55s cubic-bezier(0.4, 0, 0.6, 1)   0.9s  both;
+      hero-title-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both,
+      hero-sweep-pass 0.45s cubic-bezier(0.2, 0, 0.4, 1) 0.80s both;
   }
 
-  /* After sweep completes — reset to plain black text */
-  .iei-sweep-animate[data-done="true"] {
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
-    -webkit-text-fill-color: unset;
-    color: #1a1a1a;
-    animation: none;
+  /* Post-sweep plain static text */
+  .hero-anim-sweep[data-sweep-done="true"],
+  .hero-settled .hero-anim-sweep {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    color: #09090b !important;
+    animation: none !important;
   }
 
-  /* Respect reduced motion */
+  .hero-active .hero-anim-institution {
+    animation: hero-institution-clip 0.40s cubic-bezier(0.16, 1, 0.3, 1) 1.00s both;
+  }
+
+  .hero-active .hero-anim-line-1 {
+    animation: hero-line-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.15s both;
+  }
+
+  .hero-active .hero-anim-line-2 {
+    animation: hero-line-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.23s both;
+  }
+
+  .hero-active .hero-anim-line-3 {
+    animation: hero-line-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.31s both;
+  }
+
+  .hero-active .hero-anim-innovation {
+    animation: hero-innovation-reveal 0.40s cubic-bezier(0.16, 1, 0.3, 1) 1.35s both;
+  }
+
+  .hero-active .hero-anim-dept {
+    animation: hero-dept-up 0.40s cubic-bezier(0.16, 1, 0.3, 1) 1.55s both;
+  }
+
+  .hero-active .hero-anim-desc {
+    animation: hero-desc-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.70s both;
+  }
+
+  .hero-active .hero-anim-cta {
+    animation: hero-cta-up 0.40s cubic-bezier(0.16, 1, 0.3, 1) 1.95s both;
+  }
+
+  .hero-active .hero-anim-divider {
+    transform-origin: center;
+    animation: hero-divider-scale 0.40s cubic-bezier(0.16, 1, 0.3, 1) 2.15s both;
+  }
+
+  .hero-active .hero-anim-fact-1 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 2.25s both; }
+  .hero-active .hero-anim-dot-1  { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 2.30s both; }
+  .hero-active .hero-anim-fact-2 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 2.35s both; }
+  .hero-active .hero-anim-dot-2  { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 2.40s both; }
+  .hero-active .hero-anim-fact-3 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 2.45s both; }
+  .hero-active .hero-anim-dot-3  { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 2.50s both; }
+  .hero-active .hero-anim-fact-4 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 2.55s both; }
+
+  /* 11. Final State: Stop, completely calm, static */
+  .hero-settled .hero-anim-emblem,
+  .hero-settled .hero-anim-title,
+  .hero-settled .hero-anim-institution,
+  .hero-settled .hero-anim-line-1,
+  .hero-settled .hero-anim-line-2,
+  .hero-settled .hero-anim-line-3,
+  .hero-settled .hero-anim-innovation,
+  .hero-settled .hero-anim-dept,
+  .hero-settled .hero-anim-desc,
+  .hero-settled .hero-anim-cta,
+  .hero-settled .hero-anim-divider,
+  .hero-settled [class*="hero-anim-fact-"],
+  .hero-settled [class*="hero-anim-dot-"] {
+    animation: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
+
+  /* 16. Prefers-reduced-motion: instant static display */
   @media (prefers-reduced-motion: reduce) {
-    .iei-emblem-animate,
-    .iei-text-animate,
-    .iei-sweep-animate {
+    .hero-anim-emblem,
+    .hero-anim-title,
+    .hero-anim-sweep,
+    .hero-anim-institution,
+    .hero-anim-line-1,
+    .hero-anim-line-2,
+    .hero-anim-line-3,
+    .hero-anim-innovation,
+    .hero-anim-dept,
+    .hero-anim-desc,
+    .hero-anim-cta,
+    .hero-anim-divider,
+    [class*="hero-anim-fact-"],
+    [class*="hero-anim-dot-"] {
       animation: none !important;
       opacity: 1 !important;
-      clip-path: none !important;
       transform: none !important;
+      clip-path: none !important;
       background: none !important;
       -webkit-background-clip: unset !important;
       background-clip: unset !important;
       -webkit-text-fill-color: unset !important;
-      color: #1a1a1a !important;
+      color: inherit !important;
     }
   }
 `;
 
-function ChapterIdentity() {
-  const [sweepDone, setSweepDone] = React.useState(false);
+export default function Hero({ 
+  onExploreClick, 
+  onOpenVerify,
+  isReady = true
+}) {
+  const [sweepDone, setSweepDone] = useState(false);
+  const [settled, setSettled] = useState(false);
 
-  React.useEffect(() => {
-    // After sweep animation ends (0.9s start + 0.55s duration = 1.45s), mark done
-    const t = setTimeout(() => setSweepDone(true), 1500);
-    return () => clearTimeout(t);
-  }, []);
+  useEffect(() => {
+    if (!isReady) {
+      setSweepDone(false);
+      setSettled(false);
+      return;
+    }
+
+    // Sweep finishes at 1.25s -> reset to plain static text at 1.30s
+    const sweepTimer = setTimeout(() => {
+      setSweepDone(true);
+    }, 1300);
+
+    // Full choreography finishes at 2.65s -> settle all motion to calm static at 2.70s
+    const settleTimer = setTimeout(() => {
+      setSettled(true);
+    }, 2700);
+
+    return () => {
+      clearTimeout(sweepTimer);
+      clearTimeout(settleTimer);
+    };
+  }, [isReady]);
+
+  const stateClass = isReady ? (settled ? 'hero-settled' : 'hero-active') : 'hero-waiting';
 
   return (
-    <>
-      <style>{IDENTITY_STYLES}</style>
+    <section className={`hero-root ${stateClass} relative min-h-[85vh] flex flex-col pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10`}>
+      <style>{HERO_MOTION_STYLES}</style>
+
+      {/* 01. CHAPTER IDENTITY — emblem + wordmark */}
       <div className="flex flex-col items-center gap-3 pb-6 border-b border-black/[0.08]">
-        {/* Official IEI emblem — revealed left to right */}
-        <div className="iei-emblem-animate">
+        {/* Official IEI emblem */}
+        <div className="hero-anim-emblem">
           <img
             src="/iei-official-logo.png"
             alt="The Institution of Engineers (India) Official Seal"
@@ -106,27 +344,14 @@ function ChapterIdentity() {
           />
         </div>
 
-        {/* IEI SIES GST wordmark — slides in, then single sweep */}
+        {/* IEI SIES GST wordmark */}
         <span
-          className={sweepDone ? 'iei-text-animate font-sans font-bold text-zinc-950 tracking-tight text-[32px] sm:text-[42px] lg:text-[50px] leading-none select-none' : 'iei-sweep-animate font-sans font-bold tracking-tight text-[32px] sm:text-[42px] lg:text-[50px] leading-none select-none'}
-          data-done={sweepDone ? 'true' : 'false'}
+          className={`${sweepDone ? 'hero-anim-title' : 'hero-anim-sweep'} font-sans font-bold tracking-tight text-[32px] sm:text-[42px] lg:text-[50px] leading-none select-none text-zinc-950`}
+          data-sweep-done={sweepDone ? 'true' : 'false'}
         >
           IEI SIES GST
         </span>
       </div>
-    </>
-  );
-}
-
-export default function Hero({ 
-  onExploreClick, 
-  onOpenVerify 
-}) {
-  return (
-    <section className="relative min-h-[85vh] flex flex-col pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
-
-      {/* 01. CHAPTER IDENTITY — emblem + wordmark + one-time animation */}
-      <ChapterIdentity />
 
       {/* 02. CENTERED HERO BLOCK */}
       <div className="flex-1 flex items-center justify-center py-10 sm:py-14">
@@ -135,33 +360,45 @@ export default function Hero({
         <div className="flex flex-col items-center text-center max-w-2xl w-full">
 
           {/* Identity line */}
-          <p className="text-sm font-medium text-zinc-500 mb-4 select-none">
+          <p className="hero-anim-institution text-sm font-medium text-zinc-500 mb-4 select-none">
             The Institution of Engineers (India) · Student Chapter #602
           </p>
 
           {/* Main headline */}
           <h1 className="font-display text-4xl sm:text-5xl lg:text-[56px] font-black text-zinc-950 tracking-tight leading-[1.06] mb-5">
-            Advancing engineering<br className="hidden sm:inline" />
-            {' '}excellence, research &amp;{' '}
-            <span className="text-[#0052D6]">
-              innovation.
+            <span className="block overflow-hidden">
+              <span className="inline-block hero-anim-line-1">
+                Advancing engineering
+              </span>
+            </span>
+            <span className="block overflow-hidden">
+              <span className="inline-block hero-anim-line-2">
+                excellence, research &amp;{' '}
+              </span>
+            </span>
+            <span className="block overflow-hidden">
+              <span className="inline-block hero-anim-line-3">
+                <span className="hero-anim-innovation text-[#0052D6] inline-block">
+                  innovation.
+                </span>
+              </span>
             </span>
           </h1>
 
           {/* Department context */}
-          <div className="text-sm text-zinc-600 mb-5 font-medium">
+          <div className="hero-anim-dept text-sm text-zinc-600 mb-5 font-medium">
             Department of Electronics &amp; Computer Science Engineering
           </div>
 
           {/* Descriptive paragraph */}
-          <p className="text-base text-zinc-600 font-normal leading-relaxed mb-8 max-w-lg">
+          <p className="hero-anim-desc text-base text-zinc-600 font-normal leading-relaxed mb-8 max-w-lg">
             The premier collegiate engineering society at <strong>SIES Graduate School of Technology</strong>.{' '}
             Empowering student engineers through applied hardware testbenches, interdisciplinary research,
             and century-old Royal Chartered accreditation.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-5 mb-8">
+          <div className="hero-anim-cta flex flex-wrap items-center justify-center gap-5 mb-8">
             <a
               href="#quick-facts"
               onClick={(e) => {
@@ -180,15 +417,19 @@ export default function Hero({
             </a>
           </div>
 
-          {/* Lower factual metadata — preserved verbatim */}
-          <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 text-xs text-zinc-500 pt-5 border-t border-black/[0.06] w-full">
-            <span className="font-medium text-zinc-700">Royal Charter 1935</span>
-            <span className="text-zinc-300">·</span>
-            <span>SIRO Recognized (DSIR)</span>
-            <span className="text-zinc-300">·</span>
-            <span>Article 372 Body Corporate</span>
-            <span className="text-zinc-300">·</span>
-            <span>1M+ Global Alumni</span>
+          {/* Lower factual metadata — preserved verbatim with scaleX divider */}
+          <div className="w-full pt-5 relative">
+            <div className="hero-anim-divider w-full h-[1px] bg-black/[0.06] absolute top-0 inset-x-0" />
+
+            <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 text-xs text-zinc-500">
+              <span className="font-medium text-zinc-700 hero-anim-fact-1">Royal Charter 1935</span>
+              <span className="text-zinc-300 hero-anim-dot-1">·</span>
+              <span className="hero-anim-fact-2">SIRO Recognized (DSIR)</span>
+              <span className="text-zinc-300 hero-anim-dot-2">·</span>
+              <span className="hero-anim-fact-3">Article 372 Body Corporate</span>
+              <span className="text-zinc-300 hero-anim-dot-3">·</span>
+              <span className="hero-anim-fact-4">1M+ Global Alumni</span>
+            </div>
           </div>
 
         </div>

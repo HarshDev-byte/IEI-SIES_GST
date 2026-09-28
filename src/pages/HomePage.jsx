@@ -7,7 +7,7 @@ import SmoothChapterGallery from '../components/SmoothChapterGallery';
 import CampusHeadquarters from '../components/CampusHeadquarters';
 import SponsorsSection from '../components/SponsorsSection';
 
-export default function HomePage({ onOpenVerify }) {
+export default function HomePage({ onOpenVerify, isReady = true }) {
   return (
     <div className="animate-fadeIn">
       {/* 01. Monumental Hero with Official Emblem, Interactive Core & Telemetry */}
@@ -17,6 +17,7 @@ export default function HomePage({ onOpenVerify }) {
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
         onOpenVerify={onOpenVerify}
+        isReady={isReady}
       />
 
       {/* 02. National Quick Facts & SIES GST Real-Time Chapter Telemetry */}

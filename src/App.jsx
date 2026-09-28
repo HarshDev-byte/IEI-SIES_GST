@@ -128,6 +128,7 @@ export default function App() {
         {currentRoute === 'home' && (
           <HomePage 
             onOpenVerify={() => setIsVerifyOpen(true)}
+            isReady={!showLoader}
           />
         )}
 
