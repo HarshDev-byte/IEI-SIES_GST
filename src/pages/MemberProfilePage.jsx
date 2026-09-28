@@ -23,14 +23,17 @@ export default function MemberProfilePage({ memberId }) {
   const member = getMemberById(memberId) || membersData[0];
   const initials = getInitials(member.name);
 
-  // Dynamic QR Code generation resolving to exact profile URL
+  // Static QR Code — URL locked to production domain via VITE_SITE_URL env var.
+  // To change domain: update VITE_SITE_URL in Vercel dashboard → redeploy. QRs auto-update.
   useEffect(() => {
     if (!member) return;
-    
-    // Construct the live URL to this exact member profile
-    const currentOrigin = window.location.origin;
-    const currentPath = window.location.pathname;
-    const profileUrl = `${currentOrigin}${currentPath}#/member/${member.id}`;
+
+    // Read from build-time env var (set in Vercel → Settings → Environment Variables)
+    // e.g. VITE_SITE_URL=https://ieisiesgst.org
+    const PRODUCTION_BASE =
+      import.meta.env.VITE_SITE_URL ||
+      'https://harshdev-byte.github.io/IEI-SIES_GST';
+    const profileUrl = `${PRODUCTION_BASE}/#/member/${member.id}`;
 
     QRCode.toDataURL(profileUrl, {
       width: 140,

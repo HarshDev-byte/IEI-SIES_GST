@@ -69,7 +69,7 @@ export const seniorCouncil = [
   {
     id: "123A8043",
     name: "Sarang Patil",
-    branch: "ECS",
+    branch: "AIDS",
     prn: "123A8043",
     position: "Vice Chairperson",
     council: "Senior Council",

@@ -13,8 +13,32 @@ function inquiryApiPlugin() {
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         if (req.url === '/api/inquiry' || req.url?.startsWith('/api/inquiry')) {
-          const { handleInquiryRequest } = await import('./server/inquiryHandler.js');
-          handleInquiryRequest(req, res);
+          // Use the same handler as Vercel serverless (api/inquiry.js)
+          // Adapt Node's IncomingMessage to Vercel-style req/res
+          let body = '';
+          req.on('data', (chunk) => { body += chunk; });
+          req.on('end', async () => {
+            try {
+              req.body = body ? JSON.parse(body) : {};
+            } catch {
+              req.body = {};
+            }
+            // Build a minimal Vercel-style res wrapper
+            const vercelRes = {
+              _status: 200,
+              _headers: {},
+              status(code) { this._status = code; return this; },
+              setHeader(k, v) { res.setHeader(k, v); return this; },
+              json(data) {
+                res.statusCode = this._status;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(data));
+              },
+              end() { res.statusCode = this._status; res.end(); }
+            };
+            const { default: handler } = await import('./api/inquiry.js');
+            await handler(req, vercelRes);
+          });
           return;
         }
         next();
@@ -24,7 +48,7 @@ function inquiryApiPlugin() {
 }
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/IEI-SIES_GST/' : '/',
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

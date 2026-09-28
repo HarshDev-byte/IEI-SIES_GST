@@ -32,8 +32,8 @@ export default function CrazySexyLoader({ onComplete }) {
     let loadedCount = 0;
     const handleImageLoad = () => {
       loadedCount++;
-      // Start playback as soon as the first few frames are ready
-      if (!isCancelled && loadedCount >= 5) {
+      // Start playback as soon as the very first frame is ready
+      if (!isCancelled && loadedCount >= 1) {
         setIsReadyToPlay(true);
       }
     };
@@ -47,8 +47,20 @@ export default function CrazySexyLoader({ onComplete }) {
       }
     });
 
+    // Safety timeout: if images haven't loaded within 6s, skip the loader entirely
+    const safetyTimer = setTimeout(() => {
+      if (!isCancelled && !isReadyToPlay) {
+        setIsReadyToPlay(true);
+        // If nothing rendered at all, just skip straight to the app
+        if (loadedCount === 0) {
+          if (onComplete) onComplete();
+        }
+      }
+    }, 6000);
+
     return () => {
       isCancelled = true;
+      clearTimeout(safetyTimer);
     };
   }, []);
 
