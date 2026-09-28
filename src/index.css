@@ -4,6 +4,7 @@
    ========================================================================== */
 
 @import "tailwindcss";
+@import "./editorial.css";
 
 :root {
   --bg-primary: #FFFFFF;
@@ -27,11 +28,11 @@
   --border-medium: rgba(0, 0, 0, 0.14);
   --border-hover: rgba(0, 98, 255, 0.4);
 
-  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Rajdhani', 'Space Grotesk', -apple-system, sans-serif;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
-  --font-futuristic: 'Orbitron', 'Rajdhani', sans-serif;
-  --font-syne: 'Syne', sans-serif;
+  --font-futuristic: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-syne: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 *, *::before, *::after {
@@ -42,10 +43,16 @@ html {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--fg-primary);
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: auto; /* Instantaneous 1:1 hardware responsiveness for 144Hz/240Hz/400Hz displays */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -54,6 +61,7 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Global Crisp White Background */

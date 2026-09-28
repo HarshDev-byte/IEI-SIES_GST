@@ -801,10 +801,12 @@ export const membersData = [
 // Lookup by ID or PRN
 export const getMemberById = (identifier) => {
   if (!identifier) return null;
-  const normalized = identifier.toLowerCase().trim();
+  const decoded = decodeURIComponent(identifier).toLowerCase().trim();
   return membersData.find(
-    (m) => m.id.toLowerCase() === normalized || 
-           (m.prn && m.prn.toLowerCase() === normalized) ||
-           (m.id && m.id.toLowerCase().replace(/[^a-z0-9]/g, '') === normalized.replace(/[^a-z0-9]/g, ''))
+    (m) => (m.id && m.id.toLowerCase() === decoded) || 
+           (m.prn && m.prn.toLowerCase() === decoded) ||
+           (m.name && m.name.toLowerCase() === decoded) ||
+           (m.id && m.id.toLowerCase().replace(/[^a-z0-9]/g, '') === decoded.replace(/[^a-z0-9]/g, '')) ||
+           (m.name && m.name.toLowerCase().replace(/[^a-z0-9]/g, '') === decoded.replace(/[^a-z0-9]/g, ''))
   ) || null;
 };

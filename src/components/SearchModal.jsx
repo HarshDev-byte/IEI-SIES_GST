@@ -17,7 +17,7 @@ export default function SearchModal({ isOpen, onClose }) {
     { title: 'Student Member (SMIE) Onboarding', category: 'Membership', link: '#/membership', desc: 'Step-by-step guide for SIES GST engineering students to obtain accredited SMIE cards.' },
     { title: 'SIES GST Chapter Initiatives & Workshops', category: 'Activities', link: '#/activities', desc: 'Expert lectures, microcontrollers, mock placement drives, site visits, and e-magazines.' },
     { title: 'Flagship Symposia & Hackathons', category: 'Events', link: '#/events', desc: 'Annual technical symposium, robotics testbenches, and pass registrations.' },
-    { title: 'Faculty Advisors & Executive Council', category: 'Team', link: '#/team', desc: 'Principal Dr. Atul Kemkar, HOD Dr. Shubhangi Kharache, Prof. Jasmin Hirani, and 7 Domain Wings.' },
+    { title: 'Faculty Advisors & Executive Council', category: 'Team', link: '#/team', desc: 'Principal Dr. K Lakshmisudha, HOD Dr. Shubhangi Kharache, Prof. Jasmin Hirani, and 7 Domain Wings.' },
     { title: 'Resources, AMIE Syllabi & Publications', category: 'Resources', link: '#/resources', desc: 'Download AMIE regulations, SIRO research grant forms, Springer guidelines, and LaTeX boilerplate.' },
     { title: 'Student Hub & Digital Pass Generator', category: 'Membership', link: '#/hub', desc: 'Generate your official encrypted Chapter Membership Pass.' },
     { title: 'Campus Headquarters & Inquiry Desk', category: 'Contact', link: '#contact', desc: 'Sector-V Nerul campus location, lab coordinates, and direct contact desk.' }

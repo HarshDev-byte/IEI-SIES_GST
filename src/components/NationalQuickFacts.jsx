@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Building2, Award, Globe, 
+  Award, Globe, 
   BookOpen, ShieldCheck, ExternalLink,
   Layers, CheckCircle2
 } from 'lucide-react';
@@ -229,27 +229,6 @@ export default function NationalQuickFacts() {
           </div>
         </div>
 
-      </div>
-
-      {/* 04. NATIONAL CITATION STRIP */}
-      <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#FAFAFC] border border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-600">
-        <div className="flex items-center gap-2.5 text-center sm:text-left">
-          <Building2 size={15} className="text-zinc-400 shrink-0 hidden sm:inline" />
-          <span className="font-bold text-zinc-900">National Headquarters:</span>
-          <span>8 Gokhale Road, Kolkata - 700020, West Bengal, India</span>
-        </div>
-        <div className="flex items-center gap-3 text-[11px]">
-          <span>Govt. Dept. of Scientific &amp; Industrial Research</span>
-          <span>·</span>
-          <a 
-            href="https://www.ieindia.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#0052D6] font-semibold hover:underline"
-          >
-            ieindia.org
-          </a>
-        </div>
       </div>
 
     </section>

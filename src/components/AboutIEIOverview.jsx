@@ -563,12 +563,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
 
               <div className="space-y-4">
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
-                  <span className="text-xs text-zinc-500 block font-medium">Chief Institutional Patron</span>
-                  <span className="font-sans font-bold text-base text-zinc-950 block mt-0.5">Dr. Atul Kemkar</span>
-                  <span className="text-zinc-600 text-xs block font-sans">Principal, SIES Graduate School of Technology</span>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
                   <span className="text-xs text-zinc-500 block font-medium">Departmental Patron</span>
                   <span className="font-sans font-bold text-base text-zinc-950 block mt-0.5">Dr. Shubhangi Kharache</span>
                   <span className="text-zinc-600 text-xs block font-sans">Head of Department, Electronics &amp; Computer Science</span>
@@ -578,6 +572,12 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   <span className="text-xs text-zinc-500 block font-medium">Faculty Advisor &amp; Coordinator</span>
                   <span className="font-sans font-bold text-base text-zinc-950 block mt-0.5">Prof. Jasmin Hirani</span>
                   <span className="text-zinc-600 text-xs block font-sans">Assistant Professor, ECS Department</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
+                  <span className="text-xs text-zinc-500 block font-medium">Chief Institutional Patron</span>
+                  <span className="font-sans font-bold text-base text-zinc-950 block mt-0.5">Dr. K Lakshmisudha</span>
+                  <span className="text-zinc-600 text-xs block font-sans">Principal, SIES Graduate School of Technology</span>
                 </div>
               </div>
 
