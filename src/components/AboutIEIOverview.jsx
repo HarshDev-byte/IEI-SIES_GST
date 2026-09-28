@@ -127,9 +127,9 @@ export default function AboutIEIOverview({ onOpenMembership }) {
           <p className="text-zinc-600 text-sm sm:text-base leading-relaxed font-normal">
             The Institution of Engineers (India) is the world&apos;s largest multi-disciplinary engineering professional body, bridging over a century of statutory heritage with collegiate innovation at SIES GST.
           </p>
-          <div className="mt-2 flex items-center gap-2 font-mono text-[11px] text-zinc-400">
-            <MapPin size={12} className="text-[#0062FF]" />
-            <span>APEX HQ: 8 GOKHALE ROAD, KOLKATA · EST. 1920</span>
+          <div className="mt-2 flex items-center gap-2 text-xs text-zinc-500">
+            <MapPin size={13} className="text-[#0062FF]" />
+            <span>Apex HQ: 8 Gokhale Road, Kolkata · Est. 1920</span>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   audioEngine.playClick();
                   setActiveTab(tab.id);
                 }}
-                className={`relative px-4 sm:px-5 py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                   isActive
                     ? 'bg-white text-zinc-950 font-bold shadow-xs border border-black/[0.08]'
                     : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60'
@@ -173,12 +173,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
             {/* LEFT COLUMN: EDITORIAL NARRATIVE & METRIC PILLARS */}
             <div className="lg:col-span-7 flex flex-col justify-between space-y-7">
               <div className="space-y-6">
-                
-                {/* Authority Proclamation Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0062FF]/[0.06] border border-[#0062FF]/20 text-[#0062FF] font-mono text-xs font-semibold">
-                  <ShieldCheck size={14} className="shrink-0" />
-                  <span>APEX STATUTORY PROFESSIONAL ENGINEERING AUTHORITY</span>
-                </div>
 
                 {/* Monumental Headline */}
                 <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-950 leading-tight tracking-tight">
@@ -195,19 +189,19 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.06] hover:border-[#0062FF]/30 transition-all">
                     <div className="font-display text-2xl sm:text-3xl font-black text-zinc-950">1920</div>
                     <div className="font-sans font-bold text-xs text-zinc-800 mt-0.5">Founding Year</div>
-                    <div className="font-mono text-[10px] text-zinc-500 mt-0.5">Kolkata, WB</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">Kolkata, WB</div>
                   </div>
 
                   <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.06] hover:border-[#0062FF]/30 transition-all">
                     <div className="font-display text-2xl sm:text-3xl font-black text-[#0062FF]">15</div>
                     <div className="font-sans font-bold text-xs text-zinc-800 mt-0.5">Divisions</div>
-                    <div className="font-mono text-[10px] text-zinc-500 mt-0.5">All Disciplines</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">All Disciplines</div>
                   </div>
 
                   <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.06] hover:border-[#0062FF]/30 transition-all">
                     <div className="font-display text-2xl sm:text-3xl font-black text-zinc-950">100+</div>
                     <div className="font-sans font-bold text-xs text-zinc-800 mt-0.5">Centres</div>
-                    <div className="font-mono text-[10px] text-zinc-500 mt-0.5">India &amp; Overseas</div>
+                    <div className="text-xs text-zinc-500 mt-0.5">India &amp; Overseas</div>
                   </div>
                 </div>
 
@@ -223,12 +217,9 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                     <Award size={20} />
                   </div>
                   <div className="space-y-1.5 flex-1">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div>
                       <span className="font-sans text-sm font-bold text-blue-950 tracking-tight">
-                        Scientific &amp; Industrial Research Organisation (SIRO)
-                      </span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-[#0052D6] font-mono text-[10px] font-bold">
-                        DSIR · GOVT. OF INDIA
+                        Scientific &amp; Industrial Research Organisation (SIRO) — DSIR, Govt. of India
                       </span>
                     </div>
                     <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
@@ -243,12 +234,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
             {/* RIGHT COLUMN: ARCHITECTURAL HERITAGE SPECIFICATION MONOLITH */}
             <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.06)] relative overflow-hidden flex flex-col justify-between">
               
-              {/* Technical Corner Crosshairs (CAD Aesthetic) */}
-              <span className="absolute top-3 left-3 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-              <span className="absolute top-3 right-3 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-              <span className="absolute bottom-3 left-3 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-              <span className="absolute bottom-3 right-3 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-
               {/* Watermark Archival Graphic */}
               <div 
                 className="absolute right-0 bottom-0 w-64 h-64 pointer-events-none opacity-[0.03] select-none"
@@ -259,16 +244,10 @@ export default function AboutIEIOverview({ onOpenMembership }) {
 
               <div>
                 {/* Monolith Header Bar */}
-                <div className="flex items-center justify-between pb-4 border-b border-black/[0.08] mb-6">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#0062FF]" />
-                    <span className="font-mono text-xs font-bold text-zinc-950 uppercase tracking-wider">
-                      STATUTORY SPECIFICATIONS
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] text-zinc-400 font-medium">
-                    FOLIO: IEI·1935·HQ
-                  </span>
+                <div className="pb-4 border-b border-black/[0.08] mb-6">
+                  <h4 className="text-base font-bold text-zinc-950">
+                    Statutory Specifications
+                  </h4>
                 </div>
 
                 {/* Structured Archival Specs */}
@@ -276,56 +255,56 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   
                   {/* Spec 1: Incorporation */}
                   <div className="p-3.5 rounded-xl bg-zinc-50/80 border border-black/[0.04] hover:bg-zinc-50 transition-colors">
-                    <div className="flex items-center gap-2 text-zinc-400 font-mono text-[10px] uppercase font-bold tracking-wider">
-                      <Crown size={12} className="text-[#C28B38]" />
-                      <span>INCORPORATION AUTHORITY</span>
+                    <div className="flex items-center gap-2 text-zinc-500 text-xs font-semibold">
+                      <Crown size={13} className="text-[#C28B38]" />
+                      <span>Incorporation Authority</span>
                     </div>
                     <div className="font-sans font-bold text-zinc-950 text-sm mt-1">
                       Royal Charter (9 Sept 1935)
                     </div>
-                    <div className="font-mono text-zinc-500 text-xs mt-0.5">
+                    <div className="text-zinc-500 text-xs mt-0.5">
                       Granted by His Imperial Majesty King George V
                     </div>
                   </div>
 
                   {/* Spec 2: Constitutional Recognition */}
                   <div className="p-3.5 rounded-xl bg-zinc-50/80 border border-black/[0.04] hover:bg-zinc-50 transition-colors">
-                    <div className="flex items-center gap-2 text-zinc-400 font-mono text-[10px] uppercase font-bold tracking-wider">
-                      <Landmark size={12} className="text-[#0062FF]" />
-                      <span>CONSTITUTIONAL RECOGNITION</span>
+                    <div className="flex items-center gap-2 text-zinc-500 text-xs font-semibold">
+                      <Landmark size={13} className="text-[#0062FF]" />
+                      <span>Constitutional Recognition</span>
                     </div>
                     <div className="font-sans font-bold text-zinc-950 text-sm mt-1">
                       &quot;Body Corporate&quot; under Article 372
                     </div>
-                    <div className="font-mono text-zinc-500 text-xs mt-0.5">
+                    <div className="text-zinc-500 text-xs mt-0.5">
                       Constitution of India (Post-1947 Republic Continuity)
                     </div>
                   </div>
 
                   {/* Spec 3: Governance */}
                   <div className="p-3.5 rounded-xl bg-zinc-50/80 border border-black/[0.04] hover:bg-zinc-50 transition-colors">
-                    <div className="flex items-center gap-2 text-zinc-400 font-mono text-[10px] uppercase font-bold tracking-wider">
-                      <Building2 size={12} className="text-zinc-600" />
-                      <span>APEX GOVERNANCE &amp; SECRETARIAT</span>
+                    <div className="flex items-center gap-2 text-zinc-500 text-xs font-semibold">
+                      <Building2 size={13} className="text-zinc-600" />
+                      <span>Apex Governance &amp; Secretariat</span>
                     </div>
                     <div className="font-sans font-bold text-zinc-950 text-sm mt-1">
                       National Council headed by President
                     </div>
-                    <div className="font-mono text-zinc-500 text-xs mt-0.5">
+                    <div className="text-zinc-500 text-xs mt-0.5">
                       8 Gokhale Road, Kolkata - 700020, West Bengal
                     </div>
                   </div>
 
                   {/* Spec 4: Disciplines */}
                   <div className="p-3.5 rounded-xl bg-zinc-50/80 border border-black/[0.04] hover:bg-zinc-50 transition-colors">
-                    <div className="flex items-center gap-2 text-zinc-400 font-mono text-[10px] uppercase font-bold tracking-wider">
-                      <Layers size={12} className="text-emerald-600" />
-                      <span>DISCIPLINES ENCOMPASSED</span>
+                    <div className="flex items-center gap-2 text-zinc-500 text-xs font-semibold">
+                      <Layers size={13} className="text-emerald-600" />
+                      <span>Disciplines Encompassed</span>
                     </div>
                     <div className="font-sans font-bold text-zinc-950 text-sm mt-1">
                       15 Engineering Divisions
                     </div>
-                    <div className="font-mono text-zinc-500 text-xs mt-0.5">
+                    <div className="text-zinc-500 text-xs mt-0.5">
                       Electronics, CompSci, Mech, Civil, Aerospace, Elec, etc.
                     </div>
                   </div>
@@ -335,7 +314,7 @@ export default function AboutIEIOverview({ onOpenMembership }) {
 
               {/* Monolith Footer Action Bar */}
               <div className="mt-6 pt-4 border-t border-black/[0.06] flex items-center justify-between">
-                <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-500">
+                <div className="flex items-center gap-1.5 text-xs text-zinc-500">
                   <span className="w-2 h-2 rounded-full bg-emerald-500" />
                   <span>Apex Registry Validated</span>
                 </div>
@@ -345,7 +324,7 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={() => audioEngine.playClick()}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-950 hover:bg-[#0062FF] text-white font-mono text-xs font-bold transition-all shadow-2xs group"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-950 hover:bg-[#0062FF] text-white text-xs font-semibold transition-all shadow-2xs group"
                 >
                   <span>ieindia.org</span>
                   <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -366,16 +345,15 @@ export default function AboutIEIOverview({ onOpenMembership }) {
           
           {/* MONUMENTAL VISION PEDESTAL */}
           <div className="bg-gradient-to-br from-white via-[#F8FAFF] to-[#EFF5FF] rounded-3xl p-8 sm:p-12 border border-[#0062FF]/20 shadow-[0_12px_40px_rgba(0,98,255,0.06)] relative overflow-hidden">
-            <div className="flex items-center gap-2 font-mono text-xs text-[#0062FF] font-bold mb-6 uppercase tracking-widest">
-              <Compass size={16} />
-              <span>OFFICIAL INSTITUTIONAL VISION</span>
-            </div>
+            <h3 className="font-display text-2xl font-bold text-zinc-950 mb-4">
+              Institutional Vision
+            </h3>
 
             <blockquote className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950 leading-snug tracking-tight max-w-5xl">
               &ldquo;To be one of the largest and most vibrant professional societies of engineers, technologists, and applied scientists in the world — covering all branches of engineering — committed to continual professional and intellectual development, and contributing significantly to the growth of technological knowledge, skill, and capacity-building, through an innovative approach to sustainable development.&rdquo;
             </blockquote>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3 font-mono text-xs text-zinc-500 pt-6 border-t border-[#0062FF]/10">
+            <div className="mt-8 flex flex-wrap items-center gap-3 text-xs text-zinc-500 pt-6 border-t border-[#0062FF]/10">
               <span className="font-bold text-zinc-900">Adopted by the National Council</span>
               <span>·</span>
               <span>The Institution of Engineers (India)</span>
@@ -386,10 +364,9 @@ export default function AboutIEIOverview({ onOpenMembership }) {
 
           {/* 3 MISSION PILLARS */}
           <div>
-            <div className="flex items-center gap-2 font-mono text-xs text-zinc-500 font-bold mb-6 uppercase tracking-widest">
-              <Target size={16} className="text-[#0062FF]" />
-              <span>OFFICIAL INSTITUTIONAL MISSION PILLARS</span>
-            </div>
+            <h3 className="font-display text-2xl font-bold text-zinc-950 mb-6">
+              Mission &amp; Mandate
+            </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {missionPillars.map((p) => (
@@ -398,18 +375,11 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   className="bg-white rounded-3xl p-7 sm:p-8 border border-black/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-[#0062FF]/30 hover:shadow-[0_8px_30px_rgba(0,98,255,0.08)] transition-all group"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="font-mono text-xs font-bold text-[#0062FF] px-2.5 py-1 rounded-md bg-[#0062FF]/[0.08]">
-                        PILLAR {p.num}
-                      </span>
-                      <span className="font-mono text-[10px] text-zinc-400">STATUTORY MANDATE</span>
-                    </div>
-
                     <h4 className="font-display text-xl sm:text-2xl font-bold text-zinc-950 mb-1 group-hover:text-[#0062FF] transition-colors">
                       {p.title}
                     </h4>
 
-                    <div className="font-mono text-xs text-zinc-400 font-semibold mb-3">
+                    <div className="text-sm text-zinc-500 font-medium mb-3">
                       {p.subtitle}
                     </div>
 
@@ -418,7 +388,7 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-black/[0.04] flex items-center gap-1.5 text-xs font-mono text-zinc-400">
+                  <div className="mt-6 pt-4 border-t border-black/[0.04] flex items-center gap-1.5 text-xs text-zinc-400">
                     <CheckCircle2 size={13} className="text-emerald-600" />
                     <span>Active National Directive</span>
                   </div>
@@ -435,10 +405,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
       {activeTab === 'history' && (
         <div className="animate-fadeIn space-y-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 font-mono text-xs text-[#0062FF] font-semibold mb-2">
-              <Calendar size={14} />
-              <span>CHRONOLOGICAL MILESTONES · 1920 TO PRESENT</span>
-            </div>
             <h3 className="font-display text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight">
               A Century of Engineering Nation-Building
             </h3>
@@ -454,15 +420,10 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                 <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white border-2 border-[#0062FF] group-hover:scale-125 group-hover:bg-[#0062FF] transition-all shadow-xs" />
 
                 <div className="bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:border-[#0062FF]/30 transition-all max-w-3xl">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3 font-mono text-xs">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[#0062FF] font-black text-lg sm:text-xl font-display">{evt.year}</span>
-                      <span className="text-zinc-300">/</span>
-                      <span className="text-zinc-500 font-semibold">{evt.date}</span>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-zinc-100 text-zinc-700 font-semibold text-[10px] uppercase tracking-wider">
-                      {evt.tag}
-                    </span>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[#0062FF] font-black text-lg sm:text-xl font-display">{evt.year}</span>
+                    <span className="text-zinc-300">·</span>
+                    <span className="text-zinc-500 text-sm font-semibold">{evt.date}</span>
                   </div>
 
                   <h4 className="font-display text-xl sm:text-2xl font-bold text-zinc-950 mb-2">
@@ -472,11 +433,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
                     {evt.desc}
                   </p>
-
-                  <div className="mt-4 pt-3 border-t border-black/[0.04] flex items-center justify-between font-mono text-xs text-zinc-400">
-                    <span>{evt.badge}</span>
-                    <span className="text-zinc-300">#0{idx + 1}</span>
-                  </div>
                 </div>
               </div>
             ))}
@@ -490,10 +446,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
       {activeTab === 'affiliations' && (
         <div className="animate-fadeIn space-y-10">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-xs text-[#0062FF] font-semibold mb-2">
-              <Globe size={14} />
-              <span>SOVEREIGN MULTI-LATERAL MEMBERSHIPS</span>
-            </div>
             <h3 className="font-display text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight">
               International Representation &amp; Bilateral Accords
             </h3>
@@ -511,13 +463,13 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="font-display text-3xl font-black text-[#0062FF] tracking-tight">{b.name}</span>
-                    <span className="font-mono text-[10px] text-zinc-400 px-2 py-0.5 rounded-full bg-zinc-100">{b.hq}</span>
+                    <span className="text-xs text-zinc-500">{b.hq}</span>
                   </div>
                   <div className="font-sans font-bold text-base text-zinc-950 mb-2 leading-snug">{b.full}</div>
                   <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">{b.desc}</p>
                 </div>
                 
-                <div className="mt-5 pt-3 border-t border-black/[0.04] font-mono text-xs text-[#0052D6] font-semibold">
+                <div className="mt-5 pt-3 border-t border-black/[0.04] text-xs text-[#0052D6] font-medium">
                   {b.role}
                 </div>
               </div>
@@ -528,15 +480,11 @@ export default function AboutIEIOverview({ onOpenMembership }) {
           <div className="bg-zinc-950 rounded-3xl p-8 sm:p-10 text-white shadow-[0_20px_50px_rgba(0,0,0,0.12)] relative overflow-hidden border border-black/20">
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-3 max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold">
-                  <CheckCircle2 size={13} />
-                  <span>RECOGNIZED SIRO · DEPT. OF SCIENTIFIC &amp; INDUSTRIAL RESEARCH (DSIR)</span>
-                </div>
                 <h4 className="font-display text-2xl sm:text-3xl font-black text-white tracking-tight">
                   National Grant-in-Aid Research Scheme
                 </h4>
                 <p className="text-zinc-400 text-sm sm:text-base leading-relaxed font-normal">
-                  As an officially recognized SIRO, IEI funds high-impact, innovative research projects across Indian engineering colleges. Undergraduate, postgraduate, and doctoral candidates can apply for financial grant-in-aid to fabricate hardware prototypes, test algorithms, and publish academic research.
+                  As an officially recognized SIRO by the Department of Scientific &amp; Industrial Research (DSIR), IEI funds high-impact, innovative research projects across Indian engineering colleges. Undergraduate, postgraduate, and doctoral candidates can apply for financial grant-in-aid to fabricate hardware prototypes, test algorithms, and publish academic research.
                 </p>
               </div>
 
@@ -546,7 +494,7 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                   audioEngine.playClick();
                   if (onOpenMembership) onOpenMembership('Research Grant Inquiry');
                 }}
-                className="px-6 py-3.5 rounded-full bg-white hover:bg-[#0062FF] text-zinc-950 hover:text-white font-mono text-xs font-bold transition-all shadow-md cursor-pointer shrink-0"
+                className="px-6 py-3.5 rounded-full bg-white hover:bg-[#0062FF] text-zinc-950 hover:text-white text-xs font-semibold transition-all shadow-md cursor-pointer shrink-0"
               >
                 Inquire for Research Grants →
               </button>
@@ -564,11 +512,6 @@ export default function AboutIEIOverview({ onOpenMembership }) {
             
             {/* Left: Chapter Profile */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 font-mono text-xs text-[#0062FF] font-semibold">
-                <Cpu size={16} />
-                <span>SIES GRADUATE SCHOOL OF TECHNOLOGY · NAVI MUMBAI</span>
-              </div>
-
               <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-zinc-950 tracking-tight">
                 About the SIES GST Student Chapter
               </h3>
@@ -601,7 +544,7 @@ export default function AboutIEIOverview({ onOpenMembership }) {
               </div>
 
               {/* STATS HIGHLIGHT */}
-              <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.08] font-mono text-xs text-zinc-600 flex flex-wrap gap-4 items-center">
+              <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.08] text-xs text-zinc-600 flex flex-wrap gap-4 items-center">
                 <span className="font-bold text-zinc-900">56 Chapter Members</span>
                 <span>·</span>
                 <span className="text-[#0062FF] font-bold">10 Events Conducted</span>
@@ -613,27 +556,26 @@ export default function AboutIEIOverview({ onOpenMembership }) {
             </div>
 
             {/* Right: Leadership & Mentors Box */}
-            <div className="lg:col-span-5 bg-white rounded-3xl p-7 border border-black/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] font-mono text-xs space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-black/[0.08]">
-                <span className="text-[#0062FF] font-bold">CHAPTER PATRONS &amp; ADVISORS</span>
-                <span className="text-zinc-400">SIES GST #602</span>
+            <div className="lg:col-span-5 bg-white rounded-3xl p-7 border border-black/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-xs space-y-5">
+              <div className="pb-3 border-b border-black/[0.08]">
+                <h4 className="text-sm font-bold text-zinc-950">Chapter Patrons &amp; Advisors</h4>
               </div>
 
               <div className="space-y-4">
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
-                  <span className="text-[10px] text-zinc-400 uppercase block font-semibold">Chief Institutional Patron</span>
+                  <span className="text-xs text-zinc-500 block font-medium">Chief Institutional Patron</span>
                   <span className="font-sans font-bold text-base text-zinc-950 block mt-0.5">Dr. Atul Kemkar</span>
                   <span className="text-zinc-600 text-xs block font-sans">Principal, SIES Graduate School of Technology</span>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
-                  <span className="text-[10px] text-zinc-400 uppercase block font-semibold">Departmental Patron</span>
+                  <span className="text-xs text-zinc-500 block font-medium">Departmental Patron</span>
                   <span className="font-sans font-bold text-base text-zinc-950 block mt-0.5">Dr. Shubhangi Kharache</span>
                   <span className="text-zinc-600 text-xs block font-sans">Head of Department, Electronics &amp; Computer Science</span>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
-                  <span className="text-[10px] text-zinc-400 uppercase block font-semibold">Faculty Advisor &amp; Coordinator</span>
+                  <span className="text-xs text-zinc-500 block font-medium">Faculty Advisor &amp; Coordinator</span>
                   <span className="font-sans font-bold text-base text-zinc-950 block mt-0.5">Prof. Jasmin Hirani</span>
                   <span className="text-zinc-600 text-xs block font-sans">Assistant Professor, ECS Department</span>
                 </div>
@@ -643,7 +585,7 @@ export default function AboutIEIOverview({ onOpenMembership }) {
                 <a
                   href="#/team"
                   onClick={() => audioEngine.playClick()}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-950 hover:bg-[#0062FF] text-white font-mono text-xs font-bold transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-950 hover:bg-[#0062FF] text-white text-xs font-semibold transition-all shadow-xs"
                 >
                   <span>Explore 7 Student Wings &amp; Executive Council</span>
                   <ArrowRight size={13} />

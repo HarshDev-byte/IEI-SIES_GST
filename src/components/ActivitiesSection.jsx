@@ -91,16 +91,16 @@ export default function ActivitiesSection({ onOpenMembership }) {
                 }`}
               >
                 <div className="flex items-center gap-3.5">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-semibold ${
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-semibold ${
                     isSelected ? 'bg-white/15 text-white' : 'bg-black/[0.04] text-zinc-800'
                   }`}>
                     {act.num}
                   </div>
                   <div>
-                    <div className={`font-mono text-[9px] flex items-center gap-1.5 ${
+                    <div className={`text-xs flex items-center gap-1.5 ${
                       isSelected ? 'text-zinc-300' : 'text-zinc-500'
                     }`}>
-                      <span>{act.code}</span>
+                      <span>{act.category}</span>
                       <span>·</span>
                       <span>{act.cadence}</span>
                     </div>
@@ -124,17 +124,9 @@ export default function ActivitiesSection({ onOpenMembership }) {
         {/* Right: Detailed High-Precision Engineering Activity Dossier */}
         <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-black/10 shadow-[0_20px_60px_rgba(0,0,0,0.06),_0_1px_2px_rgba(0,0,0,0.03)] relative overflow-hidden">
           
-          <div className="flex items-center justify-between border-b border-black/[0.08] pb-4 mb-6">
-            <div className="flex items-center gap-2.5">
-              <span className="badge-minimal badge-blue text-[10px] font-bold">
-                {current.code}
-              </span>
-              <span className="font-mono text-xs text-zinc-500 font-semibold">{current.category}</span>
-            </div>
-            <div className="flex items-center gap-2 font-mono text-xs text-zinc-500 bg-zinc-50 px-2.5 py-1 rounded-full border border-black/5">
-              <Calendar size={13} className="text-[#0066CC]" />
-              <span>{current.cadence}</span>
-            </div>
+          <div className="flex items-center justify-between border-b border-black/[0.08] pb-4 mb-6 text-xs text-zinc-500 font-medium">
+            <span>{current.category}</span>
+            <span>{current.cadence}</span>
           </div>
 
           <h3 className="font-display text-2xl sm:text-3xl font-black text-zinc-950 mb-3 tracking-tight">
@@ -147,16 +139,11 @@ export default function ActivitiesSection({ onOpenMembership }) {
 
           {/* Technical Modules & Lab Architecture */}
           <div className="bg-[#FAFAFC] p-5 sm:p-6 rounded-2xl border border-black/[0.06] mb-6">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-black/[0.04]">
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider font-bold">
-                CORE SYLLABUS &amp; HARDWARE TESTBEDS:
-              </span>
-              <span className="font-mono text-[9px] text-[#0066CC] font-semibold">
-                LAB 304 · ACCREDITED
-              </span>
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-black/[0.04] text-xs font-semibold text-zinc-700">
+              <span>Core Syllabus &amp; Hardware Testbeds</span>
             </div>
 
-            <div className="space-y-2.5 font-mono text-xs">
+            <div className="space-y-2.5 text-xs">
               {current.specs.map((spec, sIdx) => (
                 <div key={sIdx} className="flex items-center gap-3 text-zinc-800 bg-white p-2.5 rounded-xl border border-black/5 shadow-xs">
                   <CheckCircle2 size={15} className="text-[#0066CC] shrink-0" />
@@ -168,9 +155,8 @@ export default function ActivitiesSection({ onOpenMembership }) {
 
           {/* Bottom Enrollment Action */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-black/[0.06]">
-            <div className="flex items-center gap-2 font-mono text-xs text-zinc-500">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Active Semester Cohort Forming</span>
+            <div className="text-xs text-zinc-500 font-medium">
+              Active Semester Cohort Forming
             </div>
 
             <button

@@ -49,10 +49,6 @@ export default function NationalQuickFacts() {
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#00D6FF] font-mono text-[11px] font-semibold mb-2.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>COLLEGIATE TELEMETRY // SIES GST CHAPTER #602</span>
-            </div>
             <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
               Collegiate Chapter Performance Benchmarks
             </h3>
@@ -66,7 +62,7 @@ export default function NationalQuickFacts() {
             target="_blank" 
             rel="noopener noreferrer"
             onClick={() => audioEngine.playClick()}
-            className="self-start lg:self-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-zinc-950 hover:bg-[#0052D6] hover:text-white font-mono text-xs font-bold transition-all shadow-sm cursor-pointer group"
+            className="self-start lg:self-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-zinc-950 hover:bg-[#0052D6] hover:text-white text-xs font-semibold transition-all shadow-sm cursor-pointer group"
           >
             <span>Visit ieindia.org</span>
             <ExternalLink size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -83,7 +79,7 @@ export default function NationalQuickFacts() {
               <span className="font-sans text-sm font-bold text-zinc-200 mt-1">
                 {item.label}
               </span>
-              <span className="font-mono text-[11px] text-zinc-400 mt-0.5">
+              <span className="text-xs text-zinc-400 mt-0.5">
                 {item.note}
               </span>
             </div>
@@ -102,15 +98,13 @@ export default function NationalQuickFacts() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 font-mono text-xs">
-          <span className="flex items-center gap-1.5 text-emerald-800 font-semibold bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-2xs">
-            <CheckCircle2 size={13} className="text-emerald-600" />
-            <span>Govt. Recognized SIRO (DSIR)</span>
-          </span>
+        <div className="text-sm font-medium text-emerald-800 flex items-center gap-1.5">
+          <CheckCircle2 size={16} className="text-emerald-700" />
+          <span>Govt. Recognized SIRO (DSIR)</span>
         </div>
       </div>
 
-      {/* 03. ARCHITECTURAL BENTO GRID (REPLACING THE BORING REPETITIVE 8 BOXES) */}
+      {/* 03. ARCHITECTURAL BENTO GRID */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
         
         {/* CARD 1: THE ROYAL CHARTER & CONSTITUTIONAL PROCLAMATION (Span 7) */}
@@ -121,14 +115,6 @@ export default function NationalQuickFacts() {
           </div>
 
           <div>
-            <div className="flex items-center justify-between gap-2 mb-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-900 font-mono text-[10px] font-bold tracking-wider uppercase">
-                <Award size={12} className="text-amber-600" />
-                <span>CENTENARY ROYAL CHARTER · KING GEORGE V</span>
-              </div>
-              <span className="font-mono text-xs font-semibold text-zinc-400">ESTD. 1920</span>
-            </div>
-
             <h3 className="font-display text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight mb-2">
               Royal Charter of 9 September 1935
             </h3>
@@ -143,7 +129,7 @@ export default function NationalQuickFacts() {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-black/[0.06] flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-zinc-500">
+          <div className="pt-4 border-t border-black/[0.06] flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-500">
             <div className="flex items-center gap-2">
               <ShieldCheck size={14} className="text-emerald-600" />
               <span className="font-semibold text-zinc-800">Article 372 Body Corporate</span>
@@ -158,10 +144,7 @@ export default function NationalQuickFacts() {
 
           <div>
             <div className="flex items-center justify-between mb-4">
-              <span className="font-mono text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/10 text-blue-300 border border-white/10">
-                GLOBAL FOOTPRINT
-              </span>
-              <Globe size={16} className="text-blue-400" />
+              <Globe size={20} className="text-blue-400" />
             </div>
 
             <div className="font-display text-4xl sm:text-6xl font-black text-white tracking-tight">
@@ -178,11 +161,11 @@ export default function NationalQuickFacts() {
           <div className="pt-6 border-t border-white/10 grid grid-cols-2 gap-4 mt-6">
             <div>
               <div className="font-display text-xl sm:text-2xl font-bold text-white">100+</div>
-              <div className="font-mono text-[10px] text-zinc-400 uppercase mt-0.5">State &amp; Local Centres</div>
+              <div className="text-xs text-zinc-400 mt-0.5">State &amp; Local Centres</div>
             </div>
             <div>
               <div className="font-display text-xl sm:text-2xl font-bold text-[#00D6FF]">15</div>
-              <div className="font-mono text-[10px] text-zinc-400 uppercase mt-0.5">Engineering Divisions</div>
+              <div className="text-xs text-zinc-400 mt-0.5">Engineering Divisions</div>
             </div>
           </div>
         </div>
@@ -190,13 +173,6 @@ export default function NationalQuickFacts() {
         {/* CARD 3: 15 DISCIPLINES MATRIX (Span 6) */}
         <div className="md:col-span-6 bg-white rounded-3xl border border-black/[0.08] p-6 sm:p-8 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Layers size={16} className="text-[#0052D6]" />
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-                DISCIPLINE DIVISION ROSTER
-              </span>
-            </div>
-
             <h3 className="font-display text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight mb-2">
               15 Statutory Engineering Divisions
             </h3>
@@ -209,7 +185,7 @@ export default function NationalQuickFacts() {
               {engineeringDivisions.map((div, i) => (
                 <span 
                   key={i}
-                  className="px-2.5 py-1 rounded-lg bg-zinc-100/80 hover:bg-[#0052D6]/10 text-zinc-700 hover:text-[#0052D6] font-mono text-[10px] font-medium transition-colors border border-black/[0.04]"
+                  className="px-2.5 py-1 rounded-lg bg-zinc-100/80 text-zinc-700 text-xs font-normal border border-black/[0.04]"
                 >
                   {div}
                 </span>
@@ -219,20 +195,13 @@ export default function NationalQuickFacts() {
 
           <div className="pt-4 border-t border-black/[0.06] mt-5 flex items-center justify-between text-xs font-sans text-zinc-500">
             <span>SIES GST operates under Division 09 (ECS)</span>
-            <span className="font-mono text-[11px] text-[#0052D6] font-semibold">Tier-1 Collegiate Accreditation</span>
+            <span className="text-xs text-[#0052D6] font-semibold">Tier-1 Collegiate Accreditation</span>
           </div>
         </div>
 
         {/* CARD 4: RESEARCH & STATUTORY RECOGNITION (Span 6) */}
         <div className="md:col-span-6 bg-white rounded-3xl border border-black/[0.08] p-6 sm:p-8 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <BookOpen size={16} className="text-emerald-600" />
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-                SCIENTIFIC &amp; RESEARCH RECOGNITION
-              </span>
-            </div>
-
             <h3 className="font-display text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight mb-2">
               DSIR Recognized SIRO &amp; Publications
             </h3>
@@ -242,12 +211,12 @@ export default function NationalQuickFacts() {
 
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="p-3 rounded-2xl bg-zinc-50 border border-black/[0.05]">
-                <div className="font-mono text-[10px] text-emerald-700 font-bold uppercase">DSIR (Govt. of India)</div>
+                <div className="text-xs font-semibold text-emerald-800">DSIR (Govt. of India)</div>
                 <div className="font-sans text-xs font-bold text-zinc-900 mt-0.5">Approved SIRO</div>
                 <div className="font-sans text-[10px] text-zinc-500 mt-0.5">National R&amp;D Standing</div>
               </div>
               <div className="p-3 rounded-2xl bg-zinc-50 border border-black/[0.05]">
-                <div className="font-mono text-[10px] text-[#0052D6] font-bold uppercase">Springer Nature</div>
+                <div className="text-xs font-semibold text-[#0052D6]">Springer Nature</div>
                 <div className="font-sans text-xs font-bold text-zinc-900 mt-0.5">Series A, B, C &amp; D</div>
                 <div className="font-sans text-[10px] text-zinc-500 mt-0.5">Peer-Reviewed Journals</div>
               </div>
@@ -263,7 +232,7 @@ export default function NationalQuickFacts() {
       </div>
 
       {/* 04. NATIONAL CITATION STRIP */}
-      <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#FAFAFC] border border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-600">
+      <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#FAFAFC] border border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-600">
         <div className="flex items-center gap-2.5 text-center sm:text-left">
           <Building2 size={15} className="text-zinc-400 shrink-0 hidden sm:inline" />
           <span className="font-bold text-zinc-900">National Headquarters:</span>

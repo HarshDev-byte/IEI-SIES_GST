@@ -37,20 +37,8 @@ export default function EventsPage() {
       {/* ARCHITECTURAL COMING SOON MONOLITH */}
       <div className="relative rounded-3xl bg-white border border-black/10 p-8 sm:p-14 shadow-[0_16px_50px_rgba(0,0,0,0.04)] overflow-hidden text-center">
         
-        {/* CAD Corner Crosshairs */}
-        <span className="absolute top-4 left-4 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-        <span className="absolute top-4 right-4 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-        <span className="absolute bottom-4 left-4 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-        <span className="absolute bottom-4 right-4 text-zinc-300 font-mono text-xs select-none pointer-events-none">+</span>
-
         {/* Subtle Background Radial Glow */}
         <div className="absolute inset-0 bg-radial from-[#0062FF]/[0.03] to-transparent pointer-events-none" />
-
-        {/* Status Chip */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 text-zinc-700 font-mono text-xs font-semibold mb-6 border border-black/[0.04]">
-          <span className="w-2 h-2 rounded-full bg-[#0062FF] animate-pulse" />
-          <span>SCHEDULE UNDER FINALIZATION</span>
-        </div>
 
         {/* Icon & Pulse Rings */}
         <div className="relative w-20 h-20 mx-auto mb-8 flex items-center justify-center">
@@ -73,7 +61,7 @@ export default function EventsPage() {
         {/* Notification Form / Status */}
         <div className="max-w-md mx-auto mb-12">
           {notified ? (
-            <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 font-mono text-xs flex items-center justify-center gap-2">
+            <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs flex items-center justify-center gap-2">
               <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
               <span>You will receive an official dispatch when the schedule is published.</span>
             </div>
@@ -88,7 +76,7 @@ export default function EventsPage() {
               />
               <button
                 type="submit"
-                className="px-5 py-3 rounded-xl bg-zinc-950 hover:bg-[#0062FF] text-white font-mono text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                className="px-5 py-3 rounded-xl bg-zinc-950 hover:bg-[#0062FF] text-white text-xs font-semibold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
               >
                 <Bell size={13} />
                 <span>Notify Me</span>
@@ -100,9 +88,8 @@ export default function EventsPage() {
         {/* Preview Pillars */}
         <div className="pt-8 border-t border-black/[0.06] grid grid-cols-1 sm:grid-cols-3 gap-4 text-left max-w-3xl mx-auto">
           <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
-            <div className="flex items-center gap-1.5 font-mono text-[10px] text-[#0062FF] font-bold uppercase mb-1">
-              <Sparkles size={11} />
-              <span>Flagship</span>
+            <div className="text-xs font-semibold text-zinc-500 mb-1">
+              Flagship
             </div>
             <div className="font-display font-bold text-sm text-zinc-950">
               Annual Technical Symposium
@@ -113,9 +100,8 @@ export default function EventsPage() {
           </div>
 
           <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
-            <div className="flex items-center gap-1.5 font-mono text-[10px] text-[#0062FF] font-bold uppercase mb-1">
-              <Cpu size={11} />
-              <span>Hardware</span>
+            <div className="text-xs font-semibold text-zinc-500 mb-1">
+              Hardware
             </div>
             <div className="font-display font-bold text-sm text-zinc-950">
               Microcontroller Testbenches
@@ -126,9 +112,8 @@ export default function EventsPage() {
           </div>
 
           <div className="p-4 rounded-2xl bg-zinc-50 border border-black/[0.04]">
-            <div className="flex items-center gap-1.5 font-mono text-[10px] text-[#0062FF] font-bold uppercase mb-1">
-              <Layers size={11} />
-              <span>Innovation</span>
+            <div className="text-xs font-semibold text-zinc-500 mb-1">
+              Innovation
             </div>
             <div className="font-display font-bold text-sm text-zinc-950">
               Collegiate Hackathons
@@ -144,13 +129,12 @@ export default function EventsPage() {
           <a
             href="#/"
             onClick={() => audioEngine.playClick()}
-            className="inline-flex items-center gap-2 text-xs font-mono text-zinc-500 hover:text-zinc-950 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-medium text-zinc-500 hover:text-zinc-950 transition-colors"
           >
             <ArrowLeft size={13} />
             <span>Return to Chapter Overview</span>
           </a>
         </div>
-
       </div>
 
     </div>

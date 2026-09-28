@@ -41,7 +41,7 @@ export default function GovernanceTeam() {
       roleCode: "VICE PRESIDENT",
       name: "Sarang Patil",
       position: "Vice Chairperson",
-      branch: "ECS",
+      branch: "AIDS",
       prn: "123A8043",
       scope: "Operations, Technical Symposia & Vice Leadership",
       bio: "Managing operational execution, inter-collegiate engineering hackathons, and administrative alignment across all chapter wings.",
@@ -165,7 +165,7 @@ export default function GovernanceTeam() {
       code: "CORE-02",
       title: "Vice Chairperson",
       name: "Sarang Patil",
-      branch: "ECS",
+      branch: "AIDS",
       prn: "123A8043",
       scope: "Operational Strategy, Cross-Wing Coordination & Event Execution"
     },
@@ -453,15 +453,6 @@ export default function GovernanceTeam() {
       {/* ========================================================================= */}
       <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-black/[0.06]">
         <div className="max-w-4xl">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="badge-minimal badge-blue">
-              IEI·GOV·ECS
-            </span>
-            <span className="badge-minimal">
-              SESSION 2026–2027
-            </span>
-          </div>
-
           <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-black text-zinc-950 tracking-ultra-tight uppercase leading-none mb-3">
             THE PEOPLE
           </h1>
@@ -474,14 +465,10 @@ export default function GovernanceTeam() {
           </p>
         </div>
 
-        {/* System 01 Hairline Divider */}
-        <div className="relative mt-16 pt-6 border-t border-black/[0.08] flex items-center justify-between">
-          <span className="font-mono text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">
-            SYSTEM 01 • ORGANIZATIONAL ROSTER
-          </span>
-          <span className="font-mono text-xs text-zinc-500">
-            TOTAL RATIFIED MEMBERS: 46
-          </span>
+        {/* Section Divider */}
+        <div className="relative mt-16 pt-6 border-t border-black/[0.08] flex items-center justify-between text-xs text-zinc-500 font-medium">
+          <span>Council Roster</span>
+          <span>46 Ratified Appointments</span>
         </div>
       </section>
 
@@ -493,9 +480,6 @@ export default function GovernanceTeam() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="font-mono text-[11px] font-semibold text-zinc-500 tracking-wider uppercase mb-1">
-              SYSTEM 02 • EXECUTIVE SPOTLIGHT / SELECT FIGURE TO REVEAL ISOLATED CHROMATIC SILHOUETTE & CREDENTIALS
-            </div>
             <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight">
               The Executive Council
             </h2>
@@ -592,30 +576,20 @@ export default function GovernanceTeam() {
           {/* Floating White Spotlight Card Overlaid at Bottom (Matching Image 3) */}
           <div className="relative z-30 bg-white rounded-3xl p-6 sm:p-8 max-w-xl w-full mx-auto shadow-2xl border border-black/[0.08] -mt-10 sm:-mt-12 backdrop-blur-md">
             
-            {/* Top row: EXEC-0X & Verified Badge */}
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-black/[0.06]">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] font-bold text-[#0062FF] bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-                  EXEC-0{activeExecIndex + 1}
-                </span>
-                <span className="font-mono text-xs text-zinc-500">
-                  2026–2027
-                </span>
-              </div>
-              <span className="inline-flex items-center gap-1 font-mono text-[11px] text-emerald-700 font-semibold">
-                <ShieldCheck size={13} className="text-emerald-600" />
-                VERIFIED RECORD
-              </span>
+            {/* Top row: Term */}
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-black/[0.06] text-xs text-zinc-500 font-medium">
+              <span>Session 2026–2027</span>
+              <span>Ratified Appointment</span>
             </div>
 
             {/* Position Subtitle & Name */}
-            <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-0.5">
+            <div className="text-xs font-semibold text-zinc-500 mb-0.5">
               {currentExec.roleCode}
             </div>
             <h3 className="font-display text-2xl sm:text-3xl font-black text-zinc-950 mb-1 leading-tight">
               {currentExec.name}
             </h3>
-            <div className="font-mono text-xs font-semibold text-[#0062FF] mb-3">
+            <div className="text-xs font-medium text-zinc-600 mb-3">
               {currentExec.scope}
             </div>
 
@@ -640,9 +614,9 @@ export default function GovernanceTeam() {
                   setSelectedMember(currentExec);
                   audioEngine.playClick();
                 }}
-                className="px-5 py-2.5 rounded-full bg-[#0062FF] hover:bg-[#0052D6] text-white font-mono text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 shadow-sm hover:shadow-md"
+                className="px-5 py-2.5 rounded-full bg-[#0062FF] hover:bg-[#0052D6] text-white text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 shadow-sm hover:shadow-md"
               >
-                <span>VIEW PROFILE</span>
+                <span>View Profile</span>
                 <ArrowRight size={13} />
               </button>
             </div>
@@ -658,9 +632,6 @@ export default function GovernanceTeam() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-black/[0.06]">
         
         <div className="max-w-3xl mb-12">
-          <div className="font-mono text-[11px] font-semibold text-zinc-500 tracking-wider uppercase mb-1">
-            SYSTEM 03 • INSTITUTIONAL ADVISORY / DEPARTMENT OF ELECTRONICS & COMPUTER SCIENCE
-          </div>
           <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight mb-2">
             Faculty Leadership
           </h2>
@@ -672,7 +643,6 @@ export default function GovernanceTeam() {
         {/* 2 Large Horizontal Cards Side-by-Side (Matching Image 2 Layout) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {facultyProfiles.slice(0, 2).map((fac) => {
-            const Icon = fac.icon;
             return (
               <div
                 key={fac.id}
@@ -682,47 +652,25 @@ export default function GovernanceTeam() {
                 }}
                 className="bg-white p-6 sm:p-8 rounded-3xl border border-black/[0.08] shadow-[0_4px_25px_rgba(0,0,0,0.02)] hover:border-black/20 hover:shadow-md transition-all cursor-pointer grid grid-cols-1 sm:grid-cols-12 gap-6 items-start group"
               >
-                {/* Left Column: Portrait Frame with Minimalist Silhouette & Bottom Ribbon Button */}
-                <div className="sm:col-span-5 bg-[#F7F8FA] rounded-2xl border border-black/[0.06] p-4 flex flex-col justify-between items-center min-h-[310px] relative">
-                  {/* Subtle Corner Crop Marks */}
-                  <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-zinc-300" />
-                  <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-zinc-300" />
-                  <div className="absolute bottom-12 left-2 w-2 h-2 border-b border-l border-zinc-300" />
-                  <div className="absolute bottom-12 right-2 w-2 h-2 border-b border-r border-zinc-300" />
-
-                  {/* Silhouette Portrait (Head + Arched Torso matching Image 2) */}
-                  <div className="flex-1 flex flex-col items-center justify-center pt-4">
+                {/* Left Column: Portrait Frame with Minimalist Silhouette */}
+                <div className="sm:col-span-5 bg-[#F7F8FA] rounded-2xl border border-black/[0.06] p-4 flex flex-col justify-center items-center min-h-[260px] relative">
+                  {/* Silhouette Portrait */}
+                  <div className="flex-1 flex flex-col items-center justify-center">
                     <div className="w-18 h-18 rounded-full bg-zinc-300/90 shadow-inner" />
                     <div className="w-28 h-20 bg-zinc-300/90 rounded-t-full mt-2" />
-                  </div>
-
-                  {/* Bottom Ribbon / Badge Button */}
-                  <div className="w-full mt-3 bg-white border border-black/[0.08] px-3 py-1.5 rounded-xl font-mono text-[10px] font-bold tracking-wider text-zinc-800 text-center flex items-center justify-center gap-1.5 shadow-2xs">
-                    <Icon size={13} className="text-[#0062FF]" />
-                    <span>{fac.avatarBadge}</span>
                   </div>
                 </div>
 
                 {/* Right Column: Title, Role, Description, Portfolio, Email Pill */}
-                <div className="sm:col-span-7 flex flex-col justify-between min-h-[310px]">
+                <div className="sm:col-span-7 flex flex-col justify-between min-h-[260px]">
                   <div>
-                    {/* Top Row: Category + SubBadge */}
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono text-[10px] font-bold text-[#0062FF] uppercase tracking-wider">
-                        {fac.badge}
-                      </span>
-                      <span className="font-mono text-[10px] text-zinc-500 font-semibold">
-                        {fac.subBadge}
-                      </span>
-                    </div>
-
                     <h3 className="font-display text-2xl font-bold text-zinc-950 group-hover:text-[#0062FF] transition-colors leading-tight mb-1">
                       {fac.name}
                     </h3>
                     <div className="font-display font-medium text-sm text-zinc-800">
                       {fac.officialTitle}
                     </div>
-                    <div className="font-mono text-[11px] text-zinc-500 mb-3">
+                    <div className="text-xs text-zinc-500 mb-3">
                       {fac.dept}
                     </div>
 
@@ -732,7 +680,7 @@ export default function GovernanceTeam() {
 
                     {/* Institutional Portfolio Bullet Points with Dash Prefix */}
                     <div className="pt-3 border-t border-black/[0.06] mb-4">
-                      <div className="font-mono text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1.5">
+                      <div className="text-xs font-semibold text-zinc-700 mb-1.5">
                         {fac.portfolioHeader}
                       </div>
                       <ul className="space-y-1 font-normal text-xs text-zinc-600 leading-relaxed">
@@ -746,12 +694,12 @@ export default function GovernanceTeam() {
                     </div>
                   </div>
 
-                  {/* Card Bottom: Email Pill Button */}
+                  {/* Card Bottom: Email Button */}
                   <div className="pt-2">
                     <a
                       href={`mailto:${fac.email}`}
                       onClick={(e) => e.stopPropagation()}
-                      className="font-mono text-xs text-zinc-700 bg-zinc-50 hover:bg-zinc-100 border border-black/[0.08] px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 font-semibold transition-colors"
+                      className="text-xs text-zinc-700 bg-zinc-50 hover:bg-zinc-100 border border-black/[0.08] px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 font-medium transition-colors"
                     >
                       <Mail size={12} className="text-zinc-500" />
                       <span>{fac.email}</span>
@@ -772,34 +720,22 @@ export default function GovernanceTeam() {
           }}
           className="bg-white p-6 sm:p-8 rounded-3xl border border-black/[0.08] shadow-[0_4px_25px_rgba(0,0,0,0.02)] hover:border-black/20 hover:shadow-md transition-all cursor-pointer grid grid-cols-1 sm:grid-cols-12 gap-6 items-start group max-w-2xl"
         >
-          <div className="sm:col-span-5 bg-[#F7F8FA] rounded-2xl border border-black/[0.06] p-4 flex flex-col justify-between items-center min-h-[280px] relative">
-            <div className="flex-1 flex flex-col items-center justify-center pt-4">
+          <div className="sm:col-span-5 bg-[#F7F8FA] rounded-2xl border border-black/[0.06] p-4 flex flex-col justify-center items-center min-h-[240px] relative">
+            <div className="flex-1 flex flex-col items-center justify-center">
               <div className="w-18 h-18 rounded-full bg-zinc-300/90 shadow-inner" />
               <div className="w-28 h-20 bg-zinc-300/90 rounded-t-full mt-2" />
             </div>
-            <div className="w-full mt-3 bg-white border border-black/[0.08] px-3 py-1.5 rounded-xl font-mono text-[10px] font-bold tracking-wider text-zinc-800 text-center flex items-center justify-center gap-1.5 shadow-2xs">
-              <Building2 size={13} className="text-[#0062FF]" />
-              <span>CHIEF PATRON</span>
-            </div>
           </div>
 
-          <div className="sm:col-span-7 flex flex-col justify-between min-h-[280px]">
+          <div className="sm:col-span-7 flex flex-col justify-between min-h-[240px]">
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-mono text-[10px] font-bold text-[#0062FF] uppercase tracking-wider">
-                  COLLEGIATE LEADERSHIP
-                </span>
-                <span className="font-mono text-[10px] text-zinc-500 font-semibold">
-                  PRINCIPAL
-                </span>
-              </div>
               <h3 className="font-display text-2xl font-bold text-zinc-950 group-hover:text-[#0062FF] transition-colors leading-tight mb-1">
                 Dr. K. Lakshmisudha
               </h3>
               <div className="font-display font-medium text-sm text-zinc-800">
                 Principal, SIES GST
               </div>
-              <div className="font-mono text-[11px] text-zinc-500 mb-3">
+              <div className="text-xs text-zinc-500 mb-3">
                 SIES Graduate School of Technology
               </div>
               <p className="text-zinc-600 text-xs leading-relaxed font-normal mb-4">
@@ -811,7 +747,7 @@ export default function GovernanceTeam() {
               <a
                 href="mailto:principal@siesgst.ac.in"
                 onClick={(e) => e.stopPropagation()}
-                className="font-mono text-xs text-zinc-700 bg-zinc-50 hover:bg-zinc-100 border border-black/[0.08] px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 font-semibold transition-colors"
+                className="text-xs text-zinc-700 bg-zinc-50 hover:bg-zinc-100 border border-black/[0.08] px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 font-medium transition-colors"
               >
                 <Mail size={12} className="text-zinc-500" />
                 <span>principal@siesgst.ac.in</span>
@@ -830,16 +766,12 @@ export default function GovernanceTeam() {
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="font-mono text-[11px] font-semibold text-zinc-500 tracking-wider uppercase mb-1">
-              SYSTEM 04 • APEX EXECUTIVE STRUCTURE / INDEPENDENT EXECUTIVE GOVERNANCE BODY
-            </div>
             <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight">
               Core Council
             </h2>
           </div>
-          <div className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-600 bg-zinc-100 px-3 py-1.5 rounded-xl border border-black/[0.06]">
-            <Clock size={13} className="text-zinc-500" />
-            <span>SESSION 2026–2027 APPOINTMENT CYCLE</span>
+          <div className="text-xs text-zinc-500 font-medium">
+            Session 2026–2027 Appointments
           </div>
         </div>
 
@@ -877,22 +809,13 @@ export default function GovernanceTeam() {
               className="bg-white p-5 rounded-2xl border border-black/[0.08] hover:border-black/20 hover:shadow-md transition-all shadow-[0_2px_12px_rgba(0,0,0,0.02)] cursor-pointer flex flex-col justify-between group"
             >
               <div>
-                <div className="flex items-center justify-between mb-3 border-b border-black/[0.06] pb-2">
-                  <span className="font-mono text-[10px] text-zinc-500 font-bold">
-                    {c.code}
-                  </span>
-                  <span className="font-mono text-[9px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                    RATIFIED
-                  </span>
-                </div>
-
-                <div className="font-mono text-[11px] font-bold text-[#0062FF] uppercase tracking-wide mb-1">
+                <div className="text-xs font-semibold text-zinc-600 mb-1">
                   {c.title}
                 </div>
                 <h3 className="font-display font-bold text-base text-zinc-950 mb-1 group-hover:text-[#0062FF] transition-colors">
                   {c.name}
                 </h3>
-                <div className="font-mono text-[10px] text-zinc-500 mb-3">
+                <div className="text-xs text-zinc-500 mb-3">
                   Branch: {c.branch}
                 </div>
 
@@ -901,11 +824,9 @@ export default function GovernanceTeam() {
                 </p>
               </div>
 
-              <div className="pt-3 mt-4 border-t border-black/[0.06] flex items-center justify-between">
-                <span className="font-mono text-[9px] text-zinc-500 uppercase">
-                  FACULTY RATIFICATION
-                </span>
-                <span className="text-[#0062FF] font-bold text-xs group-hover:translate-x-0.5 transition-transform">+</span>
+              <div className="pt-3 mt-4 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
+                <span>View Profile</span>
+                <span className="text-[#0062FF] font-bold group-hover:translate-x-0.5 transition-transform">→</span>
               </div>
             </div>
           ))}
@@ -918,9 +839,6 @@ export default function GovernanceTeam() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-black/[0.06]">
         
         <div className="max-w-3xl mb-12">
-          <div className="font-mono text-[11px] font-semibold text-zinc-500 tracking-wider uppercase mb-1">
-            SYSTEM 05 • ORGANIZATIONAL UNIVERSE / SEVEN SPECIALIZED ENGINEERING WINGS
-          </div>
           <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight mb-3">
             Domain Universe
           </h2>
@@ -934,9 +852,9 @@ export default function GovernanceTeam() {
           
           {/* Left Wing Selector Rail (DOMAIN INDEX 07 WINGS) */}
           <div className="lg:col-span-4 bg-white p-2 rounded-2xl border border-black/[0.06] shadow-xs space-y-1.5">
-            <div className="flex items-center justify-between font-mono text-[11px] font-bold text-zinc-500 px-3 py-2 uppercase tracking-wider border-b border-black/[0.06] mb-1">
-              <span>DOMAIN INDEX</span>
-              <span className="text-[#0062FF]">07 WINGS</span>
+            <div className="flex items-center justify-between text-xs font-semibold text-zinc-700 px-3 py-2 border-b border-black/[0.06] mb-1">
+              <span>Domain Index</span>
+              <span className="text-zinc-500">7 Wings</span>
             </div>
 
             {domainWings.map((w, idx) => {
@@ -1094,14 +1012,6 @@ export default function GovernanceTeam() {
           {/* Wing Charter Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-black/[0.06] gap-4">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="badge-minimal badge-blue text-[10px]">
-                  {currentWing.fullCode}
-                </span>
-                <span className="font-mono text-xs text-zinc-500">
-                  ACTIVE WING CHARTER
-                </span>
-              </div>
               <h3 className="font-display text-2xl sm:text-4xl font-black text-zinc-950">
                 {currentWing.fullName}
               </h3>
@@ -1113,7 +1023,7 @@ export default function GovernanceTeam() {
 
           {/* Volunteer Scope & Operational Responsibilities Card */}
           <div className="bg-[#FAFAFC] p-6 rounded-2xl border border-black/[0.06] mb-10">
-            <div className="font-mono text-xs font-bold text-zinc-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <div className="text-xs font-semibold text-zinc-900 mb-4 flex items-center gap-2">
               <CheckCircle2 size={15} className="text-[#0062FF]" />
               <span>Volunteer Scope & Operational Responsibilities</span>
             </div>
@@ -1281,9 +1191,6 @@ export default function GovernanceTeam() {
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="font-mono text-[11px] font-semibold text-zinc-500 tracking-wider uppercase mb-1">
-              SYSTEM 06 • COMPLETE ROSTER ARCHIVE / RECORDED APPOINTMENTS
-            </div>
             <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight">
               Portrait Archive
             </h2>
@@ -1354,20 +1261,13 @@ export default function GovernanceTeam() {
 
               {/* Details */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-mono text-[10px] text-zinc-500 font-bold">
-                    IEI-GST-2026
-                  </span>
-                  <ShieldCheck size={12} className="text-[#0062FF]" />
-                </div>
-
-                <div className="font-mono text-[11px] font-bold text-[#0062FF] uppercase tracking-wide truncate">
+                <div className="text-xs font-semibold text-zinc-600 truncate">
                   {m.position}
                 </div>
                 <h3 className="font-display font-bold text-base text-zinc-950 group-hover:text-[#0062FF] transition-colors truncate">
                   {m.name}
                 </h3>
-                <div className="font-mono text-[11px] text-zinc-500 mt-0.5">
+                <div className="text-xs text-zinc-500 mt-0.5">
                   {m.branch ? `Branch: ${m.branch}` : 'Branch: —'}
                 </div>
               </div>
@@ -1382,9 +1282,6 @@ export default function GovernanceTeam() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         
         <div className="max-w-3xl mb-10">
-          <div className="font-mono text-[11px] font-semibold text-zinc-500 tracking-wider uppercase mb-1">
-            SEARCHABLE ROSTER
-          </div>
           <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight mb-3">
             Chapter Member Directory
           </h2>
@@ -1461,27 +1358,29 @@ export default function GovernanceTeam() {
                   <div className="w-10 h-10 rounded-xl bg-zinc-100 border border-black/[0.08] flex items-center justify-center font-display font-black text-sm text-zinc-900 group-hover:bg-[#0062FF] group-hover:text-white transition-colors shrink-0">
                     {getInitials(member.name)}
                   </div>
-                  <span className="font-mono text-[9px] font-semibold text-zinc-600 bg-zinc-100 px-2 py-0.5 rounded border border-black/[0.04]">
-                    {member.branch ? `BRANCH: ${member.branch}` : 'BRANCH: —'}
-                  </span>
+                  {member.branch && (
+                    <span className="text-[11px] text-zinc-500 font-medium">
+                      {member.branch}
+                    </span>
+                  )}
                 </div>
 
-                <div className="font-mono text-[10px] font-bold text-[#0062FF] uppercase tracking-wide truncate mb-0.5">
+                <div className="text-xs font-semibold text-zinc-600 truncate mb-0.5">
                   {member.position}
                 </div>
                 <h3 className="font-display font-bold text-base text-zinc-950 group-hover:text-[#0062FF] transition-colors leading-snug">
                   {member.name}
                 </h3>
-                <div className="font-mono text-[11px] text-zinc-500 mt-1">
+                <div className="text-xs text-zinc-500 mt-1 font-normal">
                   {member.council}
                 </div>
               </div>
 
-              <div className="pt-3 mt-4 border-t border-black/[0.06] flex items-center justify-between">
-                <span className="font-mono text-[10px] text-zinc-500">
+              <div className="pt-3 mt-4 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
+                <span>
                   {member.domain || 'Chapter Roster'}
                 </span>
-                <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#0062FF] font-semibold group-hover:translate-x-0.5 transition-transform">
+                <span className="inline-flex items-center gap-1 text-[#0062FF] font-semibold group-hover:translate-x-0.5 transition-transform">
                   <span>Profile</span>
                   <ExternalLink size={11} />
                 </span>
@@ -1518,13 +1417,10 @@ export default function GovernanceTeam() {
             </button>
 
             {/* Modal Top Metadata */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[11px] font-semibold text-zinc-600 uppercase tracking-wider">
-                OFFICIAL CHAPTER RECORD
-              </span>
-              <span className="font-mono text-xs text-zinc-500">
-                SIES GST • 2026–2027
-              </span>
+            <div className="flex items-center gap-2 mb-4 text-xs text-zinc-500 font-medium">
+              <span>Chapter Record</span>
+              <span>•</span>
+              <span>SIES GST 2026–2027</span>
             </div>
 
             {/* Member Profile Header */}
@@ -1536,30 +1432,30 @@ export default function GovernanceTeam() {
                 <h3 className="font-display text-2xl font-bold text-zinc-950 leading-tight">
                   {selectedMember.name}
                 </h3>
-                <div className="font-mono text-xs text-[#0062FF] font-semibold mt-0.5">
+                <div className="text-xs text-zinc-600 font-semibold mt-0.5">
                   {selectedMember.position || selectedMember.role}
                 </div>
                 {selectedMember.branch ? (
-                  <div className="font-mono text-[11px] text-zinc-500 mt-0.5">
+                  <div className="text-xs text-zinc-500 mt-0.5">
                     Branch: {selectedMember.branch}
                   </div>
                 ) : (
-                  <div className="font-mono text-[11px] text-zinc-500 mt-0.5">
+                  <div className="text-xs text-zinc-500 mt-0.5">
                     Branch: Unspecified
                   </div>
                 )}
-                <div className="font-mono text-[10px] text-zinc-400 mt-1">
+                <div className="text-xs text-zinc-400 mt-1">
                   {selectedMember.council}
                 </div>
               </div>
             </div>
 
             {/* Underlying Verification Record */}
-            <div className="bg-zinc-50 rounded-2xl p-4 border border-black/[0.06] mb-6 space-y-2.5 font-mono text-xs">
+            <div className="bg-zinc-50 rounded-2xl p-4 border border-black/[0.06] mb-6 space-y-2.5 text-xs">
               {selectedMember.prn && (
                 <div className="flex items-center justify-between border-b border-black/[0.04] pb-2">
                   <span className="text-zinc-500">Student PRN:</span>
-                  <span className="font-semibold text-zinc-900">{selectedMember.prn}</span>
+                  <span className="font-mono font-semibold text-zinc-900">{selectedMember.prn}</span>
                 </div>
               )}
               <div className="flex items-center justify-between border-b border-black/[0.04] pb-2">
@@ -1568,14 +1464,14 @@ export default function GovernanceTeam() {
               </div>
               <div className="flex items-center justify-between border-b border-black/[0.04] pb-2">
                 <span className="text-zinc-500">Verification Status:</span>
-                <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                <span className="text-zinc-700 font-medium flex items-center gap-1">
                   <ShieldCheck size={13} className="text-emerald-600" />
-                  AUTHENTICATED CHAPTER RECORD
+                  Authenticated Chapter Record
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-zinc-500">Academic Session:</span>
-                <span className="text-zinc-900">2026–2027</span>
+                <span className="text-zinc-900 font-medium">2026–2027</span>
               </div>
             </div>
 
@@ -1587,7 +1483,7 @@ export default function GovernanceTeam() {
                   setSelectedMember(null);
                   audioEngine.playClick();
                 }}
-                className="px-4 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-700 font-mono text-xs font-semibold transition-colors cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-700 text-xs font-semibold transition-colors cursor-pointer"
               >
                 Close
               </button>
@@ -1598,7 +1494,7 @@ export default function GovernanceTeam() {
                   audioEngine.playClick();
                   window.location.hash = `#/member/${selectedMember.id || selectedMember.prn}`;
                 }}
-                className="px-5 py-2 rounded-xl bg-[#0062FF] hover:bg-[#0052D6] text-white font-mono text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 shadow-sm"
+                className="px-5 py-2 rounded-xl bg-[#0062FF] hover:bg-[#0052D6] text-white text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 shadow-sm"
               >
                 <span>View Full Profile & QR</span>
                 <ArrowRight size={13} />

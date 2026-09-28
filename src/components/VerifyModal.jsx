@@ -129,34 +129,34 @@ export default function VerifyModal({ isOpen, onClose }) {
             <div className="flex items-center justify-between border-b border-black/[0.06] pb-4 mb-4">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                <span className="font-mono text-xs text-emerald-700 font-bold">
+                <span className="text-xs text-emerald-700 font-semibold">
                   {result.status}
                 </span>
               </div>
-              <span className="badge-minimal badge-gold text-[10px]">
-                ROYAL CHARTER SEALED
+              <span className="text-xs text-zinc-500 font-medium">
+                Royal Charter Sealed
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-semibold">Registered Engineer Name</span>
-                <span className="text-zinc-950 font-display font-bold text-base mt-0.5 block">{result.engineerName}</span>
+                <span className="text-zinc-500 block mb-0.5">Registered Engineer Name</span>
+                <span className="text-zinc-950 font-display font-bold text-base block">{result.engineerName}</span>
               </div>
 
               <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-semibold">Statutory Inscription Grade</span>
-                <span className="text-[#0062FF] font-semibold mt-0.5 block">{result.grade}</span>
+                <span className="text-zinc-500 block mb-0.5">Statutory Inscription Grade</span>
+                <span className="text-zinc-900 font-semibold block">{result.grade}</span>
               </div>
 
               <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-semibold">Discipline Division</span>
-                <span className="text-zinc-700 mt-0.5 block">{result.division}</span>
+                <span className="text-zinc-500 block mb-0.5">Discipline Division</span>
+                <span className="text-zinc-700 block">{result.division}</span>
               </div>
 
               <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-semibold">Jurisdiction Centre</span>
-                <span className="text-zinc-700 mt-0.5 block">{result.stateCentre}</span>
+                <span className="text-zinc-500 block mb-0.5">Jurisdiction Centre</span>
+                <span className="text-zinc-700 block">{result.stateCentre}</span>
               </div>
 
               <div>

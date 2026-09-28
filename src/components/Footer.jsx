@@ -15,7 +15,7 @@ export default function Footer() {
                 IEI SIES GST
               </h2>
             </div>
-            <p className="font-mono text-xs text-zinc-500 mt-1">
+            <p className="text-xs text-zinc-500 mt-1">
               Official Student Chapter · Department of Electronics &amp; Computer Science Engineering
             </p>
           </div>
@@ -26,7 +26,7 @@ export default function Footer() {
           
           {/* Col 1: National Headquarters */}
           <div>
-            <div className="font-mono text-xs font-bold text-zinc-950 uppercase tracking-wider mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               National Headquarters
             </div>
             <p className="text-xs text-zinc-600 leading-relaxed font-normal mb-3">
@@ -37,14 +37,14 @@ export default function Footer() {
                 ieindia.org
               </a>
             </p>
-            <div className="font-mono text-[10px] text-zinc-500">
+            <div className="text-xs text-zinc-500">
               Royal Charter 1935 · Recognized SIRO (DSIR)
             </div>
           </div>
 
           {/* Col 2: Directory */}
           <div>
-            <div className="font-mono text-xs font-bold text-zinc-950 uppercase tracking-wider mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               National Directory
             </div>
             <ul className="space-y-2 text-xs text-zinc-600 font-medium">
@@ -56,7 +56,7 @@ export default function Footer() {
 
           {/* Col 3: Chapter & Programs */}
           <div>
-            <div className="font-mono text-xs font-bold text-zinc-950 uppercase tracking-wider mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               SIES GST Chapter
             </div>
             <ul className="space-y-2 text-xs text-zinc-600 font-medium">
@@ -69,7 +69,7 @@ export default function Footer() {
 
           {/* Col 4: Campus & Contact */}
           <div>
-            <div className="font-mono text-xs font-bold text-zinc-950 uppercase tracking-wider mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               Campus Headquarters
             </div>
             <p className="text-xs text-zinc-600 leading-relaxed font-normal mb-3">
@@ -96,7 +96,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 font-mono">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 font-medium">
           <div>
             © 2026 The Institution of Engineers (India) · SIES GST Student Chapter.
           </div>

@@ -98,45 +98,37 @@ export default function CampusHeadquarters() {
         {/* Left: Campus Info */}
         <div className="lg:col-span-6 space-y-6">
           <div className="bg-white rounded-2xl p-8 border border-black/[0.08] shadow-[0_4px_25px_rgba(0,0,0,0.03)]">
-            <div className="flex items-center gap-2 font-mono text-xs text-[#0062FF] mb-3 font-semibold">
-              <ShieldCheck size={14} />
-              <span>OFFICIAL CHAPTER LOCATION</span>
-            </div>
-
             <h3 className="font-display text-xl font-bold text-zinc-950 mb-1">
               SIES Graduate School of Technology
             </h3>
-            <p className="font-mono text-xs text-zinc-500 mb-6">
+            <p className="text-sm text-zinc-600 mb-6 font-medium">
               Department of Electronics &amp; Computer Science Engineering
             </p>
 
-            <div className="space-y-3.5 font-mono text-xs text-zinc-600 mb-6 border-t border-black/[0.06] pt-5">
+            <div className="space-y-3.5 text-sm text-zinc-600 mb-6 border-t border-black/[0.06] pt-5">
               <div className="flex items-start gap-2.5">
-                <MapPin size={14} className="text-zinc-500 shrink-0 mt-0.5" />
+                <MapPin size={15} className="text-zinc-500 shrink-0 mt-0.5" />
                 <span>
                   Sri Chandrasekarendra Saraswati Vidyapuram,<br />
                   Sector-V, Nerul, Navi Mumbai - 400706, Maharashtra, India
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail size={14} className="text-[#0062FF] shrink-0" />
+                <Mail size={15} className="text-[#0062FF] shrink-0" />
                 <a href="mailto:iei@siesgst.ac.in" className="hover:text-black transition-colors underline font-medium">
                   iei@siesgst.ac.in
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Building size={14} className="text-emerald-700 shrink-0" />
+                <Building size={15} className="text-emerald-700 shrink-0" />
                 <span>Affiliated to University of Mumbai · AICTE Approved</span>
               </div>
             </div>
 
-            <div className="bg-[#FAFAFC] p-4 rounded-xl border border-black/[0.06] font-mono text-xs text-zinc-700">
+            <div className="bg-[#FAFAFC] p-4 rounded-xl border border-black/[0.06] text-xs text-zinc-700">
               <div className="flex justify-between items-center mb-1">
-                <span className="text-zinc-500">CHAPTER STATUS</span>
-                <span className="text-emerald-700 font-semibold flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  ACTIVE CHAPTER
-                </span>
+                <span className="text-zinc-500 font-medium">Chapter Status</span>
+                <span className="text-emerald-700 font-semibold">Active Chapter</span>
               </div>
               <div className="text-zinc-600">National Charter Est. 1920 · Royal Charter 1935</div>
             </div>
@@ -152,14 +144,6 @@ export default function CampusHeadquarters() {
               : 'border-black/[0.08]'
           }`}
         >
-          <div className="font-mono text-xs text-zinc-500 mb-1 font-semibold flex items-center justify-between">
-            <span>COMMUNICATION DESK</span>
-            {isHighlighted && (
-              <span className="text-[10px] text-[#0062FF] font-mono animate-pulse">
-                ✦ MEMBERSHIP APPLICATION ACTIVE
-              </span>
-            )}
-          </div>
           <h3 className="font-display text-xl font-bold text-zinc-950 mb-5">
             Send Inquiry to Council
           </h3>
@@ -168,20 +152,20 @@ export default function CampusHeadquarters() {
             <div className="p-6 text-center bg-emerald-50 border border-emerald-200 rounded-2xl space-y-2 animate-fadeIn">
               <CheckCircle2 size={30} className="text-emerald-600 mx-auto" />
               <div className="font-display text-base font-bold text-zinc-950">Transmission Recorded &amp; Dispatched</div>
-              <p className="font-mono text-xs text-zinc-600 max-w-sm mx-auto">
+              <p className="text-xs text-zinc-600 max-w-sm mx-auto">
                 Your inquiry has been received and forwarded to the Chapter Secretariat and Council Desk. A reply will be dispatched to <span className="font-semibold text-zinc-900">{formData.email}</span>.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3.5">
               {errorMsg && (
-                <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 font-mono text-xs">
+                <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
                   {errorMsg}
                 </div>
               )}
 
               <div>
-                <label className="font-mono text-[10px] text-zinc-500 uppercase block mb-1 font-semibold">
+                <label className="text-xs text-zinc-600 font-medium block mb-1">
                   Full Name
                 </label>
                 <input
@@ -191,12 +175,12 @@ export default function CampusHeadquarters() {
                   placeholder="e.g. Rahul Sharma"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white font-mono transition-all"
+                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
                 />
               </div>
 
               <div>
-                <label className="font-mono text-[10px] text-zinc-500 uppercase block mb-1 font-semibold">
+                <label className="text-xs text-zinc-600 font-medium block mb-1">
                   Institutional Email
                 </label>
                 <input
@@ -205,18 +189,18 @@ export default function CampusHeadquarters() {
                   placeholder="name@siesgst.ac.in"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white font-mono transition-all"
+                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
                 />
               </div>
 
               <div>
-                <label className="font-mono text-[10px] text-zinc-500 uppercase block mb-1 font-semibold">
+                <label className="text-xs text-zinc-600 font-medium block mb-1">
                   Inquiry Category
                 </label>
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white font-mono transition-all"
+                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
                 >
                   <option value="Student Membership (SMIE)">Student Membership (SMIE)</option>
                   <option value="General Inquiry">General Inquiry</option>
@@ -226,7 +210,7 @@ export default function CampusHeadquarters() {
               </div>
 
               <div>
-                <label className="font-mono text-[10px] text-zinc-500 uppercase block mb-1 font-semibold">
+                <label className="text-xs text-zinc-600 font-medium block mb-1">
                   Message
                 </label>
                 <textarea
@@ -235,7 +219,7 @@ export default function CampusHeadquarters() {
                   placeholder="Write your message or membership question..."
                   value={formData.query}
                   onChange={(e) => setFormData({ ...formData, query: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white font-mono transition-all"
+                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
                 />
               </div>
 

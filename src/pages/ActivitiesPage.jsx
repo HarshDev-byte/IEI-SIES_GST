@@ -124,9 +124,9 @@ export default function ActivitiesPage({ onOpenMembership }) {
                   audioEngine.playClick();
                   setActiveCategory(f.id);
                 }}
-                className={`px-3 py-1.5 rounded-full font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-all cursor-pointer ${
                   activeCategory === f.id
-                    ? 'bg-zinc-950 text-white font-bold'
+                    ? 'bg-zinc-950 text-white font-semibold'
                     : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-zinc-950'
                 }`}
               >
@@ -144,9 +144,8 @@ export default function ActivitiesPage({ onOpenMembership }) {
               className="bg-white rounded-2xl p-6 border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:border-black/25 hover:shadow-[0_8px_25px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-3 font-mono text-[10px]">
-                  <span className="text-[#0062FF] font-bold uppercase">{item.categoryName}</span>
-                  <span className="px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 font-semibold">{item.tag}</span>
+                <div className="text-xs font-semibold text-zinc-500 mb-2">
+                  {item.categoryName}
                 </div>
 
                 <h3 className="font-display text-lg font-bold text-zinc-950 mb-2 leading-snug">
@@ -158,7 +157,7 @@ export default function ActivitiesPage({ onOpenMembership }) {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between font-mono text-[11px] text-zinc-500">
+              <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs text-zinc-500 font-medium">
                 <span>{item.cadence}</span>
                 <span className="text-emerald-700 font-semibold">{item.stats}</span>
               </div>
@@ -172,7 +171,7 @@ export default function ActivitiesPage({ onOpenMembership }) {
             <div className="font-display font-bold text-xl text-white">
               Want to propose a technical workshop or lecture?
             </div>
-            <p className="font-mono text-xs text-zinc-400">
+            <p className="text-xs text-zinc-400">
               Student domain leads and faculty members can submit activity agendas for chapter sponsorship.
             </p>
           </div>
@@ -183,7 +182,7 @@ export default function ActivitiesPage({ onOpenMembership }) {
               audioEngine.playClick();
               if (onOpenMembership) onOpenMembership('Activity Proposal');
             }}
-            className="px-6 py-3 rounded-full bg-[#0062FF] hover:bg-blue-600 text-white font-mono text-xs font-bold transition-all shadow-sm cursor-pointer shrink-0"
+            className="px-6 py-3 rounded-full bg-[#0062FF] hover:bg-blue-600 text-white text-xs font-semibold transition-all shadow-sm cursor-pointer shrink-0"
           >
             Submit Activity Agenda
           </button>

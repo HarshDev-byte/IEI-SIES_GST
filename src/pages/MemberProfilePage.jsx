@@ -69,9 +69,6 @@ export default function MemberProfilePage({ memberId }) {
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/[0.08]">
           <div>
-            <div className="font-mono text-xs font-semibold text-[#0062FF] uppercase tracking-wider mb-1">
-              MEMBER PROFILE • {member.council?.toUpperCase() || 'IEI SIES GST'}
-            </div>
             <h1 className="font-display text-3xl sm:text-5xl font-bold text-zinc-950 tracking-tight">
               {member.name}
             </h1>
@@ -82,17 +79,15 @@ export default function MemberProfilePage({ memberId }) {
               <div className="text-zinc-800 text-sm sm:text-base font-semibold">
                 {member.position} {member.branch ? `— ${member.branch}` : ''}
               </div>
-              <div className="mt-1">
-                <span className="font-mono text-[10px] px-2.5 py-1 rounded bg-zinc-100 text-zinc-700 border border-black/[0.06] font-semibold uppercase tracking-wider">
-                  {member.council}
-                </span>
+              <div className="text-xs text-zinc-500 font-medium mt-0.5">
+                {member.council}
               </div>
             </div>
 
             <button
               type="button"
               onClick={navigateBack}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 border border-black/[0.08] text-zinc-800 font-mono text-xs font-semibold transition-all cursor-pointer shadow-xs shrink-0 mt-2 sm:mt-0"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 border border-black/[0.08] text-zinc-800 text-xs font-semibold transition-all cursor-pointer shadow-xs shrink-0 mt-2 sm:mt-0"
             >
               <ArrowLeft size={14} />
               <span>Back to Team</span>
@@ -111,12 +106,6 @@ export default function MemberProfilePage({ memberId }) {
           <div className="lg:col-span-4 flex justify-center">
             <div className="w-full max-w-[280px] aspect-[3/4] bg-zinc-50 border border-black/[0.08] rounded-2xl p-4 relative flex flex-col items-center justify-between overflow-hidden shadow-xs">
               
-              {/* Corner Engineering Tick Accents */}
-              <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-black/[0.15]" />
-              <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-black/[0.15]" />
-              <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-black/[0.15]" />
-              <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-black/[0.15]" />
-
               {/* Portrait Silhouette / Neutral Avatar Placeholder */}
               <div className="flex-1 flex items-center justify-center w-full">
                 <div className="relative flex flex-col items-center">
@@ -128,13 +117,13 @@ export default function MemberProfilePage({ memberId }) {
               </div>
 
               {/* Bottom Portrait Status Bar */}
-              <div className="w-full pt-3 border-t border-black/[0.06] flex items-center justify-between font-mono text-[11px] z-10 bg-zinc-50/90">
-                <span className="font-semibold text-zinc-600 tracking-tight">
+              <div className="w-full pt-3 border-t border-black/[0.06] flex items-center justify-between text-xs z-10 bg-zinc-50/90">
+                <span className="font-medium text-zinc-600">
                   {member.council}
                 </span>
-                <span className="flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60 text-[10px]">
-                  <Check size={11} className="stroke-[3]" />
-                  VERIFIED ACTIVE
+                <span className="flex items-center gap-1 text-emerald-700 font-medium">
+                  <Check size={13} className="stroke-[2.5]" />
+                  Active Council
                 </span>
               </div>
             </div>
@@ -142,15 +131,15 @@ export default function MemberProfilePage({ memberId }) {
 
           {/* Right: Info Details & Official Verification Callout */}
           <div className="lg:col-span-8 flex flex-col justify-center">
-            <div className="font-mono text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-2">
-              {member.branch ? `${member.branch} / ` : ''}SESSION 2026–2027
+            <div className="text-xs text-zinc-500 font-medium mb-2">
+              {member.branch ? `${member.branch} • ` : ''}Session 2026–2027
             </div>
 
             <h2 className="font-display text-3xl sm:text-5xl font-bold text-zinc-950 tracking-tight mb-2">
               {member.name}
             </h2>
 
-            <div className="font-display text-lg sm:text-2xl font-semibold text-[#0062FF] mb-6">
+            <div className="font-display text-lg sm:text-2xl font-semibold text-zinc-700 mb-6">
               {member.position}
             </div>
 
@@ -163,7 +152,7 @@ export default function MemberProfilePage({ memberId }) {
                 <div className="font-display font-bold text-sm text-zinc-950">
                   Official IEI Verified Member
                 </div>
-                <div className="font-mono text-xs text-zinc-600 mt-1 leading-relaxed">
+                <div className="text-xs text-zinc-600 mt-1 leading-relaxed">
                   Authenticated under SIES GST Student Chapter (ECS) • Academic Session 2026–2027
                 </div>
               </div>
@@ -194,18 +183,17 @@ export default function MemberProfilePage({ memberId }) {
                     IEI
                   </div>
                   <div>
-                    <div className="font-mono text-[10px] font-bold text-zinc-900 tracking-wider">
+                    <div className="text-xs font-bold text-zinc-900">
                       THE INSTITUTION OF ENGINEERS (INDIA)
                     </div>
-                    <div className="font-mono text-[9px] text-zinc-500 tracking-tight">
-                      SIES GST STUDENT CHAPTER • 2026-27
+                    <div className="text-[10px] text-zinc-500 font-medium">
+                      SIES GST Student Chapter • 2026-27
                     </div>
                   </div>
                 </div>
 
-                <span className="inline-flex items-center gap-1 font-mono text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                  VERIFIED
+                <span className="text-xs font-medium text-emerald-700">
+                  Verified Record
                 </span>
               </div>
 
@@ -218,15 +206,15 @@ export default function MemberProfilePage({ memberId }) {
                   <h3 className="font-display font-bold text-lg text-zinc-950 leading-tight">
                     {member.name}
                   </h3>
-                  <div className="font-mono text-xs font-semibold text-[#0062FF] mt-0.5">
+                  <div className="text-xs font-semibold text-zinc-700 mt-0.5">
                     {member.position}
                   </div>
                   {member.branch && (
-                    <div className="font-mono text-[11px] text-zinc-500 mt-1">
+                    <div className="text-xs text-zinc-500 mt-1">
                       Branch: {member.branch}
                     </div>
                   )}
-                  <div className="font-mono text-[10px] text-zinc-400">
+                  <div className="text-xs text-zinc-400">
                     {member.council}
                   </div>
                 </div>
@@ -234,10 +222,10 @@ export default function MemberProfilePage({ memberId }) {
 
               {/* Member PRN / Record ID Bar with Copy Feature */}
               {member.prn && (
-                <div className="bg-zinc-50 rounded-xl p-3 border border-black/[0.06] flex items-center justify-between mb-5 font-mono text-xs">
-                  <span className="text-zinc-500 text-[11px]">STUDENT PRN</span>
+                <div className="bg-zinc-50 rounded-xl p-3 border border-black/[0.06] flex items-center justify-between mb-5 text-xs">
+                  <span className="text-zinc-500 font-medium">Student PRN</span>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-zinc-950 tracking-wider">{member.prn}</span>
+                    <span className="font-mono font-bold text-zinc-950 tracking-wider">{member.prn}</span>
                     <button
                       type="button"
                       onClick={handleCopyId}
@@ -267,12 +255,12 @@ export default function MemberProfilePage({ memberId }) {
                 </div>
 
                 <div className="flex-1">
-                  <div className="font-mono text-[11px] font-bold text-zinc-950 tracking-wider mb-1">
-                    DIGITAL CREDENTIAL QR
+                  <div className="text-xs font-semibold text-zinc-950 mb-1">
+                    Digital Credential QR
                   </div>
-                  <p className="font-mono text-[10px] text-zinc-500 leading-relaxed">
+                  <p className="text-xs text-zinc-500 leading-relaxed">
                     Resolves to stable member endpoint at{' '}
-                    <span className="text-[#0062FF] font-semibold underline">
+                    <span className="text-zinc-800 font-semibold underline">
                       /member/{member.id}
                     </span>
                     . Validated against official SIES GST chapter records.
@@ -281,16 +269,16 @@ export default function MemberProfilePage({ memberId }) {
               </div>
 
               {/* Card Footer: Institutional Signature & Issuer */}
-              <div className="pt-3 border-t border-black/[0.06] flex items-center justify-between font-mono text-[9px] text-zinc-500">
-                <span>SESSION: 2026–2027</span>
-                <span className="font-semibold text-zinc-700">
+              <div className="pt-3 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
+                <span>Session 2026–2027</span>
+                <span className="text-zinc-700">
                   IEI SIES GST Council
                 </span>
               </div>
             </div>
           </div>
 
-          <p className="text-center font-mono text-[11px] text-zinc-500 mt-3 px-4 leading-relaxed">
+          <p className="text-center text-xs text-zinc-500 mt-3 px-4 leading-relaxed font-normal">
             Cryptographic identity credential linked to official chapter roster. Validated through the IEI SIES GST verification protocol.
           </p>
         </div>
@@ -299,16 +287,10 @@ export default function MemberProfilePage({ memberId }) {
         <div className="lg:col-span-7 space-y-6">
           <div className="bg-white rounded-2xl border border-black/[0.08] p-6 sm:p-8 shadow-[0_2px_15px_rgba(0,0,0,0.02)] relative">
             
-            {/* Corner Engineering Tick Accents */}
-            <div className="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-black/20" />
-            <div className="absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-black/20" />
-            <div className="absolute bottom-2 left-2 w-2.5 h-2.5 border-b border-l border-black/20" />
-            <div className="absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-black/20" />
-
             {/* Role & Council Mandate */}
             <div className="mb-6">
-              <div className="font-mono text-xs font-semibold text-zinc-500 tracking-wider uppercase mb-2">
-                OFFICIAL APPOINTMENT
+              <div className="text-xs font-semibold text-zinc-600 mb-2">
+                Official Appointment
               </div>
               <p className="font-normal text-sm sm:text-base text-zinc-700 leading-relaxed">
                 Appointed as <span className="font-semibold text-zinc-950">{member.position}</span> serving within the <span className="font-semibold text-zinc-950">{member.council}</span> of the Institution of Engineers (India) SIES GST Student Chapter for the academic term 2026–2027.
@@ -322,8 +304,8 @@ export default function MemberProfilePage({ memberId }) {
                   <BookOpen size={16} />
                 </div>
                 <div>
-                  <div className="font-mono text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">
-                    {member.branch ? 'DEPARTMENT / BRANCH' : 'STATUS'}
+                  <div className="text-xs text-zinc-500 font-medium">
+                    {member.branch ? 'Department' : 'Status'}
                   </div>
                   <div className="font-display font-bold text-sm text-zinc-950 mt-0.5">
                     {member.branch || 'Institutional Advisory'}
@@ -336,8 +318,8 @@ export default function MemberProfilePage({ memberId }) {
                   <Calendar size={16} />
                 </div>
                 <div>
-                  <div className="font-mono text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">
-                    ACADEMIC SESSION
+                  <div className="text-xs text-zinc-500 font-medium">
+                    Academic Session
                   </div>
                   <div className="font-display font-bold text-sm text-zinc-950 mt-0.5">
                     2026–2027 (Active Term)
@@ -348,39 +330,29 @@ export default function MemberProfilePage({ memberId }) {
 
             {/* Chapter Standing */}
             <div className="mb-6">
-              <div className="font-mono text-xs font-semibold text-zinc-500 tracking-wider uppercase mb-2.5">
-                COUNCIL STANDING
+              <div className="text-xs font-semibold text-zinc-600 mb-2.5">
+                Council Standing
               </div>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3.5 py-1.5 rounded-lg bg-zinc-100 border border-black/[0.06] font-mono text-xs text-zinc-800 font-medium">
-                  {member.council}
-                </span>
-                {member.domain && (
-                  <span className="px-3.5 py-1.5 rounded-lg bg-blue-50 border border-blue-200/60 font-mono text-xs text-[#0062FF] font-medium">
-                    {member.domain} Wing
-                  </span>
-                )}
-                {member.branch && (
-                  <span className="px-3.5 py-1.5 rounded-lg bg-zinc-100 border border-black/[0.06] font-mono text-xs text-zinc-700 font-medium">
-                    {member.branch}
-                  </span>
-                )}
+              <div className="flex flex-wrap gap-2 text-xs text-zinc-700 font-medium">
+                <span>{member.council}</span>
+                {member.domain && <span>• {member.domain} Wing</span>}
+                {member.branch && <span>• {member.branch}</span>}
               </div>
             </div>
 
             {/* Bottom Metadata Bar */}
-            <div className="pt-4 border-t border-black/[0.06] flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-zinc-500">
+            <div className="pt-4 border-t border-black/[0.06] flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500 font-medium">
               <div>
-                <span className="text-zinc-400">ORGANIZATION: </span>
-                <span className="font-semibold text-zinc-800">IEI SIES GST</span>
+                <span className="text-zinc-400">Organization: </span>
+                <span className="text-zinc-800">IEI SIES GST</span>
               </div>
               <div>
-                <span className="text-zinc-400">ISSUER: </span>
-                <span className="font-semibold text-zinc-800">Faculty Advisory Board</span>
+                <span className="text-zinc-400">Issuer: </span>
+                <span className="text-zinc-800">Faculty Advisory Board</span>
               </div>
               <div>
-                <span className="text-zinc-400">STATUS: </span>
-                <span className="text-emerald-600 font-semibold">VERIFIED</span>
+                <span className="text-zinc-400">Status: </span>
+                <span className="text-emerald-700">Verified</span>
               </div>
             </div>
 
@@ -395,9 +367,6 @@ export default function MemberProfilePage({ memberId }) {
       <div className="border-t border-black/[0.08] pt-12">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <div className="font-mono text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-              CHAPTER ROSTER
-            </div>
             <h3 className="font-display text-2xl font-bold text-zinc-950">
               Browse Chapter Leadership Profiles
             </h3>
@@ -405,7 +374,7 @@ export default function MemberProfilePage({ memberId }) {
           <button
             type="button"
             onClick={navigateBack}
-            className="text-xs font-mono font-semibold text-[#0062FF] hover:underline"
+            className="text-xs font-semibold text-[#0062FF] hover:underline"
           >
             Back to Team Grid ↗
           </button>
@@ -438,7 +407,7 @@ export default function MemberProfilePage({ memberId }) {
                       {itemInitials}
                     </span>
                     {m.branch && (
-                      <span className={`font-mono text-[9px] px-2 py-0.5 rounded font-semibold ${
+                      <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${
                         isCurrent ? 'bg-zinc-800 text-zinc-300' : 'bg-zinc-100 text-zinc-600'
                       }`}>
                         {m.branch}
@@ -448,12 +417,12 @@ export default function MemberProfilePage({ memberId }) {
                   <div className="font-display font-bold text-sm leading-snug">
                     {m.name}
                   </div>
-                  <div className={`font-mono text-xs mt-0.5 ${isCurrent ? 'text-blue-400 font-semibold' : 'text-[#0062FF]'}`}>
+                  <div className={`text-xs mt-0.5 font-medium ${isCurrent ? 'text-blue-300' : 'text-zinc-600'}`}>
                     {m.position}
                   </div>
                 </div>
 
-                <div className={`pt-3 mt-3 border-t font-mono text-[10px] flex items-center justify-between ${
+                <div className={`pt-3 mt-3 border-t text-xs flex items-center justify-between font-medium ${
                   isCurrent ? 'border-zinc-800 text-zinc-400' : 'border-black/[0.06] text-zinc-500'
                 }`}>
                   <span>{m.council}</span>

@@ -134,8 +134,8 @@ export default function Hero({
         {/* Content column — centered, controlled max-width */}
         <div className="flex flex-col items-center text-center max-w-2xl w-full">
 
-          {/* Identity line — plain text, no badge */}
-          <p className="font-mono text-[11px] font-bold text-zinc-500 tracking-widest uppercase mb-6 select-none">
+          {/* Identity line */}
+          <p className="text-sm font-medium text-zinc-500 mb-4 select-none">
             The Institution of Engineers (India) · Student Chapter #602
           </p>
 
@@ -149,7 +149,7 @@ export default function Hero({
           </h1>
 
           {/* Department context */}
-          <div className="font-mono text-xs text-[#0052D6] font-bold tracking-wider uppercase mb-5">
+          <div className="text-sm text-zinc-600 mb-5 font-medium">
             Department of Electronics &amp; Computer Science Engineering
           </div>
 
@@ -181,17 +181,14 @@ export default function Hero({
           </div>
 
           {/* Lower factual metadata — preserved verbatim */}
-          <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 font-mono text-[11px] text-zinc-500 pt-5 border-t border-black/[0.06] w-full">
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span className="font-semibold text-zinc-800">Royal Charter 1935</span>
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 text-xs text-zinc-500 pt-5 border-t border-black/[0.06] w-full">
+            <span className="font-medium text-zinc-700">Royal Charter 1935</span>
             <span className="text-zinc-300">·</span>
-            <span className="text-zinc-600">SIRO Recognized (DSIR)</span>
+            <span>SIRO Recognized (DSIR)</span>
             <span className="text-zinc-300">·</span>
-            <span className="text-zinc-600">Article 372 Body Corporate</span>
+            <span>Article 372 Body Corporate</span>
             <span className="text-zinc-300">·</span>
-            <span className="text-zinc-600">1M+ Global Alumni</span>
+            <span>1M+ Global Alumni</span>
           </div>
 
         </div>

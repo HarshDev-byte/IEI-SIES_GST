@@ -97,16 +97,14 @@ export default function Navbar({
                 alt="IEI Emblem" 
                 className="w-full h-full object-contain"
               />
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white animate-pulse" />
             </div>
 
             <div className="hidden md:flex flex-col text-left leading-none">
               <span className="font-display font-black text-xs tracking-tight text-zinc-950">
                 IEI · GST
               </span>
-              <span className="font-mono text-[9px] text-[#0062FF] tracking-wider mt-0.5 font-bold flex items-center gap-0.5">
-                <span>Tenure 1</span>
-                <span className="text-purple-600 font-bold text-[8px]">✦</span>
+              <span className="text-[10px] text-zinc-500 font-medium mt-0.5">
+                Student Chapter
               </span>
             </div>
           </a>
@@ -127,9 +125,9 @@ export default function Navbar({
                   onClick={() => {
                     audioEngine.playClick();
                   }}
-                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
                     isActive 
-                      ? 'bg-[#0062FF] text-white font-bold shadow-[0_4px_16px_rgba(0,98,255,0.35)] scale-[1.02]' 
+                      ? 'bg-[#0062FF] text-white font-semibold shadow-[0_4px_16px_rgba(0,98,255,0.35)]' 
                       : 'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04]'
                   }`}
                 >
@@ -153,9 +151,9 @@ export default function Navbar({
                   onClick={() => {
                     audioEngine.playClick();
                   }}
-                  className={`px-2.5 py-1.5 rounded-full text-xs font-mono transition-all duration-200 flex items-center gap-1 shrink-0 ${
+                  className={`px-2.5 py-1.5 rounded-full text-xs transition-all duration-200 flex items-center gap-1 shrink-0 ${
                     isActive 
-                      ? 'bg-[#0062FF] text-white font-bold shadow-[0_4px_12px_rgba(0,98,255,0.3)]' 
+                      ? 'bg-[#0062FF] text-white font-semibold shadow-[0_4px_12px_rgba(0,98,255,0.3)]' 
                       : 'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04]'
                   }`}
                   title={link.label}
@@ -191,18 +189,13 @@ export default function Navbar({
         <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-3xl flex flex-col justify-between p-6 pb-24 pt-12 animate-fadeIn select-none text-zinc-950">
           
           <div className="space-y-4 max-w-md mx-auto w-full">
-            <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] font-mono text-xs text-zinc-500">
-              <span className="text-[#0062FF] uppercase tracking-widest font-bold">
-                CHAPTER DIRECTORY
-              </span>
-              <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                ONLINE
-              </span>
+            <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] text-xs text-zinc-500 font-medium">
+              <span>Chapter Navigation</span>
+              <span>SIES GST</span>
             </div>
 
             <div className="space-y-1">
-              {navLinks.map((link, idx) => {
+              {navLinks.map((link) => {
                 const Icon = link.icon;
                 const isActive = currentRoute === link.id;
 
@@ -214,14 +207,13 @@ export default function Navbar({
                       audioEngine.playClick();
                       setMobileDrawerOpen(false);
                     }}
-                    className={`flex items-center justify-between font-mono text-sm py-3 px-4 rounded-xl transition-all border ${
+                    className={`flex items-center justify-between text-sm py-3 px-4 rounded-xl transition-all border ${
                       isActive
-                        ? 'bg-[#0062FF] text-white border-blue-500 shadow-sm font-bold'
-                        : 'text-zinc-700 hover:text-zinc-950 hover:bg-black/[0.03] border-transparent'
+                        ? 'bg-[#0062FF] text-white border-blue-500 shadow-sm font-semibold'
+                        : 'text-zinc-700 hover:text-zinc-950 hover:bg-black/[0.03] border-transparent font-medium'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-zinc-400 text-xs">0{idx + 1}</span>
                       <Icon size={16} className={isActive ? 'text-white' : 'text-zinc-500'} />
                       <span>{link.label}</span>
                     </div>
@@ -232,10 +224,10 @@ export default function Navbar({
             </div>
           </div>
 
-          <div className="max-w-md mx-auto w-full space-y-3 pt-4 border-t border-black/[0.06] font-mono text-xs text-zinc-500">
-            <div className="flex items-center justify-between text-[11px]">
-              <span>SIES GST, NERUL</span>
-              <span>19.0330° N, 73.0297° E</span>
+          <div className="max-w-md mx-auto w-full space-y-3 pt-4 border-t border-black/[0.06] text-xs text-zinc-500 font-medium">
+            <div className="flex items-center justify-between text-xs">
+              <span>SIES GST, Navi Mumbai</span>
+              <span>Department of ECS</span>
             </div>
           </div>
 

@@ -96,12 +96,10 @@ export default function ResourcesRepository() {
               </div>
 
               <div>
-                <div className="flex flex-wrap items-center gap-2.5 font-mono text-[11px] text-zinc-500 mb-1">
-                  <span className="font-bold text-zinc-900">DOC·{res.num}</span>
-                  <span>·</span>
-                  <span className="text-[#0062FF] font-semibold">{res.category}</span>
-                  <span>·</span>
-                  <span className="text-emerald-700 font-medium">{res.format} · {res.fileSize}</span>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 font-medium mb-1">
+                  <span>{res.category}</span>
+                  <span>•</span>
+                  <span>{res.format} · {res.fileSize}</span>
                 </div>
 
                 <h3 className="font-display text-base sm:text-lg font-bold text-zinc-950 group-hover:text-[#0062FF] transition-colors">

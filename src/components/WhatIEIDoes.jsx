@@ -175,12 +175,7 @@ export default function WhatIEIDoes({ onOpenVerify, onOpenMembership }) {
                   </div>
 
                   <div>
-                    <div className={`font-mono text-[9px] uppercase tracking-wider font-bold ${
-                      isSelected ? 'text-[#00D6FF]' : 'text-[#0062FF]'
-                    }`}>
-                      {svc.code}
-                    </div>
-                    <div className={`font-display font-bold text-sm sm:text-base leading-tight mt-0.5 ${
+                    <div className={`font-display font-bold text-sm sm:text-base leading-tight ${
                       isSelected ? 'text-white' : 'text-zinc-950'
                     }`}>
                       {svc.title}
@@ -188,14 +183,7 @@ export default function WhatIEIDoes({ onOpenVerify, onOpenMembership }) {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className={`font-mono text-[10px] hidden sm:inline px-2 py-0.5 rounded-full ${
-                    isSelected ? 'bg-white/10 text-zinc-300' : 'bg-black/[0.04] text-zinc-500'
-                  }`}>
-                    0{idx + 1}
-                  </span>
-                  <ArrowRight size={14} className={isSelected ? 'text-[#00D6FF]' : 'text-zinc-400'} />
-                </div>
+                <ArrowRight size={14} className={isSelected ? 'text-white' : 'text-zinc-400'} />
               </button>
             );
           })}
@@ -203,22 +191,10 @@ export default function WhatIEIDoes({ onOpenVerify, onOpenMembership }) {
 
         {/* Right: Detailed Service Dossier */}
         <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-black/10 shadow-[0_20px_50px_rgba(0,0,0,0.04)] relative">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-black/[0.08] pb-4 mb-6">
-            <div className="flex items-center gap-2 font-mono text-xs text-[#0062FF] font-bold">
-              <span>{current.code}</span>
-              <span>·</span>
-              <span>PILLAR 0{selectedService + 1} OF 07</span>
-            </div>
-
-            <span className="font-mono text-[10px] font-bold px-2.5 py-1 rounded-full bg-blue-50 text-[#0062FF] border border-blue-200/60">
-              {current.badge}
-            </span>
-          </div>
-
           <h3 className="font-display text-2xl sm:text-3xl font-black text-zinc-950 mb-1">
             {current.title}
           </h3>
-          <div className="font-mono text-xs text-zinc-500 mb-5">
+          <div className="text-sm text-zinc-500 mb-6 font-medium">
             {current.subtitle}
           </div>
 
@@ -228,8 +204,8 @@ export default function WhatIEIDoes({ onOpenVerify, onOpenMembership }) {
 
           {/* Key Specifications & Regulations */}
           <div className="p-5 sm:p-6 rounded-2xl bg-[#FAFAFC] border border-black/[0.06] mb-6 space-y-3">
-            <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider font-bold mb-1">
-              STATUTORY HIGHLIGHTS &amp; OPERATIONAL FRAMEWORK:
+            <div className="text-xs font-semibold text-zinc-600 mb-2">
+              Key Highlights &amp; Framework
             </div>
 
             {current.details.map((item, dIdx) => (
@@ -240,18 +216,18 @@ export default function WhatIEIDoes({ onOpenVerify, onOpenMembership }) {
             ))}
           </div>
 
-          {/* Fast Metrics Chips */}
+          {/* Metrics */}
           <div className="flex flex-wrap items-center gap-2 mb-8">
             {current.metrics.map((m, mIdx) => (
-              <span key={mIdx} className="font-mono text-xs px-3 py-1.5 rounded-xl bg-zinc-100 text-zinc-800 font-semibold border border-black/[0.04]">
-                ✦ {m}
+              <span key={mIdx} className="text-xs px-3 py-1.5 rounded-lg bg-zinc-100 text-zinc-700 font-medium">
+                {m}
               </span>
             ))}
           </div>
 
           {/* Bottom Action Strip */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-5 border-t border-black/[0.08]">
-            <span className="font-mono text-xs text-zinc-500">
+            <span className="text-xs text-zinc-500">
               Inquiries processed via Chapter Secretariat
             </span>
 
@@ -276,7 +252,7 @@ export default function WhatIEIDoes({ onOpenVerify, onOpenMembership }) {
                   audioEngine.playClick();
                   if (onOpenMembership) onOpenMembership(current.title);
                 }}
-                className="px-5 py-2.5 rounded-full bg-zinc-950 hover:bg-[#0062FF] text-white font-mono text-xs font-bold transition-all shadow-xs cursor-pointer flex items-center gap-1.5"
+                className="px-5 py-2.5 rounded-full bg-zinc-950 hover:bg-[#0062FF] text-white text-xs font-semibold transition-all shadow-xs cursor-pointer flex items-center gap-1.5"
               >
                 <span>Request Guidelines</span>
                 <ArrowRight size={13} />

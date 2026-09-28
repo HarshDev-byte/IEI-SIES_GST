@@ -193,9 +193,10 @@ export default function SearchModal({ isOpen, onClose }) {
               >
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="badge-minimal badge-blue text-[9px]">
+                    <span className="text-xs text-zinc-500 font-medium">
                       {item.category}
                     </span>
+                    <span className="text-zinc-300">•</span>
                     <span className="font-display font-semibold text-xs sm:text-sm text-zinc-950 group-hover:text-[#0062FF] transition-colors">
                       {item.title}
                     </span>
@@ -211,7 +212,7 @@ export default function SearchModal({ isOpen, onClose }) {
         </div>
 
         {/* Footer info */}
-        <div className="px-5 py-2.5 border-t border-black/[0.06] bg-zinc-50/70 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+        <div className="px-5 py-2.5 border-t border-black/[0.06] bg-zinc-50/70 flex items-center justify-between text-xs text-zinc-500">
           <span className="flex items-center gap-1">
             <span>Handcrafted with</span>
             <span className="text-red-500">♥</span>

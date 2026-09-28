@@ -163,13 +163,8 @@ export default function ChapterJourney() {
           
           {/* Left: Narrative */}
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="badge-minimal badge-blue text-[10px]">
-                {current.eyebrow}
-              </span>
-              <span className="text-zinc-500 font-mono text-xs">
-                {current.category}
-              </span>
+            <div className="text-xs text-zinc-500 font-medium mb-3">
+              {current.category}
             </div>
 
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-zinc-950 mb-3">
@@ -181,14 +176,14 @@ export default function ChapterJourney() {
             </p>
 
             <div>
-              <span className="text-zinc-500 font-mono text-[10px] block mb-2 uppercase tracking-wider">
+              <span className="text-xs font-semibold text-zinc-600 block mb-2">
                 Technical Focus &amp; Tools:
               </span>
               <div className="flex flex-wrap gap-2">
                 {current.technicalTags.map((tag, tIdx) => (
                   <span 
                     key={tIdx}
-                    className="font-mono text-xs px-2.5 py-1 rounded bg-zinc-100 border border-black/[0.06] text-zinc-700"
+                    className="text-xs px-2.5 py-1 rounded bg-zinc-100 border border-black/[0.06] text-zinc-700 font-medium"
                   >
                     {tag}
                   </span>
@@ -199,22 +194,19 @@ export default function ChapterJourney() {
 
           {/* Right: Stage Specs */}
           <div className="lg:col-span-5 bg-[#FAFAFC] p-6 rounded-xl border border-black/[0.08] space-y-4">
-            <div className="flex items-center justify-between border-b border-black/[0.06] pb-3">
-              <span className="font-mono text-xs font-semibold text-zinc-900 flex items-center gap-2">
+            <div className="flex items-center justify-between border-b border-black/[0.06] pb-3 text-xs text-zinc-600 font-medium">
+              <span className="flex items-center gap-2">
                 <CurrentIcon size={14} className="text-[#0062FF]" />
-                STAGE METRICS
-              </span>
-              <span className="font-mono text-[10px] text-zinc-500">
-                PHASE SPECIFICATION
+                Stage Metrics
               </span>
             </div>
 
             {current.metadata.map((meta, mIdx) => (
               <div key={mIdx} className="space-y-0.5">
-                <span className="font-mono text-[9px] text-zinc-400 uppercase tracking-wider block">
+                <span className="text-xs text-zinc-400 block">
                   {meta.label}
                 </span>
-                <span className="font-mono text-xs text-zinc-800 font-medium block">
+                <span className="text-xs text-zinc-800 font-medium block">
                   {meta.value}
                 </span>
               </div>

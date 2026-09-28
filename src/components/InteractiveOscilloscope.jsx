@@ -228,18 +228,6 @@ export default function InteractiveOscilloscope() {
       {/* SECTION HEADER */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="badge-minimal badge-blue font-bold">
-              03 HARDWARE TESTBENCH
-            </span>
-            <span className="badge-minimal badge-gold">
-              REAL-TIME SIGNAL LAB
-            </span>
-            <span className="badge-minimal hidden sm:inline-flex">
-              60 FPS OSCILLOSCOPE
-            </span>
-          </div>
-
           <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight leading-tight">
             Interactive Signal Playground
           </h2>

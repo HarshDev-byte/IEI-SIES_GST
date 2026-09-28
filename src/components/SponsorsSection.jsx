@@ -128,10 +128,10 @@ export default function SponsorsSection({ sponsors = [] }) {
     >
       {/* Institutional Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12 text-center">
-        <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500 font-semibold mb-2">
-          MAJOR SPONSORS
+        <h2 className="font-display text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight mb-2">
+          Major Sponsors &amp; Institutional Partners
         </h2>
-        <p className="font-display text-lg sm:text-xl font-bold text-zinc-900 tracking-tight">
+        <p className="text-sm text-zinc-600">
           Organizations supporting IEI SIES GST
         </p>
       </div>
