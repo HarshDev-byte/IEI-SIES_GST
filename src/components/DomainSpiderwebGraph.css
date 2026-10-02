@@ -1,0 +1,244 @@
+/* ==========================================================================
+   IEI SIES GST — INTERACTIVE DOMAIN SPIDERWEB GRAPH
+   Radial constellation node network with architectural spiderweb cords
+   ========================================================================== */
+
+.domain-spiderweb-root {
+  position: relative;
+  width: 100%;
+  background: radial-gradient(circle at center, rgba(0, 98, 255, 0.03) 0%, rgba(255, 255, 255, 0) 70%), #FAFBFD;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 2rem;
+  padding: 1.5rem 1rem 2rem 1rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.03);
+}
+
+@media (min-width: 640px) {
+  .domain-spiderweb-root {
+    padding: 2rem 1.5rem 2.5rem 1.5rem;
+  }
+}
+
+/* Header & Status Indicator */
+.spiderweb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.spiderweb-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spiderweb-badge {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0062FF;
+  background: rgba(0, 98, 255, 0.08);
+  border: 1px solid rgba(0, 98, 255, 0.2);
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+}
+
+.spiderweb-status {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #71717a;
+}
+
+/* Quick Access Pill Bar */
+.spiderweb-pill-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  scrollbar-width: none;
+}
+
+.spiderweb-pill-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.spiderweb-nav-pill {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #71717a;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spiderweb-nav-pill:hover:not(.is-active) {
+  background: #f4f4f5;
+  color: #09090b;
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.spiderweb-nav-pill.is-active {
+  background: #0062FF;
+  color: #ffffff;
+  border-color: #0062FF;
+  box-shadow: 0 4px 12px rgba(0, 98, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* SVG Graph Viewport */
+.spiderweb-svg-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spiderweb-svg {
+  width: 100%;
+  height: auto;
+  max-height: 580px;
+  overflow: visible;
+  user-select: none;
+}
+
+/* SVG Line Styles */
+.spiderweb-spoke {
+  stroke: rgba(0, 0, 0, 0.08);
+  stroke-width: 1.5;
+  transition: stroke 240ms ease, stroke-width 240ms ease;
+}
+
+.spiderweb-spoke.is-active {
+  stroke: #0062FF;
+  stroke-width: 2.75;
+}
+
+.spiderweb-spoke.is-hovered {
+  stroke: rgba(0, 98, 255, 0.6);
+  stroke-width: 2.25;
+}
+
+.spiderweb-cord {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.05);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  transition: stroke 240ms ease, stroke-width 240ms ease;
+}
+
+.spiderweb-cord.is-active {
+  stroke: rgba(0, 98, 255, 0.3);
+  stroke-width: 1.5;
+  stroke-dasharray: none;
+}
+
+/* Pulse Animation on Spoke */
+@keyframes spoke-pulse-travel {
+  0% {
+    r: 2;
+    opacity: 0.2;
+  }
+  50% {
+    r: 4.5;
+    opacity: 1;
+  }
+  100% {
+    r: 2;
+    opacity: 0.2;
+  }
+}
+
+.spiderweb-photon {
+  fill: #0062FF;
+  animation: spoke-pulse-travel 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Outer Node Hover & Active Animations */
+.spiderweb-node-group {
+  cursor: pointer;
+  outline: none;
+}
+
+.spiderweb-node-circle {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              fill 200ms ease,
+              stroke 200ms ease,
+              stroke-width 200ms ease;
+  transform-origin: center;
+}
+
+.spiderweb-node-group:hover .spiderweb-node-circle:not(.is-active) {
+  stroke: #0062FF;
+  stroke-width: 2.5;
+  transform: scale(1.1);
+}
+
+.spiderweb-node-circle.is-active {
+  fill: #0062FF;
+  stroke: #0062FF;
+  stroke-width: 3;
+}
+
+/* Center Hub Node */
+.spiderweb-center-circle {
+  transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+.spiderweb-center-group:hover .spiderweb-center-circle:not(.is-active) {
+  stroke: #0062FF;
+  stroke-width: 3;
+  transform: scale(1.06);
+}
+
+.spiderweb-center-circle.is-active {
+  stroke: #0062FF;
+  stroke-width: 3.5;
+  fill: #0062FF;
+}
+
+/* Node Label Typography */
+.spiderweb-node-title {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  fill: #18181b;
+  letter-spacing: -0.01em;
+  transition: fill 180ms ease;
+}
+
+.spiderweb-node-group:hover .spiderweb-node-title,
+.spiderweb-node-group.is-active .spiderweb-node-title {
+  fill: #0062FF;
+}
+
+.spiderweb-node-sub {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  fill: #71717a;
+  letter-spacing: 0.04em;
+}
+
+.spiderweb-node-group:focus-visible,
+.spiderweb-center-group:focus-visible {
+  outline: 2px solid #0062FF;
+  outline-offset: 4px;
+}

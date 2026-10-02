@@ -15,6 +15,17 @@ export default function CrazySexyLoader({ onComplete }) {
   const currentSmoothFrameRef = useRef(0);
   const isPlayingRef = useRef(true);
 
+  // Seamless, snappy exit transition into home screen
+  const triggerExitToHome = useCallback(() => {
+    setIsExiting((already) => {
+      if (already) return already;
+      setTimeout(() => {
+        if (onComplete) onComplete();
+      }, 250);
+      return true;
+    });
+  }, [onComplete]);
+
   // Preload all 300 photos in sequence (frame_001.jpg to frame_300.jpg)
   useEffect(() => {
     let isCancelled = false;
@@ -45,32 +56,18 @@ export default function CrazySexyLoader({ onComplete }) {
       }
     });
 
-    // Safety timeout: if images haven't loaded within 5s, proceed straight to the app
-    const safetyTimer = setTimeout(() => {
-      if (!isCancelled && !isReadyToPlay) {
-        setIsReadyToPlay(true);
-        if (loadedCount === 0 && onComplete) {
-          onComplete();
-        }
+    // Absolute safety timeout: Guarantee loader exits after at most 4.2 seconds regardless of image loading state
+    const maxDurationTimer = setTimeout(() => {
+      if (!isCancelled) {
+        triggerExitToHome();
       }
-    }, 5000);
+    }, 4200);
 
     return () => {
       isCancelled = true;
-      clearTimeout(safetyTimer);
+      clearTimeout(maxDurationTimer);
     };
-  }, [onComplete]);
-
-  // Seamless, snappy exit transition into home screen
-  const triggerExitToHome = useCallback(() => {
-    setIsExiting((already) => {
-      if (already) return already;
-      setTimeout(() => {
-        if (onComplete) onComplete();
-      }, 250);
-      return true;
-    });
-  }, [onComplete]);
+  }, [triggerExitToHome]);
 
   // High-DPI, 400Hz Ultra-Smooth Canvas Rendering
   const drawFrame = useCallback((frameIdx) => {

@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    IEI SIES GST — EDITORIAL COMPOSITION LAYER
    Advanced CSS: Grid, Hierarchy, Spacing, Image Treatment, Structure
    PHILOSOPHY: Editorial, Intentional, Professional, Premium
@@ -32,10 +32,7 @@ html, body { font-family: var(--font-editorial); }
 @media (max-width: 1024px) { .editorial-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
 @media (max-width: 640px)  { .editorial-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
-/* 03. HERO */
-h1 { font-family: var(--font-editorial); letter-spacing: -0.025em; line-height: 1.05; }
-
-/* 04. SECTION RHYTHM */
+/* 03. SECTION RHYTHM */
 section[aria-label] {
   padding-top: var(--space-section);
   padding-bottom: var(--space-section);
@@ -43,9 +40,7 @@ section[aria-label] {
   padding-right: var(--container-px);
 }
 
-/* 05. STRUCTURAL RULES */
-section[aria-label]:not(:first-of-type) { border-top: 1px solid var(--rule-color); }
-
+/* 04. STRUCTURAL ACCENT */
 .section-rule-head::before {
   content: "";
   display: block;
@@ -55,69 +50,7 @@ section[aria-label]:not(:first-of-type) { border-top: 1px solid var(--rule-color
   margin-bottom: 1rem;
 }
 
-/* 06. NATIONAL QUICK FACTS */
-section[aria-label*="National"] .rounded-3xl,
-section[aria-label*="Statistics"] .rounded-3xl {
-  border-radius: 6px;
-  border: 1px solid var(--rule-color-strong);
-}
-section[aria-label*="National"] .bg-zinc-950.rounded-3xl,
-section[aria-label*="Statistics"] .bg-zinc-950.rounded-3xl {
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-section[aria-label*="National"] .font-display,
-section[aria-label*="Statistics"] .font-display {
-  font-family: var(--font-editorial);
-  letter-spacing: -0.04em;
-}
-
-/* 07. ABOUT IEI */
-section[aria-label*="About"] h2.font-display {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  letter-spacing: -0.035em;
-  line-height: 1.03;
-  font-weight: 900;
-  font-family: var(--font-editorial);
-}
-section[aria-label*="About"] h3.font-display {
-  font-size: clamp(1.5rem, 3vw, 2.4rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  font-weight: 900;
-  font-family: var(--font-editorial);
-}
-section[aria-label*="About"] .rounded-2xl.bg-zinc-50 {
-  border-radius: 4px;
-  border: 1px solid var(--rule-color-strong);
-}
-
-/* 08. WHAT IEI DOES */
-section[aria-label*="What IEI"] h2.font-display {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  letter-spacing: -0.035em;
-  line-height: 1.03;
-  font-weight: 900;
-  font-family: var(--font-editorial);
-}
-section[aria-label*="What IEI"] button.rounded-2xl { border-radius: 4px; }
-section[aria-label*="What IEI"] .bg-white.rounded-3xl {
-  border-radius: 6px;
-  border: 1px solid var(--rule-color-strong);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
-}
-section[aria-label*="What IEI"] .rounded-lg {
-  border-radius: 3px;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-weight: 600;
-  background: rgba(0,0,0,0.04);
-  border: 1px solid var(--rule-color);
-  color: #52525B;
-}
-
-/* 09. IMAGE TREATMENT */
+/* 05. IMAGE TREATMENT */
 section[aria-label] img:not([alt*="Seal"]):not([alt*="emblem"]):not([alt*="logo"]):not(.object-contain) {
   display: block;
   width: 100%;
@@ -130,14 +63,7 @@ section[aria-label] a:hover img:not([alt*="Seal"]):not(.object-contain) {
 }
 .img-editorial-wrap { overflow: hidden; display: block; }
 
-/* 10. CAMPUS HEADQUARTERS / CONTACT */
-section[aria-label*="Engagement"] h2.font-display,
-section[aria-label*="Contact"] h2.font-display {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  letter-spacing: -0.03em;
-  font-weight: 900;
-  font-family: var(--font-editorial);
-}
+/* 06. CAMPUS HEADQUARTERS / CONTACT INPUTS */
 section[aria-label*="Engagement"] input,
 section[aria-label*="Engagement"] textarea,
 section[aria-label*="Engagement"] select,
@@ -158,7 +84,7 @@ section[aria-label*="Contact"] textarea:focus {
   outline: none;
 }
 
-/* 11. CARDS */
+/* 07. CARDS */
 .minimal-card,
 .minimal-card-elevated {
   border-radius: 6px;
@@ -182,30 +108,16 @@ section[aria-label*="Contact"] textarea:focus {
   .card-grid-editorial .card-secondary { grid-column: span 12; }
 }
 
-/* 12. TYPOGRAPHY HIERARCHY */
-h2.font-display {
-  font-family: var(--font-editorial);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.04;
-}
-h3.font-display {
-  font-family: var(--font-editorial);
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
+/* 08. TYPOGRAPHY SAFEGUARDS */
 p.leading-relaxed { line-height: 1.7; }
 
-/* 13. HOVER */
+/* 09. HOVER */
 button.cursor-pointer:hover:not(:disabled),
 a.cursor-pointer:hover {
   transition: background-color 200ms ease, transform 200ms ease, opacity 200ms ease, border-color 200ms ease;
 }
 
-/* 14. MOBILE */
+/* 10. MOBILE CONTAINER PADDING */
 @media (max-width: 640px) {
   section[aria-label] {
     padding-top: clamp(3rem, 8vw, 5rem);
@@ -213,8 +125,6 @@ a.cursor-pointer:hover {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-  h2.font-display { font-size: clamp(1.8rem, 8vw, 2.5rem); letter-spacing: -0.025em; }
-  h3.font-display { font-size: clamp(1.25rem, 6vw, 1.75rem); }
   section[aria-label], .max-w-7xl { overflow-x: hidden; }
   .max-w-2xl { max-width: 100%; }
 }

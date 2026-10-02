@@ -123,7 +123,7 @@ export default function SponsorsSection({ sponsors = [] }) {
 
   return (
     <section 
-      className="py-14 sm:py-20 border-t border-black/[0.06] bg-white relative overflow-hidden" 
+      className="py-16 sm:py-24 relative overflow-hidden" 
       aria-label="Major Sponsors"
     >
       {/* Institutional Header */}

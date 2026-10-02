@@ -3,11 +3,11 @@ import { Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#FAFAFC] border-t border-black/[0.08] pt-16 pb-28 sm:pb-32 px-4 sm:px-6 lg:px-8 z-10" aria-label="Site Footer">
+    <footer className="relative bg-[#FAFAFC] pt-20 pb-28 sm:pb-32 px-4 sm:px-6 lg:px-8 z-10" aria-label="Site Footer">
       <div className="max-w-7xl mx-auto">
         
         {/* Wordmark Header */}
-        <div className="border-b border-black/[0.08] pb-10 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="pb-10 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <img src="/iei-official-logo.png" alt="IEI Logo" className="w-8 h-8 object-contain" />
@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
 
         {/* 4 Columns Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-black/[0.06]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12">
           
           {/* Col 1: National Headquarters */}
           <div>
@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-zinc-600 font-medium">
               <li><a href="#/activities" className="hover:text-black transition-colors">Workshops &amp; Activities</a></li>
               <li><a href="#/events" className="hover:text-black transition-colors">Events &amp; Symposia</a></li>
-              <li><a href="#/team" className="hover:text-black transition-colors">Leadership &amp; 7 Wings</a></li>
+              <li><a href="#/team" className="hover:text-black transition-colors">Leadership &amp; 6 Wings</a></li>
               <li><a href="#/resources" className="hover:text-black transition-colors">Resources &amp; Publications</a></li>
             </ul>
           </div>
