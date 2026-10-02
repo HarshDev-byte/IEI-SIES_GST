@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, MapPin, Building, Send, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
+import ContactMap from './ContactMap/ContactMap';
 
 export default function CampusHeadquarters() {
   const [formData, setFormData] = useState({ 
@@ -74,7 +75,7 @@ export default function CampusHeadquarters() {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.06]" aria-label="Institutional Engagement & Contact">
+    <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Institutional Engagement & Contact">
       
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
@@ -105,7 +106,7 @@ export default function CampusHeadquarters() {
               Department of Electronics &amp; Computer Science Engineering
             </p>
 
-            <div className="space-y-3.5 text-sm text-zinc-600 mb-6 border-t border-black/[0.06] pt-5">
+            <div className="space-y-3.5 text-sm text-zinc-600 mb-6 pt-3">
               <div className="flex items-start gap-2.5">
                 <MapPin size={15} className="text-zinc-500 shrink-0 mt-0.5" />
                 <span>
@@ -125,112 +126,151 @@ export default function CampusHeadquarters() {
               </div>
             </div>
 
-            <div className="bg-[#FAFAFC] p-4 rounded-xl border border-black/[0.06] text-xs text-zinc-700">
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-zinc-500 font-medium">Chapter Status</span>
-                <span className="text-emerald-700 font-semibold">Active Chapter</span>
-              </div>
-              <div className="text-zinc-600">National Charter Est. 1920 · Royal Charter 1935</div>
-            </div>
+            {/* Free Open-Source Interactive Map (Leaflet + OpenStreetMap) */}
+            <ContactMap />
           </div>
         </div>
 
-        {/* Right: Direct Dispatch Ingestion Form */}
+        {/* Right: Direct Dispatch Ingestion Form (Clean Editorial UI) */}
         <div 
           id="communication-desk-card"
-          className={`lg:col-span-6 bg-white rounded-2xl p-8 border transition-all duration-500 shadow-[0_4px_25px_rgba(0,0,0,0.03)] ${
+          className={`lg:col-span-6 bg-[#FAFAF9] rounded-2xl p-6 sm:p-8 border transition-all duration-300 ${
             isHighlighted 
-              ? 'ring-2 ring-[#0062FF] border-[#0062FF] shadow-[0_0_35px_rgba(0,98,255,0.2)]' 
-              : 'border-black/[0.08]'
+              ? 'ring-2 ring-[#0062FF] border-[#0062FF] shadow-[0_0_30px_rgba(0,98,255,0.18)]' 
+              : 'border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)]'
           }`}
         >
-          <h3 className="font-display text-xl font-bold text-zinc-950 mb-5">
-            Send Inquiry to Council
-          </h3>
+          {/* Form Heading & Supporting Sentence */}
+          <div className="mb-6 sm:mb-8">
+            <h3 className="font-display font-black text-zinc-950 tracking-tight text-[clamp(1.35rem,2.2vw,1.75rem)] leading-tight mb-2">
+              SEND INQUIRY TO THE COUNCIL
+            </h3>
+            <p className="font-sans text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed">
+              Have a question about the chapter, an event, or student participation?
+            </p>
+          </div>
 
           {isSubmitted ? (
-            <div className="p-6 text-center bg-emerald-50 border border-emerald-200 rounded-2xl space-y-2 animate-fadeIn">
-              <CheckCircle2 size={30} className="text-emerald-600 mx-auto" />
-              <div className="font-display text-base font-bold text-zinc-950">Transmission Recorded &amp; Dispatched</div>
-              <p className="text-xs text-zinc-600 max-w-sm mx-auto">
-                Your inquiry has been received and forwarded to the Chapter Secretariat and Council Desk. A reply will be dispatched to <span className="font-semibold text-zinc-900">{formData.email}</span>.
+            /* Clean Editorial Success State */
+            <div className="p-6 sm:p-8 bg-white border border-emerald-200 rounded-xl space-y-3 animate-fadeIn text-left">
+              <div className="flex items-center gap-2.5">
+                <CheckCircle2 size={18} className="text-emerald-600 shrink-0" />
+                <span className="font-mono text-xs font-bold text-emerald-800 uppercase tracking-wider">
+                  INQUIRY SENT
+                </span>
+              </div>
+              <p className="font-sans text-xs sm:text-sm text-zinc-700 leading-relaxed font-normal">
+                Thank you. Your dispatch has been transmitted to the Chapter Secretariat and Council Desk. A reply will be forwarded to <strong className="text-zinc-950 font-semibold">{formData.email}</strong>.
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-3.5">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {errorMsg && (
-                <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
+                <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
                   {errorMsg}
                 </div>
               )}
 
-              <div>
-                <label className="text-xs text-zinc-600 font-medium block mb-1">
-                  Full Name
-                </label>
-                <input
-                  id="inquiry-full-name"
-                  type="text"
-                  required
-                  placeholder="e.g. Rahul Sharma"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
-                />
+              {/* Desktop 2-Column: Full Name + Institutional Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                <div>
+                  <label 
+                    htmlFor="inquiry-full-name" 
+                    className="font-mono text-[11px] font-bold text-zinc-700 uppercase tracking-wider block mb-2"
+                  >
+                    FULL NAME
+                  </label>
+                  <input
+                    id="inquiry-full-name"
+                    type="text"
+                    required
+                    placeholder="e.g. Rahul Sharma"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full h-11 sm:h-12 bg-white border border-black/[0.12] rounded-xl px-3.5 sm:px-4 text-xs sm:text-sm text-zinc-950 placeholder-zinc-400 focus:outline-none focus:border-[#0062FF] focus:ring-2 focus:ring-[#0062FF]/15 transition-all font-sans"
+                  />
+                </div>
+
+                <div>
+                  <label 
+                    htmlFor="inquiry-email" 
+                    className="font-mono text-[11px] font-bold text-zinc-700 uppercase tracking-wider block mb-2"
+                  >
+                    INSTITUTIONAL EMAIL
+                  </label>
+                  <input
+                    id="inquiry-email"
+                    type="email"
+                    required
+                    placeholder="name@siesgst.ac.in"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full h-11 sm:h-12 bg-white border border-black/[0.12] rounded-xl px-3.5 sm:px-4 text-xs sm:text-sm text-zinc-950 placeholder-zinc-400 focus:outline-none focus:border-[#0062FF] focus:ring-2 focus:ring-[#0062FF]/15 transition-all font-sans"
+                  />
+                </div>
               </div>
 
+              {/* Inquiry Type Dropdown */}
               <div>
-                <label className="text-xs text-zinc-600 font-medium block mb-1">
-                  Institutional Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="name@siesgst.ac.in"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs text-zinc-600 font-medium block mb-1">
-                  Inquiry Category
-                </label>
-                <select
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
+                <label 
+                  htmlFor="inquiry-category" 
+                  className="font-mono text-[11px] font-bold text-zinc-700 uppercase tracking-wider block mb-2"
                 >
-                  <option value="Student Membership (SMIE)">Student Membership (SMIE)</option>
-                  <option value="General Inquiry">General Inquiry</option>
-                  <option value="Competitions & Hackathons">Competitions &amp; Hackathons</option>
-                  <option value="Research & Papers">Research &amp; Papers</option>
-                </select>
+                  INQUIRY TYPE
+                </label>
+                <div className="relative">
+                  <select
+                    id="inquiry-category"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    className="w-full h-11 sm:h-12 bg-white border border-black/[0.12] rounded-xl px-3.5 sm:px-4 text-xs sm:text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:ring-2 focus:ring-[#0062FF]/15 transition-all font-sans appearance-none pr-10 cursor-pointer"
+                  >
+                    <option value="Student Membership (SMIE)">Student Membership (SMIE)</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Competitions & Hackathons">Competitions &amp; Hackathons</option>
+                    <option value="Research & Papers">Research &amp; Papers</option>
+                  </select>
+                  {/* Subtle Native Arrow Indicator */}
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-zinc-400">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
 
+              {/* Message Field */}
               <div>
-                <label className="text-xs text-zinc-600 font-medium block mb-1">
-                  Message
+                <label 
+                  htmlFor="inquiry-message" 
+                  className="font-mono text-[11px] font-bold text-zinc-700 uppercase tracking-wider block mb-2"
+                >
+                  MESSAGE
                 </label>
                 <textarea
+                  id="inquiry-message"
                   required
-                  rows={3}
-                  placeholder="Write your message or membership question..."
+                  rows={4}
+                  placeholder="Write your message or question for the council..."
                   value={formData.query}
                   onChange={(e) => setFormData({ ...formData, query: e.target.value })}
-                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3.5 py-2 text-sm text-zinc-950 focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all font-sans"
+                  className="w-full min-h-[120px] sm:min-h-[135px] bg-white border border-black/[0.12] rounded-xl p-3.5 sm:p-4 text-xs sm:text-sm text-zinc-950 placeholder-zinc-400 focus:outline-none focus:border-[#0062FF] focus:ring-2 focus:ring-[#0062FF]/15 transition-all font-sans resize-y"
                 />
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn-minimal-primary py-2.5 flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer disabled:opacity-50"
-              >
-                <Send size={13} />
-                <span>{isSubmitting ? 'Transmitting to Council Desk...' : 'Submit Inquiry'}</span>
-              </button>
+              {/* Action Button: Refined, Right-Aligned on Desktop, Clean Arrow Transition */}
+              <div className="pt-2 flex sm:justify-end">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group w-full sm:w-auto h-11 sm:h-12 px-6 sm:px-7 rounded-xl bg-zinc-950 hover:bg-[#0062FF] text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2.5 transition-all duration-180 transform hover:-translate-y-0.5 active:scale-[0.99] shadow-xs disabled:opacity-50 cursor-pointer"
+                >
+                  <span>{isSubmitting ? 'SENDING…' : 'SEND INQUIRY'}</span>
+                  <span className="inline-block transition-transform duration-180 group-hover:translate-x-1">
+                    →
+                  </span>
+                </button>
+              </div>
             </form>
           )}
 

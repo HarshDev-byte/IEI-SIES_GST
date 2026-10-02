@@ -1,0 +1,336 @@
+/* =============================================================================
+   HORIZONTAL 3D CYLINDRICAL IMAGE CAROUSEL — 16:9 Landscape Cards
+   Auto-rotating, vertical-axis (Y-axis), 5-card depth hierarchy, Lightbox Modal
+   Refined with subtle IEI blue accent, clean borders, minimal expand control,
+   and clean neutral lightbox.
+   ============================================================================= */
+
+.cylinderContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;
+  outline: none;
+  padding: 1.5rem 0 2rem;
+}
+
+.cylinderContainer:focus-visible {
+  outline: 2px solid #0062FF;
+  outline-offset: -2px;
+}
+
+/* 3D CYLINDRICAL PERSPECTIVE STAGE */
+.cylinderStage {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  flex-shrink: 0;
+  perspective: 1400px;
+  cursor: grab;
+}
+
+.cylinderStage:active {
+  cursor: grabbing;
+}
+
+@media (min-width: 640px) {
+  .cylinderStage {
+    height: 340px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cylinderStage {
+    height: 420px;
+  }
+}
+
+/* INDIVIDUAL 3D CYLINDER CARD — 16:9 LANDSCAPE */
+.cylinderCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 180px;
+  cursor: pointer;
+  transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (min-width: 640px) {
+  .cylinderCard {
+    width: 440px;
+    height: 247px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cylinderCard {
+    width: 560px;
+    height: 315px;
+  }
+}
+
+/* CARD INNER CONTAINER */
+.cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+@media (min-width: 640px) {
+  .cardInner {
+    border-radius: 20px;
+  }
+}
+
+/* ACTIVE CENTER CARD ELEVATION */
+.centerCardActive .cardInner {
+  border-color: #0062FF;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09), 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.centerCardActive:hover .cardInner {
+  transform: scale(1.015);
+  box-shadow: 0 20px 42px rgba(0, 98, 255, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* CARD IMAGE */
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* MINIMAL EXPAND CONTROL (NO BLUR-HEAVY GLASS, SUBTLE SITE BUTTON LANGUAGE) */
+.cardCenterCue {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #FFFFFF;
+  color: #09090B;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  z-index: 35;
+}
+
+.cardCenterCue:hover {
+  background: #0062FF;
+  color: #FFFFFF;
+  border-color: #0062FF;
+  box-shadow: 0 4px 14px rgba(0, 98, 255, 0.25);
+  transform: translateX(-50%) translateY(-1px);
+}
+
+/* =============================================================================
+   FULL-VIEWPORT IMAGE LIGHTBOX MODAL
+   Clean dark neutral backdrop, simple close and nav controls, clean caption text.
+   ============================================================================= */
+
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(9, 9, 11, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lightboxFadeIn 0.2s ease-out;
+  /* 'none' prevents ALL native touch scroll from passing through the overlay
+     to the document beneath. Horizontal swipe is handled via JS (onTouchStart/End). */
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightboxCloseBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightboxCloseBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.lightboxNavBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightboxNavBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.lightboxPrev { left: 1.5rem; }
+.lightboxNext { right: 1.5rem; }
+
+@media (max-width: 640px) {
+  .lightboxNavBtn {
+    width: 40px;
+    height: 40px;
+  }
+  .lightboxPrev { left: 0.75rem; }
+  .lightboxNext { right: 0.75rem; }
+}
+
+.lightboxImageContainer {
+  position: relative;
+  width: 88vw;
+  height: 78vh;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightboxImg {
+  object-fit: contain !important;
+  border-radius: 6px;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.5));
+}
+
+.lightboxCaptionBar {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000001;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(9, 9, 11, 0.85);
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.lightboxCounter {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0062FF;
+}
+
+.lightboxTitle {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: #E4E4E7;
+}
+
+/* =============================================================================
+   LARGE SELECTED-IMAGE PHOTOGRAPHIC DISPLAY TITLE
+   Geometric, clean, modern, editorial display typography in the character
+   of Geograph, using the site's standard Helvetica Neue font family.
+   ============================================================================= */
+
+.selectedTitleContainer {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.selectedTitle {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(1.85rem, 4.2vw, 3.25rem);
+  font-weight: 550;
+  line-height: 1.0;
+  letter-spacing: -0.028em;
+  color: #09090B;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition: opacity 0.25s ease;
+}
+
+@media (max-width: 640px) {
+  .selectedTitleContainer {
+    margin-top: 1.25rem;
+    padding: 0 1rem;
+  }
+
+  .selectedTitle {
+    font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    word-break: break-word;
+  }
+}
+

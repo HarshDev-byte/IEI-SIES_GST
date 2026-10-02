@@ -1,21 +1,30 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Volume2, VolumeX, ArrowRight } from 'lucide-react';
-import { audioEngine } from '../utils/audioEngine';
+import { ArrowRight } from 'lucide-react';
 
 const TOTAL_FRAMES = 300;
 
 export default function CrazySexyLoader({ onComplete }) {
-  const [currentFrame, setCurrentFrame] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isAudioActive, setIsAudioActive] = useState(audioEngine.isActive);
   const [isExiting, setIsExiting] = useState(false);
   const [isReadyToPlay, setIsReadyToPlay] = useState(false);
 
   const canvasRef = useRef(null);
   const imagesRef = useRef([]);
   const animFrameRef = useRef(null);
-  const lastPhaseRef = useRef(-1);
-  const lastTickTimeRef = useRef(0);
+  const targetFrameRef = useRef(0);
+  const currentSmoothFrameRef = useRef(0);
+  const isPlayingRef = useRef(true);
+
+  // Seamless, snappy exit transition into home screen
+  const triggerExitToHome = useCallback(() => {
+    setIsExiting((already) => {
+      if (already) return already;
+      setTimeout(() => {
+        if (onComplete) onComplete();
+      }, 250);
+      return true;
+    });
+  }, [onComplete]);
 
   // Preload all 300 photos in sequence (frame_001.jpg to frame_300.jpg)
   useEffect(() => {
@@ -32,7 +41,7 @@ export default function CrazySexyLoader({ onComplete }) {
     let loadedCount = 0;
     const handleImageLoad = () => {
       loadedCount++;
-      // Start playback as soon as the very first frame is ready
+      // Start playback as soon as the first few frames are ready
       if (!isCancelled && loadedCount >= 1) {
         setIsReadyToPlay(true);
       }
@@ -47,60 +56,24 @@ export default function CrazySexyLoader({ onComplete }) {
       }
     });
 
-    // Safety timeout: if images haven't loaded within 6s, skip the loader entirely
-    const safetyTimer = setTimeout(() => {
-      if (!isCancelled && !isReadyToPlay) {
-        setIsReadyToPlay(true);
-        // If nothing rendered at all, just skip straight to the app
-        if (loadedCount === 0) {
-          if (onComplete) onComplete();
-        }
+    // Absolute safety timeout: Guarantee loader exits after at most 4.2 seconds regardless of image loading state
+    const maxDurationTimer = setTimeout(() => {
+      if (!isCancelled) {
+        triggerExitToHome();
       }
-    }, 6000);
+    }, 4200);
 
     return () => {
       isCancelled = true;
-      clearTimeout(safetyTimer);
+      clearTimeout(maxDurationTimer);
     };
-  }, []);
+  }, [triggerExitToHome]);
 
-  // Seamless exit transition into home screen (NO button press required)
-  const triggerExitToHome = useCallback(() => {
-    setIsExiting((already) => {
-      if (already) return already;
-      try {
-        audioEngine.playWarpEntry();
-      } catch {
-        // ignore
-      }
-      setTimeout(() => {
-        if (onComplete) onComplete();
-      }, 450);
-      return true;
-    });
-  }, [onComplete]);
-
-  // Audio chimes at milestone moments across the 300 frames
-  useEffect(() => {
-    let phase = 0;
-    if (currentFrame >= 260) phase = 5;
-    else if (currentFrame >= 200) phase = 4;
-    else if (currentFrame >= 130) phase = 3;
-    else if (currentFrame >= 60) phase = 2;
-    else if (currentFrame >= 20) phase = 1;
-    else phase = 0;
-
-    if (phase !== lastPhaseRef.current && phase > 0) {
-      audioEngine.playMilestonePing(phase);
-      lastPhaseRef.current = phase;
-    }
-  }, [currentFrame]);
-
-  // High-DPI Canvas Rendering of all 300 frames
+  // High-DPI, 400Hz Ultra-Smooth Canvas Rendering
   const drawFrame = useCallback((frameIdx) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     // Pick target image or fallback to closest loaded image
@@ -116,7 +89,7 @@ export default function CrazySexyLoader({ onComplete }) {
 
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
 
@@ -127,6 +100,9 @@ export default function CrazySexyLoader({ onComplete }) {
       canvas.width = targetW;
       canvas.height = targetH;
     }
+
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
 
     // Clean white architectural canvas
     ctx.fillStyle = '#FFFFFF';
@@ -152,77 +128,68 @@ export default function CrazySexyLoader({ onComplete }) {
     ctx.drawImage(img, drawX, drawY, drawW, drawH);
   }, []);
 
-  // Redraw when currentFrame changes
+  // Sync ref with state
   useEffect(() => {
-    drawFrame(currentFrame);
-  }, [currentFrame, drawFrame]);
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
 
-  // Redraw on window resize
+  // Master 400Hz Continuous Animation & Smooth Scroll Lerp Loop
   useEffect(() => {
-    const handleResize = () => {
-      drawFrame(currentFrame);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [currentFrame, drawFrame]);
+    if (!isReadyToPlay) return;
 
-  // Live Video Autoplay Loop (~48 FPS cinematic cadence)
-  useEffect(() => {
-    if (!isPlaying || !isReadyToPlay) return;
+    let lastVideoTimestamp = performance.now();
+    // Fast, energetic playback at ~75 FPS
+    const frameInterval = 1000 / 75;
 
-    let lastTimestamp = performance.now();
-    const frameInterval = 1000 / 48; // ~48 FPS
+    const renderLoop = (timestamp) => {
+      // 1. If autoplaying, advance targetFrame steadily
+      if (isPlayingRef.current) {
+        const elapsed = timestamp - lastVideoTimestamp;
+        if (elapsed >= frameInterval) {
+          lastVideoTimestamp = timestamp - (elapsed % frameInterval);
+          targetFrameRef.current = Math.min(TOTAL_FRAMES - 1, targetFrameRef.current + 1);
 
-    const videoLoop = (timestamp) => {
-      const elapsed = timestamp - lastTimestamp;
-
-      if (elapsed >= frameInterval) {
-        lastTimestamp = timestamp - (elapsed % frameInterval);
-
-        setCurrentFrame((prev) => {
-          if (prev >= TOTAL_FRAMES - 1) {
-            // Holds final frame ("IEI SIES GST ... LOADING 100%") briefly, then enters home page
-            setTimeout(() => {
-              triggerExitToHome();
-            }, 350);
-            return TOTAL_FRAMES - 1;
+          if (targetFrameRef.current >= TOTAL_FRAMES - 1) {
+            isPlayingRef.current = false;
+            setIsPlaying(false);
+            setTimeout(triggerExitToHome, 150);
           }
-
-          // Subtle plotter audio tick periodically
-          if (timestamp - lastTickTimeRef.current > 150) {
-            audioEngine.playPlotterTick();
-            lastTickTimeRef.current = timestamp;
-          }
-
-          return prev + 1;
-        });
+        }
       }
 
-      animFrameRef.current = requestAnimationFrame(videoLoop);
+      // 2. High-refresh spring LERP for 400Hz-like butter-smooth motion
+      const diff = targetFrameRef.current - currentSmoothFrameRef.current;
+      if (Math.abs(diff) > 0.01) {
+        currentSmoothFrameRef.current += diff * 0.32;
+        const frameToDraw = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentSmoothFrameRef.current)));
+        drawFrame(frameToDraw);
+      }
+
+      animFrameRef.current = requestAnimationFrame(renderLoop);
     };
 
-    animFrameRef.current = requestAnimationFrame(videoLoop);
+    animFrameRef.current = requestAnimationFrame(renderLoop);
     return () => {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [isPlaying, isReadyToPlay, triggerExitToHome]);
+  }, [isReadyToPlay, drawFrame, triggerExitToHome]);
 
-  // Scroll Trigger: Mouse wheel or trackpad scrubs through the 300 frames
+  // High-Speed, Ultra-Smooth Wheel Scrubbing
   const handleWheel = useCallback((e) => {
     e.preventDefault();
+    isPlayingRef.current = false;
     setIsPlaying(false);
-    const step = Math.sign(e.deltaY) * Math.max(1, Math.round(Math.abs(e.deltaY) * 0.12));
 
-    setCurrentFrame((prev) => {
-      const next = Math.max(0, Math.min(TOTAL_FRAMES - 1, prev + step));
-      if (next >= TOTAL_FRAMES - 1) {
-        setTimeout(triggerExitToHome, 350);
-      }
-      return next;
-    });
+    // Fast, responsive scrubbing multiplier (~4x faster than original)
+    const delta = e.deltaY * 0.42;
+    targetFrameRef.current = Math.max(0, Math.min(TOTAL_FRAMES - 1, targetFrameRef.current + delta));
+
+    if (targetFrameRef.current >= TOTAL_FRAMES - 1) {
+      setTimeout(triggerExitToHome, 120);
+    }
   }, [triggerExitToHome]);
 
-  // Keyboard navigation: Escape to skip, Space to pause/resume
+  // Keyboard navigation: Escape to skip, Space to pause/resume, Arrows to scrub
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -230,16 +197,17 @@ export default function CrazySexyLoader({ onComplete }) {
         triggerExitToHome();
       } else if (e.key === ' ') {
         e.preventDefault();
-        setIsPlaying(prev => !prev);
-        audioEngine.playClick();
+        setIsPlaying((prev) => !prev);
       } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
+        isPlayingRef.current = false;
         setIsPlaying(false);
-        setCurrentFrame(prev => Math.min(TOTAL_FRAMES - 1, prev + 4));
+        targetFrameRef.current = Math.min(TOTAL_FRAMES - 1, targetFrameRef.current + 12);
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
+        isPlayingRef.current = false;
         setIsPlaying(false);
-        setCurrentFrame(prev => Math.max(0, prev - 4));
+        targetFrameRef.current = Math.max(0, targetFrameRef.current - 12);
       }
     };
 
@@ -250,14 +218,14 @@ export default function CrazySexyLoader({ onComplete }) {
   return (
     <div 
       onWheel={handleWheel}
-      className={`fixed inset-0 z-[10000] bg-[#FFFFFF] text-zinc-950 flex flex-col justify-between select-none overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+      className={`fixed inset-0 z-[10000] bg-[#FFFFFF] text-zinc-950 flex flex-col justify-between select-none overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isExiting 
-          ? '-translate-y-4 scale-[1.02] opacity-0 pointer-events-none filter blur-[2px]' 
+          ? '-translate-y-2 scale-[1.01] opacity-0 pointer-events-none filter blur-[1px]' 
           : 'translate-y-0 scale-100 opacity-100'
       }`}
       aria-label="IEI SIES GST Architectural Loading Animation"
     >
-      {/* 1. FULL-SCREEN 1920x1080 CANVAS (All 300 Frames: frame_001.jpg - frame_300.jpg) */}
+      {/* 1. FULL-SCREEN 1920x1080 CANVAS */}
       <div className="absolute inset-0 flex items-center justify-center bg-[#FFFFFF]">
         <canvas 
           ref={canvasRef}
@@ -265,48 +233,20 @@ export default function CrazySexyLoader({ onComplete }) {
         />
       </div>
 
-      {/* 2. MINIMAL FLOATING TOP CONTROLS (Discreet & Non-Intrusive) */}
-      <header className="relative z-20 flex items-center justify-between px-6 py-4 pointer-events-none font-mono text-[11px]">
-        {/* Left: Discreet Chapter Brand Pill */}
-        <div className="flex items-center gap-2.5 bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-black/[0.06] shadow-xs pointer-events-auto">
-          <span className="w-2 h-2 rounded-full bg-[#0052D6] animate-pulse" />
-          <span className="font-bold text-zinc-950 tracking-wider">IEI SIES GST CHAPTER</span>
-          <span className="text-zinc-300">/</span>
-          <span className="text-zinc-500 text-[10px]">ESTD. 1920</span>
-        </div>
-
-        {/* Right: Sound Toggle & Quick Skip */}
-        <div className="flex items-center gap-2.5 pointer-events-auto">
-          <button
-            type="button"
-            onClick={() => {
-              const active = audioEngine.toggle();
-              setIsAudioActive(active);
-            }}
-            className={`p-2 rounded-full border transition-all cursor-pointer backdrop-blur-md shadow-xs ${
-              isAudioActive 
-                ? 'bg-blue-50/90 border-[#0062FF]/30 text-[#0052D6]' 
-                : 'bg-white/80 border-black/[0.08] text-zinc-500 hover:text-zinc-950'
-            }`}
-            title="Toggle Sound"
-            aria-label="Toggle Sound"
-          >
-            {isAudioActive ? <Volume2 size={14} /> : <VolumeX size={14} />}
-          </button>
-
-          <button
-            type="button"
-            onClick={triggerExitToHome}
-            className="px-3.5 py-1.5 rounded-full bg-white/85 hover:bg-zinc-100 backdrop-blur-md border border-black/[0.08] text-zinc-600 hover:text-zinc-950 transition-all font-mono font-bold text-[10px] tracking-wider uppercase flex items-center gap-1.5 cursor-pointer shadow-xs"
-            title="Skip to Homepage [ESC]"
-          >
-            <span>SKIP [ESC]</span>
-            <ArrowRight size={11} />
-          </button>
-        </div>
+      {/* 2. MINIMAL TOP CONTROLS (Left corner part and sound removed; clean skip on right) */}
+      <header className="relative z-20 flex items-center justify-end px-6 py-4 pointer-events-none font-mono text-[11px]">
+        <button
+          type="button"
+          onClick={triggerExitToHome}
+          className="pointer-events-auto px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-zinc-100 backdrop-blur-md border border-black/[0.08] text-zinc-600 hover:text-zinc-950 transition-all font-mono font-bold text-[10px] tracking-wider uppercase flex items-center gap-1.5 cursor-pointer shadow-xs"
+          title="Skip to Homepage [ESC]"
+        >
+          <span>SKIP [ESC]</span>
+          <ArrowRight size={11} />
+        </button>
       </header>
 
-      {/* Clean Bottom Anchor (No down scroller) */}
+      {/* Clean Bottom Anchor */}
       <div />
     </div>
   );

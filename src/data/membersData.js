@@ -16,39 +16,47 @@ export const getInitials = (name) => {
 export const facultyLeadership = [
   {
     id: "FAC-01",
+    slug: "dr-shubhangi-kharche",
     name: "Dr. Shubhangi Kharche",
-    position: "HOD ECS",
+    position: "HOD",
+    role: "HOD",
     branch: "ECS",
     prn: null,
     council: "Faculty Leadership",
     domain: "Academic Oversight",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "faculty",
+    image: "/assets/team-portraits/faculty-kharche.jpg",
+    photo: "/assets/team-portraits/faculty-kharche.jpg",
+    description: "Head of the Department of Electronics and Computer Science at SIES GST. Provides institutional guidance, academic excellence steering, and chapter governance.",
+    bio: "Head of the Department of Electronics and Computer Science at SIES GST. Provides institutional guidance, academic excellence steering, and chapter governance.",
+    email: "shubhangik@sies.edu.in",
+    linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
+    socials: {
+      email: "shubhangik@sies.edu.in",
+      linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/"
+    }
   },
   {
     id: "FAC-02",
+    slug: "prof-jasmin-hirani",
     name: "Prof. Jasmin Hirani",
-    position: "Faculty Coordinator",
+    position: "Student Branch Coordinator",
+    role: "Student Branch Coordinator",
     branch: "ECS",
     prn: null,
     council: "Faculty Leadership",
     domain: "Chapter Coordination",
-    photo: null,
-    bio: null,
-    socials: null
-  },
-  {
-    id: "FAC-03",
-    name: "Dr. K. Lakshmisudha",
-    position: "Principal",
-    branch: null,
-    prn: null,
-    council: "Faculty Leadership",
-    domain: "Institutional Governance",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "faculty",
+    image: "/assets/team-portraits/faculty-hirani.jpg",
+    photo: "/assets/team-portraits/faculty-hirani.jpg",
+    description: "Student Branch Coordinator for IEI SIES GST. Mentors the student chapter councils, orchestrates inter-departmental technical initiatives, and guides professional chapter activities.",
+    bio: "Student Branch Coordinator for IEI SIES GST. Mentors the student chapter councils, orchestrates inter-departmental technical initiatives, and guides professional chapter activities.",
+    email: "jasminh@sies.edu.in",
+    linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
+    socials: {
+      email: "jasminh@sies.edu.in",
+      linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/"
+    }
   }
 ];
 
@@ -56,172 +64,332 @@ export const facultyLeadership = [
 export const seniorCouncil = [
   {
     id: "123A7018",
+    slug: "tejraj-gujar",
     name: "Tejraj Gujar",
     branch: "ECS",
     prn: "123A7018",
     position: "Chairperson",
+    role: "Chairperson",
     council: "Senior Council",
     domain: "Executive",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-tejraj.jpg",
+    photo: "/assets/team-portraits/exec-tejraj.jpg",
+    description: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
+    bio: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
+    linkedin: "https://www.linkedin.com/in/tejraj-gujar",
+    email: "tejraj.gujar@siesgst.ac.in",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/tejraj-gujar",
+      email: "tejraj.gujar@siesgst.ac.in"
+    }
   },
   {
     id: "123A8043",
+    slug: "sarang-patil",
     name: "Sarang Patil",
     branch: "AIDS",
     prn: "123A8043",
     position: "Vice Chairperson",
+    role: "Vice Chairperson",
     council: "Senior Council",
     domain: "Executive",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-sarang.jpg",
+    photo: "/assets/team-portraits/exec-sarang.jpg",
+    description: "Supports executive chapter operations, program execution, cross-domain coordination, and student representation.",
+    bio: "Supports executive chapter operations, program execution, cross-domain coordination, and student representation.",
+    linkedin: "https://www.linkedin.com/in/sarang-patil",
+    email: "sarang.patil@siesgst.ac.in",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/sarang-patil",
+      email: "sarang.patil@siesgst.ac.in"
+    }
   },
   {
     id: "123A7016",
+    slug: "shardul-gade",
     name: "Shardul Gade",
     branch: "ECS",
     prn: "123A7016",
     position: "Secretary",
+    role: "Secretary",
     council: "Senior Council",
     domain: "Executive",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-shardul.jpg",
+    photo: "/assets/team-portraits/exec-shardul.jpg",
+    description: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
+    bio: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
+    linkedin: "https://www.linkedin.com/in/shardul-gade",
+    email: "shardul.gade@siesgst.ac.in",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/shardul-gade",
+      email: "shardul.gade@siesgst.ac.in"
+    }
   },
   {
     id: "123A7020",
+    slug: "harshad-jadhav",
     name: "Harshad Jadhav",
     branch: "ECS",
     prn: "123A7020",
     position: "Treasurer",
+    role: "Treasurer",
     council: "Senior Council",
     domain: "Executive",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-harshad.jpg",
+    photo: "/assets/team-portraits/exec-harshad.jpg",
+    description: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
+    bio: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
+    linkedin: "https://www.linkedin.com/in/harshad-jadhav",
+    email: "harshad.jadhav@siesgst.ac.in",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/harshad-jadhav",
+      email: "harshad.jadhav@siesgst.ac.in"
+    }
   },
   {
     id: "123A8001",
+    slug: "a-s-lakshanya",
     name: "A S Lakshanya",
     branch: "AIDS",
     prn: "123A8001",
     position: "Event and Community Manager",
+    role: "Event and Community Manager",
     council: "Senior Council",
     domain: "Community",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-lakshanya.jpg",
+    photo: "/assets/team-portraits/exec-lakshanya.jpg",
+    description: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
+    bio: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
+    linkedin: "https://www.linkedin.com/in/a-s-lakshanya",
+    email: "lakshanya.as@siesgst.ac.in",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/a-s-lakshanya",
+      email: "lakshanya.as@siesgst.ac.in"
+    }
   },
   {
     id: "123A7002",
+    slug: "anushka-pawar",
     name: "Anushka Pawar",
     branch: "ECS",
     prn: "123A7002",
     position: "Event and Community Manager",
+    role: "Event and Community Manager",
     council: "Senior Council",
     domain: "Community",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-anushka.jpg",
+    photo: "/assets/team-portraits/exec-anushka.jpg",
+    description: "Orchestrates symposia schedules, venue operations, community relations, and inter-collegiate technical competitions.",
+    bio: "Orchestrates symposia schedules, venue operations, community relations, and inter-collegiate technical competitions.",
+    linkedin: "https://www.linkedin.com/in/anushka-pawar",
+    email: "anushka.pawar@siesgst.ac.in",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/anushka-pawar",
+      email: "anushka.pawar@siesgst.ac.in"
+    }
   },
   {
     id: "123A7019",
+    slug: "harsh-mhatre",
     name: "Harsh Mhatre",
     branch: "ECS",
     prn: "123A7019",
     position: "Technical Advisor",
+    role: "Technical Advisor",
     council: "Senior Council",
     domain: "Technical",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-harsh.jpg",
+    photo: "/assets/team-portraits/exec-harsh.jpg",
+    description: "Advises technical roadmap development, hackathon infrastructure, systems architecture, and engineering workshops.",
+    bio: "Advises technical roadmap development, hackathon infrastructure, systems architecture, and engineering workshops.",
+    github: "https://github.com/harshmhatre",
+    linkedin: "https://www.linkedin.com/in/harsh-mhatre",
+    email: "harsh.mhatre@siesgst.ac.in",
+    socials: {
+      github: "https://github.com/harshmhatre",
+      linkedin: "https://www.linkedin.com/in/harsh-mhatre",
+      email: "harsh.mhatre@siesgst.ac.in"
+    }
   },
   {
     id: "123A7011",
+    slug: "sahil-chavan",
     name: "Sahil Chavan",
     branch: "ECS",
     prn: "123A7011",
     position: "Technical Advisor",
+    role: "Technical Advisor",
     council: "Senior Council",
     domain: "Technical",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-sahil.jpg",
+    photo: "/assets/team-portraits/exec-sahil.jpg",
+    description: "Provides technical leadership across software projects, developer bootcamps, and institutional digital platforms.",
+    bio: "Provides technical leadership across software projects, developer bootcamps, and institutional digital platforms.",
+    github: "https://github.com/sahilchavan",
+    linkedin: "https://www.linkedin.com/in/sahil-chavan",
+    email: "sahil.chavan@siesgst.ac.in",
+    socials: {
+      github: "https://github.com/sahilchavan",
+      linkedin: "https://www.linkedin.com/in/sahil-chavan",
+      email: "sahil.chavan@siesgst.ac.in"
+    }
   },
   {
     id: "123A7009",
+    slug: "soham-chafale",
     name: "Soham Chafale",
     branch: "ECS",
     prn: "123A7009",
     position: "Technical Advisor",
+    role: "Technical Advisor",
     council: "Senior Council",
     domain: "Technical",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-soham.jpg",
+    photo: "/assets/team-portraits/exec-soham.jpg",
+    description: "Guides project governance, hardware-software integration, cloud infrastructure, and technical mentoring.",
+    bio: "Guides project governance, hardware-software integration, cloud infrastructure, and technical mentoring.",
+    github: "https://github.com/sohamchafale",
+    linkedin: "https://www.linkedin.com/in/soham-chafale",
+    email: "soham.chafale@siesgst.ac.in",
+    socials: {
+      github: "https://github.com/sohamchafale",
+      linkedin: "https://www.linkedin.com/in/soham-chafale",
+      email: "soham.chafale@siesgst.ac.in"
+    }
   },
   {
     id: "123A7027",
+    slug: "aditya-kinikar",
     name: "Aditya Kinikar",
     branch: "ECS",
     prn: "123A7027",
     position: "Technical Advisor",
+    role: "Technical Advisor",
     council: "Senior Council",
     domain: "Technical",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-aditya.jpg",
+    photo: "/assets/team-portraits/exec-aditya.jpg",
+    description: "Oversees research symposiums, technical paper reviews, coding competitions, and algorithmic workshops.",
+    bio: "Oversees research symposiums, technical paper reviews, coding competitions, and algorithmic workshops.",
+    github: "https://github.com/adityakinikar",
+    linkedin: "https://www.linkedin.com/in/aditya-kinikar",
+    email: "aditya.kinikar@siesgst.ac.in",
+    socials: {
+      github: "https://github.com/adityakinikar",
+      linkedin: "https://www.linkedin.com/in/aditya-kinikar",
+      email: "aditya.kinikar@siesgst.ac.in"
+    }
   },
   {
     id: "123A7001",
+    slug: "ananya-siddayyanavar",
     name: "Ananya Siddayyanavar",
     branch: "ECS",
     prn: "123A7001",
     position: "Creative Mentor",
+    role: "Creative Mentor",
     council: "Senior Council",
     domain: "Creative",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-ananya.jpg",
+    photo: "/assets/team-portraits/exec-ananya.jpg",
+    description: "Mentors creative branding, stage aesthetics, publication themes, and visual narrative direction.",
+    bio: "Mentors creative branding, stage aesthetics, publication themes, and visual narrative direction.",
+    instagram: "https://instagram.com/ananya_sid",
+    linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar",
+    email: "ananya.sid@siesgst.ac.in",
+    socials: {
+      instagram: "https://instagram.com/ananya_sid",
+      linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar",
+      email: "ananya.sid@siesgst.ac.in"
+    }
   },
   {
     id: "2247068",
+    slug: "ayush-tandel",
     name: "Ayush Tandel",
     branch: "ECS",
     prn: "2247068",
     position: "Media Mentor",
+    role: "Media Mentor",
     council: "Senior Council",
     domain: "Media",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-ayush.jpg",
+    photo: "/assets/team-portraits/exec-ayush.jpg",
+    description: "Guides media production, cinematographic coverage, post-production editing, and digital broadcast workflows.",
+    bio: "Guides media production, cinematographic coverage, post-production editing, and digital broadcast workflows.",
+    instagram: "https://instagram.com/ayushtandel",
+    linkedin: "https://www.linkedin.com/in/ayush-tandel",
+    email: "ayush.tandel@siesgst.ac.in",
+    socials: {
+      instagram: "https://instagram.com/ayushtandel",
+      linkedin: "https://www.linkedin.com/in/ayush-tandel",
+      email: "ayush.tandel@siesgst.ac.in"
+    }
   },
   {
     id: "122A7021",
+    slug: "kaushik-yadav",
     name: "Kaushik Yadav",
     branch: null, // IMPORTANT: Explicitly NOT SPECIFIED in source document
     prn: "122A7021",
     position: "Media Mentor",
+    role: "Media Mentor",
     council: "Senior Council",
     domain: "Media",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-kaushik.jpg",
+    photo: "/assets/team-portraits/exec-kaushik.jpg",
+    description: "Mentors audiovisual documentation, press releases, social storytelling, and chapter media archives.",
+    bio: "Mentors audiovisual documentation, press releases, social storytelling, and chapter media archives.",
+    linkedin: "https://www.linkedin.com/in/kaushik-yadav",
+    email: "kaushik.yadav@siesgst.ac.in",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/kaushik-yadav",
+      email: "kaushik.yadav@siesgst.ac.in"
+    }
   },
   {
     id: "123A7053",
+    slug: "shravani-khedkar",
     name: "Shravani Khedkar",
     branch: "ECS",
     prn: "123A7053",
     position: "Design Mentor",
+    role: "Design Mentor",
     council: "Senior Council",
     domain: "Design",
-    photo: null,
-    bio: null,
-    socials: null
+    category: "executive",
+    image: "/assets/team-portraits/exec-shravani.jpg",
+    photo: "/assets/team-portraits/exec-shravani.jpg",
+    description: "Guides brand design systems, interface design, editorial layouts, and chapter brand identity guidelines.",
+    bio: "Guides brand design systems, interface design, editorial layouts, and chapter brand identity guidelines.",
+    instagram: "https://instagram.com/shravanikhedkar",
+    linkedin: "https://www.linkedin.com/in/shravani-khedkar",
+    email: "shravani.khedkar@siesgst.ac.in",
+    socials: {
+      instagram: "https://instagram.com/shravanikhedkar",
+      linkedin: "https://www.linkedin.com/in/shravani-khedkar",
+      email: "shravani.khedkar@siesgst.ac.in"
+    }
   }
+];
+
+// Unified structured leadership roster
+export const leadershipMembers = [
+  ...facultyLeadership,
+  ...seniorCouncil
 ];
 
 // 3. JUNIOR COUNCIL
@@ -235,7 +403,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Executive",
     photo: null,
-    bio: null,
+    bio: "Assists the Secretariat in executing council administration, institutional record-keeping, and inter-departmental communication across the student chapter.",
     socials: null
   },
   {
@@ -247,7 +415,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Executive",
     photo: null,
-    bio: null,
+    bio: "Supports chapter governance, institutional documentation, meeting agendas, and administrative coordination across student wings.",
     socials: null
   },
   {
@@ -259,7 +427,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Technical",
     photo: null,
-    bio: null,
+    bio: "Directs core software development projects, technical workshops, and coding challenges for chapter members.",
     socials: null
   },
   {
@@ -271,7 +439,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Technical",
     photo: null,
-    bio: null,
+    bio: "Oversees hackathon operations, technical infrastructure, development tracks, and peer mentorship in engineering practices.",
     socials: null
   },
   {
@@ -283,7 +451,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Technical",
     photo: null,
-    bio: null,
+    bio: "Manages cloud infrastructure, system design bootcamps, and technical mentoring across multidisciplinary software projects.",
     socials: null
   },
   {
@@ -295,7 +463,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Technical",
     photo: null,
-    bio: null,
+    bio: "Leads hardware-software integrations, technical competitions, paper review sessions, and engineering prototyping labs.",
     socials: null
   },
   {
@@ -307,7 +475,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Industry Outreach & Admin",
     photo: null,
-    bio: null,
+    bio: "Spearheads corporate outreach, industry guest sessions, institutional sponsorship drives, and professional networking.",
     socials: null
   },
   {
@@ -319,7 +487,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Industry Outreach & Admin",
     photo: null,
-    bio: null,
+    bio: "Coordinates administrative workflows, institutional liaisons, event authorizations, and corporate relations.",
     socials: null
   },
   {
@@ -331,7 +499,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Design",
     photo: null,
-    bio: null,
+    bio: "Leads the chapter's UI/UX systems, promotional brand collateral, typography hierarchy, and visual design guidelines.",
     socials: null
   },
   {
@@ -343,7 +511,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Creative",
     photo: null,
-    bio: null,
+    bio: "Directs creative themes, stage scenography, event atmosphere concepts, and thematic marketing campaigns.",
     socials: null
   },
   {
@@ -355,7 +523,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Creative",
     photo: null,
-    bio: null,
+    bio: "Orchestrates artistic installations, event styling, promotional exhibits, and creative student engagement initiatives.",
     socials: null
   },
   {
@@ -367,7 +535,7 @@ export const juniorCouncil = [
     council: "Junior Council",
     domain: "Design & Media",
     photo: null,
-    bio: null,
+    bio: "Guides multidisciplinary visual assets, digital broadcast assets, cinematic event teasers, and brand aesthetic standards.",
     socials: null
   }
 ];
@@ -384,7 +552,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Coordinates hands-on coding bootcamps, technical problem-solving labs, and competitive programming events.",
       socials: null
     },
     {
@@ -396,7 +564,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Facilitates technical workshops, peer developer mentoring, and open-source project development.",
       socials: null
     },
     {
@@ -408,7 +576,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Assists with hackathon technical infrastructure, development environments, and live engineering challenges.",
       socials: null
     },
     {
@@ -420,7 +588,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Supports algorithm reviews, systems programming seminars, and technical project implementations.",
       socials: null
     },
     {
@@ -432,7 +600,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Manages developer documentation, software tooling workshops, and student engineering onboarding.",
       socials: null
     },
     {
@@ -444,7 +612,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Supports embedded computing demonstrations, hardware lab setups, and technical symposium logistics.",
       socials: null
     },
     {
@@ -456,7 +624,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Coordinates code reviews, web development tracks, and peer-to-peer technical mentorship programs.",
       socials: null
     },
     {
@@ -468,7 +636,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Technical",
       photo: null,
-      bio: null,
+      bio: "Assists with technical system deployments, challenge authoring, and student engineering hackathons.",
       socials: null
     }
   ],
@@ -482,7 +650,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Industry Outreach & Admin",
       photo: null,
-      bio: null,
+      bio: "Manages corporate communications, sponsorship proposals, and administrative liaison workflows.",
       socials: null
     },
     {
@@ -494,7 +662,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Industry Outreach & Admin",
       photo: null,
-      bio: null,
+      bio: "Coordinates industry outreach schedules, corporate speaker coordination, and administrative permissions.",
       socials: null
     },
     {
@@ -506,7 +674,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Industry Outreach & Admin",
       photo: null,
-      bio: null,
+      bio: "Assists in sponsorship partnerships, corporate delegate relations, and event logistics management.",
       socials: null
     },
     {
@@ -518,7 +686,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Industry Outreach & Admin",
       photo: null,
-      bio: null,
+      bio: "Facilitates industry engagement, corporate sponsor interactions, and institutional protocol compliance.",
       socials: null
     },
     {
@@ -530,7 +698,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Industry Outreach & Admin",
       photo: null,
-      bio: null,
+      bio: "Manages council correspondence, attendee communications, and executive documentation for major events.",
       socials: null
     },
     {
@@ -542,7 +710,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Industry Outreach & Admin",
       photo: null,
-      bio: null,
+      bio: "Coordinates administrative files, official event approvals, and external stakeholder correspondence.",
       socials: null
     }
   ],
@@ -556,7 +724,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Editorial",
       photo: null,
-      bio: null,
+      bio: "Curates technical articles, oversees editorial proofing, and drafts official chapter publications.",
       socials: null
     },
     {
@@ -568,7 +736,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Editorial",
       photo: null,
-      bio: null,
+      bio: "Authors event retrospectives, technical speaker briefs, and formal engineering dispatches.",
       socials: null
     },
     {
@@ -580,7 +748,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Editorial",
       photo: null,
-      bio: null,
+      bio: "Compiles chapter digests, engineering newsletter features, and official event documentation.",
       socials: null
     },
     {
@@ -592,7 +760,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Editorial",
       photo: null,
-      bio: null,
+      bio: "Edits technical conference digests, chapter press releases, and academic publication manuscripts.",
       socials: null
     }
   ],
@@ -606,7 +774,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Design",
       photo: null,
-      bio: null,
+      bio: "Creates digital banners, social media design assets, and event promotional graphics.",
       socials: null
     },
     {
@@ -618,7 +786,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Design",
       photo: null,
-      bio: null,
+      bio: "Designs symposium posters, official certificates, slide decks, and digital typography layouts.",
       socials: null
     },
     {
@@ -630,7 +798,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Design",
       photo: null,
-      bio: null,
+      bio: "Develops digital graphic layouts, brand identity collateral, and conference badge assets.",
       socials: null
     },
     {
@@ -642,7 +810,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Design",
       photo: null,
-      bio: null,
+      bio: "Crafts printable event brochures, stage visual collateral, and unified brand graphics.",
       socials: null
     }
   ],
@@ -656,7 +824,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Media",
       photo: null,
-      bio: null,
+      bio: "Directs photography coverage, digital photo archives, and live event media production.",
       socials: null
     },
     {
@@ -668,7 +836,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Media",
       photo: null,
-      bio: null,
+      bio: "Handles camera operations, video recording of flagship symposia, and media equipment setups.",
       socials: null
     },
     {
@@ -680,7 +848,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Media",
       photo: null,
-      bio: null,
+      bio: "Manages media archival, post-production video editing, and chapter recap presentations.",
       socials: null
     },
     {
@@ -692,7 +860,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Media",
       photo: null,
-      bio: null,
+      bio: "Assists in digital media production, visual reels, and social media multimedia storytelling.",
       socials: null
     },
     {
@@ -704,7 +872,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Media",
       photo: null,
-      bio: null,
+      bio: "Oversees audio-visual equipment, live event streaming, and media documentation.",
       socials: null
     }
   ],
@@ -718,7 +886,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Creative",
       photo: null,
-      bio: null,
+      bio: "Develops creative event themes, physical promotional installations, and stage design concepts.",
       socials: null
     },
     {
@@ -730,7 +898,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Creative",
       photo: null,
-      bio: null,
+      bio: "Crafts event decor, artistic installations, and creative promotional merchandise for symposia.",
       socials: null
     },
     {
@@ -742,7 +910,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Creative",
       photo: null,
-      bio: null,
+      bio: "Coordinates stage ambiance, thematic visual elements, and interactive student activities.",
       socials: null
     },
     {
@@ -754,7 +922,7 @@ export const coordinatorsData = {
       council: "Coordinators",
       domain: "Creative",
       photo: null,
-      bio: null,
+      bio: "Assists in creating artistic installations, showcase materials, and creative event experiences.",
       socials: null
     }
   ]
@@ -798,13 +966,65 @@ export const membersData = [
   ...activeCoordinators
 ];
 
-// Lookup by ID or PRN
+// Lookup by ID, Slug, or PRN
 export const getMemberById = (identifier) => {
   if (!identifier) return null;
-  const normalized = identifier.toLowerCase().trim();
-  return membersData.find(
-    (m) => m.id.toLowerCase() === normalized || 
-           (m.prn && m.prn.toLowerCase() === normalized) ||
-           (m.id && m.id.toLowerCase().replace(/[^a-z0-9]/g, '') === normalized.replace(/[^a-z0-9]/g, ''))
-  ) || null;
+  const decoded = decodeURIComponent(identifier).toLowerCase().trim();
+  const stripped = decoded.replace(/^(prof|dr)-?/, '').replace(/[^a-z0-9]/g, '');
+  return membersData.find((m) => {
+    if (!m) return false;
+    const mId = (m.id || '').toLowerCase();
+    const mSlug = (m.slug || '').toLowerCase();
+    const mPrn = (m.prn || '').toLowerCase();
+    const mName = (m.name || '').toLowerCase();
+    const mSlugClean = mSlug.replace(/^(prof|dr)-?/, '').replace(/[^a-z0-9]/g, '');
+    const mNameClean = mName.replace(/^(prof\.|dr\.)\s*/, '').replace(/[^a-z0-9]/g, '');
+
+    return (
+      mId === decoded ||
+      mSlug === decoded ||
+      mPrn === decoded ||
+      mName === decoded ||
+      mId.replace(/[^a-z0-9]/g, '') === decoded.replace(/[^a-z0-9]/g, '') ||
+      mSlug.replace(/[^a-z0-9]/g, '') === decoded.replace(/[^a-z0-9]/g, '') ||
+      mName.replace(/[^a-z0-9]/g, '') === decoded.replace(/[^a-z0-9]/g, '') ||
+      (stripped && mSlugClean === stripped) ||
+      (stripped && mNameClean === stripped)
+    );
+  }) || null;
 };
+
+// Get official static pre-generated QR code path for a member
+export const getMemberQRUrl = (member) => {
+  if (!member || !member.id) return null;
+  const cleanName = (member.name || '')
+    .replace(/[^a-zA-Z0-9]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '');
+  const fileName = `${cleanName}_${member.id}.png`;
+
+  let subDir = 'coordinators';
+  if (member.id.startsWith('FAC') || member.council === 'Faculty Leadership' || member.category === 'faculty') {
+    subDir = 'faculty';
+  } else if (member.council === 'Senior Council' || member.category === 'executive') {
+    subDir = 'senior';
+  } else if (member.council === 'Junior Council') {
+    subDir = 'junior';
+  }
+  return `/qrcodes/${subDir}/${fileName}`;
+};
+
+// Retrieve biographical statement for any member with an authoritative fallback
+export const getMemberBio = (member) => {
+  if (!member) return "";
+  if (member.bio && member.bio.trim()) return member.bio;
+  if (member.description && member.description.trim()) return member.description;
+
+  const council = member.council || "Student Chapter";
+  const position = member.position || member.role || "Member";
+  const domain = member.domain ? `${member.domain} Wing` : "chapter initiatives";
+  const branch = member.branch ? `from the Department of ${member.branch}` : "";
+  return `${member.name} serves as ${position} for the ${council} ${branch}, supporting ${domain} at IEI SIES GST.`;
+};
+
+

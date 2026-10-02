@@ -1,0 +1,585 @@
+/* ==========================================================================
+   IEI SIES GST — LEADERSHIP SPOTLIGHT
+   Editorial Faculty & Executive Leadership System
+   Clean Studio White Backdrop • Crisp Centered IEI SVG Emblem
+   Two People + Chairs Intact • Silhouette Mask Monochrome-to-Color Interaction
+   Integrated Editorial Typography • No Below-Image Cards
+   ========================================================================== */
+
+/* Outer Section Layout */
+.leadership-spotlight-root {
+  position: relative;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .leadership-spotlight-root {
+    padding-top: 1.5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Section Header Typography */
+.leadership-section-header {
+  margin-bottom: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .leadership-section-header {
+    margin-bottom: 2.25rem;
+  }
+}
+
+.leadership-index-tag {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0062FF;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.leadership-heading {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: 1.875rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #09090B;
+}
+
+@media (min-width: 768px) {
+  .leadership-heading {
+    font-size: 2.5rem;
+  }
+}
+
+.leadership-subheading {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #71717A;
+  max-width: 42rem;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   01 — FACULTY LEADERSHIP: UNIFIED HERO COMPOSITION
+   ========================================================================== */
+
+.faculty-hero-stage-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 74rem;
+  margin: 0 auto;
+}
+
+.faculty-hero-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2524 / 1420;
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  user-select: none;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 768px) {
+  .faculty-hero-stage {
+    border-radius: 1.5rem;
+  }
+}
+
+/* Layer 0: Pure Clean White Backdrop */
+.faculty-white-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Layer 1: Official Crisp IEI SVG Emblem (Centered Behind People) */
+.faculty-emblem-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.faculty-iei-emblem {
+  width: min(44vw, 360px);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  opacity: 0.11;
+  filter: grayscale(100%);
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .faculty-iei-emblem {
+    width: min(34vw, 400px);
+    opacity: 0.12;
+  }
+}
+
+/* Base Photo Layers */
+.faculty-photo-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  backface-visibility: hidden;
+}
+
+/* Base Layer: 100% Grayscale Cutout (People + Chairs) */
+.faculty-photo-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(1.02);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Color Overlay Layers: Exact Cutout in Natural Color, masked to individual silhouette */
+.faculty-color-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.faculty-color-layer.is-visible {
+  opacity: 1;
+}
+
+.faculty-photo-inner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(0%) contrast(1.03);
+  pointer-events: none;
+}
+
+/* SILHOUETTE MASKS FOR FACULTY (MATCHES PEOPLE SILHOUETTE) */
+.faculty-mask-hirani {
+  -webkit-mask-image: url('/assets/mask-hirani.png');
+  mask-image: url('/assets/mask-hirani.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.faculty-mask-kharche {
+  -webkit-mask-image: url('/assets/mask-kharche.png');
+  mask-image: url('/assets/mask-kharche.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* ==========================================================================
+   INTEGRATED EDITORIAL TYPOGRAPHY (NO BELOW-IMAGE CARDS)
+   ========================================================================== */
+
+.faculty-editorial-info {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 18rem;
+}
+
+.faculty-editorial-info.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Left Person Info (Prof. Jasmin Hirani) */
+.info-left {
+  top: 48%;
+  left: 2rem;
+  transform: translateY(-50%) translateY(6px);
+  text-align: left;
+}
+
+.info-left.is-revealed {
+  opacity: 1;
+  transform: translateY(-50%) translateY(0);
+}
+
+@media (min-width: 1024px) {
+  .info-left {
+    left: 3rem;
+    max-width: 22rem;
+  }
+}
+
+/* Right Person Info (Dr. Shubhangi Kharche) */
+.info-right {
+  top: 48%;
+  right: 2rem;
+  transform: translateY(-50%) translateY(6px);
+  text-align: right;
+}
+
+.info-right.is-revealed {
+  opacity: 1;
+  transform: translateY(-50%) translateY(0);
+}
+
+@media (min-width: 1024px) {
+  .info-right {
+    right: 3rem;
+    max-width: 22rem;
+  }
+}
+
+/* Editorial Typography Specs */
+.editorial-role-tag {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0062FF;
+  margin-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .editorial-role-tag {
+    font-size: 0.75rem;
+  }
+}
+
+.editorial-name {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #09090B;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .editorial-name {
+    font-size: 1.625rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .editorial-name {
+    font-size: 1.875rem;
+  }
+}
+
+.editorial-meta {
+  font-size: 0.75rem;
+  color: #71717A;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .editorial-meta {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Mobile Responsive Typography Adjustments */
+@media (max-width: 640px) {
+  .info-left {
+    top: 1rem;
+    left: 1rem;
+    transform: translateY(6px);
+    max-width: calc(100% - 2rem);
+  }
+
+  .info-left.is-revealed {
+    transform: translateY(0);
+  }
+
+  .info-right {
+    top: 1rem;
+    right: 1rem;
+    transform: translateY(6px);
+    max-width: calc(100% - 2rem);
+  }
+
+  .info-right.is-revealed {
+    transform: translateY(0);
+  }
+
+  .editorial-name {
+    font-size: 1.125rem;
+  }
+}
+
+/* ==========================================================================
+   INTERACTIVE HIT REGIONS (ERGONOMIC OVERLAYS OVER EACH PERSON)
+   ========================================================================== */
+
+.faculty-hit-zone {
+  position: absolute;
+  top: 6%;
+  height: 90%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none !important;
+  box-shadow: none !important;
+  z-index: 6;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 1.5rem;
+  transition: outline 150ms ease;
+}
+
+.faculty-hit-zone:focus-visible {
+  outline: 2px solid rgba(0, 98, 255, 0.4) !important;
+  outline-offset: -2px;
+}
+
+/* Left Person Hit Region: Prof. Jasmin Hirani */
+.faculty-hit-left {
+  left: 20%;
+  width: 28%;
+}
+
+/* Right Person Hit Region: Dr. Shubhangi Kharche */
+.faculty-hit-right {
+  left: 52%;
+  width: 28%;
+}
+
+@media (max-width: 640px) {
+  .faculty-hit-left {
+    left: 15%;
+    width: 35%;
+  }
+
+  .faculty-hit-right {
+    left: 50%;
+    width: 35%;
+  }
+}
+
+/* ==========================================================================
+   02 — EXECUTIVE LEADERSHIP: 4-PERSON GROUP PHOTOGRAPH STAGE
+   ========================================================================== */
+
+.executive-hero-stage-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 74rem;
+  margin: 0 auto;
+}
+
+.executive-hero-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  user-select: none;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 768px) {
+  .executive-hero-stage {
+    border-radius: 1.5rem;
+  }
+}
+
+.executive-white-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: #fcfcfd;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Base Photo Layers */
+.executive-photo-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  backface-visibility: hidden;
+}
+
+.executive-photo-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.02);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 4 Individual Color Overlay Layers */
+.executive-color-layer {
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.executive-color-layer.is-visible {
+  opacity: 1;
+}
+
+.executive-photo-inner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0%) contrast(1.03);
+  pointer-events: none;
+}
+
+/* Executive Silhouette Masks */
+.mask-chairperson {
+  -webkit-mask-image: url('/assets/mask-chairperson.png');
+  mask-image: url('/assets/mask-chairperson.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.mask-vice-chairperson {
+  -webkit-mask-image: url('/assets/mask-vice-chairperson.png');
+  mask-image: url('/assets/mask-vice-chairperson.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.mask-secretary {
+  -webkit-mask-image: url('/assets/mask-secretary.png');
+  mask-image: url('/assets/mask-secretary.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.mask-treasurer {
+  -webkit-mask-image: url('/assets/mask-treasurer.png');
+  mask-image: url('/assets/mask-treasurer.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Executive Integrated Editorial Typography */
+.executive-editorial-info {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  top: 1.5rem;
+  max-width: 14rem;
+}
+
+.executive-editorial-info.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.exec-info-slot-0 {
+  left: 3%;
+  text-align: left;
+}
+
+.exec-info-slot-1 {
+  left: 28%;
+  text-align: left;
+}
+
+.exec-info-slot-2 {
+  left: 53%;
+  text-align: left;
+}
+
+.exec-info-slot-3 {
+  right: 3%;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .executive-editorial-info {
+    top: 0.75rem;
+    left: 1rem !important;
+    right: auto !important;
+    text-align: left !important;
+    max-width: calc(100% - 2rem);
+  }
+}
+
+/* Executive 4 Hit Slots */
+.executive-hit-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  z-index: 6;
+}
+
+.executive-hit-slot {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 200ms ease;
+}
+
+.executive-hit-slot:focus-visible {
+  outline: 2px solid rgba(0, 98, 255, 0.4) !important;
+  outline-offset: -2px;
+}

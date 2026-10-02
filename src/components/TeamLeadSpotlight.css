@@ -1,0 +1,322 @@
+/* ==========================================================================
+   IEI SIES GST — TEAM LEAD SPOTLIGHT EXPERIMENT
+   Monochrome Group Photo + Person-Specific Color Reveal
+   Pixel-perfect alignment, CSS & SVG masking, restrained typography
+   ========================================================================== */
+
+.team-spotlight-root {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Editorial Context Header */
+.team-spotlight-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .team-spotlight-header {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.team-spotlight-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0062FF;
+  display: block;
+}
+
+.team-spotlight-title {
+  font-family: inherit;
+  font-size: 1.75rem;
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #09090b;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .team-spotlight-title {
+    font-size: 2.25rem;
+  }
+}
+
+.team-spotlight-hint {
+  font-size: 0.8125rem;
+  color: #71717a;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .team-spotlight-hint {
+    margin-top: 0;
+  }
+}
+
+/* The Stage / Visual Frame */
+.team-spotlight-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4160 / 3120;
+  background-color: #09090b;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Layer A: Grayscale Base Layer */
+.spotlight-layer-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  opacity: 1;
+  transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  pointer-events: none;
+  display: block;
+}
+
+.spotlight-layer-base.is-dimmed {
+  opacity: 0.28;
+}
+
+/* Layer B: Color Reveal Layers */
+.spotlight-layer-color {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  z-index: 5;
+}
+
+.spotlight-layer-color.is-active {
+  opacity: 1;
+}
+
+.spotlight-layer-color img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Interactive Hit Areas Layer */
+.spotlight-hit-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.spotlight-hit-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Visible Keyboard Focus State */
+.spotlight-hit-button:focus-visible .spotlight-focus-ring {
+  opacity: 1;
+}
+
+.spotlight-focus-ring {
+  position: absolute;
+  inset: 8px;
+  border: 2px solid #0062FF;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+/* Restrained Identity Label (Strictly no badges, no pills) */
+.spotlight-label-wrap {
+  position: absolute;
+  bottom: 12.5%;
+  left: 50%;
+  width: 90%;
+  max-width: 280px;
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  transition: opacity 280ms cubic-bezier(0.16, 1, 0.3, 1), transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  text-align: center;
+}
+
+.spotlight-hit-button.is-active .spotlight-label-wrap {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* When a member is selected for navigation, fade out labels to spotlight portrait */
+.spotlight-hit-layer.has-selection .spotlight-label-wrap {
+  opacity: 0 !important;
+  transition: opacity 200ms ease;
+}
+
+.spotlight-label-name {
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+@media (min-width: 640px) {
+  .spotlight-label-name {
+    font-size: 1.25rem;
+  }
+}
+
+.spotlight-label-role {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #e4e4e7;
+  margin-top: 0.25rem;
+  line-height: 1.25;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.spotlight-label-council {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #38bdf8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
+}
+
+/* Subtle Mobile Active Indicator */
+.spotlight-mobile-hint {
+  font-size: 0.6875rem;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.35rem;
+  opacity: 0.85;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+@media (min-width: 768px) {
+  .spotlight-mobile-hint {
+    display: none;
+  }
+}
+
+/* Click Emerging Portrait Transition */
+.spotlight-emerging-portal {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 25;
+  pointer-events: none;
+  width: clamp(200px, 32vw, 360px);
+}
+
+.spotlight-emerging-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  background-color: #09090b;
+  opacity: 0;
+  transform: scale(0.92) translateY(12px);
+  transition: opacity 520ms cubic-bezier(0.16, 1, 0.3, 1), transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight-emerging-card.is-emerging {
+  opacity: 1;
+  transform: scale(1.02) translateY(0);
+}
+
+.spotlight-emerging-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.spotlight-emerging-caption {
+  position: absolute;
+  bottom: 0;
+  inset-x: 0;
+  padding: 1.25rem 1rem 0.75rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.spotlight-emerging-title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.spotlight-emerging-sub {
+  font-size: 0.75rem;
+  color: #d4d4d8;
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-layer-base,
+  .spotlight-layer-color,
+  .spotlight-label-wrap,
+  .spotlight-emerging-card,
+  .spotlight-focus-ring {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}

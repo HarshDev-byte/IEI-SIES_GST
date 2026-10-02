@@ -5,7 +5,8 @@ import {
   Footer, 
   SearchModal, 
   LoginModal, 
-  VerifyModal 
+  VerifyModal,
+  GlowingDotsGrid 
 } from '@/components';
 
 import { 
@@ -19,9 +20,15 @@ import {
 
 import { audioEngine } from '@/utils';
 
+// Check if this is the user's first visit in this browser session
+const hasSeenLoader = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('iei-loader-shown');
+
 export default function App() {
-  // Loader state
-  const [showLoader, setShowLoader] = useState(true);
+  // Loader state — only show on first visit per session
+  const [showLoader, setShowLoader] = useState(!hasSeenLoader);
+
+  // Page transition state — bumping this key triggers the fade-in animation
+  const [transitionKey, setTransitionKey] = useState(0);
 
   // Identity Theme state ('default' | 'signature')
   const [identityTheme, setIdentityTheme] = useState('default');
@@ -34,8 +41,8 @@ export default function App() {
   // Router: Determine active route and member ID from URL hash
   const getRouteState = () => {
     const rawHash = window.location.hash.replace(/^#\/?/, '').split('?')[0];
-    if (rawHash.startsWith('member/') || rawHash.startsWith('m/') || rawHash.startsWith('profile/')) {
-      const memberId = rawHash.replace(/^(member|m|profile)\//, '');
+    if (rawHash.startsWith('member/') || rawHash.startsWith('m/') || rawHash.startsWith('profile/') || (rawHash.startsWith('team/') && rawHash.length > 5)) {
+      const memberId = rawHash.replace(/^(member|m|profile|team)\//, '');
       return { route: 'member-profile', memberId };
     }
     if (!rawHash || rawHash === 'about' || rawHash === 'about-iei' || rawHash === 'what-we-do' || rawHash === 'membership' || rawHash === 'gallery' || rawHash === 'contact') {
@@ -55,30 +62,43 @@ export default function App() {
     const handleHashChange = () => {
       const nextState = getRouteState();
       setRouteState(nextState);
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    };
-
-    const handleKeyDown = (e) => {
-      // Replay loader on pressing 'r' or 'R' if not in an input/textarea
-      if (
-        (e.key === 'r' || e.key === 'R') &&
-        !e.ctrlKey &&
-        !e.metaKey &&
-        e.target.tagName !== 'INPUT' &&
-        e.target.tagName !== 'TEXTAREA' &&
-        !showLoader
-      ) {
-        setShowLoader(true);
+      // Trigger page transition animation on every route change
+      setTransitionKey(k => k + 1);
+      const rawHash = window.location.hash.replace(/^#\/?/, '').split('?')[0];
+      if (rawHash === 'about' || rawHash === 'about-iei') {
+        setTimeout(() => {
+          const el = document.getElementById('about');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+      } else if (rawHash === 'what-we-do') {
+        setTimeout(() => {
+          const el = document.getElementById('what-we-do');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+      } else if (rawHash === 'contact') {
+        setTimeout(() => {
+          const el = document.getElementById('contact');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
       }
     };
 
+    // On initial mount, if URL points to #about, smooth scroll down
+    const initialRaw = window.location.hash.replace(/^#\/?/, '').split('?')[0];
+    if (initialRaw === 'about' || initialRaw === 'about-iei') {
+      setTimeout(() => {
+        const el = document.getElementById('about');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+
     window.addEventListener('hashchange', handleHashChange);
-    window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
-      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [showLoader]);
+  }, []);
 
   // Event registration handler
   const handleRegisterEvent = (eventName) => {
@@ -89,9 +109,13 @@ export default function App() {
   return (
     <div className="min-h-screen text-zinc-950 bg-white relative selection:bg-[#0062FF] selection:text-white">
       
-      {/* Professional Architectural Loading Screen */}
+      {/* Professional Architectural Loading Screen — once per browser session */}
       {showLoader && (
-        <CrazySexyLoader onComplete={() => setShowLoader(false)} />
+        <CrazySexyLoader onComplete={() => {
+          setShowLoader(false);
+          // Mark as shown so refreshes/navigation within the session skip it
+          try { sessionStorage.setItem('iei-loader-shown', '1'); } catch (_) {}
+        }} />
       )}
 
       {/* Sleek Minimal Global Light Background */}
@@ -112,6 +136,9 @@ export default function App() {
         )}
       </div>
 
+      {/* Global Interactive Glowing Dots Grid Canvas (Active Across Entire Website) */}
+      <GlowingDotsGrid isGlobal={true} enableEmblemClearance={false} />
+
       {/* Unified Floating Top Architectural Navbar */}
       <Navbar 
         currentRoute={currentRoute}
@@ -123,42 +150,49 @@ export default function App() {
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 
-      {/* Main Dynamic Viewport Stream */}
+      {/* Main Dynamic Viewport Stream — smooth page transition on route change */}
       <main className="relative z-10 min-h-[85vh] pb-32 sm:pb-40">
-        {currentRoute === 'home' && (
-          <HomePage 
-            onOpenVerify={() => setIsVerifyOpen(true)}
-          />
-        )}
+        <div key={transitionKey} className="page-transition-enter">
+          {currentRoute === 'home' && (
+            <HomePage 
+              onOpenVerify={() => setIsVerifyOpen(true)}
+              isReady={!showLoader}
+            />
+          )}
 
-        {currentRoute === 'activities' && (
-          <ActivitiesPage />
-        )}
+          {currentRoute === 'activities' && (
+            <ActivitiesPage />
+          )}
 
-        {currentRoute === 'events' && (
-          <EventsPage 
-            onRegisterEvent={handleRegisterEvent}
-          />
-        )}
+          {currentRoute === 'events' && (
+            <EventsPage 
+              onRegisterEvent={handleRegisterEvent}
+            />
+          )}
 
-        {currentRoute === 'team' && (
-          <TeamPage />
-        )}
+          {currentRoute === 'team' && (
+            <TeamPage />
+          )}
 
-        {currentRoute === 'resources' && (
-          <ResourcesPage />
-        )}
+          {currentRoute === 'resources' && (
+            <ResourcesPage />
+          )}
 
-        {currentRoute === 'member-profile' && (
-          <MemberProfilePage memberId={routeState.memberId} />
-        )}
+          {currentRoute === 'member-profile' && (
+            <MemberProfilePage memberId={routeState.memberId} />
+          )}
+        </div>
       </main>
 
       {/* Clean Official Chapter Footer */}
       <Footer 
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenVerify={() => setIsVerifyOpen(true)}
-        onReplayLoader={() => setShowLoader(true)}
+        onReplayLoader={() => {
+          // Allow manual replay of the loader from footer (clears session flag too)
+          try { sessionStorage.removeItem('iei-loader-shown'); } catch (_) {}
+          setShowLoader(true);
+        }}
       />
 
       {/* Global Interactive Modals */}
