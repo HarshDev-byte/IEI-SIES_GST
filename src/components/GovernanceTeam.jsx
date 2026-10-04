@@ -330,17 +330,15 @@ export default function GovernanceTeam() {
                 </div>
 
                 <div className="max-w-md">
-                  <p className="text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed mb-3">
+                  <p className="text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed mb-2.5">
                     {currentWing.subtext}
                   </p>
                   {currentWing.scopeList && (
-                    <div className="flex flex-wrap gap-1.5">
+                    <ul className="space-y-1 text-xs sm:text-sm text-zinc-500 font-normal leading-relaxed list-disc list-inside">
                       {currentWing.scopeList.map((scope, i) => (
-                        <span key={i} className="font-mono text-[10px] text-zinc-600 bg-white px-2 py-0.5 rounded-md border border-black/[0.06]">
-                          {scope}
-                        </span>
+                        <li key={i}>{scope}</li>
                       ))}
-                    </div>
+                    </ul>
                   )}
                 </div>
               </div>

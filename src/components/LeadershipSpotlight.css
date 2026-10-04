@@ -107,10 +107,12 @@
   pointer-events: none;
 }
 
-/* Layer 1: Official Crisp IEI SVG Emblem (Centered Behind People) */
+/* Layer 1: Official Crisp IEI Emblem (Centered Upper-Center Behind People) */
 .faculty-emblem-wrap {
   position: absolute;
-  inset: 0;
+  top: 13%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,19 +121,22 @@
 }
 
 .faculty-iei-emblem {
-  width: min(44vw, 360px);
+  width: min(28vw, 130px);
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  opacity: 0.11;
-  filter: grayscale(100%);
-  transition: opacity 400ms ease;
+  opacity: 0.95;
+  filter: drop-shadow(0 4px 16px rgba(0, 98, 255, 0.18));
+  transition: opacity 400ms ease, transform 400ms ease;
   pointer-events: none;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
+  .faculty-emblem-wrap {
+    top: 11%;
+  }
   .faculty-iei-emblem {
-    width: min(34vw, 400px);
-    opacity: 0.12;
+    width: 136px;
+    opacity: 0.98;
   }
 }
 
@@ -229,7 +234,7 @@
 
 /* Left Person Info (Prof. Jasmin Hirani) */
 .info-left {
-  top: 48%;
+  top: 38%;
   left: 2rem;
   transform: translateY(-50%) translateY(6px);
   text-align: left;
@@ -249,7 +254,7 @@
 
 /* Right Person Info (Dr. Shubhangi Kharche) */
 .info-right {
-  top: 48%;
+  top: 38%;
   right: 2rem;
   transform: translateY(-50%) translateY(6px);
   text-align: right;

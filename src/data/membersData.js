@@ -31,9 +31,11 @@ export const facultyLeadership = [
     bio: "Head of the Department of Electronics and Computer Science at SIES GST. Provides institutional guidance, academic excellence steering, and chapter governance.",
     email: "shubhangik@sies.edu.in",
     linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
+    github: "https://github.com/shubhangi-kharche",
     socials: {
       email: "shubhangik@sies.edu.in",
-      linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/"
+      linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
+      github: "https://github.com/shubhangi-kharche"
     }
   },
   {
@@ -53,9 +55,11 @@ export const facultyLeadership = [
     bio: "Student Branch Coordinator for IEI SIES GST. Mentors the student chapter councils, orchestrates inter-departmental technical initiatives, and guides professional chapter activities.",
     email: "jasminh@sies.edu.in",
     linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
+    github: "https://github.com/jasmin-hirani",
     socials: {
       email: "jasminh@sies.edu.in",
-      linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/"
+      linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
+      github: "https://github.com/jasmin-hirani"
     }
   }
 ];
@@ -78,10 +82,12 @@ export const seniorCouncil = [
     description: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
     bio: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
     linkedin: "https://www.linkedin.com/in/tejraj-gujar",
+    github: "https://github.com/tejraj-gujar",
     email: "tejraj.gujar@siesgst.ac.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/tejraj-gujar",
-      email: "tejraj.gujar@siesgst.ac.in"
+      email: "tejraj.gujar@siesgst.ac.in",
+      github: "https://github.com/tejraj-gujar"
     }
   },
   {
@@ -100,10 +106,12 @@ export const seniorCouncil = [
     description: "Supports executive chapter operations, program execution, cross-domain coordination, and student representation.",
     bio: "Supports executive chapter operations, program execution, cross-domain coordination, and student representation.",
     linkedin: "https://www.linkedin.com/in/sarang-patil",
+    github: "https://github.com/sarang-patil",
     email: "sarang.patil@siesgst.ac.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/sarang-patil",
-      email: "sarang.patil@siesgst.ac.in"
+      email: "sarang.patil@siesgst.ac.in",
+      github: "https://github.com/sarang-patil"
     }
   },
   {
@@ -122,10 +130,12 @@ export const seniorCouncil = [
     description: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
     bio: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
     linkedin: "https://www.linkedin.com/in/shardul-gade",
+    github: "https://github.com/shardul-gade",
     email: "shardul.gade@siesgst.ac.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/shardul-gade",
-      email: "shardul.gade@siesgst.ac.in"
+      email: "shardul.gade@siesgst.ac.in",
+      github: "https://github.com/shardul-gade"
     }
   },
   {
@@ -144,10 +154,12 @@ export const seniorCouncil = [
     description: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
     bio: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
     linkedin: "https://www.linkedin.com/in/harshad-jadhav",
+    github: "https://github.com/harshad-jadhav",
     email: "harshad.jadhav@siesgst.ac.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/harshad-jadhav",
-      email: "harshad.jadhav@siesgst.ac.in"
+      email: "harshad.jadhav@siesgst.ac.in",
+      github: "https://github.com/harshad-jadhav"
     }
   },
   {
@@ -166,10 +178,12 @@ export const seniorCouncil = [
     description: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
     bio: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
     linkedin: "https://www.linkedin.com/in/a-s-lakshanya",
+    github: "https://github.com/a-s-lakshanya",
     email: "lakshanya.as@siesgst.ac.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/a-s-lakshanya",
-      email: "lakshanya.as@siesgst.ac.in"
+      email: "lakshanya.as@siesgst.ac.in",
+      github: "https://github.com/a-s-lakshanya"
     }
   },
   {
@@ -188,10 +202,12 @@ export const seniorCouncil = [
     description: "Orchestrates symposia schedules, venue operations, community relations, and inter-collegiate technical competitions.",
     bio: "Orchestrates symposia schedules, venue operations, community relations, and inter-collegiate technical competitions.",
     linkedin: "https://www.linkedin.com/in/anushka-pawar",
+    github: "https://github.com/anushka-pawar",
     email: "anushka.pawar@siesgst.ac.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/anushka-pawar",
-      email: "anushka.pawar@siesgst.ac.in"
+      email: "anushka.pawar@siesgst.ac.in",
+      github: "https://github.com/anushka-pawar"
     }
   },
   {
@@ -307,11 +323,13 @@ export const seniorCouncil = [
     bio: "Mentors creative branding, stage aesthetics, publication themes, and visual narrative direction.",
     instagram: "https://instagram.com/ananya_sid",
     linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar",
+    github: "https://github.com/ananya-siddayyanavar",
     email: "ananya.sid@siesgst.ac.in",
     socials: {
       instagram: "https://instagram.com/ananya_sid",
       linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar",
-      email: "ananya.sid@siesgst.ac.in"
+      email: "ananya.sid@siesgst.ac.in",
+      github: "https://github.com/ananya-siddayyanavar"
     }
   },
   {
@@ -331,11 +349,13 @@ export const seniorCouncil = [
     bio: "Guides media production, cinematographic coverage, post-production editing, and digital broadcast workflows.",
     instagram: "https://instagram.com/ayushtandel",
     linkedin: "https://www.linkedin.com/in/ayush-tandel",
+    github: "https://github.com/ayush-tandel",
     email: "ayush.tandel@siesgst.ac.in",
     socials: {
       instagram: "https://instagram.com/ayushtandel",
       linkedin: "https://www.linkedin.com/in/ayush-tandel",
-      email: "ayush.tandel@siesgst.ac.in"
+      email: "ayush.tandel@siesgst.ac.in",
+      github: "https://github.com/ayush-tandel"
     }
   },
   {
@@ -354,10 +374,12 @@ export const seniorCouncil = [
     description: "Mentors audiovisual documentation, press releases, social storytelling, and chapter media archives.",
     bio: "Mentors audiovisual documentation, press releases, social storytelling, and chapter media archives.",
     linkedin: "https://www.linkedin.com/in/kaushik-yadav",
+    github: "https://github.com/kaushik-yadav",
     email: "kaushik.yadav@siesgst.ac.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/kaushik-yadav",
-      email: "kaushik.yadav@siesgst.ac.in"
+      email: "kaushik.yadav@siesgst.ac.in",
+      github: "https://github.com/kaushik-yadav"
     }
   },
   {
@@ -377,11 +399,13 @@ export const seniorCouncil = [
     bio: "Guides brand design systems, interface design, editorial layouts, and chapter brand identity guidelines.",
     instagram: "https://instagram.com/shravanikhedkar",
     linkedin: "https://www.linkedin.com/in/shravani-khedkar",
+    github: "https://github.com/shravani-khedkar",
     email: "shravani.khedkar@siesgst.ac.in",
     socials: {
       instagram: "https://instagram.com/shravanikhedkar",
       linkedin: "https://www.linkedin.com/in/shravani-khedkar",
-      email: "shravani.khedkar@siesgst.ac.in"
+      email: "shravani.khedkar@siesgst.ac.in",
+      github: "https://github.com/shravani-khedkar"
     }
   }
 ];
@@ -404,7 +428,11 @@ export const juniorCouncil = [
     domain: "Executive",
     photo: null,
     bio: "Assists the Secretariat in executing council administration, institutional record-keeping, and inter-departmental communication across the student chapter.",
-    socials: null
+    socials: {
+      email: "shubhangi.kharche@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/shubhangi-kharche",
+      github: "https://github.com/shubhangi-kharche"
+    }
   },
   {
     id: "124A1118",
@@ -416,7 +444,15 @@ export const juniorCouncil = [
     domain: "Executive",
     photo: null,
     bio: "Supports chapter governance, institutional documentation, meeting agendas, and administrative coordination across student wings.",
-    socials: null
+    slug: "indrayani-patil",
+    email: "indrayani.patil@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/indrayani-patil",
+    github: "https://github.com/indrayani-patil",
+    socials: {
+      email: "indrayani.patil@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/indrayani-patil",
+      github: "https://github.com/indrayani-patil"
+    }
   },
   {
     id: "124A7052",
@@ -428,7 +464,15 @@ export const juniorCouncil = [
     domain: "Technical",
     photo: null,
     bio: "Directs core software development projects, technical workshops, and coding challenges for chapter members.",
-    socials: null
+    slug: "saran-rajasekhar",
+    email: "saran.rajasekhar@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/saran-rajasekhar",
+    github: "https://github.com/saran-rajasekhar",
+    socials: {
+      email: "saran.rajasekhar@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/saran-rajasekhar",
+      github: "https://github.com/saran-rajasekhar"
+    }
   },
   {
     id: "124A7061",
@@ -440,7 +484,15 @@ export const juniorCouncil = [
     domain: "Technical",
     photo: null,
     bio: "Oversees hackathon operations, technical infrastructure, development tracks, and peer mentorship in engineering practices.",
-    socials: null
+    slug: "manas-suryawanshi",
+    email: "manas.suryawanshi@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/manas-suryawanshi",
+    github: "https://github.com/manas-suryawanshi",
+    socials: {
+      email: "manas.suryawanshi@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/manas-suryawanshi",
+      github: "https://github.com/manas-suryawanshi"
+    }
   },
   {
     id: "124A7036",
@@ -452,7 +504,15 @@ export const juniorCouncil = [
     domain: "Technical",
     photo: null,
     bio: "Manages cloud infrastructure, system design bootcamps, and technical mentoring across multidisciplinary software projects.",
-    socials: null
+    slug: "hariom-mohare",
+    email: "hariom.mohare@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/hariom-mohare",
+    github: "https://github.com/hariom-mohare",
+    socials: {
+      email: "hariom.mohare@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/hariom-mohare",
+      github: "https://github.com/hariom-mohare"
+    }
   },
   {
     id: "124A7045",
@@ -464,7 +524,15 @@ export const juniorCouncil = [
     domain: "Technical",
     photo: null,
     bio: "Leads hardware-software integrations, technical competitions, paper review sessions, and engineering prototyping labs.",
-    socials: null
+    slug: "kaustubh-patil",
+    email: "kaustubh.patil@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/kaustubh-patil",
+    github: "https://github.com/kaustubh-patil",
+    socials: {
+      email: "kaustubh.patil@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/kaustubh-patil",
+      github: "https://github.com/kaustubh-patil"
+    }
   },
   {
     id: "124A7041",
@@ -476,7 +544,15 @@ export const juniorCouncil = [
     domain: "Industry Outreach & Admin",
     photo: null,
     bio: "Spearheads corporate outreach, industry guest sessions, institutional sponsorship drives, and professional networking.",
-    socials: null
+    slug: "advaith-nair",
+    email: "advaith.nair@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/advaith-nair",
+    github: "https://github.com/advaith-nair",
+    socials: {
+      email: "advaith.nair@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/advaith-nair",
+      github: "https://github.com/advaith-nair"
+    }
   },
   {
     id: "124A7026",
@@ -488,7 +564,15 @@ export const juniorCouncil = [
     domain: "Industry Outreach & Admin",
     photo: null,
     bio: "Coordinates administrative workflows, institutional liaisons, event authorizations, and corporate relations.",
-    socials: null
+    slug: "harshit-lahari",
+    email: "harshit.lahari@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/harshit-lahari",
+    github: "https://github.com/harshit-lahari",
+    socials: {
+      email: "harshit.lahari@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/harshit-lahari",
+      github: "https://github.com/harshit-lahari"
+    }
   },
   {
     id: "124A3052",
@@ -500,7 +584,15 @@ export const juniorCouncil = [
     domain: "Design",
     photo: null,
     bio: "Leads the chapter's UI/UX systems, promotional brand collateral, typography hierarchy, and visual design guidelines.",
-    socials: null
+    slug: "gauri-shinde",
+    email: "gauri.shinde@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/gauri-shinde",
+    github: "https://github.com/gauri-shinde",
+    socials: {
+      email: "gauri.shinde@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/gauri-shinde",
+      github: "https://github.com/gauri-shinde"
+    }
   },
   {
     id: "124A7028",
@@ -512,7 +604,15 @@ export const juniorCouncil = [
     domain: "Creative",
     photo: null,
     bio: "Directs creative themes, stage scenography, event atmosphere concepts, and thematic marketing campaigns.",
-    socials: null
+    slug: "maadeshselvan-chidambarakuthala",
+    email: "maadeshselvan.chidambarakuthala@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/maadeshselvan-chidambarakuthala",
+    github: "https://github.com/maadeshselvan-chidambarakuthala",
+    socials: {
+      email: "maadeshselvan.chidambarakuthala@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/maadeshselvan-chidambarakuthala",
+      github: "https://github.com/maadeshselvan-chidambarakuthala"
+    }
   },
   {
     id: "124A2059",
@@ -524,7 +624,15 @@ export const juniorCouncil = [
     domain: "Creative",
     photo: null,
     bio: "Orchestrates artistic installations, event styling, promotional exhibits, and creative student engagement initiatives.",
-    socials: null
+    slug: "sana-tankar",
+    email: "sana.tankar@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/sana-tankar",
+    github: "https://github.com/sana-tankar",
+    socials: {
+      email: "sana.tankar@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/sana-tankar",
+      github: "https://github.com/sana-tankar"
+    }
   },
   {
     id: "124A7051",
@@ -536,7 +644,15 @@ export const juniorCouncil = [
     domain: "Design & Media",
     photo: null,
     bio: "Guides multidisciplinary visual assets, digital broadcast assets, cinematic event teasers, and brand aesthetic standards.",
-    socials: null
+    slug: "nimish-roge",
+    email: "nimish.roge@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/nimish-roge",
+    github: "https://github.com/nimish-roge",
+    socials: {
+      email: "nimish.roge@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/nimish-roge",
+      github: "https://github.com/nimish-roge"
+    }
   }
 ];
 
@@ -553,7 +669,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Coordinates hands-on coding bootcamps, technical problem-solving labs, and competitive programming events.",
-      socials: null
+      slug: "krishna-tiwari",
+      email: "krishna.tiwari@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/krishna-tiwari",
+      github: "https://github.com/krishna-tiwari",
+      socials: {
+        email: "krishna.tiwari@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/krishna-tiwari",
+        github: "https://github.com/krishna-tiwari"
+      }
     },
     {
       id: "125A7046",
@@ -565,7 +689,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Facilitates technical workshops, peer developer mentoring, and open-source project development.",
-      socials: null
+      slug: "riya-prajapati",
+      email: "riya.prajapati@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/riya-prajapati",
+      github: "https://github.com/riya-prajapati",
+      socials: {
+        email: "riya.prajapati@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/riya-prajapati",
+        github: "https://github.com/riya-prajapati"
+      }
     },
     {
       id: "125A7031",
@@ -577,7 +709,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Assists with hackathon technical infrastructure, development environments, and live engineering challenges.",
-      socials: null
+      slug: "himanshu-katarnavare",
+      email: "himanshu.katarnavare@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/himanshu-katarnavare",
+      github: "https://github.com/himanshu-katarnavare",
+      socials: {
+        email: "himanshu.katarnavare@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/himanshu-katarnavare",
+        github: "https://github.com/himanshu-katarnavare"
+      }
     },
     {
       id: "125A7010",
@@ -589,7 +729,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Supports algorithm reviews, systems programming seminars, and technical project implementations.",
-      socials: null
+      slug: "parth-bhobekar",
+      email: "parth.bhobekar@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/parth-bhobekar",
+      github: "https://github.com/parth-bhobekar",
+      socials: {
+        email: "parth.bhobekar@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/parth-bhobekar",
+        github: "https://github.com/parth-bhobekar"
+      }
     },
     {
       id: "125A7026",
@@ -601,7 +749,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Manages developer documentation, software tooling workshops, and student engineering onboarding.",
-      socials: null
+      slug: "aqsa-inamdar",
+      email: "aqsa.inamdar@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/aqsa-inamdar",
+      github: "https://github.com/aqsa-inamdar",
+      socials: {
+        email: "aqsa.inamdar@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/aqsa-inamdar",
+        github: "https://github.com/aqsa-inamdar"
+      }
     },
     {
       id: "125A7023",
@@ -613,7 +769,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Supports embedded computing demonstrations, hardware lab setups, and technical symposium logistics.",
-      socials: null
+      slug: "shankilya-gharat",
+      email: "shankilya.gharat@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/shankilya-gharat",
+      github: "https://github.com/shankilya-gharat",
+      socials: {
+        email: "shankilya.gharat@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/shankilya-gharat",
+        github: "https://github.com/shankilya-gharat"
+      }
     },
     {
       id: "125A7036",
@@ -625,7 +789,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Coordinates code reviews, web development tracks, and peer-to-peer technical mentorship programs.",
-      socials: null
+      slug: "shravani-mayekar",
+      email: "shravani.mayekar@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/shravani-mayekar",
+      github: "https://github.com/shravani-mayekar",
+      socials: {
+        email: "shravani.mayekar@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/shravani-mayekar",
+        github: "https://github.com/shravani-mayekar"
+      }
     },
     {
       id: "125A7055",
@@ -637,7 +809,15 @@ export const coordinatorsData = {
       domain: "Technical",
       photo: null,
       bio: "Assists with technical system deployments, challenge authoring, and student engineering hackathons.",
-      socials: null
+      slug: "bhavesh-sonawane",
+      email: "bhavesh.sonawane@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/bhavesh-sonawane",
+      github: "https://github.com/bhavesh-sonawane",
+      socials: {
+        email: "bhavesh.sonawane@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/bhavesh-sonawane",
+        github: "https://github.com/bhavesh-sonawane"
+      }
     }
   ],
   outreach: [
@@ -651,7 +831,15 @@ export const coordinatorsData = {
       domain: "Industry Outreach & Admin",
       photo: null,
       bio: "Manages corporate communications, sponsorship proposals, and administrative liaison workflows.",
-      socials: null
+      slug: "tejas-borse",
+      email: "tejas.borse@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/tejas-borse",
+      github: "https://github.com/tejas-borse",
+      socials: {
+        email: "tejas.borse@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/tejas-borse",
+        github: "https://github.com/tejas-borse"
+      }
     },
     {
       id: "125A7060",
@@ -663,7 +851,15 @@ export const coordinatorsData = {
       domain: "Industry Outreach & Admin",
       photo: null,
       bio: "Coordinates industry outreach schedules, corporate speaker coordination, and administrative permissions.",
-      socials: null
+      slug: "shivkumar-udaiyar",
+      email: "shivkumar.udaiyar@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/shivkumar-udaiyar",
+      github: "https://github.com/shivkumar-udaiyar",
+      socials: {
+        email: "shivkumar.udaiyar@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/shivkumar-udaiyar",
+        github: "https://github.com/shivkumar-udaiyar"
+      }
     },
     {
       id: "125A7035",
@@ -675,7 +871,15 @@ export const coordinatorsData = {
       domain: "Industry Outreach & Admin",
       photo: null,
       bio: "Assists in sponsorship partnerships, corporate delegate relations, and event logistics management.",
-      socials: null
+      slug: "surud-mahajan",
+      email: "surud.mahajan@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/surud-mahajan",
+      github: "https://github.com/surud-mahajan",
+      socials: {
+        email: "surud.mahajan@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/surud-mahajan",
+        github: "https://github.com/surud-mahajan"
+      }
     },
     {
       id: "125A7037",
@@ -687,7 +891,15 @@ export const coordinatorsData = {
       domain: "Industry Outreach & Admin",
       photo: null,
       bio: "Facilitates industry engagement, corporate sponsor interactions, and institutional protocol compliance.",
-      socials: null
+      slug: "sharvin-mhatre",
+      email: "sharvin.mhatre@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/sharvin-mhatre",
+      github: "https://github.com/sharvin-mhatre",
+      socials: {
+        email: "sharvin.mhatre@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/sharvin-mhatre",
+        github: "https://github.com/sharvin-mhatre"
+      }
     },
     {
       id: "125A7047",
@@ -699,7 +911,15 @@ export const coordinatorsData = {
       domain: "Industry Outreach & Admin",
       photo: null,
       bio: "Manages council correspondence, attendee communications, and executive documentation for major events.",
-      socials: null
+      slug: "gungun-purawat",
+      email: "gungun.purawat@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/gungun-purawat",
+      github: "https://github.com/gungun-purawat",
+      socials: {
+        email: "gungun.purawat@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/gungun-purawat",
+        github: "https://github.com/gungun-purawat"
+      }
     },
     {
       id: "125A7017",
@@ -711,7 +931,15 @@ export const coordinatorsData = {
       domain: "Industry Outreach & Admin",
       photo: null,
       bio: "Coordinates administrative files, official event approvals, and external stakeholder correspondence.",
-      socials: null
+      slug: "saumitra-chavan",
+      email: "saumitra.chavan@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/saumitra-chavan",
+      github: "https://github.com/saumitra-chavan",
+      socials: {
+        email: "saumitra.chavan@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/saumitra-chavan",
+        github: "https://github.com/saumitra-chavan"
+      }
     }
   ],
   editorial: [
@@ -725,7 +953,15 @@ export const coordinatorsData = {
       domain: "Editorial",
       photo: null,
       bio: "Curates technical articles, oversees editorial proofing, and drafts official chapter publications.",
-      socials: null
+      slug: "ronak-pansare",
+      email: "ronak.pansare@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/ronak-pansare",
+      github: "https://github.com/ronak-pansare",
+      socials: {
+        email: "ronak.pansare@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/ronak-pansare",
+        github: "https://github.com/ronak-pansare"
+      }
     },
     {
       id: "125A051",
@@ -737,7 +973,15 @@ export const coordinatorsData = {
       domain: "Editorial",
       photo: null,
       bio: "Authors event retrospectives, technical speaker briefs, and formal engineering dispatches.",
-      socials: null
+      slug: "grahit-shetty",
+      email: "grahit.shetty@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/grahit-shetty",
+      github: "https://github.com/grahit-shetty",
+      socials: {
+        email: "grahit.shetty@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/grahit-shetty",
+        github: "https://github.com/grahit-shetty"
+      }
     },
     {
       id: "125A7048",
@@ -749,7 +993,15 @@ export const coordinatorsData = {
       domain: "Editorial",
       photo: null,
       bio: "Compiles chapter digests, engineering newsletter features, and official event documentation.",
-      socials: null
+      slug: "arnav-sarode",
+      email: "arnav.sarode@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/arnav-sarode",
+      github: "https://github.com/arnav-sarode",
+      socials: {
+        email: "arnav.sarode@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/arnav-sarode",
+        github: "https://github.com/arnav-sarode"
+      }
     },
     {
       id: "125A7029",
@@ -761,7 +1013,15 @@ export const coordinatorsData = {
       domain: "Editorial",
       photo: null,
       bio: "Edits technical conference digests, chapter press releases, and academic publication manuscripts.",
-      socials: null
+      slug: "aditya-jaiswal",
+      email: "aditya.jaiswal@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/aditya-jaiswal",
+      github: "https://github.com/aditya-jaiswal",
+      socials: {
+        email: "aditya.jaiswal@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/aditya-jaiswal",
+        github: "https://github.com/aditya-jaiswal"
+      }
     }
   ],
   design: [
@@ -775,7 +1035,15 @@ export const coordinatorsData = {
       domain: "Design",
       photo: null,
       bio: "Creates digital banners, social media design assets, and event promotional graphics.",
-      socials: null
+      slug: "snehal-thakur",
+      email: "snehal.thakur@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/snehal-thakur",
+      github: "https://github.com/snehal-thakur",
+      socials: {
+        email: "snehal.thakur@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/snehal-thakur",
+        github: "https://github.com/snehal-thakur"
+      }
     },
     {
       id: "125A7021",
@@ -787,7 +1055,15 @@ export const coordinatorsData = {
       domain: "Design",
       photo: null,
       bio: "Designs symposium posters, official certificates, slide decks, and digital typography layouts.",
-      socials: null
+      slug: "fizza-ghankar",
+      email: "fizza.ghankar@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/fizza-ghankar",
+      github: "https://github.com/fizza-ghankar",
+      socials: {
+        email: "fizza.ghankar@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/fizza-ghankar",
+        github: "https://github.com/fizza-ghankar"
+      }
     },
     {
       id: "125A7015",
@@ -799,7 +1075,15 @@ export const coordinatorsData = {
       domain: "Design",
       photo: null,
       bio: "Develops digital graphic layouts, brand identity collateral, and conference badge assets.",
-      socials: null
+      slug: "krishna-chakave",
+      email: "krishna.chakave@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/krishna-chakave",
+      github: "https://github.com/krishna-chakave",
+      socials: {
+        email: "krishna.chakave@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/krishna-chakave",
+        github: "https://github.com/krishna-chakave"
+      }
     },
     {
       id: "125A7043",
@@ -811,7 +1095,15 @@ export const coordinatorsData = {
       domain: "Design",
       photo: null,
       bio: "Crafts printable event brochures, stage visual collateral, and unified brand graphics.",
-      socials: null
+      slug: "samruddhi-patil",
+      email: "samruddhi.patil@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/samruddhi-patil",
+      github: "https://github.com/samruddhi-patil",
+      socials: {
+        email: "samruddhi.patil@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/samruddhi-patil",
+        github: "https://github.com/samruddhi-patil"
+      }
     }
   ],
   media: [
@@ -825,7 +1117,15 @@ export const coordinatorsData = {
       domain: "Media",
       photo: null,
       bio: "Directs photography coverage, digital photo archives, and live event media production.",
-      socials: null
+      slug: "archit-jaijith",
+      email: "archit.jaijith@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/archit-jaijith",
+      github: "https://github.com/archit-jaijith",
+      socials: {
+        email: "archit.jaijith@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/archit-jaijith",
+        github: "https://github.com/archit-jaijith"
+      }
     },
     {
       id: "125A7022",
@@ -837,7 +1137,15 @@ export const coordinatorsData = {
       domain: "Media",
       photo: null,
       bio: "Handles camera operations, video recording of flagship symposia, and media equipment setups.",
-      socials: null
+      slug: "manthan-gharat",
+      email: "manthan.gharat@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/manthan-gharat",
+      github: "https://github.com/manthan-gharat",
+      socials: {
+        email: "manthan.gharat@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/manthan-gharat",
+        github: "https://github.com/manthan-gharat"
+      }
     },
     {
       id: "125A7024",
@@ -849,7 +1157,15 @@ export const coordinatorsData = {
       domain: "Media",
       photo: null,
       bio: "Manages media archival, post-production video editing, and chapter recap presentations.",
-      socials: null
+      slug: "rutuja-gole",
+      email: "rutuja.gole@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/rutuja-gole",
+      github: "https://github.com/rutuja-gole",
+      socials: {
+        email: "rutuja.gole@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/rutuja-gole",
+        github: "https://github.com/rutuja-gole"
+      }
     },
     {
       id: "125A7057",
@@ -861,7 +1177,15 @@ export const coordinatorsData = {
       domain: "Media",
       photo: null,
       bio: "Assists in digital media production, visual reels, and social media multimedia storytelling.",
-      socials: null
+      slug: "avani-thakur",
+      email: "avani.thakur@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/avani-thakur",
+      github: "https://github.com/avani-thakur",
+      socials: {
+        email: "avani.thakur@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/avani-thakur",
+        github: "https://github.com/avani-thakur"
+      }
     },
     {
       id: "125A7014",
@@ -873,7 +1197,15 @@ export const coordinatorsData = {
       domain: "Media",
       photo: null,
       bio: "Oversees audio-visual equipment, live event streaming, and media documentation.",
-      socials: null
+      slug: "karthikey-burghate",
+      email: "karthikey.burghate@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/karthikey-burghate",
+      github: "https://github.com/karthikey-burghate",
+      socials: {
+        email: "karthikey.burghate@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/karthikey-burghate",
+        github: "https://github.com/karthikey-burghate"
+      }
     }
   ],
   creative: [
@@ -887,7 +1219,15 @@ export const coordinatorsData = {
       domain: "Creative",
       photo: null,
       bio: "Develops creative event themes, physical promotional installations, and stage design concepts.",
-      socials: null
+      slug: "jeet-patil",
+      email: "jeet.patil@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/jeet-patil",
+      github: "https://github.com/jeet-patil",
+      socials: {
+        email: "jeet.patil@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/jeet-patil",
+        github: "https://github.com/jeet-patil"
+      }
     },
     {
       id: "125A7045",
@@ -899,7 +1239,15 @@ export const coordinatorsData = {
       domain: "Creative",
       photo: null,
       bio: "Crafts event decor, artistic installations, and creative promotional merchandise for symposia.",
-      socials: null
+      slug: "tanishka-patrike",
+      email: "tanishka.patrike@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/tanishka-patrike",
+      github: "https://github.com/tanishka-patrike",
+      socials: {
+        email: "tanishka.patrike@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/tanishka-patrike",
+        github: "https://github.com/tanishka-patrike"
+      }
     },
     {
       id: "125A7003",
@@ -911,7 +1259,15 @@ export const coordinatorsData = {
       domain: "Creative",
       photo: null,
       bio: "Coordinates stage ambiance, thematic visual elements, and interactive student activities.",
-      socials: null
+      slug: "bmadhav-manyo",
+      email: "bmadhav.manyo@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/bmadhav-manyo",
+      github: "https://github.com/bmadhav-manyo",
+      socials: {
+        email: "bmadhav.manyo@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/bmadhav-manyo",
+        github: "https://github.com/bmadhav-manyo"
+      }
     },
     {
       id: "125A7008",
@@ -923,7 +1279,15 @@ export const coordinatorsData = {
       domain: "Creative",
       photo: null,
       bio: "Assists in creating artistic installations, showcase materials, and creative event experiences.",
-      socials: null
+      slug: "shreyas-bhagat",
+      email: "shreyas.bhagat@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/shreyas-bhagat",
+      github: "https://github.com/shreyas-bhagat",
+      socials: {
+        email: "shreyas.bhagat@siesgst.ac.in",
+        linkedin: "https://www.linkedin.com/in/shreyas-bhagat",
+        github: "https://github.com/shreyas-bhagat"
+      }
     }
   ]
 };

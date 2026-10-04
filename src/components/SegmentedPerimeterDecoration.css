@@ -1,0 +1,267 @@
+/* ==========================================================================
+   IEI SIES GST — SEGMENTED PERIMETER DECORATION SYSTEM
+   Non-continuous, selective perimeter ornaments with local kinetic motion.
+   Strictly NO continuous orbits, NO marquee loops, NO full-border coverage.
+   ========================================================================== */
+
+.segmented-perimeter-root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+  user-select: none;
+  opacity: 0.45;
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card hover state elevates visibility subtly */
+.faculty-hero-stage:hover .segmented-perimeter-root,
+.executive-hero-stage:hover .segmented-perimeter-root,
+.segmented-perimeter-root:hover {
+  opacity: 0.72;
+}
+
+/* Individual Segment Base */
+.perimeter-segment {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #18181b;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  pointer-events: none;
+  transition: transform 300ms ease-out;
+}
+
+/* ── 01. TOP-LEFT SEGMENT ─────────────────────────────────────────────────── */
+.segment-top-left {
+  top: 12px;
+  left: 16px;
+  height: 24px;
+}
+
+.top-left-anim-line {
+  stroke-dasharray: 60 120;
+  animation: localLineTravel 3.2s ease-in-out infinite alternate;
+}
+
+.top-left-diamond {
+  transform-origin: center;
+  animation: localDiamondPulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes localLineTravel {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 30;
+  }
+}
+
+@keyframes localDiamondPulse {
+  0% {
+    transform: scale(0.92) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.92) rotate(90deg);
+    opacity: 0.7;
+  }
+}
+
+/* ── 02. LEFT-MIDDLE SEGMENT ──────────────────────────────────────────────── */
+.segment-left-middle {
+  top: 48%;
+  left: 14px;
+  transform: translateY(-50%);
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.left-middle-circle {
+  transform-origin: center;
+  animation: localCircleBreathe 3s ease-in-out infinite alternate;
+}
+
+.left-middle-stem {
+  animation: localStemShift 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes localCircleBreathe {
+  0% {
+    transform: scale(0.9);
+    stroke-width: 1.1;
+  }
+  100% {
+    transform: scale(1.15);
+    stroke-width: 1.6;
+  }
+}
+
+@keyframes localStemShift {
+  0% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(2px);
+  }
+}
+
+/* ── 03. TOP-RIGHT SEGMENT ────────────────────────────────────────────────── */
+.segment-top-right {
+  top: 12px;
+  right: 16px;
+  height: 24px;
+  justify-content: flex-end;
+}
+
+.top-right-typography {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #18181b;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-style: italic;
+  animation: localTextShift 3.6s ease-in-out infinite alternate;
+}
+
+.top-right-arc {
+  animation: localArcShift 3s ease-in-out infinite alternate;
+}
+
+@keyframes localTextShift {
+  0% {
+    transform: translateX(0);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(-3px);
+    opacity: 1;
+  }
+}
+
+@keyframes localArcShift {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 8;
+  }
+}
+
+/* ── 04. RIGHT-MIDDLE SEGMENT ─────────────────────────────────────────────── */
+.segment-right-middle {
+  top: 40%;
+  right: 14px;
+  transform: translateY(-50%);
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.right-middle-loop {
+  transform-origin: center;
+  animation: localLoopRotate 4s ease-in-out infinite alternate;
+}
+
+@keyframes localLoopRotate {
+  0% {
+    transform: rotate(-10deg) scale(0.95);
+  }
+  100% {
+    transform: rotate(10deg) scale(1.05);
+  }
+}
+
+/* ── 05. BOTTOM SEGMENT (SIGNATURE TWISTED RIBBON) ────────────────────────── */
+.segment-bottom {
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+}
+
+.bottom-twisted-ribbon {
+  transform-origin: center;
+  animation: localRibbonMorph 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes localRibbonMorph {
+  0% {
+    transform: scaleX(0.96) translateY(0);
+  }
+  50% {
+    transform: scaleX(1.03) translateY(-1px);
+  }
+  100% {
+    transform: scaleX(0.98) translateY(1px);
+  }
+}
+
+/* ── RESPONSIVE ADAPTATIONS (MOBILE & TABLET) ─────────────────────────────── */
+@media (max-width: 768px) {
+  /* Keep only the 3 cleanest segments on mobile to preserve photo priority */
+  .segment-left-middle,
+  .segment-right-middle {
+    display: none !important;
+  }
+
+  .segment-top-left {
+    top: 8px;
+    left: 10px;
+    transform: scale(0.85);
+    transform-origin: top left;
+  }
+
+  .segment-top-right {
+    top: 8px;
+    right: 10px;
+    transform: scale(0.85);
+    transform-origin: top right;
+  }
+
+  .segment-bottom {
+    bottom: 8px;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  .top-right-typography {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 480px) {
+  .segment-bottom {
+    display: none !important;
+  }
+}
+
+/* ── REDUCED MOTION PREFERENCE ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .top-left-anim-line,
+  .top-left-diamond,
+  .left-middle-circle,
+  .left-middle-stem,
+  .top-right-typography,
+  .top-right-arc,
+  .right-middle-loop,
+  .bottom-twisted-ribbon {
+    animation: none !important;
+    transform: none !important;
+  }
+}

@@ -4,11 +4,11 @@
    PHILOSOPHY: Editorial, Intentional, Professional, Premium
    ========================================================================== */
 
-/* 01. TYPOGRAPHY: Helvetica Neue system stack */
+/* 01. TYPOGRAPHY: Apple San Francisco Pro system stack */
 :root {
-  --font-editorial: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-editorial: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-sans: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   --space-section: clamp(5rem, 8vw, 9rem);
   --space-section-sm: clamp(3rem, 5vw, 5rem);
@@ -70,18 +70,9 @@ section[aria-label*="Engagement"] select,
 section[aria-label*="Contact"] input,
 section[aria-label*="Contact"] textarea,
 section[aria-label*="Contact"] select {
-  border-radius: 4px !important;
   font-family: var(--font-editorial);
   font-size: 0.875rem;
   transition: border-color 200ms ease, box-shadow 200ms ease;
-}
-section[aria-label*="Engagement"] input:focus,
-section[aria-label*="Engagement"] textarea:focus,
-section[aria-label*="Contact"] input:focus,
-section[aria-label*="Contact"] textarea:focus {
-  border-color: #0052D6 !important;
-  box-shadow: 0 0 0 3px rgba(0,82,214,0.1);
-  outline: none;
 }
 
 /* 07. CARDS */

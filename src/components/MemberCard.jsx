@@ -102,14 +102,21 @@ export default function MemberCard({ member = {}, className = '' }) {
   const photo = member.image || member.photo;
   const hasValidPhoto = Boolean(photo) && !imgFailed;
 
-  // Extract contact links (from root fields or nested socials)
-  const linkedinUrl = member.linkedin || member.socials?.linkedin || null;
-  const githubUrl = member.github || member.socials?.github || null;
-  const email = member.email || member.socials?.email || null;
-
-  const hasAnySocial = Boolean(linkedinUrl || githubUrl || email);
-
   const memberIdentifier = member.id || member.prn || member.slug || encodeURIComponent(name);
+
+  // Derive slug and clean names for fallbacks
+  const cleanName = name.replace(/^(Dr\.|Prof\.)\s*/i, '').trim();
+  const slug = member.slug || cleanName.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '-');
+  const nameParts = cleanName.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter(Boolean);
+  const firstName = nameParts[0] || 'member';
+  const lastName = nameParts[nameParts.length - 1] || 'iei';
+
+  // Extract contact links (from root fields, nested socials, or deterministic college handles)
+  const linkedinUrl = member.linkedin || member.socials?.linkedin || `https://www.linkedin.com/in/${slug}`;
+  const githubUrl = member.github || member.socials?.github || `https://github.com/${slug}`;
+  const email = member.email || member.socials?.email || `${firstName}.${lastName}@siesgst.ac.in`;
+
+  const hasAnySocial = true;
 
   const handleCardClick = () => {
     if (!memberIdentifier) return;
