@@ -2,13 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Search, ArrowRight, Compass, 
   Layers, Calendar, Users, FolderDown, 
-  Cpu, Menu, X, ChevronRight, ChevronUp, ChevronDown, Radio, Building2, Award, Camera
+  Cpu, Menu, X, ChevronRight, ChevronUp, ChevronDown, Radio, Building2, Award, Camera,
+  Sun, Moon
 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
 export default function Navbar({ 
   currentRoute = 'home',
   identityTheme = 'default',
+  theme = 'light',
   onToggleTheme,
   onOpenSearch
 }) {
@@ -167,7 +169,7 @@ export default function Navbar({
         <div
           className={`relative flex items-center justify-center rounded-full overflow-hidden transition-all ${
             isOpen
-              ? 'bg-white/94 backdrop-blur-2xl border border-black/10 shadow-[0_14px_44px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.03)] text-zinc-950'
+              ? 'bg-white/94 dark:bg-[#0A0A0C]/94 backdrop-blur-2xl border border-black/10 dark:border-white/15 shadow-[0_14px_44px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.05)] text-zinc-950 dark:text-white'
               : 'bg-[#0062FF] border-2 border-white/90 shadow-[0_6px_24px_rgba(0,98,255,0.55),0_0_16px_rgba(0,98,255,0.4)] cursor-pointer hover:scale-110 active:scale-95'
           }`}
           style={{
@@ -236,10 +238,10 @@ export default function Navbar({
               </div>
 
               <div className="hidden md:flex flex-col text-left leading-none">
-                <span className="font-display font-black text-[13px] tracking-tight text-zinc-950">
+                <span className="font-display font-black text-[13px] tracking-tight text-zinc-950 dark:text-white">
                   IEI · GST
                 </span>
-                <span className="text-[11px] text-zinc-500 font-medium mt-0.5">
+                <span className="text-[11px] text-zinc-500 dark:text-zinc-400 font-medium mt-0.5">
                   Student Chapter
                 </span>
               </div>
@@ -253,7 +255,7 @@ export default function Navbar({
                 transition: reducedMotion ? 'none' : 'opacity 300ms ease, transform 350ms ease',
                 transitionDelay: isOpen ? '90ms' : '0ms',
               }}
-              className="h-6 w-[1px] bg-black/10 hidden sm:block shrink-0" 
+              className="h-6 w-[1px] bg-black/10 dark:bg-white/15 hidden sm:block shrink-0" 
             />
 
             {/* DESKTOP & TABLET PRIMARY NAV CHIPS */}
@@ -282,10 +284,10 @@ export default function Navbar({
                     className={`px-3.5 py-2 rounded-full text-[13px] font-medium transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                       isActive 
                         ? 'bg-[#0062FF] text-white font-semibold shadow-[0_4px_16px_rgba(0,98,255,0.35)]' 
-                        : 'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04]'
+                        : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08]'
                     }`}
                   >
-                    <Icon size={15} className={isActive ? 'text-white' : 'text-zinc-400'} />
+                    <Icon size={15} className={isActive ? 'text-white' : 'text-zinc-400 dark:text-zinc-400'} />
                     <span>{link.label}</span>
                   </a>
                 );
@@ -318,18 +320,18 @@ export default function Navbar({
                     className={`px-3 py-2 rounded-full text-[13px] transition-all duration-200 flex items-center gap-1.5 shrink-0 ${
                       isActive 
                         ? 'bg-[#0062FF] text-white font-semibold shadow-[0_4px_12px_rgba(0,98,255,0.3)]' 
-                        : 'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04]'
+                        : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08]'
                     }`}
                     title={link.label}
                   >
-                    <Icon size={15} className={isActive ? 'text-white' : 'text-zinc-400'} />
+                    <Icon size={15} className={isActive ? 'text-white' : 'text-zinc-400 dark:text-zinc-400'} />
                     <span className="hidden sm:inline text-[12px]">{link.label}</span>
                   </a>
                 );
               })}
             </div>
 
-            {/* UTILITY CONTROLS: Mobile Drawer & Close Toggle */}
+            {/* UTILITY CONTROLS: Theme Toggle, Mobile Drawer & Close Toggle */}
             <div 
               style={{
                 opacity: isOpen ? 1 : 0,
@@ -339,6 +341,24 @@ export default function Navbar({
               }}
               className="flex items-center gap-1 shrink-0"
             >
+              {/* Sun / Moon Theme Toggle Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  audioEngine.playClick();
+                  onToggleTheme && onToggleTheme();
+                }}
+                className="p-2 sm:p-2.5 rounded-full text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.05] dark:hover:bg-white/[0.08] transition-all duration-200 cursor-pointer shrink-0"
+                aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              >
+                {theme === 'dark' ? (
+                  <Sun size={16} className="text-amber-400 hover:rotate-45 transition-transform duration-300" />
+                ) : (
+                  <Moon size={16} className="text-zinc-700 hover:-rotate-12 transition-transform duration-300" />
+                )}
+              </button>
+
               {/* Mobile Expand Drawer Trigger */}
               <button
                 type="button"
@@ -346,7 +366,7 @@ export default function Navbar({
                   audioEngine.playClick();
                   setMobileDrawerOpen(!mobileDrawerOpen);
                 }}
-                className="lg:hidden p-2.5 rounded-full text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04] transition-colors cursor-pointer"
+                className="lg:hidden p-2.5 rounded-full text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08] transition-colors cursor-pointer"
                 aria-label="Toggle mobile directory menu"
               >
                 {mobileDrawerOpen ? <X size={17} /> : <Menu size={17} />}
@@ -356,7 +376,7 @@ export default function Navbar({
               <button
                 type="button"
                 onClick={handleToggle}
-                className="p-2 rounded-full text-zinc-400 hover:text-zinc-700 hover:bg-black/[0.04] transition-colors cursor-pointer shrink-0"
+                className="p-2 rounded-full text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-black/[0.04] dark:hover:bg-white/[0.08] transition-colors cursor-pointer shrink-0"
                 aria-label="Close navigation"
                 title="Close navigation"
               >
@@ -369,12 +389,22 @@ export default function Navbar({
 
       {/* 3. MOBILE FULL-SCREEN SHEET OVERLAY */}
       {mobileDrawerOpen && (
-        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-3xl flex flex-col justify-between p-6 pb-24 pt-12 animate-fadeIn select-none text-zinc-950">
+        <div className="fixed inset-0 z-40 bg-white/98 dark:bg-black/98 backdrop-blur-3xl flex flex-col justify-between p-6 pb-24 pt-12 animate-fadeIn select-none text-zinc-950 dark:text-white">
           
           <div className="space-y-4 max-w-md mx-auto w-full">
-            <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] text-xs text-zinc-500 font-medium">
+            <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/10 text-xs text-zinc-500 dark:text-zinc-400 font-medium">
               <span>Chapter Navigation</span>
-              <span>SIES GST</span>
+              <button
+                type="button"
+                onClick={() => {
+                  audioEngine.playClick();
+                  onToggleTheme && onToggleTheme();
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/[0.05] dark:bg-white/[0.1] text-zinc-800 dark:text-zinc-200 text-xs font-semibold cursor-pointer transition-colors"
+              >
+                {theme === 'dark' ? <Sun size={14} className="text-amber-400" /> : <Moon size={14} className="text-zinc-700 dark:text-zinc-300" />}
+                <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+              </button>
             </div>
 
             <div className="space-y-1">
@@ -393,21 +423,21 @@ export default function Navbar({
                     className={`flex items-center justify-between text-sm py-3 px-4 rounded-xl transition-all border ${
                       isActive
                         ? 'bg-[#0062FF] text-white border-blue-500 shadow-sm font-semibold'
-                        : 'text-zinc-700 hover:text-zinc-950 hover:bg-black/[0.03] border-transparent font-medium'
+                        : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.03] dark:hover:bg-white/[0.06] border-transparent font-medium'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <Icon size={16} className={isActive ? 'text-white' : 'text-zinc-500'} />
+                      <Icon size={16} className={isActive ? 'text-white' : 'text-zinc-500 dark:text-zinc-400'} />
                       <span>{link.label}</span>
                     </div>
-                    <ChevronRight size={14} className={isActive ? 'text-white' : 'text-zinc-400'} />
+                    <ChevronRight size={14} className={isActive ? 'text-white' : 'text-zinc-400 dark:text-zinc-500'} />
                   </a>
                 );
               })}
             </div>
           </div>
 
-          <div className="max-w-md mx-auto w-full space-y-3 pt-4 border-t border-black/[0.06] text-xs text-zinc-500 font-medium">
+          <div className="max-w-md mx-auto w-full space-y-3 pt-4 border-t border-black/[0.06] dark:border-white/10 text-xs text-zinc-500 dark:text-zinc-400 font-medium">
             <div className="flex items-center justify-between text-xs">
               <span>SIES GST, Navi Mumbai</span>
               <span>Department of ECS</span>

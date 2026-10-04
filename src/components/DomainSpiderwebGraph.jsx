@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShieldCheck, Cpu, Globe, Palette, Megaphone, BookOpen, Layers } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 import './DomainSpiderwebGraph.css';
@@ -18,11 +18,26 @@ export default function DomainSpiderwebGraph({
   onSelectWing = () => {}
 }) {
   const [hoveredNode, setHoveredNode] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
 
-  // Center hub coordinates & geometry with generous margin for labels
-  const cx = 480;
-  const cy = 300;
-  const radius = 200;
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Geometry configuration: Responsive mobile vs desktop coordinates
+  const cx = isMobile ? 200 : 480;
+  const cy = isMobile ? 220 : 300;
+  const radius = isMobile ? 120 : 200;
   const totalWings = domainWings.length || 5;
 
   // Calculate coordinates for the radial domain nodes
@@ -36,25 +51,31 @@ export default function DomainSpiderwebGraph({
     const cosVal = Math.cos(angleRad);
     const sinVal = Math.sin(angleRad);
 
-    // Dynamic label positioning based on angle - clear of the 34px halo
     let labelAnchor = 'middle';
     let labelOffsetX = 0;
     let labelOffsetY = 0;
 
-    if (Math.abs(cosVal) < 0.25) {
-      // Near top or bottom vertical pole
-      labelAnchor = 'middle';
-      labelOffsetY = sinVal < 0 ? -40 : 44;
-    } else if (cosVal > 0) {
-      // Right side
-      labelAnchor = 'start';
-      labelOffsetX = 46;
-      labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
+    if (isMobile) {
+      if (Math.abs(cosVal) < 0.25) {
+        labelAnchor = 'middle';
+        labelOffsetY = sinVal < 0 ? -32 : 36;
+      } else {
+        labelAnchor = 'middle';
+        labelOffsetY = 36;
+      }
     } else {
-      // Left side
-      labelAnchor = 'end';
-      labelOffsetX = -46;
-      labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
+      if (Math.abs(cosVal) < 0.25) {
+        labelAnchor = 'middle';
+        labelOffsetY = sinVal < 0 ? -40 : 44;
+      } else if (cosVal > 0) {
+        labelAnchor = 'start';
+        labelOffsetX = 46;
+        labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
+      } else {
+        labelAnchor = 'end';
+        labelOffsetX = -46;
+        labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
+      }
     }
 
     return {
@@ -121,7 +142,7 @@ export default function DomainSpiderwebGraph({
       {/* Main Spiderweb SVG Viewport */}
       <div className="spiderweb-svg-container">
         <svg 
-          viewBox="0 0 960 620" 
+          viewBox={isMobile ? "0 0 400 440" : "0 0 960 620"} 
           className="spiderweb-svg"
           aria-hidden="true"
         >
@@ -197,7 +218,7 @@ export default function DomainSpiderwebGraph({
             <circle
               cx={cx}
               cy={cy}
-              r={48}
+              r={isMobile ? 40 : 48}
               fill="none"
               stroke={isCoreActive ? 'rgba(0, 98, 255, 0.25)' : 'rgba(0, 0, 0, 0.05)'}
               strokeWidth={isCoreActive ? 4 : 1.5}
@@ -207,7 +228,7 @@ export default function DomainSpiderwebGraph({
             <circle
               cx={cx}
               cy={cy}
-              r={36}
+              r={isMobile ? 32 : 36}
               fill={isCoreActive ? '#0062FF' : '#ffffff'}
               stroke={isCoreActive ? '#0062FF' : 'rgba(0, 0, 0, 0.14)'}
               strokeWidth={2.5}
@@ -218,11 +239,11 @@ export default function DomainSpiderwebGraph({
             {/* Central Monogram */}
             <text
               x={cx}
-              y={cy - 4}
+              y={cy - (isMobile ? 3 : 4)}
               textAnchor="middle"
               dominantBaseline="middle"
               fontFamily="var(--font-mono, monospace)"
-              fontSize="12"
+              fontSize={isMobile ? "11" : "12"}
               fontWeight="800"
               fill={isCoreActive ? '#ffffff' : '#09090b'}
               letterSpacing="0.08em"
@@ -231,11 +252,11 @@ export default function DomainSpiderwebGraph({
             </text>
             <text
               x={cx}
-              y={cy + 10}
+              y={cy + (isMobile ? 9 : 10)}
               textAnchor="middle"
               dominantBaseline="middle"
               fontFamily="var(--font-mono, monospace)"
-              fontSize="8"
+              fontSize={isMobile ? "7.5" : "8"}
               fontWeight="700"
               fill={isCoreActive ? 'rgba(255, 255, 255, 0.85)' : '#71717a'}
               letterSpacing="0.06em"
@@ -267,14 +288,14 @@ export default function DomainSpiderwebGraph({
                 }}
               >
                 {/* Invisible large hit area */}
-                <circle cx={node.x} cy={node.y} r={38} fill="transparent" />
+                <circle cx={node.x} cy={node.y} r={isMobile ? 36 : 38} fill="transparent" />
 
                 {/* Outer Halo on Active */}
                 {isActive && (
                   <circle
                     cx={node.x}
                     cy={node.y}
-                    r={34}
+                    r={isMobile ? 30 : 34}
                     fill="none"
                     stroke="rgba(0, 98, 255, 0.25)"
                     strokeWidth={4}
@@ -285,7 +306,7 @@ export default function DomainSpiderwebGraph({
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r={24}
+                  r={isMobile ? 22 : 24}
                   fill={isActive ? '#0062FF' : '#ffffff'}
                   stroke={isActive ? '#0062FF' : isHovered ? '#0062FF' : 'rgba(0, 0, 0, 0.12)'}
                   strokeWidth={isActive ? 3 : 1.75}
@@ -300,7 +321,7 @@ export default function DomainSpiderwebGraph({
                   textAnchor="middle"
                   dominantBaseline="central"
                   fontFamily="var(--font-mono, monospace)"
-                  fontSize="9.5"
+                  fontSize={isMobile ? "8.5" : "9.5"}
                   fontWeight="800"
                   fill={isActive ? '#ffffff' : '#09090b'}
                   letterSpacing="0.04em"
@@ -310,14 +331,26 @@ export default function DomainSpiderwebGraph({
 
                 {/* Radial Outer Text Label */}
                 <g>
-                  <text
-                    x={node.labelX}
-                    y={node.labelY}
-                    textAnchor={node.labelAnchor}
-                    className="spiderweb-node-title"
-                  >
-                    {node.name}
-                  </text>
+                  {isMobile && (node.name.includes('&') || node.name.length > 12) ? (
+                    <text
+                      x={node.labelX}
+                      y={node.labelY}
+                      textAnchor={node.labelAnchor}
+                      className="spiderweb-node-title"
+                    >
+                      <tspan x={node.labelX} dy="-5">Outreach</tspan>
+                      <tspan x={node.labelX} dy="13">& Admin</tspan>
+                    </text>
+                  ) : (
+                    <text
+                      x={node.labelX}
+                      y={node.labelY}
+                      textAnchor={node.labelAnchor}
+                      className="spiderweb-node-title"
+                    >
+                      {node.name}
+                    </text>
+                  )}
                 </g>
               </g>
             );

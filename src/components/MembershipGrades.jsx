@@ -6,7 +6,7 @@ import { audioEngine } from '../utils/audioEngine';
 
 export default function MembershipGrades({ onOpenMembership }) {
   return (
-    <section id="membership" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.08]" aria-label="Official IEI Membership Grades">
+    <section id="membership" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Official IEI Membership Grades">
       
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">

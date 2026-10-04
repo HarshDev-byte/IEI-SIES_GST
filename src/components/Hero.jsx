@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
 /*
@@ -43,7 +42,33 @@ const HERO_MOTION_STYLES = `
     }
   }
 
-  /* 05. Main headline lines */
+  /* 05. IEI Editorial Initial Letters: appear first (550ms ease) */
+  @keyframes hero-initial-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 06. IEI Editorial Supporting Words: subtle slide & letter-spacing settle (650ms ease) */
+  @keyframes hero-word-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+      letter-spacing: 0.03em;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      letter-spacing: -0.025em;
+    }
+  }
+
+  /* Department right-side line entrance */
   @keyframes hero-line-up {
     0% {
       opacity: 0;
@@ -55,18 +80,69 @@ const HERO_MOTION_STYLES = `
     }
   }
 
-  /* 06. Innovation blue word */
-  @keyframes hero-innovation-reveal {
-    0% {
-      clip-path: inset(0 100% 0 0);
-      opacity: 0;
+  /* 06. Major Title Lines & 'The' prefix styling */
+  .hero-the-line {
+    font-size: clamp(0.95rem, 1.5vw, 1.35rem);
+    line-height: 1.1;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+  }
+
+  .hero-major-title-line {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 900;
+  }
+
+  @media (min-width: 640px) {
+    .hero-major-title-line {
+      font-size: clamp(2.5rem, 4.4vw, 4.35rem);
     }
-    1% {
-      opacity: 1;
+  }
+
+  /* Dramatic Mask Entrance: lines slide up cleanly from below */
+  @keyframes hero-line-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(115%);
+      filter: blur(4px);
+    }
+    40% {
+      opacity: 0.85;
+      filter: blur(1px);
     }
     100% {
-      clip-path: inset(0 0% 0 0);
       opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+  }
+
+  /* Continuous Cascading Wave: INSTITUTION -> OF -> ENGINEERS -> INDIA */
+  @keyframes cascade-wave-zinc {
+    0%, 30%, 100% {
+      color: var(--fg-primary, #09090b);
+      transform: translateY(0);
+      filter: drop-shadow(0 0 0 rgba(0, 82, 214, 0));
+    }
+    12% {
+      color: #0052D6;
+      transform: translateY(-4px);
+      filter: drop-shadow(0 6px 18px rgba(0, 82, 214, 0.35));
+    }
+  }
+
+  @keyframes cascade-wave-blue {
+    0%, 30%, 100% {
+      color: #0052D6;
+      transform: translateY(0);
+      filter: drop-shadow(0 0 0 rgba(0, 82, 214, 0));
+    }
+    12% {
+      color: #38BDF8;
+      transform: translateY(-4px);
+      filter: drop-shadow(0 8px 22px rgba(56, 189, 248, 0.5));
     }
   }
 
@@ -132,12 +208,9 @@ const HERO_MOTION_STYLES = `
   /* Pre-animation resting state when waiting for startup loader */
   .hero-waiting .hero-anim-emblem,
   .hero-waiting .hero-anim-title,
-  .hero-waiting .hero-anim-line-1,
-  .hero-waiting .hero-anim-line-2,
-  .hero-waiting .hero-anim-line-3,
-  .hero-waiting .hero-anim-innovation,
-  .hero-waiting .hero-anim-desc,
-  .hero-waiting .hero-anim-cta,
+  .hero-waiting .hero-anim-initial,
+  .hero-waiting .hero-anim-word,
+  .hero-waiting .hero-paren,
   .hero-waiting .hero-anim-dept-label,
   .hero-waiting .hero-anim-dept-line-1,
   .hero-waiting .hero-anim-dept-line-2,
@@ -160,13 +233,13 @@ const HERO_MOTION_STYLES = `
   .hero-active .hero-anim-sweep {
     background: linear-gradient(
       90deg,
-      #09090b 0%,
-      #09090b 40%,
+      var(--fg-primary, #09090b) 0%,
+      var(--fg-primary, #09090b) 40%,
       #0052D6 48%,
       #70a6ff 50%,
       #0052D6 52%,
-      #09090b 60%,
-      #09090b 100%
+      var(--fg-primary, #09090b) 60%,
+      var(--fg-primary, #09090b) 100%
     );
     background-size: 300% 100%;
     -webkit-background-clip: text;
@@ -184,33 +257,16 @@ const HERO_MOTION_STYLES = `
     -webkit-background-clip: unset !important;
     background-clip: unset !important;
     -webkit-text-fill-color: unset !important;
-    color: #09090b !important;
+    color: var(--fg-primary, #09090b) !important;
     animation: none !important;
   }
 
-  .hero-active .hero-anim-line-1 {
-    animation: hero-line-up 0.50s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
-  }
-
-  .hero-active .hero-anim-line-2 {
-    animation: hero-line-up 0.50s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
-  }
-
-  .hero-active .hero-anim-line-3 {
-    animation: hero-line-up 0.50s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
-  }
-
-  .hero-active .hero-anim-innovation {
-    animation: hero-innovation-reveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.05s both;
-  }
-
-  .hero-active .hero-anim-desc {
-    animation: hero-block-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.15s both;
-  }
-
-  .hero-active .hero-anim-cta {
-    animation: hero-block-up 0.40s cubic-bezier(0.16, 1, 0.3, 1) 1.30s both;
-  }
+  /* 5 Title lines reveal sequence during entrance */
+  .hero-active .hero-anim-title-line-1 { animation: hero-line-reveal 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both; }
+  .hero-active .hero-anim-title-line-2 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both; }
+  .hero-active .hero-anim-title-line-3 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.70s both; }
+  .hero-active .hero-anim-title-line-4 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both; }
+  .hero-active .hero-anim-title-line-5 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 1.20s both; }
 
   /* Department Staggered Reveals */
   .hero-active .hero-anim-dept-label {
@@ -242,15 +298,20 @@ const HERO_MOTION_STYLES = `
   .hero-active .hero-anim-fact-3 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.56s both; }
   .hero-active .hero-anim-fact-4 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.64s both; }
 
-  /* Final State: Stop, completely calm, static with no residual transforms */
+  /* Settled state: continuous cascade transition through INSTITUTION -> OF -> ENGINEERS -> INDIA */
+  .hero-settled .hero-anim-title-line-1 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-settled .hero-anim-title-line-2 { animation: cascade-wave-zinc 4.8s cubic-bezier(0.4, 0, 0.2, 1) 0.0s infinite; }
+  .hero-settled .hero-anim-title-line-3 { animation: cascade-wave-zinc 4.8s cubic-bezier(0.4, 0, 0.2, 1) 1.0s infinite; }
+  .hero-settled .hero-anim-title-line-4 { animation: cascade-wave-blue 4.8s cubic-bezier(0.4, 0, 0.2, 1) 2.0s infinite; }
+  .hero-settled .hero-anim-title-line-5 { animation: cascade-wave-zinc 4.8s cubic-bezier(0.4, 0, 0.2, 1) 3.0s infinite; }
+
+  /* Final State for other elements: Stop, completely calm, static with no residual transforms */
   .hero-settled .hero-anim-emblem,
   .hero-settled .hero-anim-title,
-  .hero-settled .hero-anim-line-1,
-  .hero-settled .hero-anim-line-2,
-  .hero-settled .hero-anim-line-3,
-  .hero-settled .hero-anim-innovation,
-  .hero-settled .hero-anim-desc,
-  .hero-settled .hero-anim-cta,
   .hero-settled .hero-anim-dept-label,
   .hero-settled .hero-anim-dept-line-1,
   .hero-settled .hero-anim-dept-line-2,
@@ -269,12 +330,7 @@ const HERO_MOTION_STYLES = `
     .hero-anim-emblem,
     .hero-anim-title,
     .hero-anim-sweep,
-    .hero-anim-line-1,
-    .hero-anim-line-2,
-    .hero-anim-line-3,
-    .hero-anim-innovation,
-    .hero-anim-desc,
-    .hero-anim-cta,
+    [class*="hero-anim-title-line-"],
     .hero-anim-dept-label,
     .hero-anim-dept-line-1,
     .hero-anim-dept-line-2,
@@ -340,9 +396,9 @@ export default function Hero({
         <style>{HERO_MOTION_STYLES}</style>
 
         {/* 01. TOP CHAPTER IDENTIFIER — High-impact Institutional Brand Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-14 pb-4 border-b border-black/[0.04]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-14">
           <div className="flex items-center gap-3.5">
-            <div className="hero-anim-emblem w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white border border-black/[0.08] p-1.5 shadow-2xs flex items-center justify-center shrink-0">
+            <div className="hero-anim-emblem w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white dark:bg-white/10 border border-black/[0.08] dark:border-white/15 p-1.5 shadow-2xs flex items-center justify-center shrink-0">
               <img
                 src="/iei-official-logo.png"
                 alt="The Institution of Engineers (India) Official Seal"
@@ -353,82 +409,72 @@ export default function Hero({
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
                 <span
-                  className={`${sweepDone ? 'hero-anim-title' : 'hero-anim-sweep'} font-sans font-bold tracking-tight text-xl sm:text-2xl leading-none select-none text-zinc-950`}
+                  className={`${sweepDone ? 'hero-anim-title' : 'hero-anim-sweep'} font-sans font-bold tracking-tight text-xl sm:text-2xl leading-none select-none text-zinc-950 dark:text-white`}
                   data-sweep-done={sweepDone ? 'true' : 'false'}
                 >
                   IEI SIES GST
                 </span>
               </div>
-              <span className="text-xs text-zinc-500 font-medium mt-1">
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium mt-1">
                 Department of Electronics &amp; Computer Science Engineering
               </span>
             </div>
           </div>
         </div>
 
-        {/* 02. EDITORIAL BALANCED GRID (Desktop: 2 Columns Aligned / Mobile: Natural Stack) */}
+        {/* 02. EDITORIAL BALANCED GRID (Desktop: 2 Columns Aligned / Mobile: Segregated Stack) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center flex-1">
           
-          {/* LEFT COLUMN: MONUMENTAL HEADLINE, STATEMENT & COMPACT CTA */}
-          <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center">
-            
-            {/* Monumental Headline */}
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[58px] font-black text-zinc-950 tracking-tight leading-[1.12] mb-6">
-              <span className="block overflow-hidden pb-1">
-                <span className="inline-block hero-anim-line-1">
-                  Advancing engineering
+          {/* LEFT COLUMN: MONUMENTAL IEI EDITORIAL IDENTITY TYPOGRAPHY */}
+          <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center select-none py-2 sm:py-4 lg:py-0">
+            <h1 
+              className="flex flex-col space-y-1 sm:space-y-1.5 lg:space-y-2 font-display"
+              aria-label="The Institution Of Engineers India"
+            >
+              {/* Line 1: The (Refined smaller editorial prefix) */}
+              <div className="overflow-hidden pb-1">
+                <span className="hero-anim-title-line-1 text-[clamp(0.95rem,1.5vw,1.35rem)] font-mono font-bold uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500 block transition-colors duration-300 hover:text-zinc-600 dark:hover:text-zinc-300">
+                  The
                 </span>
-              </span>
-              <span className="block overflow-hidden pb-1">
-                <span className="inline-block hero-anim-line-2">
-                  excellence, research &amp;{' '}
+              </div>
+
+              {/* Line 2: INSTITUTION */}
+              <div className="overflow-hidden pb-0.5">
+                <span className="hero-anim-title-line-2 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] block uppercase cursor-default">
+                  Institution
                 </span>
-              </span>
-              <span className="block overflow-hidden pb-1">
-                <span className="inline-block hero-anim-line-3">
-                  <span className="hero-anim-innovation text-[#0052D6] inline-block">
-                    innovation.
-                  </span>
+              </div>
+
+              {/* Line 3: OF */}
+              <div className="overflow-hidden pb-0.5">
+                <span className="hero-anim-title-line-3 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] block uppercase cursor-default">
+                  Of
                 </span>
-              </span>
+              </div>
+
+              {/* Line 4: ENGINEERS (IEI Royal Blue Highlight) */}
+              <div className="overflow-hidden pb-0.5">
+                <span className="hero-anim-title-line-4 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] text-[#0052D6] block uppercase cursor-default">
+                  Engineers
+                </span>
+              </div>
+
+              {/* Line 5: INDIA */}
+              <div className="overflow-hidden pb-0.5">
+                <span className="hero-anim-title-line-5 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] block uppercase cursor-default">
+                  India
+                </span>
+              </div>
             </h1>
-
-            {/* Supporting Chapter Statement */}
-            <p className="hero-anim-desc text-base sm:text-lg text-zinc-600 font-normal leading-relaxed mb-8 max-w-xl">
-              The premier collegiate engineering society at <strong>SIES Graduate School of Technology</strong>, Nerul.
-              Empowering student engineers through applied hardware testbenches, interdisciplinary research,
-              and century-old Royal Chartered accreditation.
-            </p>
-
-            {/* Compact Primary CTA */}
-            <div className="hero-anim-cta flex items-center">
-              <a
-                href="#chapter-overview"
-                onClick={(e) => {
-                  e.preventDefault();
-                  audioEngine?.playClick && audioEngine.playClick();
-                  if (onExploreClick) onExploreClick();
-                  else {
-                    const el = document.getElementById('chapter-overview');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="px-6 py-3 rounded-xl bg-zinc-950 hover:bg-[#0052D6] text-white font-sans text-xs sm:text-sm font-semibold inline-flex items-center gap-2.5 transition-all transform hover:-translate-y-0.5 shadow-sm group cursor-pointer"
-              >
-                <span>EXPLORE INITIATIVES</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-
           </div>
 
-          {/* RIGHT COLUMN: HIGH-IMPACT DEPARTMENT IDENTITY (Institutional Editorial Counterpart) */}
+          {/* RIGHT COLUMN: HIGH-IMPACT DEPARTMENT IDENTITY */}
           <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center pt-8 sm:pt-10 lg:pt-0">
             <div className="flex flex-col select-none">
               
               {/* DEPARTMENT OF Label + Subtle Restrained Live Accent */}
               <div className="hero-anim-dept-label flex items-center gap-3 mb-3 sm:mb-4">
-                <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-zinc-400">
+                <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500">
                   DEPARTMENT OF
                 </span>
                 <div className="hero-dept-live-accent-track" aria-hidden="true">
@@ -438,7 +484,7 @@ export default function Hero({
 
               {/* Major Department Heading: Bold Helvetica with Responsive Clamp */}
               <h2 
-                className="font-display font-black tracking-[-0.03em] text-zinc-950 leading-[1.06] mb-5 sm:mb-6"
+                className="font-display font-black tracking-[-0.03em] text-zinc-950 dark:text-white leading-[1.06] mb-5 sm:mb-6"
                 aria-label="Department of Electronics and Computer Science Engineering"
               >
                 {/* Desktop & Tablet: 2-line balanced hierarchy */}
@@ -474,7 +520,7 @@ export default function Hero({
               {/* Institutional Supporting Lines (Hierarchy) */}
               <div className="flex flex-col space-y-1.5">
                 <div className="hero-anim-dept-school overflow-hidden">
-                  <p className="font-sans font-semibold text-xs sm:text-sm tracking-wider text-zinc-700 uppercase">
+                  <p className="font-sans font-semibold text-xs sm:text-sm tracking-wider text-zinc-700 dark:text-zinc-300 uppercase">
                     SIES GRADUATE SCHOOL OF TECHNOLOGY
                   </p>
                 </div>
@@ -485,52 +531,52 @@ export default function Hero({
 
         </div>
 
-        {/* 03. BOTTOM EDITORIAL FACT STRIP (No Grey Divider Line — Structured via Spacing & Typography) */}
-        <div className="pt-16 sm:pt-20 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        {/* 03. BOTTOM EDITORIAL FACT STRIP */}
+        <div className="pt-12 sm:pt-16 lg:pt-20 mt-10 sm:mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           <div className="flex flex-col hero-anim-fact-1">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
               Royal Charter
             </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 tracking-tight mt-1 leading-tight break-words">
+            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
               1935
             </span>
-            <span className="text-xs text-zinc-500 mt-1 font-normal">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
               King George V Statutory Warrant
             </span>
           </div>
 
           <div className="flex flex-col hero-anim-fact-2">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
               Scientific Recognition
             </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 tracking-tight mt-1 leading-tight break-words">
+            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
               DSIR SIRO
             </span>
-            <span className="text-xs text-zinc-500 mt-1 font-normal">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
               Ministry of Science &amp; Technology
             </span>
           </div>
 
           <div className="flex flex-col hero-anim-fact-3">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
               Constitutional Standing
             </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 tracking-tight mt-1 leading-tight break-words">
+            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
               Article 372
             </span>
-            <span className="text-xs text-zinc-500 mt-1 font-normal">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
               Body Corporate of India
             </span>
           </div>
 
           <div className="flex flex-col hero-anim-fact-4">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
               Apex Footprint
             </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 tracking-tight mt-1 leading-tight break-words">
+            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
               1,000,000+
             </span>
-            <span className="text-xs text-zinc-500 mt-1 font-normal">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
               Global Alumni Across 15 Disciplines
             </span>
           </div>

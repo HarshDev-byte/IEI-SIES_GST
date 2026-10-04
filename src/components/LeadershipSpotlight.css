@@ -98,6 +98,13 @@
   }
 }
 
+@media (max-width: 767px) {
+  .faculty-hero-stage {
+    aspect-ratio: 4 / 3.3;
+    border-radius: 1.25rem;
+  }
+}
+
 /* Layer 0: Pure Clean White Backdrop */
 .faculty-white-backdrop {
   position: absolute;
@@ -105,6 +112,28 @@
   background-color: #ffffff;
   z-index: 0;
   pointer-events: none;
+}
+
+/* Responsive Stage Canvas: preserves 2524/1420 geometry and exact mask alignment */
+.faculty-stage-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .faculty-stage-canvas {
+    position: absolute;
+    height: 100%;
+    aspect-ratio: 2524 / 1420;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* Layer 1: Official Crisp IEI Emblem (Centered Upper-Center Behind People) */
@@ -128,6 +157,16 @@
   filter: drop-shadow(0 4px 16px rgba(0, 98, 255, 0.18));
   transition: opacity 400ms ease, transform 400ms ease;
   pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .faculty-emblem-wrap {
+    top: 14%;
+  }
+  .faculty-iei-emblem {
+    width: clamp(48px, 14vw, 68px);
+    opacity: 0.88;
+  }
 }
 
 @media (min-width: 768px) {
@@ -325,32 +364,42 @@
 
 /* Mobile Responsive Typography Adjustments */
 @media (max-width: 640px) {
-  .info-left {
-    top: 1rem;
-    left: 1rem;
-    transform: translateY(6px);
-    max-width: calc(100% - 2rem);
-  }
-
-  .info-left.is-revealed {
-    transform: translateY(0);
-  }
-
+  .info-left,
   .info-right {
-    top: 1rem;
-    right: 1rem;
+    top: 0.75rem;
+    left: 0.75rem !important;
+    right: auto !important;
     transform: translateY(6px);
-    max-width: calc(100% - 2rem);
+    max-width: calc(100% - 1.5rem);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.625rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    text-align: left !important;
   }
 
+  .info-left.is-revealed,
   .info-right.is-revealed {
     transform: translateY(0);
   }
 
   .editorial-name {
-    font-size: 1.125rem;
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .editorial-role-tag {
+    font-size: 0.625rem;
+  }
+
+  .editorial-meta {
+    font-size: 0.6875rem;
   }
 }
+
+
 
 /* ==========================================================================
    INTERACTIVE HIT REGIONS (ERGONOMIC OVERLAYS OVER EACH PERSON)
@@ -358,14 +407,15 @@
 
 .faculty-hit-zone {
   position: absolute;
-  top: 6%;
-  height: 90%;
+  top: 4%;
+  height: 92%;
   background: transparent;
   border: none;
   cursor: pointer;
   outline: none !important;
   box-shadow: none !important;
   z-index: 6;
+  pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
   border-radius: 1.5rem;
   transition: outline 150ms ease;
@@ -378,26 +428,14 @@
 
 /* Left Person Hit Region: Prof. Jasmin Hirani */
 .faculty-hit-left {
-  left: 20%;
-  width: 28%;
+  left: 17%;
+  width: 31%;
 }
 
 /* Right Person Hit Region: Dr. Shubhangi Kharche */
 .faculty-hit-right {
-  left: 52%;
-  width: 28%;
-}
-
-@media (max-width: 640px) {
-  .faculty-hit-left {
-    left: 15%;
-    width: 35%;
-  }
-
-  .faculty-hit-right {
-    left: 50%;
-    width: 35%;
-  }
+  left: 51%;
+  width: 31%;
 }
 
 /* ==========================================================================
@@ -429,12 +467,41 @@
   }
 }
 
+@media (max-width: 767px) {
+  .executive-hero-stage {
+    aspect-ratio: 4 / 3.1;
+    border-radius: 1.25rem;
+  }
+}
+
 .executive-white-backdrop {
   position: absolute;
   inset: 0;
   background-color: #fcfcfd;
   z-index: 0;
   pointer-events: none;
+}
+
+/* Responsive Stage Canvas: preserves 16/9 geometry and exact mask alignment */
+.executive-stage-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .executive-stage-canvas {
+    position: absolute;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* Base Photo Layers */
@@ -558,10 +625,16 @@
 @media (max-width: 640px) {
   .executive-editorial-info {
     top: 0.75rem;
-    left: 1rem !important;
+    left: 0.75rem !important;
     right: auto !important;
     text-align: left !important;
-    max-width: calc(100% - 2rem);
+    max-width: calc(100% - 1.5rem);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.625rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   }
 }
 
@@ -572,6 +645,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   z-index: 6;
+  pointer-events: auto;
 }
 
 .executive-hit-slot {
@@ -580,6 +654,7 @@
   cursor: pointer;
   outline: none !important;
   box-shadow: none !important;
+  pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 200ms ease;
 }
@@ -587,4 +662,100 @@
 .executive-hit-slot:focus-visible {
   outline: 2px solid rgba(0, 98, 255, 0.4) !important;
   outline-offset: -2px;
+}
+
+/* ==========================================================================
+   PITCH BLACK DARK MODE ADAPTATIONS
+   ========================================================================== */
+html.dark .leadership-heading,
+.dark .leadership-heading {
+  color: #ffffff;
+}
+
+html.dark .leadership-subheading,
+.dark .leadership-subheading {
+  color: #a1a1aa;
+}
+
+html.dark .faculty-hero-stage,
+.dark .faculty-hero-stage,
+html.dark .executive-hero-stage,
+.dark .executive-hero-stage {
+  background-color: #000000;
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.85);
+}
+
+html.dark .faculty-white-backdrop,
+.dark .faculty-white-backdrop,
+html.dark .executive-white-backdrop,
+.dark .executive-white-backdrop {
+  background-color: #000000;
+}
+
+/* Faculty editorial info — no opaque box, pure text-shadow overlay */
+html.dark .info-left,
+html.dark .info-right {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.95), 0 2px 20px rgba(0,0,0,1) !important;
+}
+
+/* On mobile, restore a subtle translucent dark panel */
+@media (max-width: 640px) {
+  html.dark .info-left,
+  html.dark .info-right {
+    background: rgba(6, 6, 10, 0.82) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(16px) !important;
+    text-shadow: none !important;
+  }
+}
+
+/* Executive editorial info — keep subtle dark card (no cutout) */
+html.dark .faculty-editorial-info,
+.dark .faculty-editorial-info,
+html.dark .executive-editorial-info,
+.dark .executive-editorial-info {
+  background: rgba(8, 8, 12, 0.9);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.55);
+}
+
+html.dark .faculty-info-name,
+.dark .faculty-info-name,
+html.dark .exec-info-name,
+.dark .exec-info-name {
+  color: #ffffff;
+}
+
+html.dark .faculty-info-role,
+.dark .faculty-info-role,
+html.dark .exec-info-role,
+.dark .exec-info-role {
+  color: #a1a1aa;
+}
+
+html.dark .faculty-info-tag,
+.dark .faculty-info-tag,
+html.dark .exec-info-tag,
+.dark .exec-info-tag {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.22);
+}
+
+html.dark .editorial-name {
+  color: #ffffff !important;
+}
+
+html.dark .editorial-role-tag {
+  color: #38bdf8 !important;
+}
+
+html.dark .editorial-meta {
+  color: #71717a !important;
 }

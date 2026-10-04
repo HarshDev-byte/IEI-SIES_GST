@@ -61,16 +61,16 @@ export default function ScopeOfAction() {
   ];
 
   return (
-    <section id="activities" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.08]" aria-label="Scope of Action">
+    <section id="activities" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Scope of Action">
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
-          <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight">
+          <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 dark:text-white tracking-ultra-tight">
             What We Do
           </h2>
         </div>
 
-        <p className="text-zinc-600 text-sm sm:text-base max-w-md leading-relaxed font-normal">
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base max-w-md leading-relaxed font-normal">
           A structured framework designed to cultivate technical depth, empirical discipline, and professional leadership.
         </p>
       </div>
@@ -83,39 +83,39 @@ export default function ScopeOfAction() {
           return (
             <div 
               key={track.id}
-              className="minimal-card p-6 sm:p-7 flex flex-col justify-between bg-white shadow-sm"
+              className="minimal-card p-6 sm:p-7 flex flex-col justify-between bg-white dark:bg-[#0A0A0C] border border-black/[0.08] dark:border-white/10 shadow-sm"
             >
               <div>
                 <div className="flex items-center justify-between font-mono text-xs mb-5">
                   <span className="text-[#0062FF] font-semibold">
                     TRACK {track.num}
                   </span>
-                  <span className="text-zinc-500 uppercase text-[10px] tracking-wider">
+                  <span className="text-zinc-500 dark:text-zinc-400 uppercase text-[10px] tracking-wider">
                     {track.category}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-zinc-50 border border-black/[0.06]">
-                    <Icon size={18} className="text-zinc-800" />
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-zinc-50 dark:bg-white/5 border border-black/[0.06] dark:border-white/10">
+                    <Icon size={18} className="text-zinc-800 dark:text-zinc-200" />
                   </div>
-                  <h3 className="font-display text-lg font-bold text-zinc-950">
+                  <h3 className="font-display text-lg font-bold text-zinc-950 dark:text-white">
                     {track.title}
                   </h3>
                 </div>
 
-                <p className="text-zinc-600 text-sm leading-relaxed mb-6 font-normal">
+                <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6 font-normal">
                   {track.description}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-black/[0.06]">
-                <span className="text-zinc-500 text-[10px] font-mono uppercase tracking-wider block mb-2">
+              <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
+                <span className="text-zinc-500 dark:text-zinc-400 text-[10px] font-mono uppercase tracking-wider block mb-2">
                   Deliverables:
                 </span>
                 <div className="space-y-1.5 font-mono text-xs">
                   {track.deliverables.map((item, dIdx) => (
-                    <div key={dIdx} className="flex items-center gap-2 text-zinc-700">
+                    <div key={dIdx} className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
                       <CheckCircle2 size={13} className="text-emerald-600 shrink-0" />
                       <span>{item}</span>
                     </div>

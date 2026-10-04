@@ -108,12 +108,17 @@ export default function CrazySexyLoader({ onComplete }) {
     ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Fit contain centered (1920 x 1080 native resolution)
-    const imgRatio = 1920 / 1080;
-    const canvasRatio = canvas.width / canvas.height;
-
+    // High-resolution architectural canvas drawing
+    // On mobile portrait (canvasRatio < 1), scale up so central identity isn't shrunk into a 219px letterbox
     let drawW, drawH, drawX, drawY;
-    if (canvasRatio > imgRatio) {
+    if (canvasRatio < 1) {
+      // Mobile portrait scale factor: scale up so central 3D cubes/typography fill 80-88% of screen width
+      const mobileZoom = Math.min(2.05, Math.max(1.35, (canvas.height / (canvas.width / imgRatio)) * 0.48));
+      drawW = canvas.width * mobileZoom;
+      drawH = drawW / imgRatio;
+      drawX = (canvas.width - drawW) / 2;
+      drawY = (canvas.height - drawH) / 2;
+    } else if (canvasRatio > imgRatio) {
       drawH = canvas.height;
       drawW = drawH * imgRatio;
       drawX = (canvas.width - drawW) / 2;
@@ -218,7 +223,7 @@ export default function CrazySexyLoader({ onComplete }) {
   return (
     <div 
       onWheel={handleWheel}
-      className={`fixed inset-0 z-[10000] bg-[#FFFFFF] text-zinc-950 flex flex-col justify-between select-none overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed inset-0 z-[10000] min-h-[100svh] h-[100svh] bg-[#FFFFFF] text-zinc-950 flex flex-col justify-between select-none overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isExiting 
           ? '-translate-y-2 scale-[1.01] opacity-0 pointer-events-none filter blur-[1px]' 
           : 'translate-y-0 scale-100 opacity-100'
@@ -233,8 +238,8 @@ export default function CrazySexyLoader({ onComplete }) {
         />
       </div>
 
-      {/* 2. MINIMAL TOP CONTROLS (Left corner part and sound removed; clean skip on right) */}
-      <header className="relative z-20 flex items-center justify-end px-6 py-4 pointer-events-none font-mono text-[11px]">
+      {/* 2. MINIMAL TOP CONTROLS (with safe area top padding) */}
+      <header className="relative z-20 flex items-center justify-end px-4 sm:px-6 pt-[calc(env(safe-area-inset-top,0px)+0.75rem)] pb-4 pointer-events-none font-mono text-[11px]">
         <button
           type="button"
           onClick={triggerExitToHome}
