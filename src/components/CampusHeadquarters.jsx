@@ -126,8 +126,8 @@ export default function CampusHeadquarters() {
               </div>
             </div>
 
-            {/* Free Open-Source Interactive Map (Leaflet + OpenStreetMap) */}
-            <ContactMap />
+            {/* Official Campus Location (Google Maps Embed) */}
+            <ContactMap title="Map showing SIES Graduate School of Technology" />
           </div>
         </div>
 
