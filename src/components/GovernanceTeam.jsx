@@ -244,21 +244,21 @@ export default function GovernanceTeam() {
     : (domainWings[selectedWingIndex] || domainWings[0]);
 
   return (
-    <div id="team" className="relative text-zinc-900 bg-white">
+    <div id="team" className="relative text-zinc-900 dark:text-white bg-transparent">
       {/* ========================================================================= */}
       {/* 03 — DIRECTORY SECTIONS: DOMAIN WINGS, SENIOR COUNCIL, JUNIOR COUNCIL     */}
       {/* ========================================================================= */}
-      <section id="domains" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-b border-black/[0.06]">
+      <section id="domains" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
         
         {/* Section Header & Subtitle */}
         <div className="max-w-3xl mb-8 sm:mb-10">
 
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight mb-3">
+          <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 dark:text-white tracking-tight mb-3">
             {activeView === 'domains' && 'Domain Universe'}
             {activeView === 'senior' && 'Senior Council'}
             {activeView === 'junior' && 'Junior Council'}
           </h2>
-          <p className="text-zinc-600 text-sm sm:text-base font-normal leading-relaxed">
+          <p className="text-zinc-600 dark:text-zinc-300 text-sm sm:text-base font-normal leading-relaxed">
             {activeView === 'domains' && "Explore the chapter's multidisciplinary departments. Select any domain node or deck to inspect its coordinators and leadership."}
             {activeView === 'senior' && "Executive leadership and domain mentors directing chapter strategy, multidisciplinary initiatives, and technical symposiums."}
             {activeView === 'junior' && "Operational wing heads and student coordinators driving hands-on execution across technical, design, editorial, and outreach programs."}
@@ -266,14 +266,14 @@ export default function GovernanceTeam() {
         </div>
 
         {/* Directory View Switcher Tabs (Simplified Minimal Design) */}
-        <div className="flex items-center gap-1.5 sm:gap-2 mb-8 overflow-x-auto pb-1 scrollbar-none border-b border-black/[0.06]">
+        <div className="flex items-center gap-1.5 sm:gap-2 mb-8 overflow-x-auto pb-1 scrollbar-none">
           <button
             type="button"
             onClick={() => handleViewChange('domains')}
             className={`pb-3 px-3 text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
               activeView === 'domains'
-                ? 'border-[#0062FF] text-[#0062FF]'
-                : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                ? 'border-[#0062FF] text-[#0062FF] dark:text-[#38BDF8] dark:border-[#38BDF8]'
+                : 'border-transparent text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
             }`}
           >
             Domain Universe (6 Wings)
@@ -283,8 +283,8 @@ export default function GovernanceTeam() {
             onClick={() => handleViewChange('senior')}
             className={`pb-3 px-3 text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
               activeView === 'senior'
-                ? 'border-[#0062FF] text-[#0062FF]'
-                : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                ? 'border-[#0062FF] text-[#0062FF] dark:text-[#38BDF8] dark:border-[#38BDF8]'
+                : 'border-transparent text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
             }`}
           >
             Senior Council ({seniorCouncil.length})
@@ -294,8 +294,8 @@ export default function GovernanceTeam() {
             onClick={() => handleViewChange('junior')}
             className={`pb-3 px-3 text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
               activeView === 'junior'
-                ? 'border-[#0062FF] text-[#0062FF]'
-                : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                ? 'border-[#0062FF] text-[#0062FF] dark:text-[#38BDF8] dark:border-[#38BDF8]'
+                : 'border-transparent text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
             }`}
           >
             Junior Council ({juniorCouncil.length})
@@ -319,22 +319,22 @@ export default function GovernanceTeam() {
             <div 
               ref={deckRef} 
               key={currentWing.id} 
-              className="bg-[#FAFBFD] rounded-3xl border border-black/[0.08] p-6 sm:p-10 shadow-xs animate-fadeIn scroll-mt-24"
+              className="bg-[#FAFBFD] dark:bg-[#0A0A0C] rounded-3xl border border-black/[0.08] dark:border-white/[0.08] p-6 sm:p-10 shadow-xs animate-fadeIn scroll-mt-24"
             >
               
-              <div className="flex flex-col md:flex-row md:items-start justify-between pb-6 mb-8 border-b border-black/[0.08] gap-4">
+              <div className="flex flex-col md:flex-row md:items-start justify-between pb-6 mb-8 gap-4">
                 <div>
-                  <h3 className="font-display text-2xl sm:text-4xl font-black text-zinc-950">
+                  <h3 className="font-display text-2xl sm:text-4xl font-black text-zinc-950 dark:text-white">
                     {currentWing.fullName}
                   </h3>
                 </div>
 
                 <div className="max-w-md">
-                  <p className="text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed mb-2.5">
+                  <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-normal leading-relaxed mb-2.5">
                     {currentWing.subtext}
                   </p>
                   {currentWing.scopeList && (
-                    <ul className="space-y-1 text-xs sm:text-sm text-zinc-500 font-normal leading-relaxed list-disc list-inside">
+                    <ul className="space-y-1 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-normal leading-relaxed list-disc list-inside">
                       {currentWing.scopeList.map((scope, i) => (
                         <li key={i}>{scope}</li>
                       ))}
@@ -346,8 +346,8 @@ export default function GovernanceTeam() {
               {/* Sub-section 1: Advisory & Senior Mentors (if present) */}
               {currentWing.mentors && currentWing.mentors.length > 0 && (
                 <div className="mb-10">
-                  <div className="mb-4 pb-2 border-b border-black/[0.06]">
-                    <h4 className="font-display font-bold text-sm text-zinc-950 uppercase tracking-wider">
+                  <div className="mb-4 pb-2">
+                    <h4 className="font-display font-bold text-sm text-zinc-950 dark:text-white uppercase tracking-wider">
                       Advisory & Mentorship ({currentWing.mentors.length})
                     </h4>
                   </div>
@@ -365,8 +365,8 @@ export default function GovernanceTeam() {
               {/* Sub-section 2: Wing Leadership & Heads (if present) */}
               {currentWing.heads && currentWing.heads.length > 0 && (
                 <div className="mb-10">
-                  <div className="mb-4 pb-2 border-b border-black/[0.06]">
-                    <h4 className="font-display font-bold text-sm text-zinc-950 uppercase tracking-wider">
+                  <div className="mb-4 pb-2">
+                    <h4 className="font-display font-bold text-sm text-zinc-950 dark:text-white uppercase tracking-wider">
                       Wing Leadership ({currentWing.heads.length})
                     </h4>
                   </div>
@@ -384,8 +384,8 @@ export default function GovernanceTeam() {
               {/* Sub-section 3: Domain Coordinators (if present) */}
               {currentWing.coordinators && currentWing.coordinators.length > 0 && (
                 <div>
-                  <div className="mb-4 pb-2 border-b border-black/[0.06]">
-                    <h4 className="font-display font-bold text-sm text-zinc-950 uppercase tracking-wider">
+                  <div className="mb-4 pb-2">
+                    <h4 className="font-display font-bold text-sm text-zinc-950 dark:text-white uppercase tracking-wider">
                       Domain Coordinators ({currentWing.coordinators.length})
                     </h4>
                   </div>

@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
 import { 
-  Bell, ArrowLeft, CheckCircle2, FileText, Share2, Calendar, MapPin 
+  Bell, ArrowLeft, CheckCircle2, Sparkles, Calendar, Clock, Radio
 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
-import { eventsData, workshopsData } from '../data/eventsData';
 
 /**
  * ============================================================================
  * IEI SIES GST — EVENTS & SYMPOSIA PAGE
- * Single Clean Template Event Card for Technical Team Editing
- * Editorial, lightweight, responsive, and free of clutter
+ * Coming Soon State for Upcoming Academic Conclaves & Workshops
+ * Clean, editorial, responsive, and matches chapter design system
  * ============================================================================
  */
 
 export default function EventsPage({ onRegisterEvent }) {
   const [notified, setNotified] = useState(false);
   const [emailInput, setEmailInput] = useState('');
-  const [copied, setCopied] = useState(false);
-
-  // Take the primary template event from eventsData
-  const event = eventsData[0];
 
   const handleNotify = (e) => {
     e.preventDefault();
@@ -32,256 +27,65 @@ export default function EventsPage({ onRegisterEvent }) {
     setNotified(true);
   };
 
-  const handleShare = async () => {
-    if (audioEngine?.playClick) audioEngine.playClick();
-    const eventUrl = `${window.location.origin}/#/events?id=${event?.id || 'event'}`;
-    
-    if (navigator.clipboard) {
-      await navigator.clipboard.writeText(eventUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
-    } else {
-      alert(`Event URL copied: ${eventUrl}`);
-    }
-  };
-
-  const handleRegisterClick = (e) => {
-    if (audioEngine?.playClick) audioEngine.playClick();
-    if (!event?.registrationLink && onRegisterEvent) {
-      e.preventDefault();
-      onRegisterEvent(event?.title);
-    }
-  };
-
   return (
-    <div className="animate-fadeIn py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div className="animate-fadeIn py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
       
       {/* 01. SECTION HEADER */}
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div className="font-mono text-xs font-semibold tracking-wider text-[#0062FF] uppercase inline-flex items-center gap-2 mb-3">
-          <span>01</span>
-          <span className="opacity-40">—</span>
-          <span>CONCLAVE &amp; SYMPOSIA CALENDAR</span>
-        </div>
-
-        <h1 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-tight leading-tight mb-4">
+        <h1 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 dark:text-white tracking-tight leading-tight mb-4">
           Events &amp; Symposia
         </h1>
 
-        <p className="text-zinc-600 text-sm sm:text-base leading-relaxed font-normal max-w-2xl mx-auto">
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed font-normal max-w-2xl mx-auto">
           Official conclave calendar, flagship technical symposiums, and hands-on engineering workshops hosted by the <strong>IEI SIES GST Student Chapter</strong>.
         </p>
       </div>
 
-      {/* 02. SINGLE BLANK / TEMPLATE EVENT CARD (EDITORIAL ARCHIVE COMPOSITION) */}
-      {event && (
-        <section aria-label="Event Details" className="mb-20 sm:mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-gradient-to-br from-[#090D18] via-[#060911] to-[#03050A] p-6 sm:p-10 rounded-3xl border border-blue-500/25 shadow-[0_20px_60px_-15px_rgba(0,98,255,0.18)] hover:border-blue-500/40 transition-all duration-300">
+      {/* 02. COMING SOON EDITORIAL DISPLAY CARD */}
+      <section aria-label="Events Coming Soon" className="mb-14 sm:mb-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#090D18] via-[#060911] to-[#03050A] p-8 sm:p-14 lg:p-16 border border-blue-500/25 shadow-[0_20px_60px_-15px_rgba(0,98,255,0.2)] text-center">
+          
+          {/* Subtle Cyber Grid Background Overlay */}
+          <div className="absolute inset-0 pointer-events-none opacity-20" aria-hidden="true">
+            <div 
+              className="w-full h-full"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(0,98,255,0.15) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(0,98,255,0.15) 1px, transparent 1px)
+                `,
+                backgroundSize: '48px 48px'
+              }}
+            />
+          </div>
+
+          {/* Ambient Radial Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-[#0062FF]/10 blur-[100px] pointer-events-none" />
+
+          <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
             
-            {/* Left: 16:9 Image / Poster Container */}
-            <div className="lg:col-span-6">
-              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black/60 border border-blue-500/20 shadow-inner">
-                {event.image ? (
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.015]"
-                    loading="eager"
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-6 text-zinc-500 font-mono text-xs text-center">
-                    <span>EVENT BANNER IMAGE</span>
-                    <span className="text-[10px] text-zinc-600 mt-1">16:9 Aspect Ratio</span>
-                  </div>
-                )}
+            {/* Main Headline */}
+            <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-none mb-6">
+              Coming Soon<span className="text-[#0062FF]">.</span>
+            </h2>
 
-                {/* Subtle Single Status Pill */}
-                {event.badge && (
-                  <div className="absolute top-3 left-3">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-black/85 backdrop-blur-md text-[#38BDF8] border border-blue-400/30 shadow-2xs">
-                      {event.badge}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Right: Event Information & Actions */}
-            <div className="lg:col-span-6 flex flex-col justify-between h-full">
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-2">
-                  <span className="font-mono text-[11px] font-bold text-[#0062FF] uppercase tracking-wider">
-                    {event.category || 'TECHNICAL SYMPOSIUM'}
-                  </span>
-
-                  {/* Share Action */}
-                  <button
-                    type="button"
-                    onClick={handleShare}
-                    className="p-1.5 text-zinc-400 hover:text-white transition-colors cursor-pointer relative"
-                    title="Share event link"
-                    aria-label="Share event link"
-                  >
-                    <Share2 size={15} />
-                    {copied && (
-                      <span className="absolute -top-7 right-0 text-[10px] font-mono font-bold bg-[#0062FF] text-white px-2 py-0.5 rounded shadow-sm whitespace-nowrap">
-                        Copied!
-                      </span>
-                    )}
-                  </button>
-                </div>
-
-                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-[1.18] mb-3">
-                  {event.title}
-                </h2>
-
-                {/* Date & Venue Metadata */}
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-zinc-300 font-sans mb-4">
-                  <span className="font-semibold text-white">{event.date}</span>
-                  {event.venue && (
-                    <>
-                      <span className="text-zinc-600">·</span>
-                      <span className="text-blue-300">{event.venue}</span>
-                    </>
-                  )}
-                </div>
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal mb-4">
-                  {event.description}
-                </p>
-
-                {/* Highlights */}
-                {event.highlights && event.highlights.length > 0 && (
-                  <p className="text-xs text-zinc-400 font-normal leading-relaxed mb-3">
-                    <strong className="text-blue-300 font-semibold">Highlights: </strong>
-                    {event.highlights.slice(0, 4).join(' · ')}
-                  </p>
-                )}
-
-                {/* Eligibility */}
-                {event.eligibility && (
-                  <p className="text-xs text-zinc-400 font-normal mb-6">
-                    <strong className="text-blue-300 font-semibold">Eligibility: </strong>
-                    {event.eligibility}
-                  </p>
-                )}
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <a
-                  href={event.registrationLink || '#'}
-                  target={event.registrationLink ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  onClick={handleRegisterClick}
-                  className="group h-11 sm:h-12 px-6 sm:px-7 rounded-xl bg-[#0062FF] hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2.5 transition-all duration-180 transform hover:-translate-y-0.5 active:scale-[0.99] shadow-[0_4px_20px_rgba(0,98,255,0.35)] cursor-pointer"
-                >
-                  <span>REGISTER NOW</span>
-                  <span className="inline-block transition-transform duration-180 group-hover:translate-x-1">→</span>
-                </a>
-
-                {event.rulebookLink && (
-                  <a
-                    href={event.rulebookLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => audioEngine?.playClick && audioEngine.playClick()}
-                    className="h-11 sm:h-12 px-4 rounded-xl border border-blue-500/30 hover:border-blue-400/60 bg-blue-950/30 hover:bg-blue-900/40 text-blue-200 text-xs sm:text-sm font-medium inline-flex items-center justify-center gap-1.5 transition-all cursor-pointer"
-                  >
-                    <FileText size={14} className="text-blue-400" />
-                    <span>Rulebook</span>
-                  </a>
-                )}
-              </div>
-            </div>
-
-          </div>
-        </section>
-      )}
-
-      {/* 03. UPCOMING WORKSHOPS & LAB SPRINTS (3-COLUMN COHORT GRID) */}
-      {workshopsData && workshopsData.length > 0 && (
-        <section aria-label="Upcoming Workshops & Lab Sprints" className="mb-20 sm:mb-24">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
-            <div>
-              <div className="font-mono text-xs font-semibold tracking-wider text-[#0062FF] uppercase inline-flex items-center gap-2 mb-2">
-                <span>PRACTICAL ENGINEERING COHORTS</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight">
-                Upcoming Workshops &amp; Lab Sprints
-              </h2>
-            </div>
-            <p className="text-zinc-600 text-xs sm:text-sm max-w-md leading-relaxed font-normal">
-              Intensive hardware hackathons, algorithm masterclasses, and hands-on fabrication sessions.
+            {/* Description Paragraph */}
+            <p className="text-zinc-300 text-sm sm:text-base leading-relaxed font-normal mb-2 max-w-xl">
+              We are finalizing our upcoming schedule of flagship engineering conclaves, 
+              inter-collegiate hackathons, and intensive hands-on lab sprints with industry mentors.
+              Full itineraries, dates, and registration portals will be published here soon.
             </p>
+
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {workshopsData.map((workshop) => (
-              <div 
-                key={workshop.id}
-                className="relative bg-gradient-to-b from-[#0B0F19] to-[#050811] rounded-3xl border border-blue-500/20 hover:border-[#0062FF]/60 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_45px_-10px_rgba(0,98,255,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1"
-              >
-                <div>
-                  {/* Image header with category pill */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/60 border-b border-blue-500/15">
-                    <img 
-                      src={workshop.image} 
-                      alt={workshop.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                    <div className="absolute top-3 left-3">
-                      <span className="font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-black/85 backdrop-blur-md text-[#38BDF8] border border-blue-400/30 shadow-sm">
-                        {workshop.category}
-                      </span>
-                    </div>
-                  </div>
+      {/* 03. DISPATCH NOTIFICATION (STAY UPDATED) */}
+      <div className="rounded-3xl bg-gradient-to-br from-[#0B0F19] to-[#050811] border border-blue-500/20 p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-sm">
+        <div className="w-10 h-10 rounded-2xl bg-[#0062FF]/15 border border-[#0062FF]/30 flex items-center justify-center text-[#38BDF8] mx-auto mb-4">
+          <Bell size={18} />
+        </div>
 
-                  {/* Body Content */}
-                  <div className="p-5 sm:p-6">
-                    <h3 className="font-display text-base sm:text-lg font-black text-white tracking-tight leading-snug mb-2 group-hover:text-[#38BDF8] transition-colors">
-                      {workshop.title}
-                    </h3>
-                    <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-normal mb-5 line-clamp-3">
-                      {workshop.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card Footer: Metadata & Reserve Seat */}
-                <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 border-t border-white/[0.08]">
-                  <div className="flex flex-col gap-1.5 text-xs text-zinc-300 mb-4 pt-4">
-                    <div className="flex items-center gap-2">
-                      <Calendar size={13} className="text-[#0062FF] shrink-0" />
-                      <span>{workshop.date}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin size={13} className="text-[#0062FF] shrink-0" />
-                      <span>{workshop.venue}</span>
-                    </div>
-                  </div>
-
-                  <a
-                    href={workshop.registrationLink || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => audioEngine?.playClick && audioEngine.playClick()}
-                    className="w-full h-10 rounded-xl bg-[#0062FF]/15 hover:bg-[#0062FF] border border-[#0062FF]/40 hover:border-[#0062FF] text-[#38BDF8] hover:text-white text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition-all shadow-[0_2px_12px_rgba(0,98,255,0.12)] hover:shadow-[0_4px_20px_rgba(0,98,255,0.4)] cursor-pointer group/btn"
-                  >
-                    <span>Reserve Seat</span>
-                    <span className="inline-block transition-transform duration-180 group-hover/btn:translate-x-1">→</span>
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* 04. DISPATCH NOTIFICATION (STAY UPDATED) */}
-      <div className="rounded-2xl bg-gradient-to-br from-[#0B0F19] to-[#050811] border border-blue-500/20 p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-sm">
         <h3 className="font-display text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
           Never Miss an Event Drop
         </h3>
@@ -294,7 +98,7 @@ export default function EventsPage({ onRegisterEvent }) {
           {notified ? (
             <div className="p-3.5 rounded-xl bg-blue-950/60 border border-blue-500/30 text-blue-200 text-xs flex items-center justify-center gap-2 font-medium">
               <CheckCircle2 size={16} className="text-blue-400 shrink-0" />
-              <span>You will receive an official notification for upcoming events.</span>
+              <span>You're on the priority list! We'll notify you when registrations open.</span>
             </div>
           ) : (
             <form onSubmit={handleNotify} className="flex flex-col sm:flex-row gap-2">

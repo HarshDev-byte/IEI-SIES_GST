@@ -74,7 +74,7 @@ export default function HighlightsCarousel({ onActionClick }) {
   return (
     <section 
       id="highlights-carousel" 
-      className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-white/[0.06]"
+      className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

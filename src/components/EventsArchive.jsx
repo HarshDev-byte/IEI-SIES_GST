@@ -140,7 +140,7 @@ export default function EventsArchive({ onRegisterEvent }) {
   };
 
   return (
-    <section id="events" className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.08]" aria-label="Chapter Events Archive">
+    <section id="events" className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Chapter Events Archive">
       
       {/* SECTION HEADER WITH TELEMETRY CHIPS */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">

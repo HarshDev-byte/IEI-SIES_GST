@@ -244,3 +244,72 @@
   outline: 2px solid #0062FF;
   outline-offset: 4px;
 }
+
+/* Mobile Responsive Adaptations */
+@media (max-width: 767px) {
+  .domain-spiderweb-root {
+    padding: 1.25rem 0.5rem 1.5rem 0.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .spiderweb-svg {
+    max-height: 440px;
+  }
+
+  .spiderweb-node-title {
+    font-size: 11px;
+    font-weight: 700;
+  }
+}
+
+/* ==========================================================================
+   PITCH BLACK DARK MODE ADAPTATIONS
+   ========================================================================== */
+html.dark .domain-spiderweb-root,
+.dark .domain-spiderweb-root {
+  background: radial-gradient(circle at center, rgba(0, 98, 255, 0.08) 0%, rgba(0, 0, 0, 0) 70%), #0A0A0C;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .spiderweb-nav-pill,
+.dark .spiderweb-nav-pill {
+  background: #141419;
+  color: #a1a1aa;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .spiderweb-nav-pill:hover:not(.is-active),
+.dark .spiderweb-nav-pill:hover:not(.is-active) {
+  background: #1f1f24;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+html.dark .spiderweb-nav-pill.is-active,
+.dark .spiderweb-nav-pill.is-active {
+  background: #0062FF;
+  color: #ffffff;
+  border-color: #0062FF;
+}
+
+html.dark .spiderweb-node-title,
+.dark .spiderweb-node-title {
+  fill: #ffffff;
+}
+
+html.dark .spiderweb-node-sub,
+.dark .spiderweb-node-sub {
+  fill: #a1a1aa;
+}
+
+html.dark .spiderweb-status,
+.dark .spiderweb-status {
+  color: #a1a1aa;
+}
+
+html.dark .spiderweb-cord,
+.dark .spiderweb-cord {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+

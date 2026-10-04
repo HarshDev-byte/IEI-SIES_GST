@@ -96,7 +96,7 @@ export default function MembershipPathway({ onApplyMembership }) {
   const current = pathways[activeTier];
 
   return (
-    <section id="membership-pathways" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-white/[0.06]">
+    <section id="membership-pathways" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
       
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">

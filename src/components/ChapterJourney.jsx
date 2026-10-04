@@ -108,7 +108,7 @@ export default function ChapterJourney() {
   const CurrentIcon = current.icon;
 
   return (
-    <section id="journey" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.08]" aria-label="Chapter Journey: From Learning to Contribution">
+    <section id="journey" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Chapter Journey: From Learning to Contribution">
       
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">

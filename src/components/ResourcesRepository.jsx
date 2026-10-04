@@ -68,7 +68,7 @@ export default function ResourcesRepository() {
   };
 
   return (
-    <section id="resources" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.06]" aria-label="Student Resources">
+    <section id="resources" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Student Resources">
       
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">

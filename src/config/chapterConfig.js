@@ -37,7 +37,9 @@ export const CHAPTER_CONFIG = {
     officialIEI: 'https://ieindia.org',
     collegeWebsite: 'https://siesgst.edu.in',
     amiePortal: 'https://www.ieindia.org/webui/iei-home.aspx',
-    charteredEngineer: 'https://www.ieindia.org/webui/IEI-Registration.aspx'
+    charteredEngineer: 'https://www.ieindia.org/webui/IEI-Registration.aspx',
+    linkedin: 'https://www.linkedin.com/company/iei-sies-gst',
+    instagram: 'https://www.instagram.com/ieisiesgst/'
   }
 };
 
