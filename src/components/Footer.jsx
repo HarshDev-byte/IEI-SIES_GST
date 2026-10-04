@@ -76,7 +76,7 @@ const EmailIcon = ({ size = 18, className = '' }) => (
   </svg>
 );
 
-export default function Footer() {
+export default function Footer({ onReplayLoader }) {
   return (
     <footer className="relative bg-[#FAFAFC] dark:bg-[#000000] pt-20 pb-28 sm:pb-32 px-4 sm:px-6 lg:px-8 z-10 transition-colors" aria-label="Site Footer">
       <div className="max-w-7xl mx-auto">
@@ -232,6 +232,17 @@ export default function Footer() {
           <div>
             © 2026 The Institution of Engineers (India) · SIES GST Student Chapter.
           </div>
+          {onReplayLoader && (
+            <button
+              type="button"
+              onClick={onReplayLoader}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/30 text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-all cursor-pointer text-[11px]"
+              title="Replay Startup Animation (or press R)"
+            >
+              <span>Replay Startup Animation</span>
+              <span className="font-mono text-[10px] px-1.5 py-0.5 bg-black/5 dark:bg-white/10 rounded text-zinc-500 dark:text-zinc-400">R</span>
+            </button>
+          )}
         </div>
 
       </div>

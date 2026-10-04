@@ -20,12 +20,9 @@ import {
 
 import { audioEngine } from '@/utils';
 
-// Check if this is the user's first visit in this browser session
-const hasSeenLoader = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('iei-loader-shown');
-
 export default function App() {
-  // Loader state — only show on first visit per session
-  const [showLoader, setShowLoader] = useState(!hasSeenLoader);
+  // Loader state — show on page load and allow manual replay
+  const [showLoader, setShowLoader] = useState(true);
 
   // Page transition state — bumping this key triggers the fade-in animation
   const [transitionKey, setTransitionKey] = useState(0);
@@ -125,11 +122,27 @@ export default function App() {
       }, 300);
     }
 
+    const handleKeyDown = (e) => {
+      // Replay loader on pressing 'r' or 'R' if not in an input/textarea
+      if (
+        (e.key === 'r' || e.key === 'R') &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        e.target.tagName !== 'INPUT' &&
+        e.target.tagName !== 'TEXTAREA' &&
+        !showLoader
+      ) {
+        setShowLoader(true);
+      }
+    };
+
     window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [showLoader]);
 
   // Event registration handler
   const handleRegisterEvent = (eventName) => {
@@ -140,13 +153,9 @@ export default function App() {
   return (
     <div className="min-h-screen text-zinc-950 dark:text-white bg-white dark:bg-[#000000] relative selection:bg-[#0062FF] selection:text-white transition-colors duration-200">
       
-      {/* Professional Architectural Loading Screen — once per browser session */}
+      {/* Professional Architectural Loading Screen */}
       {showLoader && (
-        <CrazySexyLoader onComplete={() => {
-          setShowLoader(false);
-          // Mark as shown so refreshes/navigation within the session skip it
-          try { sessionStorage.setItem('iei-loader-shown', '1'); } catch (_) {}
-        }} />
+        <CrazySexyLoader onComplete={() => setShowLoader(false)} />
       )}
 
       {/* Sleek Minimal Global Light Background */}
