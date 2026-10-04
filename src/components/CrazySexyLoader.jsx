@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { audioEngine } from '../utils/audioEngine';
 
 const TOTAL_FRAMES = 300;
+// Full animation runs smoothly across 5 seconds
+const TOTAL_PLAYBACK_MS = 5000;
 
 export default function CrazySexyLoader({ onComplete }) {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -14,6 +17,9 @@ export default function CrazySexyLoader({ onComplete }) {
   const targetFrameRef = useRef(0);
   const currentSmoothFrameRef = useRef(0);
   const isPlayingRef = useRef(true);
+  const playbackStartTimeRef = useRef(null);
+  const lastPhaseRef = useRef(0);
+  const hasTriggeredExitRef = useRef(false);
 
   // Seamless, snappy exit transition into home screen
   const triggerExitToHome = useCallback(() => {
@@ -41,8 +47,8 @@ export default function CrazySexyLoader({ onComplete }) {
     let loadedCount = 0;
     const handleImageLoad = () => {
       loadedCount++;
-      // Start playback as soon as the first few frames are ready
-      if (!isCancelled && loadedCount >= 1) {
+      // Start playback as soon as initial buffer is ready
+      if (!isCancelled && loadedCount >= 8) {
         setIsReadyToPlay(true);
       }
     };
@@ -56,15 +62,21 @@ export default function CrazySexyLoader({ onComplete }) {
       }
     });
 
-    // Absolute safety timeout: Guarantee loader exits after at most 4.2 seconds regardless of image loading state
+    // Ensure playback starts even on slow connection within 180ms
+    const startTimer = setTimeout(() => {
+      if (!isCancelled) setIsReadyToPlay(true);
+    }, 180);
+
+    // Absolute safety timeout: Guarantee loader exits after at most 6.5 seconds
     const maxDurationTimer = setTimeout(() => {
       if (!isCancelled) {
         triggerExitToHome();
       }
-    }, 4200);
+    }, 6500);
 
     return () => {
       isCancelled = true;
+      clearTimeout(startTimer);
       clearTimeout(maxDurationTimer);
     };
   }, [triggerExitToHome]);
@@ -108,6 +120,9 @@ export default function CrazySexyLoader({ onComplete }) {
     ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    const imgRatio = (img.naturalWidth && img.naturalHeight) ? (img.naturalWidth / img.naturalHeight) : (1920 / 1080);
+    const canvasRatio = canvas.width / canvas.height;
+
     // High-resolution architectural canvas drawing
     // On mobile portrait (canvasRatio < 1), scale up so central identity isn't shrunk into a 219px letterbox
     let drawW, drawH, drawX, drawY;
@@ -138,37 +153,62 @@ export default function CrazySexyLoader({ onComplete }) {
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // Master 400Hz Continuous Animation & Smooth Scroll Lerp Loop
+  // Master Continuous Animation & Smooth Scroll Lerp Loop
   useEffect(() => {
     if (!isReadyToPlay) return;
 
-    let lastVideoTimestamp = performance.now();
-    // Fast, energetic playback at ~75 FPS
-    const frameInterval = 1000 / 75;
+    // Immediately draw the first available frame
+    drawFrame(0);
 
     const renderLoop = (timestamp) => {
-      // 1. If autoplaying, advance targetFrame steadily
+      // 1. Time-driven playback ensures ALL 300 frames are traversed in ~5.0s regardless of refresh rate
       if (isPlayingRef.current) {
-        const elapsed = timestamp - lastVideoTimestamp;
-        if (elapsed >= frameInterval) {
-          lastVideoTimestamp = timestamp - (elapsed % frameInterval);
-          targetFrameRef.current = Math.min(TOTAL_FRAMES - 1, targetFrameRef.current + 1);
+        if (!playbackStartTimeRef.current) {
+          playbackStartTimeRef.current = timestamp;
+        }
+        const elapsed = timestamp - playbackStartTimeRef.current;
+        const progress = Math.min(1, Math.max(0, elapsed / TOTAL_PLAYBACK_MS));
 
-          if (targetFrameRef.current >= TOTAL_FRAMES - 1) {
-            isPlayingRef.current = false;
-            setIsPlaying(false);
-            setTimeout(triggerExitToHome, 150);
-          }
+        targetFrameRef.current = progress * (TOTAL_FRAMES - 1);
+
+        // Milestone harmonic audio pings
+        const currentIntFrame = Math.round(targetFrameRef.current);
+        let phase = 0;
+        if (currentIntFrame >= 260) phase = 5;
+        else if (currentIntFrame >= 200) phase = 4;
+        else if (currentIntFrame >= 130) phase = 3;
+        else if (currentIntFrame >= 60) phase = 2;
+        else if (currentIntFrame >= 20) phase = 1;
+
+        if (phase !== lastPhaseRef.current && phase > 0) {
+          audioEngine.playMilestonePing(phase);
+          lastPhaseRef.current = phase;
+        }
+
+        // When reaching 100% (frame 299)
+        if (progress >= 1 && !hasTriggeredExitRef.current) {
+          hasTriggeredExitRef.current = true;
+          isPlayingRef.current = false;
+          setIsPlaying(false);
+          currentSmoothFrameRef.current = TOTAL_FRAMES - 1;
+          drawFrame(TOTAL_FRAMES - 1);
+          // Hold the final 100% resolved frame briefly (250ms), then exit smoothly
+          setTimeout(() => {
+            triggerExitToHome();
+          }, 250);
+          return;
         }
       }
 
-      // 2. High-refresh spring LERP for 400Hz-like butter-smooth motion
+      // 2. High-refresh spring LERP for butter-smooth motion
       const diff = targetFrameRef.current - currentSmoothFrameRef.current;
-      if (Math.abs(diff) > 0.01) {
-        currentSmoothFrameRef.current += diff * 0.32;
-        const frameToDraw = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentSmoothFrameRef.current)));
-        drawFrame(frameToDraw);
+      if (Math.abs(diff) > 0.005) {
+        currentSmoothFrameRef.current += diff * 0.45;
+      } else {
+        currentSmoothFrameRef.current = targetFrameRef.current;
       }
+      const frameToDraw = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentSmoothFrameRef.current)));
+      drawFrame(frameToDraw);
 
       animFrameRef.current = requestAnimationFrame(renderLoop);
     };
@@ -185,12 +225,11 @@ export default function CrazySexyLoader({ onComplete }) {
     isPlayingRef.current = false;
     setIsPlaying(false);
 
-    // Fast, responsive scrubbing multiplier (~4x faster than original)
     const delta = e.deltaY * 0.42;
     targetFrameRef.current = Math.max(0, Math.min(TOTAL_FRAMES - 1, targetFrameRef.current + delta));
 
     if (targetFrameRef.current >= TOTAL_FRAMES - 1) {
-      setTimeout(triggerExitToHome, 120);
+      setTimeout(triggerExitToHome, 150);
     }
   }, [triggerExitToHome]);
 
@@ -238,7 +277,7 @@ export default function CrazySexyLoader({ onComplete }) {
         />
       </div>
 
-      {/* 2. MINIMAL TOP CONTROLS (with safe area top padding) */}
+      {/* 2. MINIMAL TOP CONTROLS (Clean skip on right with safe area top padding) */}
       <header className="relative z-20 flex items-center justify-end px-4 sm:px-6 pt-[calc(env(safe-area-inset-top,0px)+0.75rem)] pb-4 pointer-events-none font-mono text-[11px]">
         <button
           type="button"
