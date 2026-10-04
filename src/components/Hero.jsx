@@ -368,7 +368,7 @@ export default function Hero({
           <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center">
             
             {/* Monumental Headline */}
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[58px] font-black text-zinc-950 tracking-tight leading-[1.12] mb-6">
+            <h1 className="font-display text-[clamp(1.75rem,6.5vw,3.6rem)] font-black text-zinc-950 tracking-tight leading-[1.12] mb-6">
               <span className="block overflow-hidden pb-1">
                 <span className="inline-block hero-anim-line-1">
                   Advancing engineering
@@ -450,17 +450,17 @@ export default function Hero({
 
                 {/* Mobile: 3-line natural wrapping to prevent clipping & overflow */}
                 <span className="block sm:hidden overflow-hidden pb-0.5">
-                  <span className="inline-block hero-anim-dept-line-1 text-[clamp(1.75rem,7vw,2.35rem)]">
+                  <span className="inline-block hero-anim-dept-line-1 text-[clamp(1.35rem,6.2vw,2.15rem)]">
                     ELECTRONICS &amp;
                   </span>
                 </span>
                 <span className="block sm:hidden overflow-hidden pb-0.5">
-                  <span className="inline-block hero-anim-dept-line-2 text-[clamp(1.75rem,7vw,2.35rem)]">
+                  <span className="inline-block hero-anim-dept-line-2 text-[clamp(1.35rem,6.2vw,2.15rem)]">
                     COMPUTER SCIENCE
                   </span>
                 </span>
                 <span className="block sm:hidden overflow-hidden pb-0.5">
-                  <span className="inline-block hero-anim-dept-line-3 text-[clamp(1.75rem,7vw,2.35rem)]">
+                  <span className="inline-block hero-anim-dept-line-3 text-[clamp(1.35rem,6.2vw,2.15rem)]">
                     ENGINEERING
                   </span>
                 </span>

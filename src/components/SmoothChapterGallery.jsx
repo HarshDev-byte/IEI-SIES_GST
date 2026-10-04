@@ -204,6 +204,7 @@ export default function SmoothChapterGallery() {
       dragMinimum: 10,
       tolerance: 25,
       lockAxis: true,
+      preventDefault: false,
       onDragStart() { gestureUsed = false; },
       onLeft() { if (!gestureUsed) { gestureUsed = true; goTo(1); } },
       onRight() { if (!gestureUsed) { gestureUsed = true; goTo(-1); } },
@@ -243,6 +244,29 @@ export default function SmoothChapterGallery() {
     const onResize = () => { measure(); render(state.progress); };
     window.addEventListener("resize", onResize);
 
+    // Pause autoplay when off-screen or tab hidden
+    let isIntersecting = true;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isIntersecting = entry.isIntersecting;
+        if (!isIntersecting) {
+          if (autoTween) autoTween.pause();
+        } else if (hovering === 0 && document.visibilityState === "visible") {
+          if (autoTween) autoTween.resume();
+        }
+      });
+    }, { threshold: 0.1 });
+    io.observe(root);
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        if (autoTween) autoTween.pause();
+      } else if (isIntersecting && hovering === 0) {
+        if (autoTween) autoTween.resume();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     // Title widths change when the web font swaps in, so re-measure then too.
     if (document.fonts) document.fonts.ready.then(onResize);
 
@@ -253,6 +277,8 @@ export default function SmoothChapterGallery() {
       observer.kill();
       if (slideTween) slideTween.kill();
       if (autoTween) autoTween.kill();
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("resize", onResize);
       if (prevBtn) prevBtn.removeEventListener("click", onPrev);
       if (nextBtn) nextBtn.removeEventListener("click", onNext);

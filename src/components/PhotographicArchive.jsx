@@ -5,6 +5,17 @@ import { audioEngine } from '../utils/audioEngine';
 export default function PhotographicArchive() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+  // Lock body scroll when modal is active
+  React.useEffect(() => {
+    if (selectedPhoto) {
+      const orig = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = orig;
+      };
+    }
+  }, [selectedPhoto]);
+
   const archiveItems = [
     {
       id: "doc-01",
@@ -54,7 +65,7 @@ export default function PhotographicArchive() {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
-          <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight">
+          <h2 className="font-display text-[clamp(2.15rem,5.5vw,3.75rem)] font-black text-zinc-950 tracking-ultra-tight">
             Chapter Archive
           </h2>
         </div>
@@ -112,7 +123,7 @@ export default function PhotographicArchive() {
       {/* LIGHTBOX MODAL */}
       {selectedPhoto && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-          <div className="relative w-full max-w-xl bg-white border border-black/[0.1] rounded-2xl p-6 sm:p-8 shadow-2xl">
+          <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-black/[0.1] rounded-2xl p-6 sm:p-8 shadow-2xl">
             <button
               onClick={() => setSelectedPhoto(null)}
               className="absolute top-4 right-4 text-zinc-500 hover:text-black p-1.5 rounded-full hover:bg-black/[0.05] transition-colors cursor-pointer"

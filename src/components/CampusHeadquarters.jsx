@@ -80,7 +80,7 @@ export default function CampusHeadquarters() {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
-          <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight">
+          <h2 className="font-display text-[clamp(2.15rem,5.5vw,3.75rem)] font-black text-zinc-950 tracking-ultra-tight">
             Driven by engineering.<br />
             <span className="text-zinc-400">
               Defined by integrity.

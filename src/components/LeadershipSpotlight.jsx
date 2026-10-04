@@ -295,6 +295,45 @@ export default function LeadershipSpotlight() {
             </button>
 
           </div>
+
+          {/* MOBILE EDITORIAL DETAILS CARD (Visible only on mobile < 640px, never overlaps faces) */}
+          <div className="sm:hidden mt-3 p-3.5 rounded-xl border border-black/[0.08] bg-white shadow-xs transition-all">
+            {activeFaculty === 'hirani' ? (
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0062FF] truncate">Student Branch Coordinator</div>
+                  <div className="text-base font-bold text-zinc-950 truncate">Prof. Jasmin Hirani</div>
+                  <div className="text-xs text-zinc-500 truncate">Dept. of ECS • SIES GST</div>
+                </div>
+                <a 
+                  href={`#/team/${hiraniMember.slug}`} 
+                  onClick={() => audioEngine?.playClick && audioEngine.playClick()}
+                  className="px-3 py-1.5 rounded-lg bg-blue-50 text-[#0062FF] font-semibold text-xs shrink-0 hover:bg-blue-100 transition-colors"
+                >
+                  View Profile →
+                </a>
+              </div>
+            ) : activeFaculty === 'kharche' ? (
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0062FF] truncate">Head of Department</div>
+                  <div className="text-base font-bold text-zinc-950 truncate">Dr. Shubhangi Kharche</div>
+                  <div className="text-xs text-zinc-500 truncate">HOD, Dept. of ECS • SIES GST</div>
+                </div>
+                <a 
+                  href={`#/team/${kharcheMember.slug}`} 
+                  onClick={() => audioEngine?.playClick && audioEngine.playClick()}
+                  className="px-3 py-1.5 rounded-lg bg-blue-50 text-[#0062FF] font-semibold text-xs shrink-0 hover:bg-blue-100 transition-colors"
+                >
+                  View Profile →
+                </a>
+              </div>
+            ) : (
+              <div className="text-center py-1 text-xs text-zinc-500 flex items-center justify-center gap-1.5">
+                <span>👆 Tap a faculty member above to inspect profile</span>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -394,6 +433,36 @@ export default function LeadershipSpotlight() {
               ))}
             </div>
 
+          </div>
+
+          {/* MOBILE EDITORIAL DETAILS CARD (Visible only on mobile < 640px, never overlaps faces) */}
+          <div className="sm:hidden mt-3 p-3.5 rounded-xl border border-black/[0.08] bg-white shadow-xs transition-all">
+            {activeExecutive ? (() => {
+              const selected = executiveList.find(e => e.key === activeExecutive);
+              const m = selected?.member;
+              return (
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0062FF] truncate">{selected?.label}</div>
+                    <div className="text-base font-bold text-zinc-950 truncate">{m?.name || selected?.label}</div>
+                    {m?.branch && <div className="text-xs text-zinc-500 truncate">Dept. of {m.branch} • 2026–2027</div>}
+                  </div>
+                  {m?.slug && (
+                    <a 
+                      href={`#/team/${m.slug}`} 
+                      onClick={() => audioEngine?.playClick && audioEngine.playClick()}
+                      className="px-3 py-1.5 rounded-lg bg-blue-50 text-[#0062FF] font-semibold text-xs shrink-0 hover:bg-blue-100 transition-colors"
+                    >
+                      View Profile →
+                    </a>
+                  )}
+                </div>
+              );
+            })() : (
+              <div className="text-center py-1 text-xs text-zinc-500 flex items-center justify-center gap-1.5">
+                <span>👆 Tap an executive above to inspect profile</span>
+              </div>
+            )}
           </div>
         </div>
       </section>

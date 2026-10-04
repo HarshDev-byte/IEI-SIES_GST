@@ -138,6 +138,17 @@ export default function Navbar({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onOpenSearch, mobileDrawerOpen, isOpen]);
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileDrawerOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [mobileDrawerOpen]);
+
   const navLinks = [
     { label: 'About', href: '#/', id: 'home', icon: Compass },
     { label: 'Activities', href: '#/activities', id: 'activities', icon: Cpu },
@@ -161,7 +172,7 @@ export default function Navbar({
         ref={navRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="fixed bottom-3 sm:bottom-5 inset-x-0 mx-auto w-fit max-w-[96vw] z-50 select-none flex items-center justify-center pb-[env(safe-area-inset-bottom,0px)]"
+        className="fixed bottom-3 sm:bottom-5 inset-x-0 mx-auto w-fit max-w-[calc(100vw-1rem)] z-50 select-none flex items-center justify-center pb-[env(safe-area-inset-bottom,0px)]"
         aria-label="Bottom Navigation"
       >
         <div
@@ -172,6 +183,7 @@ export default function Navbar({
           }`}
           style={{
             width: isOpen ? (contentSize.width ? `${contentSize.width}px` : 'max-content') : '20px',
+            maxWidth: 'calc(100vw - 1rem)',
             height: isOpen ? (contentSize.height ? `${contentSize.height}px` : '48px') : '20px',
             transitionProperty: reducedMotion ? 'none' : 'width, height, background-color, border-color, box-shadow, transform',
             transitionDuration: isOpen ? '380ms' : '280ms',
@@ -369,7 +381,13 @@ export default function Navbar({
 
       {/* 3. MOBILE FULL-SCREEN SHEET OVERLAY */}
       {mobileDrawerOpen && (
-        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-3xl flex flex-col justify-between p-6 pb-24 pt-12 animate-fadeIn select-none text-zinc-950">
+        <div 
+          className="fixed inset-0 z-40 bg-white/98 backdrop-blur-3xl flex flex-col justify-between p-6 animate-fadeIn select-none text-zinc-950"
+          style={{
+            paddingTop: 'max(3rem, env(safe-area-inset-top, 1.5rem))',
+            paddingBottom: 'max(6rem, env(safe-area-inset-bottom, 2rem))',
+          }}
+        >
           
           <div className="space-y-4 max-w-md mx-auto w-full">
             <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] text-xs text-zinc-500 font-medium">

@@ -40,6 +40,9 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--fg-primary);
@@ -56,12 +59,23 @@ html {
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   background-color: var(--bg-primary);
   color: var(--fg-primary);
   overflow-x: hidden;
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
   -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
 }
 
 /* Global Crisp White Background */

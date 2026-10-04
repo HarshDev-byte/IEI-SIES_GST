@@ -318,32 +318,10 @@
   }
 }
 
-/* Mobile Responsive Typography Adjustments */
+/* Mobile: In-stage floating overlays are hidden on screens < 640px to prevent face obstruction (handled by mobile companion cards) */
 @media (max-width: 640px) {
-  .info-left {
-    top: 1rem;
-    left: 1rem;
-    transform: translateY(6px);
-    max-width: calc(100% - 2rem);
-  }
-
-  .info-left.is-revealed {
-    transform: translateY(0);
-  }
-
-  .info-right {
-    top: 1rem;
-    right: 1rem;
-    transform: translateY(6px);
-    max-width: calc(100% - 2rem);
-  }
-
-  .info-right.is-revealed {
-    transform: translateY(0);
-  }
-
-  .editorial-name {
-    font-size: 1.125rem;
+  .faculty-editorial-info {
+    display: none !important;
   }
 }
 
@@ -552,11 +530,7 @@
 
 @media (max-width: 640px) {
   .executive-editorial-info {
-    top: 0.75rem;
-    left: 1rem !important;
-    right: auto !important;
-    text-align: left !important;
-    max-width: calc(100% - 2rem);
+    display: none !important;
   }
 }
 
