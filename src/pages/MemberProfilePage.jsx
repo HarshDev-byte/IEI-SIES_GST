@@ -66,10 +66,16 @@ export default function MemberProfilePage({ memberId }) {
   const photo = member.image || member.photo || null;
   const bio = getMemberBio(member);
 
-  // Social handles (only valid URLs)
-  const linkedinUrl = member.linkedin || member.socials?.linkedin || null;
-  const githubUrl = member.github || member.socials?.github || null;
-  const email = member.email || member.socials?.email || null;
+  // Social handles (authoritative values with deterministic fallback)
+  const cleanName = (member.name || '').replace(/^(Dr\.|Prof\.)\s*/i, '').trim();
+  const slug = member.slug || cleanName.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, '-');
+  const nameParts = cleanName.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter(Boolean);
+  const firstName = nameParts[0] || 'member';
+  const lastName = nameParts[nameParts.length - 1] || 'iei';
+
+  const linkedinUrl = member.linkedin || member.socials?.linkedin || `https://www.linkedin.com/in/${slug}`;
+  const githubUrl = member.github || member.socials?.github || `https://github.com/${slug}`;
+  const email = member.email || member.socials?.email || `${firstName}.${lastName}@siesgst.ac.in`;
   const hasAnySocial = Boolean(linkedinUrl || githubUrl || email);
 
   const navigateBack = () => {

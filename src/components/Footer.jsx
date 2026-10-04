@@ -85,9 +85,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:iei@siesgst.ac.in" className="hover:text-black transition-colors flex items-center gap-1.5">
+                <a href="mailto:iei@sies.edu.in" className="hover:text-black transition-colors flex items-center gap-1.5">
                   <Mail size={12} className="text-[#0062FF]" />
-                  <span>iei@siesgst.ac.in</span>
+                  <span>iei@sies.edu.in</span>
                 </a>
               </li>
             </ul>
@@ -99,11 +99,6 @@ export default function Footer() {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 font-medium">
           <div>
             © 2026 The Institution of Engineers (India) · SIES GST Student Chapter.
-          </div>
-          <div className="flex items-center gap-3">
-            <span>Institutional Non-Profit Body</span>
-            <span>·</span>
-            <a href="#contact" className="hover:text-black underline">Contact Chapter Office</a>
           </div>
         </div>
 

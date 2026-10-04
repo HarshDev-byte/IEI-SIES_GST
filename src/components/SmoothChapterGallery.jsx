@@ -267,15 +267,12 @@ export default function SmoothChapterGallery() {
   return (
     <section 
       id="gallery" 
-      className="relative py-16 sm:py-24 max-w-7xl mx-auto"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-10 max-w-[1600px] mx-auto"
       aria-label="Chapter Photographic Archive"
     >
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
         <div>
-          <div className="font-mono text-xs font-semibold text-[#0062FF] uppercase tracking-wider mb-2">
-            Photographic Documentation
-          </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-zinc-950 tracking-tight leading-tight">
             Chapter Life &amp; Labs
           </h2>

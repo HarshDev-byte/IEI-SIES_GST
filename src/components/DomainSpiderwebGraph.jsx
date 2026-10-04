@@ -19,10 +19,10 @@ export default function DomainSpiderwebGraph({
 }) {
   const [hoveredNode, setHoveredNode] = useState(null);
 
-  // Center hub coordinates & geometry
-  const cx = 450;
-  const cy = 310;
-  const radius = 224;
+  // Center hub coordinates & geometry with generous margin for labels
+  const cx = 480;
+  const cy = 300;
+  const radius = 200;
   const totalWings = domainWings.length || 5;
 
   // Calculate coordinates for the radial domain nodes
@@ -36,7 +36,7 @@ export default function DomainSpiderwebGraph({
     const cosVal = Math.cos(angleRad);
     const sinVal = Math.sin(angleRad);
 
-    // Dynamic label positioning based on angle
+    // Dynamic label positioning based on angle - clear of the 34px halo
     let labelAnchor = 'middle';
     let labelOffsetX = 0;
     let labelOffsetY = 0;
@@ -44,17 +44,17 @@ export default function DomainSpiderwebGraph({
     if (Math.abs(cosVal) < 0.25) {
       // Near top or bottom vertical pole
       labelAnchor = 'middle';
-      labelOffsetY = sinVal < 0 ? -34 : 38;
+      labelOffsetY = sinVal < 0 ? -40 : 44;
     } else if (cosVal > 0) {
       // Right side
       labelAnchor = 'start';
-      labelOffsetX = 32;
-      labelOffsetY = sinVal > 0.3 ? 12 : (sinVal < -0.3 ? -2 : 4);
+      labelOffsetX = 46;
+      labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
     } else {
       // Left side
       labelAnchor = 'end';
-      labelOffsetX = -32;
-      labelOffsetY = sinVal > 0.3 ? 12 : (sinVal < -0.3 ? -2 : 4);
+      labelOffsetX = -46;
+      labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
     }
 
     return {
@@ -121,7 +121,7 @@ export default function DomainSpiderwebGraph({
       {/* Main Spiderweb SVG Viewport */}
       <div className="spiderweb-svg-container">
         <svg 
-          viewBox="0 0 900 620" 
+          viewBox="0 0 960 620" 
           className="spiderweb-svg"
           aria-hidden="true"
         >

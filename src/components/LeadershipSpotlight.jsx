@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { facultyLeadership, seniorCouncil } from '../data/membersData';
 import { audioEngine } from '../utils/audioEngine';
+import SegmentedPerimeterDecoration from './SegmentedPerimeterDecoration';
 import './LeadershipSpotlight.css';
 
 /**
@@ -174,11 +175,11 @@ export default function LeadershipSpotlight() {
             {/* LAYER 0: Pure Clean White Background */}
             <div className="faculty-white-backdrop" aria-hidden="true" />
 
-            {/* LAYER 1: Official Crisp IEI SVG Emblem (Centered Behind People) */}
+            {/* LAYER 1: Official Crisp IEI Emblem (Centered Upper-Center Behind People) */}
             <div className="faculty-emblem-wrap" aria-hidden="true">
               <img 
-                src="/iei-emblem.svg" 
-                alt="" 
+                src="/iei-official-logo.png" 
+                alt="Institution of Engineers India Official Seal" 
                 className="faculty-iei-emblem"
                 loading="eager"
               />
@@ -224,6 +225,9 @@ export default function LeadershipSpotlight() {
                 />
               </picture>
             </div>
+
+            {/* LAYER 5: Selective Non-Continuous Perimeter Decoration System */}
+            <SegmentedPerimeterDecoration />
 
             {/* INTEGRATED EDITORIAL TYPOGRAPHY: LEFT PERSON (Prof. Jasmin Hirani) */}
             <div 
@@ -346,6 +350,9 @@ export default function LeadershipSpotlight() {
                 />
               </div>
             ))}
+
+            {/* LAYER 3: Selective Non-Continuous Perimeter Decoration System */}
+            <SegmentedPerimeterDecoration />
 
             {/* INTEGRATED EDITORIAL TYPOGRAPHY FOR EXECUTIVE MEMBERS */}
             {executiveList.map(({ key, member, label, slotIndex }) => {

@@ -1,51 +1,63 @@
 /**
  * ============================================================================
- * IEI SIES GST — OFFICIAL EVENTS DATA SOURCE (SINGLE TEMPLATE EVENT)
- * ============================================================================
- * 
- * 📌 GUIDE FOR THE IEI TECHNICAL TEAM:
- * 
- * To update this event on the Events & Symposia page, simply edit the fields below!
- * Changes reflect automatically on the website.
- * 
- * FIELD REFERENCE:
- * - id: Unique identifier (e.g. "innovex-2026")
- * - title: Main event title
- * - category: Category tag (e.g. "FLAGSHIP HACKATHON", "TECHNICAL WORKSHOP", "SYMPOSIUM")
- * - badge: Status text (e.g. "UPCOMING", "REGISTRATIONS OPEN", "CALL FOR PAPERS")
- * - date: Event date string (e.g. "October 24–25, 2026" or "Date To Be Announced")
- * - time: Timing string (e.g. "09:00 AM – 05:00 PM IST")
- * - venue: Venue location (e.g. "Auditorium & ECS Labs, SIES GST, Nerul")
- * - description: Concise summary of the event
- * - highlights: Array of 3-4 bullet points
- * - eligibility: Eligible student groups/disciplines
- * - registrationLink: URL to registration form (Google Form, Unstop, etc.)
- * - rulebookLink: Optional URL to rulebook or syllabus PDF
- * - image: Banner image path or external URL
+ * IEI SIES GST — OFFICIAL EVENTS DATA SOURCE
  * ============================================================================
  */
 
 export const eventsData = [
   {
-    id: "flagship-event-2026",
-    title: "Event Title: Enter Event or Hackathon Name",
-    category: "FLAGSHIP SYMPOSIUM",
-    badge: "UPCOMING",
-    date: "Date To Be Announced, 2026",
-    time: "09:00 AM – 05:00 PM IST",
-    venue: "Auditorium & Engineering Labs, SIES GST, Nerul",
-    description: "Brief overview of the upcoming flagship technical conclave or competition hosted by the IEI SIES GST Student Chapter. Edit this description with the official problem statement, speaker details, and schedule.",
+    id: "innovex-2026",
+    title: "INNOVEX 2026: Multi-Domain Engineering Conclave & Hackathon",
+    category: "ANNUAL CHAPTER CONCLAVE",
+    badge: "REGISTRATION OPEN",
+    date: "October 24–25, 2026 | 09:00 AM – 06:00 PM IST",
+    time: "09:00 AM – 06:00 PM IST",
+    venue: "Auditorium & ECS Labs, SIES GST",
+    description: "IEI SIES GST's premier annual technical conclave bringing together 400+ undergraduate innovators, national engineering fellows, and industry leaders. Featuring rapid prototyping tracks, embedded systems, RTOS kernel diagnostics, IIoT hardware, and AI pipelines.",
     highlights: [
-      "Key Competition Theme & Challenges",
-      "Hands-on Engineering Testbenches",
-      "Industry Mentorship & Professional Evaluation",
+      "36-Hour Intercollegiate Hackathon",
+      "Hands-on Multi-Cortex Hardware Sprint",
+      "Industry Mentorship & Cash Prizes",
       "Official IEI Participation Credentials"
     ],
-    eligibility: "Open to all Engineering Undergraduates across disciplines",
+    eligibility: "Open to all Engineering Undergraduate disciplines (FE to BE)",
     registrationLink: "https://forms.gle/iei-sies-gst-registration",
-    rulebookLink: "",
-    image: "/assets/events/innovex-hackathon-2026.jpg",
+    rulebookLink: "#",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
     isFeatured: true
+  }
+];
+
+export const workshopsData = [
+  {
+    id: "arm-rtos-sprint",
+    title: "ARM Cortex-M Firmware & FreeRTOS Deterministic Testbench",
+    category: "MICROCONTROLLERS & EMBEDDED SYSTEMS",
+    description: "Hands-on assembly sprint programming DMA peripherals, FreeRTOS kernel tasks, context switching on STM32 Cortex-M4 microcontrollers, and diagnosing deterministic...",
+    date: "November 12–14, 2026",
+    venue: "Lab 304, ECS Dept",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    registrationLink: "https://forms.gle/iei-sies-gst-registration"
+  },
+  {
+    id: "pcb-kicad-fabrication",
+    title: "Multi-Layer PCB Layout & High-Speed KiCad Fabrication",
+    category: "HARDWARE FABRICATION",
+    description: "Learn schematic capture, differential routing, ground planes, impedance matching, and produce gerber files ready for JLCPCB fabrication in 48 hours.",
+    date: "December 05–07, 2026",
+    venue: "Hardware Lab 102",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+    registrationLink: "https://forms.gle/iei-sies-gst-registration"
+  },
+  {
+    id: "autonomous-robotics-vision",
+    title: "Autonomous Robotics Navigation & Edge Computer Vision",
+    category: "ROBOTICS & EMBEDDED AI",
+    description: "Implement sensor fusion, real-time spatial SLAM algorithms, edge AI inference, and motor control kinematics on ROS2-driven mobile robots.",
+    date: "January 08–10, 2027",
+    venue: "Robotics & IoT Center, SIES GST",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+    registrationLink: "https://forms.gle/iei-sies-gst-registration"
   }
 ];
 

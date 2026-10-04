@@ -29,7 +29,7 @@ export const CHAPTER_CONFIG = {
   location: 'Sector-V, Nerul, Navi Mumbai - 400706, Maharashtra, India',
   
   // Communication & Council Desks
-  email: 'iei@siesgst.ac.in',
+  email: 'iei@sies.edu.in',
   studentQueryEndpoint: '/api/inquiry',
 
   // Social & Official External Links

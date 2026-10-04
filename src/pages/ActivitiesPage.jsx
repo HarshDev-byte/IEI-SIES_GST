@@ -4,7 +4,6 @@ import {
   ArrowRight, CheckCircle2, ChevronRight, BookOpen, 
   Briefcase, Compass, FileText, Sparkles 
 } from 'lucide-react';
-import ActivitiesSection from '../components/ActivitiesSection';
 import { audioEngine } from '../utils/audioEngine';
 
 export default function ActivitiesPage({ onOpenMembership }) {
@@ -91,11 +90,8 @@ export default function ActivitiesPage({ onOpenMembership }) {
 
   return (
     <div className="animate-fadeIn">
-      {/* 01. FEATURED HARDWARE ACTIVITIES ACCORDION */}
-      <ActivitiesSection onOpenMembership={onOpenMembership} />
-
-      {/* 02. CHAPTER ACTIVITY WINGS DIRECTORY */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.08]">
+      {/* CHAPTER ACTIVITY WINGS DIRECTORY */}
+      <section className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight">
@@ -164,30 +160,6 @@ export default function ActivitiesPage({ onOpenMembership }) {
             </div>
           ))}
         </div>
-
-        {/* CHAPTER STATS SUMMARY BANNER */}
-        <div className="mt-12 p-6 rounded-3xl bg-zinc-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <div className="font-display font-bold text-xl text-white">
-              Want to propose a technical workshop or lecture?
-            </div>
-            <p className="text-xs text-zinc-400">
-              Student domain leads and faculty members can submit activity agendas for chapter sponsorship.
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={() => {
-              audioEngine.playClick();
-              if (onOpenMembership) onOpenMembership('Activity Proposal');
-            }}
-            className="px-6 py-3 rounded-full bg-[#0062FF] hover:bg-blue-600 text-white text-xs font-semibold transition-all shadow-sm cursor-pointer shrink-0"
-          >
-            Submit Activity Agenda
-          </button>
-        </div>
-
       </section>
     </div>
   );

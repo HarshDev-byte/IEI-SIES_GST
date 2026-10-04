@@ -339,23 +339,28 @@ export default function Hero({
       <section className={`hero-root ${stateClass} relative min-h-[85vh] flex flex-col pt-8 sm:pt-12 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10`}>
         <style>{HERO_MOTION_STYLES}</style>
 
-        {/* 01. TOP CHAPTER IDENTIFIER — Emblem & Identity (Clean, Borderless, No Chapter #602) */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
+        {/* 01. TOP CHAPTER IDENTIFIER — High-impact Institutional Brand Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-14 pb-4 border-b border-black/[0.04]">
           <div className="flex items-center gap-3.5">
-            <div className="hero-anim-emblem shrink-0">
+            <div className="hero-anim-emblem w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white border border-black/[0.08] p-1.5 shadow-2xs flex items-center justify-center shrink-0">
               <img
                 src="/iei-official-logo.png"
                 alt="The Institution of Engineers (India) Official Seal"
-                className="w-10 h-10 sm:w-12 sm:h-12 object-contain select-none"
+                className="w-full h-full object-contain select-none"
                 draggable={false}
               />
             </div>
             <div className="flex flex-col">
-              <span
-                className={`${sweepDone ? 'hero-anim-title' : 'hero-anim-sweep'} font-sans font-bold tracking-tight text-xl sm:text-2xl leading-none select-none text-zinc-950`}
-                data-sweep-done={sweepDone ? 'true' : 'false'}
-              >
-                IEI SIES GST
+              <div className="flex items-center gap-2">
+                <span
+                  className={`${sweepDone ? 'hero-anim-title' : 'hero-anim-sweep'} font-sans font-bold tracking-tight text-xl sm:text-2xl leading-none select-none text-zinc-950`}
+                  data-sweep-done={sweepDone ? 'true' : 'false'}
+                >
+                  IEI SIES GST
+                </span>
+              </div>
+              <span className="text-xs text-zinc-500 font-medium mt-1">
+                Department of Electronics &amp; Computer Science Engineering
               </span>
             </div>
           </div>
@@ -466,16 +471,11 @@ export default function Hero({
                 </span>
               </h2>
 
-              {/* Institutional Supporting Lines (Hierarchy & Location) */}
+              {/* Institutional Supporting Lines (Hierarchy) */}
               <div className="flex flex-col space-y-1.5">
                 <div className="hero-anim-dept-school overflow-hidden">
                   <p className="font-sans font-semibold text-xs sm:text-sm tracking-wider text-zinc-700 uppercase">
                     SIES GRADUATE SCHOOL OF TECHNOLOGY
-                  </p>
-                </div>
-                <div className="hero-anim-dept-meta overflow-hidden">
-                  <p className="font-mono text-[10px] sm:text-[11px] text-zinc-400 tracking-widest uppercase">
-                    SECTOR-V, NERUL
                   </p>
                 </div>
               </div>
