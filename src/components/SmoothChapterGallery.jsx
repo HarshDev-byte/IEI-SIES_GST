@@ -95,10 +95,9 @@ export default function SmoothChapterGallery() {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const clamp = gsap.utils.clamp;
     const wrap = (distance) => distance - count * Math.round(distance / count);
-    const transitionDuration = 1;
-    const backgroundZoom = 0;
-    const titleGap = 0.5;
-    const titleSpacing = 40;
+    const transitionDuration = 0.65;
+    const titleGap = 0.45;
+    const titleSpacing = 32;
     if (totalEl) totalEl.textContent = String(count).padStart(2, "0");
 
     let titleStep = 0;
@@ -129,16 +128,15 @@ export default function SmoothChapterGallery() {
         const distance = Math.abs(offset);
         const background = backgrounds[i];
         if (background) {
-          const backgroundOpacity = clamp(0, 1, 1 - distance);
+          const backgroundOpacity = clamp(0, 1, 1 - distance * 1.15);
           gsap.set(background, {
             opacity: backgroundOpacity,
-            scale: 1 + backgroundZoom - backgroundZoom * backgroundOpacity,
-            zIndex: Math.round(backgroundOpacity * 100),
+            zIndex: i === centeredIndex ? 2 : (distance < 1 ? 1 : 0),
           });
         }
         gsap.set(titles[i], {
           x: offset * titleStep,
-          opacity: i === centeredIndex ? 1 : 0.4,
+          opacity: clamp(0.15, 1, 1 - distance * 0.75),
           pointerEvents: "auto",
         });
         const maskItem = maskItems[i];
@@ -172,7 +170,7 @@ export default function SmoothChapterGallery() {
       slideTween = gsap.to(state, {
         progress: current,
         duration: reduced ? 0 : transitionDuration,
-        ease: "osmo",
+        ease: "power3.out",
         onUpdate: () => render(state.progress),
       });
       startAutoplay();
@@ -201,8 +199,8 @@ export default function SmoothChapterGallery() {
     const observer = Observer.create({
       target: root,
       type: "touch,pointer",
-      dragMinimum: 10,
-      tolerance: 25,
+      dragMinimum: 6,
+      tolerance: 15,
       lockAxis: true,
       preventDefault: false,
       onDragStart() { gestureUsed = false; },
@@ -210,12 +208,14 @@ export default function SmoothChapterGallery() {
       onRight() { if (!gestureUsed) { gestureUsed = true; goTo(-1); } },
     });
 
-    const onPrev = () => {
+    const onPrev = (e) => {
+      if (e) e.preventDefault();
       audioEngine?.playHover && audioEngine.playHover();
       goTo(-1);
     };
 
-    const onNext = () => {
+    const onNext = (e) => {
+      if (e) e.preventDefault();
       audioEngine?.playHover && audioEngine.playHover();
       goTo(1);
     };
