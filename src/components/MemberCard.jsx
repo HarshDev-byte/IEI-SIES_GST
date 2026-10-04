@@ -174,9 +174,9 @@ export default function MemberCard({ member = {}, className = '' }) {
                   rel="noopener noreferrer"
                   aria-label={`LinkedIn — ${name}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="peer flex items-center justify-center w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-zinc-100 hover:bg-[#0A66C2]/10 text-zinc-600 hover:text-[#0A66C2] transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
+                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 hover:bg-[#0A66C2]/10 text-zinc-600 hover:text-[#0A66C2] transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
                 >
-                  <LinkedInIcon size={16} className="shrink-0" />
+                  <LinkedInIcon size={14} className="shrink-0" />
                 </a>
                 <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-white text-[11px] font-semibold text-zinc-800 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
                   LinkedIn
@@ -192,9 +192,9 @@ export default function MemberCard({ member = {}, className = '' }) {
                   rel="noopener noreferrer"
                   aria-label={`GitHub — ${name}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="peer flex items-center justify-center w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-zinc-100 hover:bg-zinc-800/10 text-zinc-600 hover:text-zinc-900 transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
+                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 hover:bg-zinc-800/10 text-zinc-600 hover:text-zinc-900 transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
                 >
-                  <GitHubIcon size={16} className="shrink-0" />
+                  <GitHubIcon size={14} className="shrink-0" />
                 </a>
                 <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-white text-[11px] font-semibold text-zinc-800 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
                   GitHub
@@ -208,9 +208,9 @@ export default function MemberCard({ member = {}, className = '' }) {
                   href={`mailto:${email}`}
                   aria-label={`Email — ${name}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="peer flex items-center justify-center w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-zinc-100 hover:bg-[#0062FF]/10 text-zinc-600 hover:text-[#0062FF] transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
+                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 hover:bg-[#0062FF]/10 text-zinc-600 hover:text-[#0062FF] transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
                 >
-                  <MailIcon size={16} className="shrink-0" />
+                  <MailIcon size={14} className="shrink-0" />
                 </a>
                 <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-white text-[11px] font-semibold text-zinc-800 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
                   Email

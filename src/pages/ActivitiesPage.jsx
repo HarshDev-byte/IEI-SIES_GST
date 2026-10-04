@@ -98,7 +98,7 @@ export default function ActivitiesPage({ onOpenMembership }) {
       <section className="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-black/[0.08]">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <h2 className="font-display text-[clamp(1.75rem,5vw,3rem)] font-black text-zinc-950 tracking-tight">
+            <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight">
               Major Chapter Initiatives
             </h2>
             <p className="text-zinc-600 text-sm mt-1 max-w-xl">
@@ -107,7 +107,7 @@ export default function ActivitiesPage({ onOpenMembership }) {
           </div>
 
           {/* Quick Filter */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 touch-pan-x">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
             {[
               { id: 'all', label: 'All' },
               { id: 'workshops', label: 'Workshops' },

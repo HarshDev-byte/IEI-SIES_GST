@@ -95,9 +95,10 @@ export default function SmoothChapterGallery() {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const clamp = gsap.utils.clamp;
     const wrap = (distance) => distance - count * Math.round(distance / count);
-    const transitionDuration = 0.65;
-    const titleGap = 0.45;
-    const titleSpacing = 32;
+    const transitionDuration = 1;
+    const backgroundZoom = 0;
+    const titleGap = 0.5;
+    const titleSpacing = 40;
     if (totalEl) totalEl.textContent = String(count).padStart(2, "0");
 
     let titleStep = 0;
@@ -128,15 +129,16 @@ export default function SmoothChapterGallery() {
         const distance = Math.abs(offset);
         const background = backgrounds[i];
         if (background) {
-          const backgroundOpacity = clamp(0, 1, 1 - distance * 1.15);
+          const backgroundOpacity = clamp(0, 1, 1 - distance);
           gsap.set(background, {
             opacity: backgroundOpacity,
-            zIndex: i === centeredIndex ? 2 : (distance < 1 ? 1 : 0),
+            scale: 1 + backgroundZoom - backgroundZoom * backgroundOpacity,
+            zIndex: Math.round(backgroundOpacity * 100),
           });
         }
         gsap.set(titles[i], {
           x: offset * titleStep,
-          opacity: clamp(0.15, 1, 1 - distance * 0.75),
+          opacity: i === centeredIndex ? 1 : 0.4,
           pointerEvents: "auto",
         });
         const maskItem = maskItems[i];
@@ -170,7 +172,7 @@ export default function SmoothChapterGallery() {
       slideTween = gsap.to(state, {
         progress: current,
         duration: reduced ? 0 : transitionDuration,
-        ease: "power3.out",
+        ease: "osmo",
         onUpdate: () => render(state.progress),
       });
       startAutoplay();
@@ -199,23 +201,20 @@ export default function SmoothChapterGallery() {
     const observer = Observer.create({
       target: root,
       type: "touch,pointer",
-      dragMinimum: 6,
-      tolerance: 15,
+      dragMinimum: 10,
+      tolerance: 25,
       lockAxis: true,
-      preventDefault: false,
       onDragStart() { gestureUsed = false; },
       onLeft() { if (!gestureUsed) { gestureUsed = true; goTo(1); } },
       onRight() { if (!gestureUsed) { gestureUsed = true; goTo(-1); } },
     });
 
-    const onPrev = (e) => {
-      if (e) e.preventDefault();
+    const onPrev = () => {
       audioEngine?.playHover && audioEngine.playHover();
       goTo(-1);
     };
 
-    const onNext = (e) => {
-      if (e) e.preventDefault();
+    const onNext = () => {
       audioEngine?.playHover && audioEngine.playHover();
       goTo(1);
     };
@@ -244,29 +243,6 @@ export default function SmoothChapterGallery() {
     const onResize = () => { measure(); render(state.progress); };
     window.addEventListener("resize", onResize);
 
-    // Pause autoplay when off-screen or tab hidden
-    let isIntersecting = true;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        isIntersecting = entry.isIntersecting;
-        if (!isIntersecting) {
-          if (autoTween) autoTween.pause();
-        } else if (hovering === 0 && document.visibilityState === "visible") {
-          if (autoTween) autoTween.resume();
-        }
-      });
-    }, { threshold: 0.1 });
-    io.observe(root);
-
-    const onVisibilityChange = () => {
-      if (document.visibilityState === "hidden") {
-        if (autoTween) autoTween.pause();
-      } else if (isIntersecting && hovering === 0) {
-        if (autoTween) autoTween.resume();
-      }
-    };
-    document.addEventListener("visibilitychange", onVisibilityChange);
-
     // Title widths change when the web font swaps in, so re-measure then too.
     if (document.fonts) document.fonts.ready.then(onResize);
 
@@ -277,8 +253,6 @@ export default function SmoothChapterGallery() {
       observer.kill();
       if (slideTween) slideTween.kill();
       if (autoTween) autoTween.kill();
-      io.disconnect();
-      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("resize", onResize);
       if (prevBtn) prevBtn.removeEventListener("click", onPrev);
       if (nextBtn) nextBtn.removeEventListener("click", onNext);

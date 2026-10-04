@@ -74,11 +74,10 @@
 /* Standalone Editorial Member Card */
 .member-profile-card {
   width: 100%;
-  max-width: 100%;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 1.75rem;
-  padding: 2rem 1.25rem;
+  padding: 2.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,7 +94,7 @@
 
 /* 1. LARGE PORTRAIT PHOTO */
 .member-portrait-frame {
-  width: min(14rem, 65vw);
+  width: 14rem;
   aspect-ratio: 3 / 4;
   border-radius: 1.25rem;
   overflow: hidden;
@@ -141,15 +140,20 @@
 /* 2. NAME */
 .member-profile-name {
   font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: clamp(1.5rem, 5vw, 2.375rem);
+  font-size: 1.875rem;
   line-height: 1.2;
   font-weight: 800;
   color: #09090b;
   letter-spacing: -0.025em;
   margin: 0;
   margin-bottom: 0.5rem;
-  max-width: 100%;
-  overflow-wrap: anywhere;
+  max-width: 90%;
+}
+
+@media (min-width: 640px) {
+  .member-profile-name {
+    font-size: 2.375rem;
+  }
 }
 
 /* 3. POSITION */

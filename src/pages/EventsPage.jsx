@@ -64,7 +64,7 @@ export default function EventsPage({ onRegisterEvent }) {
           <span>CONCLAVE &amp; SYMPOSIA CALENDAR</span>
         </div>
 
-        <h1 className="font-display text-[clamp(2.15rem,6vw,3.75rem)] font-black text-zinc-950 tracking-tight leading-tight mb-4">
+        <h1 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-tight leading-tight mb-4">
           Events &amp; Symposia
         </h1>
 
@@ -76,10 +76,10 @@ export default function EventsPage({ onRegisterEvent }) {
       {/* 02. SINGLE BLANK / TEMPLATE EVENT CARD (EDITORIAL ARCHIVE COMPOSITION) */}
       {event && (
         <section aria-label="Event Details" className="mb-20 sm:mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-[#FAFBFD] p-5 sm:p-10 rounded-3xl border border-black/[0.08] shadow-xs min-w-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-[#FAFBFD] p-6 sm:p-10 rounded-3xl border border-black/[0.08] shadow-xs">
             
             {/* Left: 16:9 Image / Poster Container */}
-            <div className="lg:col-span-6 min-w-0 w-full">
+            <div className="lg:col-span-6">
               <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-zinc-100 border border-black/[0.08]">
                 {event.image ? (
                   <img 
@@ -107,7 +107,7 @@ export default function EventsPage({ onRegisterEvent }) {
             </div>
 
             {/* Right: Event Information & Actions */}
-            <div className="lg:col-span-6 flex flex-col justify-between h-full min-w-0 w-full">
+            <div className="lg:col-span-6 flex flex-col justify-between h-full">
               <div>
                 <div className="flex items-center justify-between gap-3 mb-2">
                   <span className="font-mono text-[11px] font-bold text-[#0062FF] uppercase tracking-wider">
@@ -131,7 +131,7 @@ export default function EventsPage({ onRegisterEvent }) {
                   </button>
                 </div>
 
-                <h2 className="font-display text-[clamp(1.5rem,4.5vw,2.25rem)] font-black text-zinc-950 tracking-tight leading-[1.18] mb-3 break-words">
+                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-950 tracking-tight leading-[1.18] mb-3">
                   {event.title}
                 </h2>
 

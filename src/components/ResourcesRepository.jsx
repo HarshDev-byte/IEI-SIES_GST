@@ -73,7 +73,7 @@ export default function ResourcesRepository() {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
-          <h2 className="font-display text-[clamp(1.85rem,5.5vw,3.75rem)] font-black text-zinc-950 tracking-ultra-tight">
+          <h2 className="font-display text-4xl sm:text-6xl font-black text-zinc-950 tracking-ultra-tight">
             Resources &amp; Publications
           </h2>
         </div>
@@ -88,25 +88,25 @@ export default function ResourcesRepository() {
         {resources.map((res) => (
           <div
             key={res.num}
-            className="bg-white rounded-2xl border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5 group hover:border-black/20 hover:shadow-[0_8px_25px_rgba(0,0,0,0.04)] transition-all min-w-0"
+            className="bg-white rounded-2xl border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5 group hover:border-black/20 hover:shadow-[0_8px_25px_rgba(0,0,0,0.04)] transition-all"
           >
-            <div className="flex items-start gap-4 min-w-0 flex-1">
+            <div className="flex items-start gap-4">
               <div className="w-11 h-11 rounded-xl bg-zinc-100 border border-black/[0.08] flex items-center justify-center shrink-0 text-[#0062FF]">
                 {res.format === 'ZIP' ? <FolderArchive size={20} /> : <FileText size={20} />}
               </div>
 
-              <div className="min-w-0 flex-1">
+              <div>
                 <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 font-medium mb-1">
                   <span>{res.category}</span>
                   <span>•</span>
                   <span>{res.format} · {res.fileSize}</span>
                 </div>
 
-                <h3 className="font-display text-base sm:text-lg font-bold text-zinc-950 group-hover:text-[#0062FF] transition-colors break-words">
+                <h3 className="font-display text-base sm:text-lg font-bold text-zinc-950 group-hover:text-[#0062FF] transition-colors">
                   {res.title}
                 </h3>
 
-                <p className="text-zinc-600 text-xs sm:text-sm mt-0.5 max-w-2xl font-normal leading-relaxed break-words">
+                <p className="text-zinc-600 text-xs sm:text-sm mt-0.5 max-w-2xl font-normal leading-relaxed">
                   {res.desc}
                 </p>
               </div>
