@@ -179,7 +179,7 @@ export default function CampusHeadquarters() {
                     placeholder="e.g. Rahul Sharma"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full h-11 sm:h-12 bg-zinc-950 border border-white/15 rounded-2xl px-4 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans"
+                    className="w-full h-11 sm:h-12 bg-black border border-white/20 rounded-2xl px-4 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans"
                   />
                 </div>
 
@@ -197,7 +197,7 @@ export default function CampusHeadquarters() {
                     placeholder="name@siesgst.ac.in"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full h-11 sm:h-12 bg-zinc-950 border border-white/15 rounded-2xl px-4 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans"
+                    className="w-full h-11 sm:h-12 bg-black border border-white/20 rounded-2xl px-4 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans"
                   />
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function CampusHeadquarters() {
                     id="inquiry-category"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full h-11 sm:h-12 bg-zinc-950 border border-white/15 rounded-2xl px-4 text-xs sm:text-sm text-white focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans appearance-none pr-10 cursor-pointer"
+                    className="w-full h-11 sm:h-12 bg-black border border-white/20 rounded-2xl px-4 text-xs sm:text-sm text-white focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans appearance-none pr-10 cursor-pointer"
                   >
                     <option value="Student Membership (SMIE)" className="bg-black text-white">Student Membership (SMIE)</option>
                     <option value="General Inquiry" className="bg-black text-white">General Inquiry</option>
@@ -244,7 +244,7 @@ export default function CampusHeadquarters() {
                   placeholder="Write your message or question for the council..."
                   value={formData.query}
                   onChange={(e) => setFormData({ ...formData, query: e.target.value })}
-                  className="w-full min-h-[120px] sm:min-h-[135px] bg-zinc-950 border border-white/15 rounded-2xl p-4 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans resize-y"
+                  className="w-full min-h-[120px] sm:min-h-[135px] bg-black border border-white/20 rounded-2xl p-4 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 hover:border-white/30 transition-all font-sans resize-y"
                 />
               </div>
 

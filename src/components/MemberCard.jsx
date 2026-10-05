@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { getInitials } from '../data/membersData';
+import { getMemberPhotoCandidates } from '../utils/memberPhotoResolver';
+import { audioEngine } from '../utils/audioEngine';
 
 // Crisp, lightweight standalone SVG icons for social platforms
 const LinkedInIcon = ({ size = 12, className = '' }) => (
@@ -92,15 +94,12 @@ function FallbackAvatar({ name = '' }) {
  * 6. Email (if valid)
  * ============================================================================
  */
-import { audioEngine } from '../utils/audioEngine';
-
 export default function MemberCard({ member = {}, className = '' }) {
-  const [imgFailed, setImgFailed] = useState(false);
+  const photoCandidates = useMemo(() => getMemberPhotoCandidates(member), [member]);
+  const [candidateIdx, setCandidateIdx] = useState(0);
 
   const name = member.name || 'Team Member';
   const position = member.position || member.role || 'Member';
-  const photo = member.image || member.photo;
-  const hasValidPhoto = Boolean(photo) && !imgFailed;
 
   const memberIdentifier = member.id || member.prn || member.slug || encodeURIComponent(name);
 
@@ -111,12 +110,36 @@ export default function MemberCard({ member = {}, className = '' }) {
   const firstName = nameParts[0] || 'member';
   const lastName = nameParts[nameParts.length - 1] || 'iei';
 
+  // Check if member is faculty leadership (HOD or Faculty Coordinator)
+  const isFaculty = member.category === 'faculty' || 
+    member.council === 'Faculty Leadership' ||
+    member.role === 'HOD' || 
+    member.position === 'HOD' || 
+    member.role === 'Student Branch Coordinator' || 
+    member.position === 'Student Branch Coordinator' || 
+    member.id === 'FAC-01' || 
+    member.id === 'FAC-02' ||
+    (name && (name.toLowerCase().includes('kharche') || name.toLowerCase().includes('hirani')));
+
+  // Current photo from candidates list (sc, jc, vols, or faculty)
+  const currentPhoto = photoCandidates[candidateIdx] || null;
+  const hasValidPhoto = Boolean(currentPhoto) && candidateIdx < photoCandidates.length;
+
+  const handleImageError = () => {
+    // Attempt the next candidate image path; if none left, fall back to monogram
+    if (candidateIdx + 1 < photoCandidates.length) {
+      setCandidateIdx(prev => prev + 1);
+    } else {
+      setCandidateIdx(photoCandidates.length);
+    }
+  };
+
   // Extract contact links (from root fields, nested socials, or deterministic college handles)
   const linkedinUrl = member.linkedin || member.socials?.linkedin || `https://www.linkedin.com/in/${slug}`;
-  const githubUrl = member.github || member.socials?.github || `https://github.com/${slug}`;
+  const githubUrl = isFaculty ? null : (member.github || member.socials?.github || `https://github.com/${slug}`);
   const email = member.email || member.socials?.email || `${firstName}.${lastName}@siesgst.ac.in`;
 
-  const hasAnySocial = true;
+  const hasAnySocial = Boolean(linkedinUrl || githubUrl || email);
 
   const handleCardClick = () => {
     if (!memberIdentifier) return;
@@ -136,15 +159,15 @@ export default function MemberCard({ member = {}, className = '' }) {
       tabIndex={0}
       role="button"
       aria-label={`View profile of ${name}, ${position}`}
-      className={`group relative flex flex-col w-full max-w-[340px] mx-auto rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#0A0A0C] overflow-hidden shadow-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md cursor-pointer ${className}`}
+      className={`group relative flex flex-col w-full max-w-[340px] mx-auto rounded-xl border border-black/[0.08] bg-white overflow-hidden shadow-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md cursor-pointer ${className}`}
     >
       {/* 1. PORTRAIT IMAGE (65–75% of card height, 4:5 ratio) */}
-      <div className="relative w-full aspect-[4/5] bg-zinc-100 dark:bg-zinc-900 overflow-hidden shrink-0">
+      <div className="relative w-full aspect-[4/5] bg-zinc-100 overflow-hidden shrink-0">
         {hasValidPhoto ? (
           <img
-            src={photo}
+            src={currentPhoto}
             alt={name}
-            onError={() => setImgFailed(true)}
+            onError={handleImageError}
             className="w-full h-full object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.015]"
             loading="lazy"
           />
@@ -154,16 +177,16 @@ export default function MemberCard({ member = {}, className = '' }) {
       </div>
 
       {/* 2. MEMBER INFO AREA */}
-      <div className="p-4 sm:p-4.5 flex flex-col justify-between flex-1 bg-white dark:bg-[#0A0A0C]">
+      <div className="p-4 sm:p-4.5 flex flex-col justify-between flex-1 bg-white">
         <div>
           <h3 
-            className="font-display font-bold text-base text-zinc-950 dark:text-white tracking-tight leading-snug truncate group-hover:text-[#0062FF] dark:group-hover:text-[#38BDF8] transition-colors" 
+            className="font-display font-bold text-base text-zinc-950 tracking-tight leading-snug truncate group-hover:text-[#0062FF] transition-colors" 
             title={name}
           >
             {name}
           </h3>
           <p 
-            className="text-xs sm:text-[13px] font-normal text-zinc-500 dark:text-zinc-400 mt-1 line-clamp-1" 
+            className="text-xs sm:text-[13px] font-normal text-zinc-500 mt-1 line-clamp-1" 
             title={position}
           >
             {position}
@@ -172,7 +195,7 @@ export default function MemberCard({ member = {}, className = '' }) {
 
         {/* 3. SOCIAL ACTIONS (Only visible when valid data exists) */}
         {hasAnySocial && (
-          <div className="mt-3 pt-3 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center gap-2 flex-wrap">
+          <div className="mt-3 pt-3 border-t border-black/[0.06] flex items-center gap-2 flex-wrap">
             {linkedinUrl && (
               <div className="relative inline-flex">
                 <a
@@ -181,11 +204,11 @@ export default function MemberCard({ member = {}, className = '' }) {
                   rel="noopener noreferrer"
                   aria-label={`LinkedIn — ${name}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 dark:bg-white/[0.06] hover:bg-[#0A66C2]/10 dark:hover:bg-[#0A66C2]/20 text-zinc-600 dark:text-zinc-300 hover:text-[#0A66C2] dark:hover:text-[#38BDF8] transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
+                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 hover:bg-[#0A66C2]/10 text-zinc-600 hover:text-[#0A66C2] transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
                 >
                   <LinkedInIcon size={14} className="shrink-0" />
                 </a>
-                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-[11px] font-semibold text-zinc-800 dark:text-zinc-100 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
+                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-white text-[11px] font-semibold text-zinc-800 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
                   LinkedIn
                 </span>
               </div>
@@ -199,11 +222,11 @@ export default function MemberCard({ member = {}, className = '' }) {
                   rel="noopener noreferrer"
                   aria-label={`GitHub — ${name}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 dark:bg-white/[0.06] hover:bg-zinc-800/10 dark:hover:bg-white/10 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
+                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 hover:bg-zinc-800/10 text-zinc-600 hover:text-zinc-900 transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
                 >
                   <GitHubIcon size={14} className="shrink-0" />
                 </a>
-                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-[11px] font-semibold text-zinc-800 dark:text-zinc-100 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
+                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-white text-[11px] font-semibold text-zinc-800 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
                   GitHub
                 </span>
               </div>
@@ -215,11 +238,11 @@ export default function MemberCard({ member = {}, className = '' }) {
                   href={`mailto:${email}`}
                   aria-label={`Email — ${name}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 dark:bg-white/[0.06] hover:bg-[#0062FF]/10 dark:hover:bg-[#0062FF]/20 text-zinc-600 dark:text-zinc-300 hover:text-[#0062FF] dark:hover:text-[#38BDF8] transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
+                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 hover:bg-[#0062FF]/10 text-zinc-600 hover:text-[#0062FF] transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
                 >
                   <MailIcon size={14} className="shrink-0" />
                 </a>
-                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-[11px] font-semibold text-zinc-800 dark:text-zinc-100 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
+                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-white text-[11px] font-semibold text-zinc-800 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
                   Email
                 </span>
               </div>

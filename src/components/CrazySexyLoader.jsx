@@ -11,6 +11,9 @@ export default function CrazySexyLoader({ onComplete }) {
   const [isExiting, setIsExiting] = useState(false);
   const [isReadyToPlay, setIsReadyToPlay] = useState(false);
 
+  // Pure Light Mode startup rendering
+  const isDark = false;
+
   const canvasRef = useRef(null);
   const imagesRef = useRef([]);
   const animFrameRef = useRef(null);
@@ -116,8 +119,8 @@ export default function CrazySexyLoader({ onComplete }) {
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
 
-    // Clean white architectural canvas
-    ctx.fillStyle = '#FFFFFF';
+    // Clean architectural canvas (pitch black for dark mode, pure white for light mode)
+    ctx.fillStyle = isDark ? '#000000' : '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const imgRatio = (img.naturalWidth && img.naturalHeight) ? (img.naturalWidth / img.naturalHeight) : (1920 / 1080);
@@ -145,8 +148,15 @@ export default function CrazySexyLoader({ onComplete }) {
       drawY = (canvas.height - drawH) / 2;
     }
 
+    if (isDark) {
+      ctx.filter = 'invert(1) hue-rotate(180deg)';
+    } else {
+      ctx.filter = 'none';
+    }
+
     ctx.drawImage(img, drawX, drawY, drawW, drawH);
-  }, []);
+    ctx.filter = 'none';
+  }, [isDark]);
 
   // Sync ref with state
   useEffect(() => {
@@ -262,7 +272,9 @@ export default function CrazySexyLoader({ onComplete }) {
   return (
     <div 
       onWheel={handleWheel}
-      className={`fixed inset-0 z-[10000] min-h-[100svh] h-[100svh] bg-[#FFFFFF] text-zinc-950 flex flex-col justify-between select-none overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed inset-0 z-[10000] min-h-[100svh] h-[100svh] ${
+        isDark ? 'bg-[#000000] text-white' : 'bg-[#FFFFFF] text-zinc-950'
+      } flex flex-col justify-between select-none overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isExiting 
           ? '-translate-y-2 scale-[1.01] opacity-0 pointer-events-none filter blur-[1px]' 
           : 'translate-y-0 scale-100 opacity-100'
@@ -270,7 +282,7 @@ export default function CrazySexyLoader({ onComplete }) {
       aria-label="IEI SIES GST Architectural Loading Animation"
     >
       {/* 1. FULL-SCREEN 1920x1080 CANVAS */}
-      <div className="absolute inset-0 flex items-center justify-center bg-[#FFFFFF]">
+      <div className={`absolute inset-0 flex items-center justify-center ${isDark ? 'bg-[#000000]' : 'bg-[#FFFFFF]'}`}>
         <canvas 
           ref={canvasRef}
           className="w-full h-full object-contain"
@@ -282,7 +294,11 @@ export default function CrazySexyLoader({ onComplete }) {
         <button
           type="button"
           onClick={triggerExitToHome}
-          className="pointer-events-auto px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-zinc-100 backdrop-blur-md border border-black/[0.08] text-zinc-600 hover:text-zinc-950 transition-all font-mono font-bold text-[10px] tracking-wider uppercase flex items-center gap-1.5 cursor-pointer shadow-xs"
+          className={`pointer-events-auto px-3.5 py-1.5 rounded-full backdrop-blur-md border transition-all font-mono font-bold text-[10px] tracking-wider uppercase flex items-center gap-1.5 cursor-pointer shadow-xs ${
+            isDark 
+              ? 'bg-[#0E0E12]/90 hover:bg-zinc-900 border-white/15 text-zinc-300 hover:text-white' 
+              : 'bg-white/90 hover:bg-zinc-100 border-black/[0.08] text-zinc-600 hover:text-zinc-950'
+          }`}
           title="Skip to Homepage [ESC]"
         >
           <span>SKIP [ESC]</span>

@@ -6,7 +6,8 @@ import {
   SearchModal, 
   LoginModal, 
   VerifyModal,
-  GlowingDotsGrid 
+  GlowingDotsGrid,
+  MobileFloatingSocial
 } from '@/components';
 
 import { 
@@ -30,36 +31,17 @@ export default function App() {
   // Identity Theme state ('default' | 'signature')
   const [identityTheme, setIdentityTheme] = useState('default');
 
-  // Pitch Black Dark Mode state ('light' | 'dark') — Default to 'dark'
-  const [theme, setTheme] = useState(() => {
-    try {
-      const saved = localStorage.getItem('iei-theme');
-      if (saved === 'light' || saved === 'dark') return saved;
-      return 'dark';
-    } catch (_) {
-      return 'dark';
-    }
-  });
-
+  // Enforce pure light mode across entire chapter portal
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
+    root.classList.remove('dark');
+    root.classList.add('light');
     try {
-      localStorage.setItem('iei-theme', theme);
+      localStorage.removeItem('iei-theme');
       const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', theme === 'dark' ? '#000000' : '#FFFFFF');
+      if (meta) meta.setAttribute('content', '#FFFFFF');
     } catch (_) {}
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
+  }, []);
 
   // Modal states
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -151,11 +133,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen text-zinc-950 dark:text-white bg-white dark:bg-[#000000] relative selection:bg-[#0062FF] selection:text-white transition-colors duration-200">
+    <div className="min-h-screen text-zinc-950 bg-white relative selection:bg-[#0062FF] selection:text-white">
       
       {/* Professional Architectural Loading Screen */}
       {showLoader && (
-        <CrazySexyLoader onComplete={() => setShowLoader(false)} />
+        <CrazySexyLoader 
+          onComplete={() => setShowLoader(false)} 
+        />
       )}
 
       {/* Sleek Minimal Global Light Background */}
@@ -177,13 +161,11 @@ export default function App() {
       </div>
 
       {/* Global Interactive Glowing Dots Grid Canvas (Active Across Entire Website) */}
-      <GlowingDotsGrid isGlobal={true} enableEmblemClearance={false} theme={theme} />
+      <GlowingDotsGrid isGlobal={true} enableEmblemClearance={false} />
 
       {/* Unified Floating Top Architectural Navbar */}
       <Navbar 
         currentRoute={currentRoute}
-        theme={theme}
-        onToggleTheme={toggleTheme}
         identityTheme={identityTheme}
         onOpenSearch={() => setIsSearchOpen(true)}
       />
@@ -249,7 +231,8 @@ export default function App() {
         onClose={() => setIsVerifyOpen(false)}
       />
 
-
+      {/* Mobile-Only Floating Social Media Menu (<= 767px) */}
+      <MobileFloatingSocial />
 
     </div>
   );

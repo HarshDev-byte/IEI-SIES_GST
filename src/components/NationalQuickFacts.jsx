@@ -61,13 +61,13 @@ export default function NationalQuickFacts() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 sm:gap-x-8 gap-y-8 sm:gap-y-10">
           {chapterMetrics.map((item, idx) => (
             <div key={idx} className="flex flex-col">
-              <div className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-950 dark:text-white tracking-tight leading-none">
+              <div className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-950 tracking-tight leading-none">
                 {item.val}
               </div>
-              <div className="font-sans text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-200 mt-2.5 leading-snug">
+              <div className="font-sans text-sm sm:text-base font-bold text-zinc-900 mt-2.5 leading-snug">
                 {item.label}
               </div>
-              <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+              <div className="text-xs text-zinc-500 mt-1 leading-relaxed">
                 {item.desc}
               </div>
             </div>
@@ -78,26 +78,26 @@ export default function NationalQuickFacts() {
       {/* 02. STATUTORY NATIONAL BENCHMARK BASELINE */}
       <div className="pt-8 sm:pt-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center text-emerald-700 dark:text-emerald-400 shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200/60 flex items-center justify-center text-emerald-700 shrink-0">
             <ShieldCheck size={16} />
           </div>
           <div>
-            <div className="text-xs font-bold text-zinc-950 dark:text-white uppercase tracking-wide">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide">
               Scientific &amp; Industrial Research Organisation (SIRO)
             </div>
-            <div className="text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="text-xs text-zinc-500">
               Recognized by DSIR, Ministry of Science &amp; Technology, Government of India
             </div>
           </div>
         </div>
 
         {/* 4 Compact Institutional Anchors */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-xs text-zinc-600 dark:text-zinc-400">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-xs text-zinc-600">
           {nationalSpecs.map((spec, i) => (
             <div key={i} className="flex flex-col">
               <span className="text-zinc-400 font-mono text-[11px] uppercase tracking-wider">{spec.label}</span>
-              <span className="font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">{spec.val}</span>
-              <span className="text-zinc-500 dark:text-zinc-400 text-[11px]">{spec.meta}</span>
+              <span className="font-bold text-zinc-900 mt-0.5">{spec.val}</span>
+              <span className="text-zinc-500 text-[11px]">{spec.meta}</span>
             </div>
           ))}
         </div>

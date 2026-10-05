@@ -18,24 +18,40 @@ export const facultyLeadership = [
     id: "FAC-01",
     slug: "dr-shubhangi-kharche",
     name: "Dr. Shubhangi Kharche",
-    position: "HOD",
+    position: "Professor & Head",
     role: "HOD",
     branch: "ECS",
+    department: "Department of Electronics & Computer Science",
     prn: null,
     council: "Faculty Leadership",
     domain: "Academic Oversight",
     category: "faculty",
     image: "/assets/team-portraits/faculty-kharche.jpg",
     photo: "/assets/team-portraits/faculty-kharche.jpg",
-    description: "Head of the Department of Electronics and Computer Science at SIES GST. Provides institutional guidance, academic excellence steering, and chapter governance.",
-    bio: "Head of the Department of Electronics and Computer Science at SIES GST. Provides institutional guidance, academic excellence steering, and chapter governance.",
-    email: "shubhangik@sies.edu.in",
+    description: "Professor & Head of the Department of Electronics & Computer Science. Over 25 years of experience in teaching, research, AI, IoT, and next-generation communication networks.",
+    bio: `Dr. Shubhangi Pravin Kharche is an accomplished **academician, researcher, and academic leader** with over **25 years of experience** in teaching, research, and innovation. She currently serves as the **Professor & Head of the Department of Electronics & Computer Science**.
+
+Her research interests include **Artificial Intelligence, Machine Learning, Deep Learning, IoT, Wireless Sensor Networks, 6LoWPAN, Computer Networks, and 5G/6G Communication**.
+
+She has authored and co-authored **45+ research publications** in national and international journals and conferences, including **Scopus, Web of Science, and SCI-indexed** publications. Her work spans intelligent networking, healthcare technologies, IoT, AI-driven systems, and next-generation communication networks.
+
+### Key Highlights
+
+- **25+ Years** of Academic & Research Experience
+- **45+ Research Publications**
+- **Best Paper Awards** at national and international conferences
+- **Women Researcher Award – 2021**
+- Research & Intellectual Property in **AI, IoT, Healthcare & 6G**
+- Numerous **Expert Talks, Workshops & Faculty Development Programs**
+
+As Head of the Department, Dr. Kharche is committed to fostering **academic excellence, research, innovation, and industry-relevant learning**, empowering students to explore emerging technologies and develop solutions for the future.`,
+    email: "shubhangi.kharche@siesgst.ac.in",
     linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
-    github: "https://github.com/shubhangi-kharche",
+    github: null,
     socials: {
-      email: "shubhangik@sies.edu.in",
+      email: "shubhangi.kharche@siesgst.ac.in",
       linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
-      github: "https://github.com/shubhangi-kharche"
+      github: null,
     }
   },
   {
@@ -54,12 +70,12 @@ export const facultyLeadership = [
     description: "Student Branch Coordinator for IEI SIES GST. Mentors the student chapter councils, orchestrates inter-departmental technical initiatives, and guides professional chapter activities.",
     bio: "Student Branch Coordinator for IEI SIES GST. Mentors the student chapter councils, orchestrates inter-departmental technical initiatives, and guides professional chapter activities.",
     email: "jasminh@sies.edu.in",
-    linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
-    github: "https://github.com/jasmin-hirani",
+    linkedin: "https://in.linkedin.com/in/jasmin-hirani-68834b38",
+    github: null,
     socials: {
       email: "jasminh@sies.edu.in",
-      linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
-      github: "https://github.com/jasmin-hirani"
+      linkedin: "https://in.linkedin.com/in/jasmin-hirani-68834b38",
+      github: null,
     }
   }
 ];
@@ -77,15 +93,15 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Executive",
     category: "executive",
-    image: "/assets/team-portraits/exec-tejraj.jpg",
-    photo: "/assets/team-portraits/exec-tejraj.jpg",
+    image: null,
+    photo: null,
     description: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
     bio: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
-    linkedin: "https://www.linkedin.com/in/tejraj-gujar",
+    linkedin: "https://www.linkedin.com/in/tejraj-gujar-8707b9225/",
     github: "https://github.com/tejraj-gujar",
     email: "tejraj.gujar@siesgst.ac.in",
     socials: {
-      linkedin: "https://www.linkedin.com/in/tejraj-gujar",
+      linkedin: "https://www.linkedin.com/in/tejraj-gujar-8707b9225/",
       email: "tejraj.gujar@siesgst.ac.in",
       github: "https://github.com/tejraj-gujar"
     }
@@ -101,15 +117,15 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Executive",
     category: "executive",
-    image: "/assets/team-portraits/exec-sarang.jpg",
-    photo: "/assets/team-portraits/exec-sarang.jpg",
+    image: null,
+    photo: null,
     description: "Supports executive chapter operations, program execution, cross-domain coordination, and student representation.",
     bio: "Supports executive chapter operations, program execution, cross-domain coordination, and student representation.",
-    linkedin: "https://www.linkedin.com/in/sarang-patil",
+    linkedin: "https://www.linkedin.com/in/sarangpatil1/",
     github: "https://github.com/sarang-patil",
     email: "sarang.patil@siesgst.ac.in",
     socials: {
-      linkedin: "https://www.linkedin.com/in/sarang-patil",
+      linkedin: "https://www.linkedin.com/in/sarangpatil1/",
       email: "sarang.patil@siesgst.ac.in",
       github: "https://github.com/sarang-patil"
     }
@@ -125,15 +141,15 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Executive",
     category: "executive",
-    image: "/assets/team-portraits/exec-shardul.jpg",
-    photo: "/assets/team-portraits/exec-shardul.jpg",
+    image: null,
+    photo: null,
     description: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
     bio: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
-    linkedin: "https://www.linkedin.com/in/shardul-gade",
+    linkedin: "https://www.linkedin.com/in/shardul-gade-681304329/",
     github: "https://github.com/shardul-gade",
     email: "shardul.gade@siesgst.ac.in",
     socials: {
-      linkedin: "https://www.linkedin.com/in/shardul-gade",
+      linkedin: "https://www.linkedin.com/in/shardul-gade-681304329/",
       email: "shardul.gade@siesgst.ac.in",
       github: "https://github.com/shardul-gade"
     }
@@ -149,15 +165,15 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Executive",
     category: "executive",
-    image: "/assets/team-portraits/exec-harshad.jpg",
-    photo: "/assets/team-portraits/exec-harshad.jpg",
+    image: null,
+    photo: null,
     description: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
     bio: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
-    linkedin: "https://www.linkedin.com/in/harshad-jadhav",
+    linkedin: "https://www.linkedin.com/in/harshad-jadhav-108a242b2/",
     github: "https://github.com/harshad-jadhav",
     email: "harshad.jadhav@siesgst.ac.in",
     socials: {
-      linkedin: "https://www.linkedin.com/in/harshad-jadhav",
+      linkedin: "https://www.linkedin.com/in/harshad-jadhav-108a242b2/",
       email: "harshad.jadhav@siesgst.ac.in",
       github: "https://github.com/harshad-jadhav"
     }
@@ -173,15 +189,15 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Community",
     category: "executive",
-    image: "/assets/team-portraits/exec-lakshanya.jpg",
-    photo: "/assets/team-portraits/exec-lakshanya.jpg",
+    image: null,
+    photo: null,
     description: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
     bio: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
-    linkedin: "https://www.linkedin.com/in/a-s-lakshanya",
+    linkedin: "https://www.linkedin.com/in/a-s-lakshanya-150010314/",
     github: "https://github.com/a-s-lakshanya",
     email: "lakshanya.as@siesgst.ac.in",
     socials: {
-      linkedin: "https://www.linkedin.com/in/a-s-lakshanya",
+      linkedin: "https://www.linkedin.com/in/a-s-lakshanya-150010314/",
       email: "lakshanya.as@siesgst.ac.in",
       github: "https://github.com/a-s-lakshanya"
     }
@@ -197,15 +213,15 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Community",
     category: "executive",
-    image: "/assets/team-portraits/exec-anushka.jpg",
-    photo: "/assets/team-portraits/exec-anushka.jpg",
+    image: null,
+    photo: null,
     description: "Orchestrates symposia schedules, venue operations, community relations, and inter-collegiate technical competitions.",
     bio: "Orchestrates symposia schedules, venue operations, community relations, and inter-collegiate technical competitions.",
-    linkedin: "https://www.linkedin.com/in/anushka-pawar",
+    linkedin: "https://www.linkedin.com/in/anushka-pawar-91268b38a/",
     github: "https://github.com/anushka-pawar",
     email: "anushka.pawar@siesgst.ac.in",
     socials: {
-      linkedin: "https://www.linkedin.com/in/anushka-pawar",
+      linkedin: "https://www.linkedin.com/in/anushka-pawar-91268b38a/",
       email: "anushka.pawar@siesgst.ac.in",
       github: "https://github.com/anushka-pawar"
     }
@@ -221,16 +237,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: "/assets/team-portraits/exec-harsh.jpg",
-    photo: "/assets/team-portraits/exec-harsh.jpg",
+    image: null,
+    photo: null,
     description: "Advises technical roadmap development, hackathon infrastructure, systems architecture, and engineering workshops.",
     bio: "Advises technical roadmap development, hackathon infrastructure, systems architecture, and engineering workshops.",
     github: "https://github.com/harshmhatre",
-    linkedin: "https://www.linkedin.com/in/harsh-mhatre",
+    linkedin: "https://www.linkedin.com/in/harsh-mhatre-7b9606320/",
     email: "harsh.mhatre@siesgst.ac.in",
     socials: {
       github: "https://github.com/harshmhatre",
-      linkedin: "https://www.linkedin.com/in/harsh-mhatre",
+      linkedin: "https://www.linkedin.com/in/harsh-mhatre-7b9606320/",
       email: "harsh.mhatre@siesgst.ac.in"
     }
   },
@@ -245,16 +261,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: "/assets/team-portraits/exec-sahil.jpg",
-    photo: "/assets/team-portraits/exec-sahil.jpg",
+    image: null,
+    photo: null,
     description: "Provides technical leadership across software projects, developer bootcamps, and institutional digital platforms.",
     bio: "Provides technical leadership across software projects, developer bootcamps, and institutional digital platforms.",
     github: "https://github.com/sahilchavan",
-    linkedin: "https://www.linkedin.com/in/sahil-chavan",
+    linkedin: "https://www.linkedin.com/in/sahil-chavan-066a252b2/",
     email: "sahil.chavan@siesgst.ac.in",
     socials: {
       github: "https://github.com/sahilchavan",
-      linkedin: "https://www.linkedin.com/in/sahil-chavan",
+      linkedin: "https://www.linkedin.com/in/sahil-chavan-066a252b2/",
       email: "sahil.chavan@siesgst.ac.in"
     }
   },
@@ -269,16 +285,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: "/assets/team-portraits/exec-soham.jpg",
-    photo: "/assets/team-portraits/exec-soham.jpg",
+    image: null,
+    photo: null,
     description: "Guides project governance, hardware-software integration, cloud infrastructure, and technical mentoring.",
     bio: "Guides project governance, hardware-software integration, cloud infrastructure, and technical mentoring.",
     github: "https://github.com/sohamchafale",
-    linkedin: "https://www.linkedin.com/in/soham-chafale",
+    linkedin: "https://www.linkedin.com/in/soham-chafale/",
     email: "soham.chafale@siesgst.ac.in",
     socials: {
       github: "https://github.com/sohamchafale",
-      linkedin: "https://www.linkedin.com/in/soham-chafale",
+      linkedin: "https://www.linkedin.com/in/soham-chafale/",
       email: "soham.chafale@siesgst.ac.in"
     }
   },
@@ -293,16 +309,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: "/assets/team-portraits/exec-aditya.jpg",
-    photo: "/assets/team-portraits/exec-aditya.jpg",
+    image: null,
+    photo: null,
     description: "Oversees research symposiums, technical paper reviews, coding competitions, and algorithmic workshops.",
     bio: "Oversees research symposiums, technical paper reviews, coding competitions, and algorithmic workshops.",
     github: "https://github.com/adityakinikar",
-    linkedin: "https://www.linkedin.com/in/aditya-kinikar",
+    linkedin: "https://www.linkedin.com/in/adityakinikar/",
     email: "aditya.kinikar@siesgst.ac.in",
     socials: {
       github: "https://github.com/adityakinikar",
-      linkedin: "https://www.linkedin.com/in/aditya-kinikar",
+      linkedin: "https://www.linkedin.com/in/adityakinikar/",
       email: "aditya.kinikar@siesgst.ac.in"
     }
   },
@@ -317,17 +333,17 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Creative",
     category: "executive",
-    image: "/assets/team-portraits/exec-ananya.jpg",
-    photo: "/assets/team-portraits/exec-ananya.jpg",
+    image: null,
+    photo: null,
     description: "Mentors creative branding, stage aesthetics, publication themes, and visual narrative direction.",
     bio: "Mentors creative branding, stage aesthetics, publication themes, and visual narrative direction.",
     instagram: "https://instagram.com/ananya_sid",
-    linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar",
+    linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar-5430a0320/",
     github: "https://github.com/ananya-siddayyanavar",
     email: "ananya.sid@siesgst.ac.in",
     socials: {
       instagram: "https://instagram.com/ananya_sid",
-      linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar",
+      linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar-5430a0320/",
       email: "ananya.sid@siesgst.ac.in",
       github: "https://github.com/ananya-siddayyanavar"
     }
@@ -343,17 +359,17 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Media",
     category: "executive",
-    image: "/assets/team-portraits/exec-ayush.jpg",
-    photo: "/assets/team-portraits/exec-ayush.jpg",
+    image: null,
+    photo: null,
     description: "Guides media production, cinematographic coverage, post-production editing, and digital broadcast workflows.",
     bio: "Guides media production, cinematographic coverage, post-production editing, and digital broadcast workflows.",
     instagram: "https://instagram.com/ayushtandel",
-    linkedin: "https://www.linkedin.com/in/ayush-tandel",
+    linkedin: "https://www.linkedin.com/in/ayush-t-aa6b202b2/",
     github: "https://github.com/ayush-tandel",
     email: "ayush.tandel@siesgst.ac.in",
     socials: {
       instagram: "https://instagram.com/ayushtandel",
-      linkedin: "https://www.linkedin.com/in/ayush-tandel",
+      linkedin: "https://www.linkedin.com/in/ayush-t-aa6b202b2/",
       email: "ayush.tandel@siesgst.ac.in",
       github: "https://github.com/ayush-tandel"
     }
@@ -369,8 +385,8 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Media",
     category: "executive",
-    image: "/assets/team-portraits/exec-kaushik.jpg",
-    photo: "/assets/team-portraits/exec-kaushik.jpg",
+    image: null,
+    photo: null,
     description: "Mentors audiovisual documentation, press releases, social storytelling, and chapter media archives.",
     bio: "Mentors audiovisual documentation, press releases, social storytelling, and chapter media archives.",
     linkedin: "https://www.linkedin.com/in/kaushik-yadav",
@@ -393,17 +409,17 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Design",
     category: "executive",
-    image: "/assets/team-portraits/exec-shravani.jpg",
-    photo: "/assets/team-portraits/exec-shravani.jpg",
+    image: null,
+    photo: null,
     description: "Guides brand design systems, interface design, editorial layouts, and chapter brand identity guidelines.",
     bio: "Guides brand design systems, interface design, editorial layouts, and chapter brand identity guidelines.",
     instagram: "https://instagram.com/shravanikhedkar",
-    linkedin: "https://www.linkedin.com/in/shravani-khedkar",
+    linkedin: "https://www.linkedin.com/in/shravani-khedkar-9b893a369/",
     github: "https://github.com/shravani-khedkar",
     email: "shravani.khedkar@siesgst.ac.in",
     socials: {
       instagram: "https://instagram.com/shravanikhedkar",
-      linkedin: "https://www.linkedin.com/in/shravani-khedkar",
+      linkedin: "https://www.linkedin.com/in/shravani-khedkar-9b893a369/",
       email: "shravani.khedkar@siesgst.ac.in",
       github: "https://github.com/shravani-khedkar"
     }
@@ -420,131 +436,142 @@ export const leadershipMembers = [
 export const juniorCouncil = [
   {
     id: "124A7003",
+    slug: "prathamesh-bhagwat",
     name: "Prathamesh Bhagwat",
     branch: "ECS",
     prn: "124A7003",
     position: "Joint Secretary",
+    role: "Joint Secretary",
     council: "Junior Council",
     domain: "Executive",
     photo: null,
     bio: "Assists the Secretariat in executing council administration, institutional record-keeping, and inter-departmental communication across the student chapter.",
+    email: "prathamesh.bhagwat@siesgst.ac.in",
+    linkedin: "https://www.linkedin.com/in/prathamesh-bhagwat-191409298/",
+    github: "https://github.com/prathamesh-bhagwat",
     socials: {
-      email: "shubhangi.kharche@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/shubhangi-kharche",
-      github: "https://github.com/shubhangi-kharche"
+      email: "prathamesh.bhagwat@siesgst.ac.in",
+      linkedin: "https://www.linkedin.com/in/prathamesh-bhagwat-191409298/",
+      github: "https://github.com/prathamesh-bhagwat"
     }
   },
   {
     id: "124A1118",
+    slug: "indrayani-patil",
     name: "Indrayani Patil",
     branch: "CE",
     prn: "124A1118",
     position: "Joint Secretary",
+    role: "Joint Secretary",
     council: "Junior Council",
     domain: "Executive",
     photo: null,
     bio: "Supports chapter governance, institutional documentation, meeting agendas, and administrative coordination across student wings.",
-    slug: "indrayani-patil",
     email: "indrayani.patil@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/indrayani-patil",
+    linkedin: "https://www.linkedin.com/in/indrayani-patill/",
     github: "https://github.com/indrayani-patil",
     socials: {
       email: "indrayani.patil@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/indrayani-patil",
+      linkedin: "https://www.linkedin.com/in/indrayani-patill/",
       github: "https://github.com/indrayani-patil"
     }
   },
   {
     id: "124A7052",
+    slug: "saran-rajasekhar",
     name: "Saran Rajasekhar",
     branch: "ECS",
     prn: "124A7052",
     position: "Technical Head",
+    role: "Technical Head",
     council: "Junior Council",
     domain: "Technical",
     photo: null,
     bio: "Directs core software development projects, technical workshops, and coding challenges for chapter members.",
-    slug: "saran-rajasekhar",
     email: "saran.rajasekhar@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/saran-rajasekhar",
+    linkedin: "https://www.linkedin.com/in/saran-rajasekhar-1162b9334/",
     github: "https://github.com/saran-rajasekhar",
     socials: {
       email: "saran.rajasekhar@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/saran-rajasekhar",
+      linkedin: "https://www.linkedin.com/in/saran-rajasekhar-1162b9334/",
       github: "https://github.com/saran-rajasekhar"
     }
   },
   {
     id: "124A7061",
+    slug: "manas-suryawanshi",
     name: "Manas Suryawanshi",
     branch: "ECS",
     prn: "124A7061",
     position: "Technical Head",
+    role: "Technical Head",
     council: "Junior Council",
     domain: "Technical",
     photo: null,
     bio: "Oversees hackathon operations, technical infrastructure, development tracks, and peer mentorship in engineering practices.",
-    slug: "manas-suryawanshi",
     email: "manas.suryawanshi@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/manas-suryawanshi",
+    linkedin: "https://www.linkedin.com/in/manas-suryawanshi-51a00832b/",
     github: "https://github.com/manas-suryawanshi",
     socials: {
       email: "manas.suryawanshi@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/manas-suryawanshi",
+      linkedin: "https://www.linkedin.com/in/manas-suryawanshi-51a00832b/",
       github: "https://github.com/manas-suryawanshi"
     }
   },
   {
     id: "124A7036",
+    slug: "hariom-mohare",
     name: "Hariom Mohare",
     branch: "ECS",
     prn: "124A7036",
     position: "Technical Head",
+    role: "Technical Head",
     council: "Junior Council",
     domain: "Technical",
     photo: null,
     bio: "Manages cloud infrastructure, system design bootcamps, and technical mentoring across multidisciplinary software projects.",
-    slug: "hariom-mohare",
     email: "hariom.mohare@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/hariom-mohare",
+    linkedin: "https://www.linkedin.com/in/hariom-mohare-533b56349/",
     github: "https://github.com/hariom-mohare",
     socials: {
       email: "hariom.mohare@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/hariom-mohare",
+      linkedin: "https://www.linkedin.com/in/hariom-mohare-533b56349/",
       github: "https://github.com/hariom-mohare"
     }
   },
   {
     id: "124A7045",
+    slug: "kaustubh-patil",
     name: "Kaustubh Patil",
     branch: "ECS",
     prn: "124A7045",
     position: "Technical Head",
+    role: "Technical Head",
     council: "Junior Council",
     domain: "Technical",
     photo: null,
     bio: "Leads hardware-software integrations, technical competitions, paper review sessions, and engineering prototyping labs.",
-    slug: "kaustubh-patil",
     email: "kaustubh.patil@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/kaustubh-patil",
+    linkedin: "https://www.linkedin.com/in/cos2patil/",
     github: "https://github.com/kaustubh-patil",
     socials: {
       email: "kaustubh.patil@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/kaustubh-patil",
+      linkedin: "https://www.linkedin.com/in/cos2patil/",
       github: "https://github.com/kaustubh-patil"
     }
   },
   {
     id: "124A7041",
+    slug: "advaith-nair",
     name: "Advaith Nair",
     branch: "ECS",
     prn: "124A7041",
     position: "Industry Outreach & Admin Head",
+    role: "Industry Outreach & Admin Head",
     council: "Junior Council",
     domain: "Industry Outreach & Admin",
     photo: null,
     bio: "Spearheads corporate outreach, industry guest sessions, institutional sponsorship drives, and professional networking.",
-    slug: "advaith-nair",
     email: "advaith.nair@siesgst.ac.in",
     linkedin: "https://www.linkedin.com/in/advaith-nair",
     github: "https://github.com/advaith-nair",
@@ -556,101 +583,106 @@ export const juniorCouncil = [
   },
   {
     id: "124A7026",
+    slug: "harshit-lahari",
     name: "Harshit Lahari",
     branch: "ECS",
     prn: "124A7026",
     position: "Industry Outreach & Admin Head",
+    role: "Industry Outreach & Admin Head",
     council: "Junior Council",
     domain: "Industry Outreach & Admin",
     photo: null,
     bio: "Coordinates administrative workflows, institutional liaisons, event authorizations, and corporate relations.",
-    slug: "harshit-lahari",
     email: "harshit.lahari@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/harshit-lahari",
+    linkedin: "https://www.linkedin.com/in/harshit-neeraj-lahari-17279434a/",
     github: "https://github.com/harshit-lahari",
     socials: {
       email: "harshit.lahari@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/harshit-lahari",
+      linkedin: "https://www.linkedin.com/in/harshit-neeraj-lahari-17279434a/",
       github: "https://github.com/harshit-lahari"
     }
   },
   {
     id: "124A3052",
+    slug: "gauri-shinde",
     name: "Gauri Shinde",
     branch: "IT",
     prn: "124A3052",
     position: "Design Head",
+    role: "Design Head",
     council: "Junior Council",
     domain: "Design",
     photo: null,
     bio: "Leads the chapter's UI/UX systems, promotional brand collateral, typography hierarchy, and visual design guidelines.",
-    slug: "gauri-shinde",
     email: "gauri.shinde@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/gauri-shinde",
+    linkedin: "https://www.linkedin.com/in/gauri-shinde-1519b8388/",
     github: "https://github.com/gauri-shinde",
     socials: {
       email: "gauri.shinde@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/gauri-shinde",
+      linkedin: "https://www.linkedin.com/in/gauri-shinde-1519b8388/",
       github: "https://github.com/gauri-shinde"
     }
   },
   {
     id: "124A7028",
+    slug: "maadeshselvan-chidambarakuthala",
     name: "Maadeshselvan Chidambarakuthala",
     branch: "ECS",
     prn: "124A7028",
     position: "Creative Head",
+    role: "Creative Head",
     council: "Junior Council",
     domain: "Creative",
     photo: null,
     bio: "Directs creative themes, stage scenography, event atmosphere concepts, and thematic marketing campaigns.",
-    slug: "maadeshselvan-chidambarakuthala",
     email: "maadeshselvan.chidambarakuthala@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/maadeshselvan-chidambarakuthala",
+    linkedin: "https://www.linkedin.com/in/2006maadeshselvan/",
     github: "https://github.com/maadeshselvan-chidambarakuthala",
     socials: {
       email: "maadeshselvan.chidambarakuthala@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/maadeshselvan-chidambarakuthala",
+      linkedin: "https://www.linkedin.com/in/2006maadeshselvan/",
       github: "https://github.com/maadeshselvan-chidambarakuthala"
     }
   },
   {
     id: "124A2059",
+    slug: "sana-tankar",
     name: "Sana Tankar",
     branch: "EXTC",
     prn: "124A2059",
     position: "Creative Head",
+    role: "Creative Head",
     council: "Junior Council",
     domain: "Creative",
     photo: null,
     bio: "Orchestrates artistic installations, event styling, promotional exhibits, and creative student engagement initiatives.",
-    slug: "sana-tankar",
     email: "sana.tankar@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/sana-tankar",
+    linkedin: "https://www.linkedin.com/in/sana-tankar-08a9a8360/",
     github: "https://github.com/sana-tankar",
     socials: {
       email: "sana.tankar@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/sana-tankar",
+      linkedin: "https://www.linkedin.com/in/sana-tankar-08a9a8360/",
       github: "https://github.com/sana-tankar"
     }
   },
   {
     id: "124A7051",
+    slug: "nimish-roge",
     name: "Nimish Roge",
     branch: "ECS",
     prn: "124A7051",
     position: "Design & Media Head",
+    role: "Design & Media Head",
     council: "Junior Council",
     domain: "Design & Media",
     photo: null,
     bio: "Guides multidisciplinary visual assets, digital broadcast assets, cinematic event teasers, and brand aesthetic standards.",
-    slug: "nimish-roge",
     email: "nimish.roge@siesgst.ac.in",
-    linkedin: "https://www.linkedin.com/in/nimish-roge",
+    linkedin: "https://www.linkedin.com/in/nimish-roge-38081b318/",
     github: "https://github.com/nimish-roge",
     socials: {
       email: "nimish.roge@siesgst.ac.in",
-      linkedin: "https://www.linkedin.com/in/nimish-roge",
+      linkedin: "https://www.linkedin.com/in/nimish-roge-38081b318/",
       github: "https://github.com/nimish-roge"
     }
   }

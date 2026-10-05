@@ -1,6 +1,16 @@
 import React from 'react';
 import { Download, FileText, FolderArchive, BookOpen, Award, CheckCircle2 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
+import ComingSoonCard from './ComingSoonCard';
+
+/**
+ * ============================================================================
+ * MAINTENANCE / LAUNCH TOGGLE:
+ * Set COMING_SOON_MODE to false when technical coordinators are ready to
+ * publish the active resource downloads unblurred.
+ * ============================================================================
+ */
+export const COMING_SOON_MODE = true;
 
 export default function ResourcesRepository() {
   const resources = [
@@ -67,6 +77,55 @@ export default function ResourcesRepository() {
     alert(`Initiating download for "${res.title}" [${res.format} · ${res.fileSize}].`);
   };
 
+  const renderResourceItems = (isBlurred = false) => (
+    <div 
+      className={`space-y-3.5 ${
+        isBlurred 
+          ? 'absolute inset-0 filter blur-[7px] opacity-40 select-none pointer-events-none overflow-hidden scale-[0.99]' 
+          : ''
+      }`}
+      aria-hidden={isBlurred ? 'true' : undefined}
+    >
+      {resources.map((res) => (
+        <div
+          key={res.num}
+          className="bg-white rounded-2xl border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5 group hover:border-black/20 hover:shadow-[0_8px_25px_rgba(0,0,0,0.04)] transition-all"
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-xl bg-zinc-100 border border-black/[0.08] flex items-center justify-center shrink-0 text-[#0062FF]">
+              {res.format === 'ZIP' ? <FolderArchive size={20} /> : <FileText size={20} />}
+            </div>
+
+            <div>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 font-medium mb-1">
+                <span>{res.category}</span>
+                <span>•</span>
+                <span>{res.format} · {res.fileSize}</span>
+              </div>
+
+              <h3 className="font-display text-base sm:text-lg font-bold text-zinc-950 group-hover:text-[#0062FF] transition-colors">
+                {res.title}
+              </h3>
+
+              <p className="text-zinc-600 text-xs sm:text-sm mt-0.5 max-w-2xl font-normal leading-relaxed">
+                {res.desc}
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => handleDownload(res)}
+            disabled={isBlurred}
+            className="btn-minimal-primary text-xs shrink-0 self-start md:self-center cursor-pointer"
+          >
+            <Download size={13} />
+            <span>Download</span>
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <section id="resources" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Student Resources">
       
@@ -83,46 +142,30 @@ export default function ResourcesRepository() {
         </p>
       </div>
 
-      {/* RESOURCES LIST */}
-      <div className="space-y-3.5">
-        {resources.map((res) => (
-          <div
-            key={res.num}
-            className="bg-white rounded-2xl border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5 group hover:border-black/20 hover:shadow-[0_8px_25px_rgba(0,0,0,0.04)] transition-all"
-          >
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-zinc-100 border border-black/[0.08] flex items-center justify-center shrink-0 text-[#0062FF]">
-                {res.format === 'ZIP' ? <FolderArchive size={20} /> : <FileText size={20} />}
-              </div>
-
-              <div>
-                <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 font-medium mb-1">
-                  <span>{res.category}</span>
-                  <span>•</span>
-                  <span>{res.format} · {res.fileSize}</span>
-                </div>
-
-                <h3 className="font-display text-base sm:text-lg font-bold text-zinc-950 group-hover:text-[#0062FF] transition-colors">
-                  {res.title}
-                </h3>
-
-                <p className="text-zinc-600 text-xs sm:text-sm mt-0.5 max-w-2xl font-normal leading-relaxed">
-                  {res.desc}
-                </p>
-              </div>
-            </div>
-
-            <button
-              onClick={() => handleDownload(res)}
-              className="btn-minimal-primary text-xs shrink-0 self-start md:self-center cursor-pointer"
-            >
-              <Download size={13} />
-              <span>Download</span>
-            </button>
+      {/* RESOURCES DISPLAY (Blurred with Coming Soon overlay or active list) */}
+      {COMING_SOON_MODE ? (
+        <div className="relative rounded-3xl overflow-hidden p-2 sm:p-4">
+          {/* 1. Blurred background cards spanning full width */}
+          <div className="w-full pointer-events-none select-none" aria-hidden="true">
+            {renderResourceItems(true)}
           </div>
-        ))}
-      </div>
+
+          {/* 2. Subtle light ambient wash */}
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[3px] pointer-events-none z-10" aria-hidden="true" />
+
+          {/* 3. Overlaid Official Coming Soon Bulletin - Perfectly Centered */}
+          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            <ComingSoonCard 
+              title="Coming Soon"
+              description="We are compiling and verifying our official academic resource repository, including AMIE syllabus modules, SIRO research grant dossiers, Springer author protocols, and departmental engineering kits. Download access will be published here soon."
+            />
+          </div>
+        </div>
+      ) : (
+        renderResourceItems(false)
+      )}
 
     </section>
   );
 }
+
