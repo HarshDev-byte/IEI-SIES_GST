@@ -107,7 +107,7 @@ export default function MobileFloatingSocial() {
     {
       id: 'email',
       label: 'Email',
-      href: 'mailto:iei@sies.edu.in',
+      href: 'mailto:iei@siesgst.edu.in',
       icon: EmailIcon,
       external: false,
       ariaLabel: 'Email'

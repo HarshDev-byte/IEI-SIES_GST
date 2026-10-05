@@ -127,7 +127,7 @@ export default function Footer({ onReplayLoader }) {
 
             {/* 3. Email */}
             <a
-              href="mailto:iei@sies.edu.in"
+              href="mailto:iei@siesgst.edu.in"
               onClick={() => audioEngine?.playClick && audioEngine.playClick()}
               className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white border border-black/[0.08] text-zinc-700 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
               aria-label="Email"
@@ -203,9 +203,9 @@ export default function Footer({ onReplayLoader }) {
                 </a>
               </li>
               <li>
-                <a href="mailto:iei@sies.edu.in" className="hover:text-black transition-colors flex items-center gap-1.5">
+                <a href="mailto:iei@siesgst.edu.in" className="hover:text-black transition-colors flex items-center gap-1.5">
                   <Mail size={12} className="text-[#0062FF]" />
-                  <span>iei@sies.edu.in</span>
+                  <span>iei@siesgst.edu.in</span>
                 </a>
               </li>
             </ul>
