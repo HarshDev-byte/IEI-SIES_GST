@@ -207,11 +207,11 @@
   pointer-events: none;
 }
 
-/* Silhouette Masks */
-/* mask-kharche.png covers Dr. Shubhangi Kharche (HOD, on the LEFT) */
+/* Silhouette Masks — swapped after scaleX(-1) mirror flip on canvas */
+/* After flip: mask-hirani.png visually covers the LEFT (Kharche's) side */
 .faculty-mask-left {
-  -webkit-mask-image: url('/assets/mask-kharche.png');
-  mask-image: url('/assets/mask-kharche.png');
+  -webkit-mask-image: url('/assets/mask-hirani.png');
+  mask-image: url('/assets/mask-hirani.png');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
@@ -220,10 +220,10 @@
   mask-position: center;
 }
 
-/* mask-hirani.png covers Prof. Jasmin Hirani (Coordinator, on the RIGHT) */
+/* After flip: mask-kharche.png visually covers the RIGHT (Hirani's) side */
 .faculty-mask-right {
-  -webkit-mask-image: url('/assets/mask-hirani.png');
-  mask-image: url('/assets/mask-hirani.png');
+  -webkit-mask-image: url('/assets/mask-kharche.png');
+  mask-image: url('/assets/mask-kharche.png');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
