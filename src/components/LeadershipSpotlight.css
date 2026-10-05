@@ -147,7 +147,6 @@
   width: 100%;
   height: 100%;
   z-index: 3;
-  transform: scaleX(-1);
   -webkit-mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
 }
@@ -157,7 +156,7 @@
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%) scaleX(-1);
+    transform: translateX(-50%);
     width: 185%;
     height: 100%;
     -webkit-mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
@@ -207,11 +206,11 @@
   pointer-events: none;
 }
 
-/* Silhouette Masks — swapped after scaleX(-1) mirror flip on canvas */
-/* After flip: mask-hirani.png visually covers the LEFT (Kharche's) side */
+/* Silhouette Masks */
+/* Dr. Shubhangi Kharche (wearing olive green saree) is on the LEFT */
 .faculty-mask-left {
-  -webkit-mask-image: url('/assets/mask-hirani.png');
-  mask-image: url('/assets/mask-hirani.png');
+  -webkit-mask-image: url('/assets/mask-kharche.png');
+  mask-image: url('/assets/mask-kharche.png');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
@@ -220,10 +219,10 @@
   mask-position: center;
 }
 
-/* After flip: mask-kharche.png visually covers the RIGHT (Hirani's) side */
+/* Prof. Jasmin Hirani (wearing peach dress) is on the RIGHT */
 .faculty-mask-right {
-  -webkit-mask-image: url('/assets/mask-kharche.png');
-  mask-image: url('/assets/mask-kharche.png');
+  -webkit-mask-image: url('/assets/mask-hirani.png');
+  mask-image: url('/assets/mask-hirani.png');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;

@@ -187,7 +187,7 @@ export default function LeadershipSpotlight() {
                 />
               </picture>
 
-              {/* Color Layer 1: Dr. Shubhangi Kharche (LEFT PERSON) in Full Natural Warm Peach */}
+              {/* Color Layer 1: Dr. Shubhangi Kharche (wearing olive green saree, LEFT) */}
               <div 
                 className={`faculty-photo-layer faculty-color-layer faculty-mask-left ${activeFaculty === 'kharche' ? 'is-visible' : ''}`}
                 aria-hidden="true"
@@ -202,7 +202,7 @@ export default function LeadershipSpotlight() {
                 </picture>
               </div>
 
-              {/* Color Layer 2: Prof. Jasmin Hirani (RIGHT PERSON) in Full Natural Saree Colour */}
+              {/* Color Layer 2: Prof. Jasmin Hirani (wearing peach dress, RIGHT) */}
               <div 
                 className={`faculty-photo-layer faculty-color-layer faculty-mask-right ${activeFaculty === 'hirani' ? 'is-visible' : ''}`}
                 aria-hidden="true"
@@ -218,7 +218,7 @@ export default function LeadershipSpotlight() {
               </div>
 
               {/* INTERACTIVE HIT REGIONS (ERGONOMIC OVERLAYS OVER EACH PERSON) */}
-              {/* Hit Zone 1: Dr. Shubhangi Kharche (LEFT) */}
+              {/* Hit Zone 1: Dr. Shubhangi Kharche (LEFT PERSON - OLIVE GREEN SAREE) */}
               <button
                 type="button"
                 className={`faculty-hit-zone faculty-hit-left ${activeFaculty === 'kharche' ? 'hit-active' : ''}`}
@@ -237,7 +237,7 @@ export default function LeadershipSpotlight() {
                 <span className="sr-only">Dr. Shubhangi Kharche, Head of Department</span>
               </button>
 
-              {/* Hit Zone 2: Prof. Jasmin Hirani (RIGHT) */}
+              {/* Hit Zone 2: Prof. Jasmin Hirani (RIGHT PERSON - PEACH DRESS) */}
               <button
                 type="button"
                 className={`faculty-hit-zone faculty-hit-right ${activeFaculty === 'hirani' ? 'hit-active' : ''}`}
