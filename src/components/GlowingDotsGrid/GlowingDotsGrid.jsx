@@ -31,12 +31,12 @@ export default function GlowingDotsGrid({
   const stateRef = useRef(null);
 
   useEffect(() => {
-    // Detect mobile viewport or small touch screen (< 768px or touch screen < 1024px)
-    // Disabling on mobile eliminates canvas compositor memory overhead, preventing mobile browser crashes and lag
-    const isMobileScreen = typeof window !== 'undefined' && (window.innerWidth < 768 || ('ontouchstart' in window && window.innerWidth < 1024));
-    if (isMobileScreen) {
-      return;
-    }
+    // Detect device capability tier for adaptive rendering
+    const isMobileScreen = typeof window !== 'undefined' &&
+      (window.innerWidth < 768 || ('ontouchstart' in window && window.innerWidth < 1024));
+    // On mobile we run a lightweight path: fewer dots, no shockwaves, capped DPR=1
+    const isLightweightMode = isMobileScreen;
+
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -136,18 +136,18 @@ export default function GlowingDotsGrid({
 
     // Determine device tier & adjust config
     const updateConfig = (w) => {
-      if (w < 640) {
-        // Mobile: Optimized for 120Hz/240Hz mobile displays (reduced dot count for 0 frame drops)
+      if (isLightweightMode || w < 640) {
+        // Mobile lightweight: static-leaning grid, minimal displacement, no heavy shockwaves
         config = {
-          spacing: 34,
-          baseRadius: 1.3,
-          maxRadius: 2.3,
-          proximityRadius: 95,
-          maxDisplacement: 8,
-          springK: 0.14,
-          damping: 0.80,
-          shockMaxRadius: 100,
-          shockSpeed: 300,
+          spacing: 42,          // fewer dots = less memory
+          baseRadius: 1.2,
+          maxRadius: 2.0,
+          proximityRadius: 70,
+          maxDisplacement: 5,
+          springK: 0.18,
+          damping: 0.76,
+          shockMaxRadius: 0,    // disabled on mobile
+          shockSpeed: 0,
         };
       } else if (w < 1024) {
         // Tablet
@@ -163,7 +163,7 @@ export default function GlowingDotsGrid({
           shockSpeed: 350,
         };
       } else {
-        // Desktop
+        // Desktop: full quality
         config = {
           spacing: 32,
           baseRadius: 1.5,
@@ -189,8 +189,8 @@ export default function GlowingDotsGrid({
         height = Math.max(rect.height, 400);
       }
 
-      // On mobile (w < 640), clamp DPR to 1.5 for effortless 120Hz/240Hz fill rate
-      const maxDeviceDpr = width < 640 ? 1.5 : 2;
+      // On mobile, clamp DPR to 1 to halve fill rate cost
+      const maxDeviceDpr = isLightweightMode ? 1 : (width < 640 ? 1.5 : 2);
       dpr = Math.min(window.devicePixelRatio || 1, maxDeviceDpr);
 
       canvas.width = Math.floor(width * dpr);
@@ -450,9 +450,9 @@ export default function GlowingDotsGrid({
         ctx.arc(dot.x, dot.y, currentRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        // Luminous micro-halo for proximate active dots in both dark and light modes
-        if (p > 0.65 && currentRadius > 1.6) {
-          const haloAlpha = isDark ? (p - 0.65) * 0.45 : (p - 0.85) * 0.35;
+        // Luminous micro-halo for proximate active dots (light mode only)
+        if (p > 0.72 && currentRadius > 1.6) {
+          const haloAlpha = (p - 0.72) * 0.32;
           ctx.fillStyle = `rgba(${activeTheme.activeR}, ${activeTheme.activeG}, ${activeTheme.activeB}, ${haloAlpha})`;
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, currentRadius + 3.0, 0, Math.PI * 2);
@@ -542,8 +542,9 @@ export default function GlowingDotsGrid({
     let lastTouchTime = 0;
     const handleTouchMove = (e) => {
       const now = performance.now();
-      // Cap touch sampling to at most once every ~8ms (125Hz max) to prevent thread congestion during fast scrolls
-      if (now - lastTouchTime < 8) return;
+      // Mobile lightweight: throttle harder to protect scroll thread (~60Hz max)
+      const minInterval = isLightweightMode ? 16 : 8;
+      if (now - lastTouchTime < minInterval) return;
       lastTouchTime = now;
 
       if (e.touches && e.touches[0]) {
@@ -562,13 +563,16 @@ export default function GlowingDotsGrid({
           clickY = e.touches[0].clientY - rect.top;
         }
 
-        shockwaves.push({
-          x: clickX,
-          y: clickY,
-          radius: 0,
-          maxRadius: config.shockMaxRadius,
-          strength: 0.8,
-        });
+        // Skip shockwaves on mobile lightweight mode
+        if (!isLightweightMode && config.shockMaxRadius > 0) {
+          shockwaves.push({
+            x: clickX,
+            y: clickY,
+            radius: 0,
+            maxRadius: config.shockMaxRadius,
+            strength: 0.8,
+          });
+        }
 
         updatePointerPos(e.touches[0].clientX, e.touches[0].clientY, performance.now());
       }
