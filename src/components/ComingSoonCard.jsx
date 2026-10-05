@@ -52,11 +52,6 @@ export default function ComingSoonCard({
       />
 
       <div className="relative z-10 max-w-sm sm:max-w-md mx-auto flex flex-col items-center">
-        {/* Editorial Eyebrow Tag */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#0062FF] mb-3 sm:mb-4">
-          <Sparkles size={11} className="text-[#0062FF]" />
-          <span>Under Preparation</span>
-        </div>
 
         {/* Main Headline */}
         <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-3 sm:mb-4">

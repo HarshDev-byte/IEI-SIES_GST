@@ -55,8 +55,6 @@ html {
   touch-action: pan-y;
   /* Enable iOS momentum scroll on all scrollable elements */
   -webkit-overflow-scrolling: touch;
-  /* Promote root to compositing layer */
-  -webkit-transform: translateZ(0);
 }
 
 body {
@@ -68,9 +66,8 @@ body {
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
   transition: background-color 0.25s ease, color 0.25s ease;
-  /* GPU layer — prevents background repaint during scroll compositing */
-  transform: translateZ(0);
-  /* Prevent elastic over-scroll on mobile browsers */
+  /* NOTE: Do NOT add transform here — it creates a stacking context
+     that breaks position:fixed on the Navbar and all fixed overlays */
   overscroll-behavior-y: none;
 }
 
