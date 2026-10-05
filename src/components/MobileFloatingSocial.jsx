@@ -103,14 +103,7 @@ export default function MobileFloatingSocial() {
       external: true,
       ariaLabel: 'LinkedIn'
     },
-    {
-      id: 'github',
-      label: 'GitHub',
-      href: 'https://github.com/HarshDev-byte/IEI-SIES_GST',
-      icon: GitHubIcon,
-      external: true,
-      ariaLabel: 'GitHub'
-    },
+
     {
       id: 'email',
       label: 'Email',
