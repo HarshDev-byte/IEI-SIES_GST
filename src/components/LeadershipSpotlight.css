@@ -1,111 +1,84 @@
 /* ==========================================================================
-   IEI SIES GST — LEADERSHIP SPOTLIGHT
-   Editorial Faculty & Executive Leadership System
-   Clean Studio White Backdrop • Crisp Centered IEI SVG Emblem
-   Two People + Chairs Intact • Silhouette Mask Monochrome-to-Color Interaction
-   Integrated Editorial Typography • No Below-Image Cards
+   IEI SIES GST — EDITORIAL LEADERSHIP SPOTLIGHT
+   Visual Experience: PHOTO + TYPE + GRAPHIC + SPACE
+   Bright Mode Only • Pure Clean White Backgrounds • Mathematical Orbits
+   Large Editorial Photography • Grayscale-to-Colour Focus
    ========================================================================== */
 
-/* Outer Section Layout */
 .leadership-spotlight-root {
   position: relative;
   width: 100%;
-  padding-top: 1rem;
-  padding-bottom: 4rem;
-}
-
-@media (min-width: 768px) {
-  .leadership-spotlight-root {
-    padding-top: 1.5rem;
-    padding-bottom: 5rem;
-  }
-}
-
-/* Section Header Typography */
-.leadership-section-header {
-  margin-bottom: 1.75rem;
-}
-
-@media (min-width: 768px) {
-  .leadership-section-header {
-    margin-bottom: 2.25rem;
-  }
-}
-
-.leadership-index-tag {
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #0062FF;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.leadership-heading {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: 1.875rem;
-  line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #09090B;
-}
-
-@media (min-width: 768px) {
-  .leadership-heading {
-    font-size: 2.5rem;
-  }
-}
-
-.leadership-subheading {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: #71717A;
-  max-width: 42rem;
-  margin-top: 0.5rem;
 }
 
 /* ==========================================================================
-   01 — FACULTY LEADERSHIP: UNIFIED HERO COMPOSITION
+   01 — KINETIC ROSETTE & EXECUTIVE ORBIT KEYFRAMES
    ========================================================================== */
 
-.faculty-hero-stage-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 74rem;
-  margin: 0 auto;
-}
-
-.faculty-hero-stage {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2524 / 1420;
-  background-color: #ffffff;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  user-select: none;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (min-width: 768px) {
-  .faculty-hero-stage {
-    border-radius: 1.5rem;
+@keyframes slowRosetteSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
+.kinetic-rosette-spin {
+  transform-origin: 300px 300px;
+  animation: slowRosetteSpin 26s linear infinite;
+  will-change: transform;
+}
+
+@keyframes slowExecSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.kinetic-exec-spin {
+  transform-origin: 400px 250px;
+  animation: slowExecSpin 32s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-rosette-spin,
+  .kinetic-exec-spin {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   01 — FACULTY LEADERSHIP: LIVING EDITORIAL PORTRAIT
+   ========================================================================== */
+
+.faculty-editorial-stage-wrapper {
+  position: relative;
+  width: 100%;
+  max-w: 68rem;
+  margin: 0 auto;
+}
+
+.faculty-editorial-stage {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  user-select: none;
+  aspect-ratio: 2524 / 1420;
+}
+
 @media (max-width: 767px) {
-  .faculty-hero-stage {
-    aspect-ratio: 4 / 3.3;
+  .faculty-editorial-stage {
+    aspect-ratio: 1 / 1.15;
     border-radius: 1.25rem;
   }
 }
 
-/* Layer 0: Pure Clean White Backdrop */
 .faculty-white-backdrop {
   position: absolute;
   inset: 0;
@@ -114,72 +87,84 @@
   pointer-events: none;
 }
 
-/* Responsive Stage Canvas: preserves 2524/1420 geometry and exact mask alignment */
-.faculty-stage-canvas {
+/* Kinetic Rosette Placement */
+.faculty-rosette-layer {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
+  inset: -10% -10% -5% -10%;
+  width: 120%;
+  height: 115%;
+  z-index: 1;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 767px) {
-  .faculty-stage-canvas {
-    position: absolute;
-    height: 100%;
-    aspect-ratio: 2524 / 1420;
-    width: auto;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  .faculty-rosette-layer {
+    inset: -15% -25% 0 -25%;
+    width: 150%;
+    height: 115%;
   }
 }
 
-/* Layer 1: Official Crisp IEI Emblem (Centered Upper-Center Behind People) */
+/* Centered IEI Emblem */
 .faculty-emblem-wrap {
   position: absolute;
-  top: 13%;
+  top: 14%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
 }
 
 .faculty-iei-emblem {
-  width: min(28vw, 130px);
+  width: 130px;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   opacity: 0.95;
-  filter: drop-shadow(0 4px 16px rgba(0, 98, 255, 0.18));
-  transition: opacity 400ms ease, transform 400ms ease;
+  filter: drop-shadow(0 4px 18px rgba(0, 98, 255, 0.16));
   pointer-events: none;
 }
 
 @media (max-width: 767px) {
   .faculty-emblem-wrap {
-    top: 14%;
+    top: 12%;
   }
   .faculty-iei-emblem {
-    width: clamp(48px, 14vw, 68px);
-    opacity: 0.88;
+    width: 76px;
+    opacity: 0.90;
   }
 }
 
-@media (min-width: 768px) {
-  .faculty-emblem-wrap {
-    top: 11%;
-  }
-  .faculty-iei-emblem {
-    width: 136px;
-    opacity: 0.98;
+/* Responsive Stage Canvas */
+.faculty-stage-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  -webkit-mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
+}
+
+@media (max-width: 767px) {
+  .faculty-stage-canvas {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 185%;
+    height: 100%;
+    -webkit-mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
   }
 }
 
-/* Base Photo Layers */
+/* Faculty Photo Layers */
 .faculty-photo-layer {
   position: absolute;
   inset: 0;
@@ -189,7 +174,6 @@
   backface-visibility: hidden;
 }
 
-/* Base Layer: 100% Grayscale Cutout (People + Chairs) */
 .faculty-photo-base {
   position: absolute;
   inset: 0;
@@ -197,20 +181,14 @@
   height: 100%;
   object-fit: contain;
   filter: grayscale(100%) contrast(1.02);
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
 }
 
-/* Color Overlay Layers: Exact Cutout in Natural Color, masked to individual silhouette */
 .faculty-color-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   opacity: 0;
-  z-index: 3;
-  pointer-events: none;
-  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity;
 }
 
@@ -228,19 +206,9 @@
   pointer-events: none;
 }
 
-/* SILHOUETTE MASKS FOR FACULTY (MATCHES PEOPLE SILHOUETTE) */
-.faculty-mask-hirani {
-  -webkit-mask-image: url('/assets/mask-hirani.png');
-  mask-image: url('/assets/mask-hirani.png');
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-.faculty-mask-kharche {
+/* Silhouette Masks */
+/* Dr. Shubhangi Kharche (wearing olive green saree) is on the LEFT */
+.faculty-mask-left {
   -webkit-mask-image: url('/assets/mask-kharche.png');
   mask-image: url('/assets/mask-kharche.png');
   -webkit-mask-size: 100% 100%;
@@ -251,225 +219,67 @@
   mask-position: center;
 }
 
-/* ==========================================================================
-   INTEGRATED EDITORIAL TYPOGRAPHY (NO BELOW-IMAGE CARDS)
-   ========================================================================== */
-
-.faculty-editorial-info {
-  position: absolute;
-  z-index: 5;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  max-width: 18rem;
+/* Prof. Jasmin Hirani (wearing peach dress) is on the RIGHT */
+.faculty-mask-right {
+  -webkit-mask-image: url('/assets/mask-hirani.png');
+  mask-image: url('/assets/mask-hirani.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
 }
 
-.faculty-editorial-info.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Left Person Info (Prof. Jasmin Hirani) */
-.info-left {
-  top: 38%;
-  left: 2rem;
-  transform: translateY(-50%) translateY(6px);
-  text-align: left;
-}
-
-.info-left.is-revealed {
-  opacity: 1;
-  transform: translateY(-50%) translateY(0);
-}
-
-@media (min-width: 1024px) {
-  .info-left {
-    left: 3rem;
-    max-width: 22rem;
-  }
-}
-
-/* Right Person Info (Dr. Shubhangi Kharche) */
-.info-right {
-  top: 38%;
-  right: 2rem;
-  transform: translateY(-50%) translateY(6px);
-  text-align: right;
-}
-
-.info-right.is-revealed {
-  opacity: 1;
-  transform: translateY(-50%) translateY(0);
-}
-
-@media (min-width: 1024px) {
-  .info-right {
-    right: 3rem;
-    max-width: 22rem;
-  }
-}
-
-/* Editorial Typography Specs */
-.editorial-role-tag {
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #0062FF;
-  margin-bottom: 0.25rem;
-}
-
-@media (min-width: 768px) {
-  .editorial-role-tag {
-    font-size: 0.75rem;
-  }
-}
-
-.editorial-name {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #09090B;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-@media (min-width: 768px) {
-  .editorial-name {
-    font-size: 1.625rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .editorial-name {
-    font-size: 1.875rem;
-  }
-}
-
-.editorial-meta {
-  font-size: 0.75rem;
-  color: #71717A;
-  margin-top: 0.25rem;
-  font-weight: 500;
-}
-
-@media (min-width: 768px) {
-  .editorial-meta {
-    font-size: 0.8125rem;
-  }
-}
-
-/* Mobile Responsive Typography Adjustments */
-@media (max-width: 640px) {
-  .info-left,
-  .info-right {
-    top: 0.75rem;
-    left: 0.75rem !important;
-    right: auto !important;
-    transform: translateY(6px);
-    max-width: calc(100% - 1.5rem);
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    padding: 0.45rem 0.75rem;
-    border-radius: 0.625rem;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-    text-align: left !important;
-  }
-
-  .info-left.is-revealed,
-  .info-right.is-revealed {
-    transform: translateY(0);
-  }
-
-  .editorial-name {
-    font-size: 1.05rem;
-    line-height: 1.2;
-  }
-
-  .editorial-role-tag {
-    font-size: 0.625rem;
-  }
-
-  .editorial-meta {
-    font-size: 0.6875rem;
-  }
-}
-
-
-
-/* ==========================================================================
-   INTERACTIVE HIT REGIONS (ERGONOMIC OVERLAYS OVER EACH PERSON)
-   ========================================================================== */
-
+/* Faculty Hit Zones */
 .faculty-hit-zone {
   position: absolute;
-  top: 4%;
-  height: 92%;
+  top: 10%;
+  height: 85%;
   background: transparent;
   border: none;
   cursor: pointer;
   outline: none !important;
   box-shadow: none !important;
-  z-index: 6;
+  z-index: 5;
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
-  border-radius: 1.5rem;
-  transition: outline 150ms ease;
 }
 
-.faculty-hit-zone:focus-visible {
-  outline: 2px solid rgba(0, 98, 255, 0.4) !important;
-  outline-offset: -2px;
-}
-
-/* Left Person Hit Region: Prof. Jasmin Hirani */
 .faculty-hit-left {
-  left: 17%;
-  width: 31%;
+  left: 22%;
+  width: 26%;
 }
 
-/* Right Person Hit Region: Dr. Shubhangi Kharche */
 .faculty-hit-right {
-  left: 51%;
-  width: 31%;
+  left: 52%;
+  width: 26%;
 }
 
 /* ==========================================================================
-   02 — EXECUTIVE LEADERSHIP: 4-PERSON GROUP PHOTOGRAPH STAGE
+   02 — EXECUTIVE COUNCIL: EDITORIAL GROUP PORTRAIT
    ========================================================================== */
 
-.executive-hero-stage-wrapper {
+.executive-editorial-stage-wrapper {
   position: relative;
   width: 100%;
-  max-width: 74rem;
+  max-w: 68rem;
   margin: 0 auto;
 }
 
-.executive-hero-stage {
+.executive-editorial-stage {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
   background-color: #ffffff;
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
   overflow: hidden;
   user-select: none;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
-}
-
-@media (min-width: 768px) {
-  .executive-hero-stage {
-    border-radius: 1.5rem;
-  }
+  aspect-ratio: 2400 / 1350;
 }
 
 @media (max-width: 767px) {
-  .executive-hero-stage {
-    aspect-ratio: 4 / 3.1;
+  .executive-editorial-stage {
+    aspect-ratio: 16 / 11;
     border-radius: 1.25rem;
   }
 }
@@ -477,34 +287,43 @@
 .executive-white-backdrop {
   position: absolute;
   inset: 0;
-  background-color: #fcfcfd;
+  background-color: #ffffff;
   z-index: 0;
   pointer-events: none;
 }
 
-/* Responsive Stage Canvas: preserves 16/9 geometry and exact mask alignment */
+/* Kinetic Orbit Placement */
+.executive-orbit-layer {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .executive-orbit-layer {
+    inset: -15% -20%;
+    width: 140%;
+    height: 130%;
+  }
+}
+
+/* Executive Stage Canvas */
 .executive-stage-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 2;
-  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
 }
 
-@media (max-width: 767px) {
-  .executive-stage-canvas {
-    position: absolute;
-    height: 100%;
-    aspect-ratio: 16 / 9;
-    width: auto;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-/* Base Photo Layers */
 .executive-photo-layer {
   position: absolute;
   inset: 0;
@@ -525,11 +344,10 @@
   pointer-events: none;
 }
 
-/* 4 Individual Color Overlay Layers */
 .executive-color-layer {
   opacity: 0;
   z-index: 2;
-  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity;
 }
 
@@ -584,67 +402,13 @@
   mask-repeat: no-repeat;
 }
 
-/* Executive Integrated Editorial Typography */
-.executive-editorial-info {
-  position: absolute;
-  z-index: 5;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  top: 1.5rem;
-  max-width: 14rem;
-}
-
-.executive-editorial-info.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.exec-info-slot-0 {
-  left: 3%;
-  text-align: left;
-}
-
-.exec-info-slot-1 {
-  left: 28%;
-  text-align: left;
-}
-
-.exec-info-slot-2 {
-  left: 53%;
-  text-align: left;
-}
-
-.exec-info-slot-3 {
-  right: 3%;
-  text-align: right;
-}
-
-@media (max-width: 640px) {
-  .executive-editorial-info {
-    top: 0.75rem;
-    left: 0.75rem !important;
-    right: auto !important;
-    text-align: left !important;
-    max-width: calc(100% - 1.5rem);
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    padding: 0.45rem 0.75rem;
-    border-radius: 0.625rem;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  }
-}
-
 /* Executive 4 Hit Slots */
 .executive-hit-grid {
   position: absolute;
   inset: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  z-index: 6;
+  z-index: 5;
   pointer-events: auto;
 }
 
@@ -656,12 +420,4 @@
   box-shadow: none !important;
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 200ms ease;
 }
-
-.executive-hit-slot:focus-visible {
-  outline: 2px solid rgba(0, 98, 255, 0.4) !important;
-  outline-offset: -2px;
-}
-
-

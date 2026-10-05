@@ -50,8 +50,10 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: auto !important; /* Instantaneous 1:1 hardware responsiveness for 120Hz/240Hz displays */
+  /* scroll-behavior: auto gives 1:1 hardware scroll — our JS lerp handles smoothing */
+  scroll-behavior: auto !important;
   touch-action: pan-y;
+  /* Enable iOS momentum scroll on all scrollable elements */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -64,6 +66,46 @@ body {
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
   transition: background-color 0.25s ease, color 0.25s ease;
+  /* NOTE: Do NOT add transform here — it creates a stacking context
+     that breaks position:fixed on the Navbar and all fixed overlays */
+  overscroll-behavior-y: none;
+}
+
+/* ==========================================================================
+   240Hz RENDERING LAYER — GPU COMPOSITING HINTS
+   Applied to interactive and animated elements site-wide for zero-jank
+   compositor thread execution independent of main-thread work.
+   ========================================================================== */
+
+/* All animated transforms should happen on GPU */
+[class*="transition-"],
+[class*="animate-"],
+[class*="hover:"],
+.kinetic-rosette-spin,
+.kinetic-exec-spin,
+.page-transition-enter {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Sections: paint containment — browser can skip offscreen sections */
+main section,
+main > div > section {
+  contain: layout style;
+}
+
+/* Mobile-specific: force GPU layers on scroll containers */
+@media (max-width: 1023px) {
+  html, body {
+    /* Force hardware-accelerated scrolling on iOS/Android */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Interactive regions: ensure touch events never cause compositor jank */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /* Global Crisp Background */

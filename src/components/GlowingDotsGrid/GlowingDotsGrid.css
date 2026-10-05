@@ -12,6 +12,11 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  /* Promote to own GPU compositor layer — no repaint on scroll */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .iei-dots-canvas {
@@ -22,4 +27,7 @@
   height: 100%;
   display: block;
   pointer-events: none;
+  /* GPU compositing for zero-copy canvas flip */
+  transform: translateZ(0);
+  will-change: contents;
 }

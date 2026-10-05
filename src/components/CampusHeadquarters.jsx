@@ -112,8 +112,8 @@ export default function CampusHeadquarters() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail size={15} className="text-[#0062FF] shrink-0" />
-                <a href="mailto:iei@sies.edu.in" className="hover:text-black transition-colors underline font-medium">
-                  iei@sies.edu.in
+                <a href="mailto:iei@siesgst.edu.in" className="hover:text-black transition-colors underline font-medium">
+                  iei@siesgst.edu.in
                 </a>
               </div>
             </div>

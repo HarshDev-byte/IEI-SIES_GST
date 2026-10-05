@@ -102,7 +102,7 @@ export default function ActivitiesPage({ onOpenMembership }) {
     <div 
       className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ${
         isBlurred 
-          ? 'absolute inset-0 filter blur-[7px] opacity-40 select-none pointer-events-none overflow-hidden scale-[0.99]' 
+          ? 'filter blur-[7px] opacity-35 select-none pointer-events-none scale-[0.99] transition-all' 
           : ''
       }`}
       aria-hidden={isBlurred ? 'true' : undefined}
@@ -183,20 +183,29 @@ export default function ActivitiesPage({ onOpenMembership }) {
 
         {/* INITIATIVES DISPLAY (Blurred with Coming Soon overlay or active grid) */}
         {COMING_SOON_MODE ? (
-          <div className="relative rounded-3xl overflow-hidden p-2 sm:p-4">
-            {/* 1. Blurred background cards spanning full width */}
-            <div className="w-full pointer-events-none select-none" aria-hidden="true">
-              {renderInitiativeCards(chapterInitiatives, true)}
+          <div className="relative rounded-3xl overflow-hidden min-h-[460px] sm:min-h-[520px] flex items-center justify-center p-4 sm:p-8 bg-zinc-50/60 border border-black/[0.06]">
+            {/* 1. Subtle ghost preview grid in background */}
+            <div className="absolute inset-0 pointer-events-none select-none opacity-20 filter blur-[8px] overflow-hidden p-6" aria-hidden="true">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                {chapterInitiatives.slice(0, 4).map((item, idx) => (
+                  <div key={idx} className="bg-white rounded-2xl p-6 border border-black/10">
+                    <div className="h-4 bg-zinc-200 rounded w-1/3 mb-3"></div>
+                    <div className="h-6 bg-zinc-300 rounded w-3/4 mb-2"></div>
+                    <div className="h-12 bg-zinc-100 rounded w-full"></div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* 2. Subtle light ambient wash */}
-            <div className="absolute inset-0 bg-white/40 backdrop-blur-[3px] pointer-events-none z-10" aria-hidden="true" />
+            {/* 2. Light ambient blur wash */}
+            <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] pointer-events-none z-10" aria-hidden="true" />
 
-            {/* 3. Overlaid Official Coming Soon Bulletin - Perfectly Centered */}
-            <div className="absolute inset-0 z-20 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            {/* 3. Overlaid Official Coming Soon Bulletin - Perfectly Centered in natural flow */}
+            <div className="relative z-20 w-full flex items-center justify-center p-2">
               <ComingSoonCard 
                 title="Coming Soon"
                 description="We are finalizing our upcoming schedule of flagship engineering conclaves, inter-collegiate hackathons, and intensive hands-on lab sprints with industry mentors. Full itineraries, dates, and registration portals will be published here soon."
+                actionText="Inquire on Activity Schedule"
               />
             </div>
           </div>

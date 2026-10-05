@@ -81,7 +81,7 @@ export default function ResourcesRepository() {
     <div 
       className={`space-y-3.5 ${
         isBlurred 
-          ? 'absolute inset-0 filter blur-[7px] opacity-40 select-none pointer-events-none overflow-hidden scale-[0.99]' 
+          ? 'filter blur-[7px] opacity-35 select-none pointer-events-none scale-[0.99] transition-all' 
           : ''
       }`}
       aria-hidden={isBlurred ? 'true' : undefined}
@@ -144,20 +144,29 @@ export default function ResourcesRepository() {
 
       {/* RESOURCES DISPLAY (Blurred with Coming Soon overlay or active list) */}
       {COMING_SOON_MODE ? (
-        <div className="relative rounded-3xl overflow-hidden p-2 sm:p-4">
-          {/* 1. Blurred background cards spanning full width */}
-          <div className="w-full pointer-events-none select-none" aria-hidden="true">
-            {renderResourceItems(true)}
+        <div className="relative rounded-3xl overflow-hidden min-h-[460px] sm:min-h-[520px] flex items-center justify-center p-4 sm:p-8 bg-zinc-50/60 border border-black/[0.06]">
+          {/* 1. Subtle ghost preview list in background */}
+          <div className="absolute inset-0 pointer-events-none select-none opacity-20 filter blur-[8px] overflow-hidden p-6 space-y-4" aria-hidden="true">
+            {resources.slice(0, 3).map((res) => (
+              <div key={res.num} className="bg-white rounded-2xl border border-black/10 p-6 flex items-center justify-between">
+                <div className="space-y-2">
+                  <div className="h-4 bg-zinc-200 rounded w-24"></div>
+                  <div className="h-6 bg-zinc-300 rounded w-64"></div>
+                  <div className="h-4 bg-zinc-100 rounded w-96"></div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* 2. Subtle light ambient wash */}
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[3px] pointer-events-none z-10" aria-hidden="true" />
+          {/* 2. Light ambient blur wash */}
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] pointer-events-none z-10" aria-hidden="true" />
 
-          {/* 3. Overlaid Official Coming Soon Bulletin - Perfectly Centered */}
-          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+          {/* 3. Overlaid Official Coming Soon Bulletin - Perfectly Centered in natural flow */}
+          <div className="relative z-20 w-full flex items-center justify-center p-2">
             <ComingSoonCard 
               title="Coming Soon"
               description="We are compiling and verifying our official academic resource repository, including AMIE syllabus modules, SIRO research grant dossiers, Springer author protocols, and departmental engineering kits. Download access will be published here soon."
+              actionText="Request Resource Access"
             />
           </div>
         </div>

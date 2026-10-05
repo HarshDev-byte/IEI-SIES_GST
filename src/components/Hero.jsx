@@ -572,6 +572,20 @@ const HERO_MOTION_STYLES = `
     animation: none !important;
   }
 
+  /* Mobile performance optimizations: remove motes, reduce text-shadow on small screens */
+  @media (max-width: 768px) {
+    .hero-outward-mote {
+      display: none !important;
+    }
+    .hero-initial-e {
+      text-shadow: 0 0 15px rgba(0, 98, 255, 0.4) !important;
+    }
+    .hero-iei-initial,
+    .hero-iei-subword-mask {
+      will-change: auto !important;
+    }
+  }
+
   /* Prefers-reduced-motion: instant static display */
   @media (prefers-reduced-motion: reduce) {
     .hero-the-eyebrow,
@@ -630,9 +644,14 @@ export default function Hero({
     };
   }, [isReady]);
 
-  // Cinematic Looping Morph: Expanded -> Big IEI Acronym -> Expanded
+  // Cinematic Looping Morph: Expanded -> Big IEI Acronym -> Expanded (Desktop Only for zero-lag mobile)
   useEffect(() => {
     if (!isReady || !settled) return;
+
+    // On mobile devices (< 768px or touch screens), disable the continuous auto-looping morph
+    // to eliminate CPU layout thrashing, stuttering, and mobile freezes
+    const isMobileDevice = typeof window !== 'undefined' && (window.innerWidth < 768 || ('ontouchstart' in window && window.innerWidth < 1024));
+    if (isMobileDevice) return;
 
     // Display expanded for 4.2 seconds, display big IEI acronym for 2.8 seconds
     const holdDuration = displayMode === 'expanded' ? 4200 : 2800;

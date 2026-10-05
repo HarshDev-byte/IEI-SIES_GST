@@ -1,53 +1,49 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { facultyLeadership, seniorCouncil } from '../data/membersData';
 import { audioEngine } from '../utils/audioEngine';
-import SegmentedPerimeterDecoration from './SegmentedPerimeterDecoration';
+import KineticRosette from './KineticRosette';
+import KineticExecutiveOrbit from './KineticExecutiveOrbit';
 import './LeadershipSpotlight.css';
 
 /**
  * ============================================================================
- * IEI SIES GST — LEADERSHIP SPOTLIGHT
- * 01 — FACULTY LEADERSHIP (Unified Studio Composition • IEI Emblem • Grayscale-to-Color)
- * 02 — EXECUTIVE LEADERSHIP (Unified 4-Person Composition • 4-Mask Channel Architecture)
+ * IEI SIES GST — EDITORIAL LEADERSHIP SPOTLIGHT
+ * 01 — FACULTY LEADERSHIP ("Living Editorial Portrait")
+ *      Large photography • Kinetic Mathematical Rosette • Centered IEI Emblem
+ *      Grayscale-to-Colour Selective Reveal • Pure Typography (No Cards / Boxes)
  * 
- * Strict Architectural Guarantees:
- * 1. Pure clean white studio background.
- * 2. Official crisp IEI SVG emblem centered behind faculty members.
- * 3. Both faculty members and chairs preserved completely intact.
- * 4. 100% grayscale by default; hover/tap selectively reveals only the active
- *    person in full natural color via precise silhouette masks.
- * 5. NO below-image cards. Information is purely editorial typography
- *    integrated into the image interaction.
- * 6. Click navigates to the simplified profile page (/team/:slug).
+ * 02 — EXECUTIVE COUNCIL ("Editorial Group Portrait")
+ *      Large Group Photo • Kinetic Horizontal Orbit • 4-Mask Channel Architecture
+ *      Grayscale-to-Colour Selection • Pure Typography (No Cards / Boxes)
  * ============================================================================
  */
-
 export default function LeadershipSpotlight() {
-  // Active faculty selection: 'hirani' | 'kharche' | null
-  const [activeFaculty, setActiveFaculty] = useState(null);
+  // Active faculty selection: 'kharche' (left) | 'hirani' (right) | null
+  // Default to 'kharche' or null
+  const [activeFaculty, setActiveFaculty] = useState('kharche');
 
-  // Active executive selection: 'chairperson' | 'vice-chairperson' | 'secretary' | 'treasurer' | null
-  const [activeExecutive, setActiveExecutive] = useState(null);
+  // Active executive selection: 'chairperson' | 'vice-chairperson' | 'secretary' | 'treasurer'
+  const [activeExecutive, setActiveExecutive] = useState('chairperson');
 
   const stageRef = useRef(null);
   const lastTouchTimeRef = useRef(0);
 
   // Authoritative Faculty Data
-  // LEFT: Prof. Jasmin Hirani (Student Branch Coordinator)
+  // LEFT in photo: Dr. Shubhangi Kharche (HOD)
+  const kharcheMember = facultyLeadership.find(m => m.name.includes('Kharche') || m.id === 'FAC-01') || {
+    id: "FAC-01",
+    slug: "shubhangi-kharche",
+    name: "Dr. Shubhangi Kharche",
+    role: "Head of Department",
+    branch: "ECS"
+  };
+
+  // RIGHT in photo: Prof. Jasmin Hirani (Student Branch Coordinator)
   const hiraniMember = facultyLeadership.find(m => m.name.includes('Jasmin') || m.id === 'FAC-02') || {
     id: "FAC-02",
     slug: "jasmin-hirani",
     name: "Prof. Jasmin Hirani",
     role: "Student Branch Coordinator",
-    branch: "ECS"
-  };
-
-  // RIGHT: Dr. Shubhangi Kharche (HOD)
-  const kharcheMember = facultyLeadership.find(m => m.name.includes('Kharche') || m.id === 'FAC-01') || {
-    id: "FAC-01",
-    slug: "shubhangi-kharche",
-    name: "Dr. Shubhangi Kharche",
-    role: "HOD",
     branch: "ECS"
   };
 
@@ -64,47 +60,25 @@ export default function LeadershipSpotlight() {
     { key: 'treasurer', member: treasurerMember, maskClass: 'mask-treasurer', label: 'Treasurer', slotIndex: 3 },
   ];
 
+  const activeExecItem = executiveList.find(e => e.key === activeExecutive) || executiveList[0];
+  const activeExecMember = activeExecItem.member;
+
   // Touch tracking for mobile tap handling
   const handleTouchStart = () => {
     lastTouchTimeRef.current = Date.now();
   };
 
-  // Close active states when tapping outside
-  useEffect(() => {
-    const handleDocumentClick = (e) => {
-      if (stageRef.current && !stageRef.current.contains(e.target)) {
-        setActiveFaculty(null);
-        setActiveExecutive(null);
-      }
-    };
-    document.addEventListener('click', handleDocumentClick);
-    return () => document.removeEventListener('click', handleDocumentClick);
-  }, []);
-
-  // Keyboard navigation escape
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setActiveFaculty(null);
-        setActiveExecutive(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   // Hover handlers for Faculty
   const handleFacultyHover = (key) => {
     if (Date.now() - lastTouchTimeRef.current < 500) return;
-    setActiveFaculty(key);
-    if (key && audioEngine?.playHover) {
-      audioEngine.playHover();
+    if (key) {
+      setActiveFaculty(key);
+      if (audioEngine?.playHover) audioEngine.playHover();
     }
   };
 
   // Click & Mobile Tap Handler for Faculty -> Profile
   const handleFacultyClick = (key, member) => {
-    // On mobile tap, if not active, first activate
     const isTouch = Date.now() - lastTouchTimeRef.current < 500;
     if (isTouch && activeFaculty !== key) {
       setActiveFaculty(key);
@@ -112,18 +86,18 @@ export default function LeadershipSpotlight() {
       return;
     }
     
-    // Otherwise open profile
+    setActiveFaculty(key);
     if (audioEngine?.playClick) audioEngine.playClick();
-    const slug = member?.slug || (key === 'hirani' ? 'jasmin-hirani' : 'shubhangi-kharche');
+    const slug = member?.slug || (key === 'kharche' ? 'shubhangi-kharche' : 'jasmin-hirani');
     window.location.hash = `#/team/${slug}`;
   };
 
   // Hover handlers for Executive
   const handleExecutiveHover = (key) => {
     if (Date.now() - lastTouchTimeRef.current < 500) return;
-    setActiveExecutive(key);
-    if (key && audioEngine?.playHover) {
-      audioEngine.playHover();
+    if (key) {
+      setActiveExecutive(key);
+      if (audioEngine?.playHover) audioEngine.playHover();
     }
   };
 
@@ -136,6 +110,7 @@ export default function LeadershipSpotlight() {
       return;
     }
 
+    setActiveExecutive(key);
     if (audioEngine?.playClick) audioEngine.playClick();
     const target = member?.slug || member?.id;
     if (target) {
@@ -148,59 +123,73 @@ export default function LeadershipSpotlight() {
       
       {/* ===================================================================== */}
       {/* 01 — FACULTY LEADERSHIP                                              */}
-      {/* PURE WHITE STUDIO BACKGROUND • CENTERED CRISP IEI SVG EMBLEM         */}
-      {/* TWO PEOPLE + CHAIRS INTACT • MONOCHROME-TO-COLOR SILHOUETTE MASKS    */}
-      {/* INTEGRATED EDITORIAL TYPOGRAPHY — NO BELOW-IMAGE CARDS               */}
+      {/* "LIVING EDITORIAL PORTRAIT"                                           */}
+      {/* Large Photography • Kinetic Mathematical Rosette • Centered Emblem    */}
+      {/* Monochrome to Selective Colour Focus • Pure Typography               */}
       {/* ===================================================================== */}
-      <section className="mb-24 lg:mb-32" aria-labelledby="heading-faculty-leadership">
+      <section className="mb-24 sm:mb-32 lg:mb-40" aria-labelledby="heading-faculty-leadership">
         
         {/* Section Header */}
-        <div className="leadership-section-header text-center sm:text-left">
+        <div className="leadership-section-header">
+          {/* Eyebrow */}
+          <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3 border-b border-zinc-100 pb-2">
+            <div className="flex items-center gap-2">
+              <span className="text-zinc-900 font-bold">TEAM</span>
+              <span className="inline-block w-8 sm:w-12 h-px bg-zinc-300"></span>
+            </div>
+            <div className="text-zinc-500 font-medium">IEI SIES GST</div>
+          </div>
 
-          <h2 id="heading-faculty-leadership" className="leadership-heading">
-            Academic Governance
-          </h2>
-          <p className="leadership-subheading">
-            Institutional stewardship and academic direction steering the SIES Graduate School of Technology Student Chapter.
-          </p>
+          {/* Section Title & Index */}
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-4">
+            <h2 id="heading-faculty-leadership" className="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-zinc-950 tracking-tight leading-none">
+              Faculty <span className="font-black text-[#0062FF]">Leadership</span>
+            </h2>
+            <div className="mt-2 sm:mt-0 font-mono text-sm sm:text-base font-bold text-zinc-400 tracking-wider">
+              <span className="inline-block w-6 sm:w-8 h-px bg-zinc-300 align-middle mr-2"></span>
+              01 / 03
+            </div>
+          </div>
         </div>
 
-        {/* UNIFIED HERO-STYLE FACULTY LEADERSHIP COMPOSITION */}
-        <div className="faculty-hero-stage-wrapper">
+        {/* LARGE EDITORIAL FACULTY COMPOSITION */}
+        <div className="faculty-editorial-stage-wrapper">
           <div 
-            className={`faculty-hero-stage ${activeFaculty ? 'has-active-person' : ''}`}
+            className="faculty-editorial-stage"
             onTouchStart={handleTouchStart}
-            onMouseLeave={() => handleFacultyHover(null)}
           >
-            {/* LAYER 0: Pure Clean White Background */}
+            {/* LAYER 0: Clean Studio White Backdrop */}
             <div className="faculty-white-backdrop" aria-hidden="true" />
 
-            {/* RESPONSIVE STAGE CANVAS: Keeps 2524/1420 natural aspect ratio & pixel-aligned masks */}
-            <div className="faculty-stage-canvas">
-              {/* LAYER 1: Official Crisp IEI Emblem (Centered Upper-Center Behind People) */}
-              <div className="faculty-emblem-wrap" aria-hidden="true">
-                <img 
-                  src="/iei-official-logo.png" 
-                  alt="Institution of Engineers India Official Seal" 
-                  className="faculty-iei-emblem"
-                  loading="eager"
-                />
-              </div>
+            {/* LAYER 1: Kinetic Mathematical Rosette / Flower (Rotating Slowly Behind) */}
+            <KineticRosette className="faculty-rosette-layer" />
 
-              {/* LAYER 2: Cutout People + Chairs in 100% Grayscale (Base Layer) */}
+            {/* LAYER 2: Official Crisp IEI Emblem (Static, Centered in Rosette Behind People) */}
+            <div className="faculty-emblem-wrap" aria-hidden="true">
+              <img 
+                src="/iei-official-logo.png" 
+                alt="Institution of Engineers India Official Seal" 
+                className="faculty-iei-emblem"
+                loading="eager"
+              />
+            </div>
+
+            {/* LAYER 3: Responsive Stage Canvas for Cutout People & Silhouette Masks */}
+            <div className="faculty-stage-canvas">
+              {/* Base Layer: 100% Grayscale Cutout (Both People & Chairs) */}
               <picture>
                 <source srcSet="/assets/faculty-leadership-cutout.webp" type="image/webp" />
                 <img
                   src="/assets/faculty-leadership-cutout.png"
-                  alt="Faculty Leadership of IEI SIES GST: Prof. Jasmin Hirani and Dr. Shubhangi Kharche"
+                  alt="Faculty Leadership of IEI SIES GST: Dr. Shubhangi Kharche and Prof. Jasmin Hirani"
                   className="faculty-photo-layer faculty-photo-base"
                   loading="eager"
                 />
               </picture>
 
-              {/* LAYER 3: Same Cutout in Full Natural Color, masked to Prof. Jasmin Hirani (LEFT) */}
+              {/* Color Layer 1: Dr. Shubhangi Kharche (wearing olive green saree, LEFT) */}
               <div 
-                className={`faculty-photo-layer faculty-color-layer faculty-mask-hirani ${activeFaculty === 'hirani' ? 'is-visible' : ''}`}
+                className={`faculty-photo-layer faculty-color-layer faculty-mask-left ${activeFaculty === 'kharche' ? 'is-visible' : ''}`}
                 aria-hidden="true"
               >
                 <picture>
@@ -213,9 +202,9 @@ export default function LeadershipSpotlight() {
                 </picture>
               </div>
 
-              {/* LAYER 4: Same Cutout in Full Natural Color, masked to Dr. Shubhangi Kharche (RIGHT) */}
+              {/* Color Layer 2: Prof. Jasmin Hirani (wearing peach dress, RIGHT) */}
               <div 
-                className={`faculty-photo-layer faculty-color-layer faculty-mask-kharche ${activeFaculty === 'kharche' ? 'is-visible' : ''}`}
+                className={`faculty-photo-layer faculty-color-layer faculty-mask-right ${activeFaculty === 'hirani' ? 'is-visible' : ''}`}
                 aria-hidden="true"
               >
                 <picture>
@@ -229,41 +218,12 @@ export default function LeadershipSpotlight() {
               </div>
 
               {/* INTERACTIVE HIT REGIONS (ERGONOMIC OVERLAYS OVER EACH PERSON) */}
-              {/* HIT ZONE 1: Prof. Jasmin Hirani (LEFT) */}
+              {/* Hit Zone 1: Dr. Shubhangi Kharche (LEFT PERSON - OLIVE GREEN SAREE) */}
               <button
                 type="button"
-                className={`faculty-hit-zone faculty-hit-left ${activeFaculty === 'hirani' ? 'hit-active' : ''}`}
-                onMouseEnter={() => handleFacultyHover('hirani')}
-                onMouseOver={() => handleFacultyHover('hirani')}
-                onPointerEnter={() => handleFacultyHover('hirani')}
-                onMouseLeave={() => handleFacultyHover(null)}
-                onPointerLeave={() => handleFacultyHover(null)}
-                onFocus={() => handleFacultyHover('hirani')}
-                onBlur={() => handleFacultyHover(null)}
-                onClick={() => handleFacultyClick('hirani', hiraniMember)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleFacultyClick('hirani', hiraniMember);
-                  }
-                }}
-                aria-label="Prof. Jasmin Hirani, Student Branch Coordinator. Click to view profile."
-                tabIndex={0}
-              >
-                <span className="sr-only">Prof. Jasmin Hirani, Student Branch Coordinator</span>
-              </button>
-
-              {/* HIT ZONE 2: Dr. Shubhangi Kharche (RIGHT) */}
-              <button
-                type="button"
-                className={`faculty-hit-zone faculty-hit-right ${activeFaculty === 'kharche' ? 'hit-active' : ''}`}
+                className={`faculty-hit-zone faculty-hit-left ${activeFaculty === 'kharche' ? 'hit-active' : ''}`}
                 onMouseEnter={() => handleFacultyHover('kharche')}
-                onMouseOver={() => handleFacultyHover('kharche')}
-                onPointerEnter={() => handleFacultyHover('kharche')}
-                onMouseLeave={() => handleFacultyHover(null)}
-                onPointerLeave={() => handleFacultyHover(null)}
                 onFocus={() => handleFacultyHover('kharche')}
-                onBlur={() => handleFacultyHover(null)}
                 onClick={() => handleFacultyClick('kharche', kharcheMember)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -271,69 +231,138 @@ export default function LeadershipSpotlight() {
                     handleFacultyClick('kharche', kharcheMember);
                   }
                 }}
-                aria-label="Dr. Shubhangi Kharche, HOD. Click to view profile."
+                aria-label="Dr. Shubhangi Kharche, Head of Department. Click to inspect."
                 tabIndex={0}
               >
-                <span className="sr-only">Dr. Shubhangi Kharche, HOD</span>
+                <span className="sr-only">Dr. Shubhangi Kharche, Head of Department</span>
               </button>
-            </div>
 
-            {/* LAYER 5: Selective Non-Continuous Perimeter Decoration System */}
-            <SegmentedPerimeterDecoration />
-
-            {/* INTEGRATED EDITORIAL TYPOGRAPHY: LEFT PERSON (Prof. Jasmin Hirani) */}
-            <div 
-              className={`faculty-editorial-info info-left ${activeFaculty === 'hirani' ? 'is-revealed' : ''}`}
-              aria-hidden={activeFaculty !== 'hirani'}
-            >
-              <div className="editorial-role-tag">Student Branch Coordinator</div>
-              <div className="editorial-name">Prof. Jasmin Hirani</div>
-              <div className="editorial-meta">Dept. of ECS • SIES GST</div>
-            </div>
-
-            {/* INTEGRATED EDITORIAL TYPOGRAPHY: RIGHT PERSON (Dr. Shubhangi Kharche) */}
-            <div 
-              className={`faculty-editorial-info info-right ${activeFaculty === 'kharche' ? 'is-revealed' : ''}`}
-              aria-hidden={activeFaculty !== 'kharche'}
-            >
-              <div className="editorial-role-tag">Head of Department</div>
-              <div className="editorial-name">Dr. Shubhangi Kharche</div>
-              <div className="editorial-meta">HOD, Dept. of ECS • SIES GST</div>
+              {/* Hit Zone 2: Prof. Jasmin Hirani (RIGHT PERSON - PEACH DRESS) */}
+              <button
+                type="button"
+                className={`faculty-hit-zone faculty-hit-right ${activeFaculty === 'hirani' ? 'hit-active' : ''}`}
+                onMouseEnter={() => handleFacultyHover('hirani')}
+                onFocus={() => handleFacultyHover('hirani')}
+                onClick={() => handleFacultyClick('hirani', hiraniMember)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleFacultyClick('hirani', hiraniMember);
+                  }
+                }}
+                aria-label="Prof. Jasmin Hirani, Student Branch Coordinator. Click to inspect."
+                tabIndex={0}
+              >
+                <span className="sr-only">Prof. Jasmin Hirani, Student Branch Coordinator</span>
+              </button>
             </div>
 
           </div>
         </div>
+
+        {/* PURE EDITORIAL TYPOGRAPHY UNDERNEATH — NO CARDS, NO BOXES */}
+        <div className="grid grid-cols-2 gap-4 sm:gap-12 mt-6 sm:mt-10 px-2 sm:px-4 max-w-4xl mx-auto">
+          {/* 01: Dr. Shubhangi Kharche (LEFT) */}
+          <button
+            type="button"
+            onClick={() => handleFacultyClick('kharche', kharcheMember)}
+            className={`text-left transition-all duration-300 cursor-pointer group outline-none ${
+              activeFaculty === 'kharche' ? 'opacity-100' : 'opacity-45 hover:opacity-80'
+            }`}
+          >
+            <div className="font-mono text-xs sm:text-sm font-bold text-[#0062FF] tracking-widest mb-1">
+              01
+            </div>
+            <div className="font-display font-black text-sm sm:text-xl md:text-2xl text-zinc-950 tracking-tight leading-tight uppercase">
+              Dr. Shubhangi Kharche
+            </div>
+            <div className="text-[11px] sm:text-xs font-semibold tracking-wider text-zinc-500 uppercase mt-0.5 sm:mt-1">
+              Head of Department
+            </div>
+            <div className={`h-0.5 bg-[#0062FF] mt-2 transition-all duration-300 ${activeFaculty === 'kharche' ? 'w-8 sm:w-12 opacity-100' : 'w-0 opacity-0'}`} />
+          </button>
+
+          {/* 02: Prof. Jasmin Hirani (RIGHT) */}
+          <button
+            type="button"
+            onClick={() => handleFacultyClick('hirani', hiraniMember)}
+            className={`text-left transition-all duration-300 cursor-pointer group outline-none ${
+              activeFaculty === 'hirani' ? 'opacity-100' : 'opacity-45 hover:opacity-80'
+            }`}
+          >
+            <div className="font-mono text-xs sm:text-sm font-bold text-[#0062FF] tracking-widest mb-1">
+              02
+            </div>
+            <div className="font-display font-black text-sm sm:text-xl md:text-2xl text-zinc-950 tracking-tight leading-tight uppercase">
+              Prof. Jasmin Hirani
+            </div>
+            <div className="text-[11px] sm:text-xs font-semibold tracking-wider text-zinc-500 uppercase mt-0.5 sm:mt-1">
+              Student Branch Coordinator
+            </div>
+            <div className={`h-0.5 bg-[#0062FF] mt-2 transition-all duration-300 ${activeFaculty === 'hirani' ? 'w-8 sm:w-12 opacity-100' : 'w-0 opacity-0'}`} />
+          </button>
+        </div>
+
+        {/* Minimalist Section Progress Line Indicator */}
+        <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-400 mt-8 sm:mt-12 pt-4 border-t border-zinc-100 max-w-4xl mx-auto">
+          <span>01</span>
+          <div className="flex-1 mx-4 sm:mx-8 h-px bg-zinc-200 relative overflow-hidden">
+            <div className="absolute left-0 top-0 h-full w-1/3 bg-[#0062FF]"></div>
+          </div>
+          <span>03</span>
+        </div>
       </section>
 
       {/* ===================================================================== */}
-      {/* 02 — EXECUTIVE LEADERSHIP                                            */}
-      {/* ONE SINGLE FOUR-PERSON GROUP PHOTOGRAPH • 4-MASK CHANNEL SYSTEM       */}
-      {/* INTEGRATED EDITORIAL TYPOGRAPHY — NO BELOW-IMAGE CARDS               */}
+      {/* 02 — EXECUTIVE COUNCIL                                               */}
+      {/* "EDITORIAL GROUP PORTRAIT"                                            */}
+      {/* Large Group Photo • Kinetic Horizontal Orbit Geometry                */}
+      {/* Monochrome to Colour Selection • Pure Typography (No Cards / Boxes)  */}
       {/* ===================================================================== */}
-      <section className="mb-24 lg:mb-32" aria-labelledby="heading-executive-leadership">
-        <div className="leadership-section-header text-center sm:text-left">
+      <section className="mb-24 sm:mb-32 lg:mb-40" aria-labelledby="heading-executive-leadership">
+        
+        {/* Section Header */}
+        <div className="leadership-section-header">
+          {/* Eyebrow */}
+          <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3 border-b border-zinc-100 pb-2">
+            <div className="flex items-center gap-2">
+              <span className="text-zinc-900 font-bold">TEAM</span>
+              <span className="inline-block w-8 sm:w-12 h-px bg-zinc-300"></span>
+            </div>
+            <div className="text-zinc-500 font-medium">IEI SIES GST</div>
+          </div>
 
-          <h2 id="heading-executive-leadership" className="leadership-heading">
-            Executive Council
-          </h2>
-          <p className="leadership-subheading">
+          {/* Section Title & Index */}
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-3">
+            <h2 id="heading-executive-leadership" className="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-zinc-950 tracking-tight leading-none">
+              Executive <span className="font-black text-[#0062FF]">Council</span>
+            </h2>
+            <div className="mt-2 sm:mt-0 font-mono text-sm sm:text-base font-bold text-zinc-400 tracking-wider">
+              <span className="inline-block w-6 sm:w-8 h-px bg-zinc-300 align-middle mr-2"></span>
+              02 / 03
+            </div>
+          </div>
+
+          <p className="text-zinc-600 text-sm sm:text-base max-w-2xl leading-relaxed font-normal mb-8 sm:mb-12">
             Student leadership managing chapter operations, engineering initiatives, community outreach, and technical excellence.
           </p>
         </div>
 
         {/* 4-PERSON EXECUTIVE GROUP STAGE */}
-        <div className="executive-hero-stage-wrapper">
+        <div className="executive-editorial-stage-wrapper">
           <div 
-            className={`executive-hero-stage ${activeExecutive ? 'has-active-person' : ''}`}
+            className="executive-editorial-stage"
             onTouchStart={handleTouchStart}
-            onMouseLeave={() => handleExecutiveHover(null)}
           >
             {/* LAYER 0: Clean White Backdrop */}
             <div className="executive-white-backdrop" aria-hidden="true" />
 
-            {/* RESPONSIVE STAGE CANVAS: Keeps 16/9 natural aspect ratio & pixel-aligned masks */}
+            {/* LAYER 1: Kinetic Executive Horizontal Orbital Geometry */}
+            <KineticExecutiveOrbit className="executive-orbit-layer" />
+
+            {/* LAYER 2: Responsive Stage Canvas for 4-Person Group Photo & Masks */}
             <div className="executive-stage-canvas">
-              {/* LAYER 1: Base Photograph in 100% Monochrome / Grayscale */}
+              {/* Base Photograph in 100% Monochrome / Grayscale */}
               <img
                 src="/assets/executive-leadership-placeholder.jpg"
                 alt="Executive Leadership: Chairperson, Vice Chairperson, Secretary, and Treasurer"
@@ -341,7 +370,7 @@ export default function LeadershipSpotlight() {
                 loading="lazy"
               />
 
-              {/* LAYER 2: 4 Individual Color Overlay Layers masked to each executive */}
+              {/* 4 Individual Color Overlay Layers */}
               {executiveList.map(({ key, maskClass }) => (
                 <div
                   key={key}
@@ -364,12 +393,7 @@ export default function LeadershipSpotlight() {
                     type="button"
                     className={`executive-hit-slot slot-${idx} ${activeExecutive === key ? 'hit-active' : ''}`}
                     onMouseEnter={() => handleExecutiveHover(key)}
-                    onMouseOver={() => handleExecutiveHover(key)}
-                    onPointerEnter={() => handleExecutiveHover(key)}
-                    onMouseLeave={() => handleExecutiveHover(null)}
-                    onPointerLeave={() => handleExecutiveHover(null)}
                     onFocus={() => handleExecutiveHover(key)}
-                    onBlur={() => handleExecutiveHover(null)}
                     onClick={() => handleExecutiveClick(key, member)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -377,38 +401,56 @@ export default function LeadershipSpotlight() {
                         handleExecutiveClick(key, member);
                       }
                     }}
-                    aria-label={`${member?.name || label}, ${member?.role || label}. Click to view profile.`}
+                    aria-label={`${member?.name || label}, ${label}. Click to inspect.`}
                     tabIndex={0}
                   >
-                    <span className="sr-only">{member?.name || label}, {member?.role || label}</span>
+                    <span className="sr-only">{member?.name || label}, {label}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* LAYER 3: Selective Non-Continuous Perimeter Decoration System */}
-            <SegmentedPerimeterDecoration />
-
-            {/* INTEGRATED EDITORIAL TYPOGRAPHY FOR EXECUTIVE MEMBERS */}
-            {executiveList.map(({ key, member, label, slotIndex }) => {
-              const isActive = activeExecutive === key;
-              return (
-                <div
-                  key={`info-${key}`}
-                  className={`executive-editorial-info exec-info-slot-${slotIndex} ${isActive ? 'is-revealed' : ''}`}
-                  aria-hidden={!isActive}
-                >
-                  <div className="editorial-role-tag">{label}</div>
-                  <div className="editorial-name">{member?.name || label}</div>
-                  {member?.branch && (
-                    <div className="editorial-meta">Dept. of {member.branch} • 2026–2027</div>
-                  )}
-                </div>
-              );
-            })}
-
           </div>
         </div>
+
+        {/* PURE EDITORIAL TYPOGRAPHY UNDERNEATH — NO CARDS, NO BOXES */}
+        <div className="mt-6 sm:mt-10 px-2 sm:px-4 max-w-4xl mx-auto text-left">
+          <div className="font-mono text-xs sm:text-sm font-bold text-[#0062FF] tracking-widest mb-1">
+            0{activeExecItem.slotIndex + 1}
+          </div>
+          <div className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-zinc-950 tracking-tight leading-none uppercase">
+            {activeExecItem.label}
+          </div>
+          <div className="text-base sm:text-xl font-bold tracking-tight text-zinc-800 uppercase mt-2">
+            {activeExecMember?.name}
+          </div>
+          {activeExecMember?.branch && (
+            <div className="text-xs sm:text-sm text-zinc-500 font-mono mt-1">
+              Dept. of {activeExecMember.branch} • SIES GST
+            </div>
+          )}
+        </div>
+
+        {/* 4-Step Minimalist Progress Indicator Bar */}
+        <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-400 mt-8 sm:mt-12 pt-4 border-t border-zinc-100 max-w-4xl mx-auto">
+          <span>01</span>
+          <div className="flex-1 mx-4 sm:mx-8 grid grid-cols-4 gap-2">
+            {executiveList.map(({ key, label }, i) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => handleExecutiveHover(key)}
+                className="h-1 rounded-full transition-all duration-300 cursor-pointer relative"
+                style={{
+                  backgroundColor: activeExecutive === key ? '#0062FF' : 'rgba(0, 0, 0, 0.12)'
+                }}
+                aria-label={`Select ${label}`}
+              />
+            ))}
+          </div>
+          <span>04</span>
+        </div>
+
       </section>
 
     </div>

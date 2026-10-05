@@ -20,8 +20,12 @@ import {
 } from '@/pages';
 
 import { audioEngine } from '@/utils';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 
 export default function App() {
+  // 240Hz smooth scroll (desktop only — mobile uses native OS momentum)
+  useSmoothScroll();
+
   // Loader state — show on page load and allow manual replay
   const [showLoader, setShowLoader] = useState(true);
 

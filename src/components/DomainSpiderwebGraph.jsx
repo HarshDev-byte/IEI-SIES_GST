@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, Cpu, Globe, Palette, Megaphone, BookOpen, Layers } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 import './DomainSpiderwebGraph.css';
 
 /**
  * ============================================================================
- * IEI SIES GST — INTERACTIVE DOMAIN SPIDERWEB GRAPH
- * Multi-directional radial node network with spiderweb cord geometry
- * Interactive • Responsive • High-precision engineering UI
+ * IEI SIES GST — IEI ENGINEERING CONSTELLATION (DOMAIN UNIVERSE)
+ * 
+ * Recomposed Engineering Diagram + Mathematical Constellation + Orbital Geometry
+ * Center: IEI SIES GST CHAPTER
+ * Outer Radial Nodes: Technical, Industry Outreach & Admin, Design, Creative, Media, Editorial
+ * 
+ * Interaction:
+ * Tap/click a domain -> expands slightly, glowing IEI blue, active spoke brightens,
+ * traveling signal photon. Other nodes become quieter.
+ * Zero cards. Zero modals. Zero popups.
  * ============================================================================
  */
-
 export default function DomainSpiderwebGraph({
   chapterCoreData = {},
   domainWings = [],
@@ -34,15 +39,15 @@ export default function DomainSpiderwebGraph({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Geometry configuration: Responsive mobile vs desktop coordinates
-  const cx = isMobile ? 200 : 480;
-  const cy = isMobile ? 220 : 300;
-  const radius = isMobile ? 120 : 200;
-  const totalWings = domainWings.length || 5;
+  // Geometry coordinates
+  const cx = isMobile ? 220 : 480;
+  const cy = isMobile ? 245 : 310;
+  const radius = isMobile ? 135 : 215;
+  const totalWings = domainWings.length || 6;
 
-  // Calculate coordinates for the radial domain nodes
+  // 6 Domain nodes positioned radially around 360 degrees
   const nodePositions = domainWings.map((w, idx) => {
-    // Start at -90deg (top), step clockwise around 360deg
+    // Start at -90deg (12 o'clock), step clockwise
     const angleDeg = -90 + (idx * 360) / totalWings;
     const angleRad = (angleDeg * Math.PI) / 180;
     const x = cx + radius * Math.cos(angleRad);
@@ -59,21 +64,26 @@ export default function DomainSpiderwebGraph({
       if (Math.abs(cosVal) < 0.25) {
         labelAnchor = 'middle';
         labelOffsetY = sinVal < 0 ? -32 : 36;
+      } else if (cosVal > 0) {
+        labelAnchor = 'start';
+        labelOffsetX = 32;
+        labelOffsetY = sinVal > 0.3 ? 6 : (sinVal < -0.3 ? -2 : 4);
       } else {
-        labelAnchor = 'middle';
-        labelOffsetY = 36;
+        labelAnchor = 'end';
+        labelOffsetX = -32;
+        labelOffsetY = sinVal > 0.3 ? 6 : (sinVal < -0.3 ? -2 : 4);
       }
     } else {
       if (Math.abs(cosVal) < 0.25) {
         labelAnchor = 'middle';
-        labelOffsetY = sinVal < 0 ? -40 : 44;
+        labelOffsetY = sinVal < 0 ? -38 : 42;
       } else if (cosVal > 0) {
         labelAnchor = 'start';
-        labelOffsetX = 46;
+        labelOffsetX = 44;
         labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
       } else {
         labelAnchor = 'end';
-        labelOffsetX = -46;
+        labelOffsetX = -44;
         labelOffsetY = sinVal > 0.3 ? 8 : (sinVal < -0.3 ? -2 : 4);
       }
     }
@@ -88,38 +98,6 @@ export default function DomainSpiderwebGraph({
       labelY: y + labelOffsetY,
       labelAnchor
     };
-  });
-
-  // Calculate concentric spiderweb cords at 3 hierarchical tiers
-  const cordTiers = [0.35, 0.65, 0.94];
-  const webCordPaths = cordTiers.map((tier) => {
-    const rTier = radius * tier;
-    const points = [];
-
-    for (let i = 0; i < totalWings; i++) {
-      const angleRad = ((-90 + (i * 360) / totalWings) * Math.PI) / 180;
-      const x = cx + rTier * Math.cos(angleRad);
-      const y = cy + rTier * Math.sin(angleRad);
-      points.push({ x, y });
-    }
-
-    // Connect in a closed polygon with slight organic curve towards center
-    let pathData = `M ${points[0].x} ${points[0].y}`;
-    for (let i = 0; i < totalWings; i++) {
-      const nextIdx = (i + 1) % totalWings;
-      const p1 = points[i];
-      const p2 = points[nextIdx];
-
-      // Quadratic curve control point slightly bowed inward (spiderweb sag)
-      const midAngleRad = ((-90 + ((i + 0.5) * 360) / totalWings) * Math.PI) / 180;
-      const sagRadius = rTier * 0.94;
-      const qx = cx + sagRadius * Math.cos(midAngleRad);
-      const qy = cy + sagRadius * Math.sin(midAngleRad);
-
-      pathData += ` Q ${qx} ${qy} ${p2.x} ${p2.y}`;
-    }
-
-    return pathData;
   });
 
   const handleSelect = (key) => {
@@ -138,37 +116,60 @@ export default function DomainSpiderwebGraph({
   const isCoreActive = selectedWingIndex === 'core';
 
   return (
-    <div className="domain-spiderweb-root" role="region" aria-label="Interactive Domain Spiderweb Graph">
-      {/* Main Spiderweb SVG Viewport */}
-      <div className="spiderweb-svg-container">
+    <div className="domain-constellation-root" role="region" aria-label="IEI Engineering Constellation">
+      <div className="constellation-svg-wrapper">
         <svg 
-          viewBox={isMobile ? "0 0 400 440" : "0 0 960 620"} 
-          className="spiderweb-svg"
+          viewBox={isMobile ? "0 0 440 500" : "0 0 960 620"} 
+          className="constellation-svg"
           aria-hidden="true"
         >
           <defs>
-            {/* Filter for glowing node shadow */}
             <filter id="nodeShadow" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.08" />
+              <feDropShadow dx="0" dy="2" stdDeviation="4" floodOpacity="0.06" />
             </filter>
             <filter id="activeGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#0062FF" floodOpacity="0.35" />
+              <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#0062FF" floodOpacity="0.38" />
             </filter>
           </defs>
 
-          {/* 01. Spiderweb Concentric Web Cords */}
-          <g className="spiderweb-cords-group">
-            {webCordPaths.map((d, idx) => (
-              <path 
-                key={`cord-${idx}`} 
-                d={d} 
-                className={`spiderweb-cord ${selectedWingIndex !== null ? 'is-active' : ''}`} 
-              />
-            ))}
+          {/* 01. MATHEMATICAL ORBITAL ELLIPSES (Slow Celestial Movement) */}
+          <g className="constellation-orbits-group">
+            {/* Primary Orbital Ellipse */}
+            <ellipse 
+              cx={cx} 
+              cy={cy} 
+              rx={radius * 1.05} 
+              ry={radius * 0.96} 
+              fill="none" 
+              stroke="rgba(0, 98, 255, 0.18)" 
+              strokeWidth="0.9" 
+            />
+
+            {/* Secondary Dashed Ellipse */}
+            <ellipse 
+              cx={cx} 
+              cy={cy} 
+              rx={radius * 0.68} 
+              ry={radius * 0.62} 
+              fill="none" 
+              stroke="rgba(15, 23, 42, 0.08)" 
+              strokeWidth="0.75" 
+              strokeDasharray="4 6" 
+            />
+
+            {/* Outer Constellation Boundary Ring */}
+            <circle 
+              cx={cx} 
+              cy={cy} 
+              r={radius * 1.25} 
+              fill="none" 
+              stroke="rgba(0, 98, 255, 0.08)" 
+              strokeWidth="0.65" 
+            />
           </g>
 
-          {/* 02. Radial Spokes Connecting Center to All 7 Outer Nodes */}
-          <g className="spiderweb-spokes-group">
+          {/* 02. SPOKES CONNECTING CENTER TO RADIAL NODES */}
+          <g className="constellation-spokes-group">
             {nodePositions.map((node) => {
               const isActive = selectedWingIndex === node.indexKey;
               const isHovered = hoveredNode === node.indexKey;
@@ -181,15 +182,16 @@ export default function DomainSpiderwebGraph({
                     y1={cy}
                     x2={node.x}
                     y2={node.y}
-                    className={`spiderweb-spoke ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''}`}
+                    className={`constellation-spoke ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''}`}
                   />
 
                   {/* Traveling Pulse Photon along Active Spoke */}
                   {isActive && (
                     <circle 
-                      cx={cx + (node.x - cx) * 0.5} 
-                      cy={cy + (node.y - cy) * 0.5} 
-                      className="spiderweb-photon" 
+                      cx={cx + (node.x - cx) * 0.55} 
+                      cy={cy + (node.y - cy) * 0.55} 
+                      r={isMobile ? 3.5 : 4} 
+                      className="constellation-photon" 
                     />
                   )}
                 </g>
@@ -197,16 +199,16 @@ export default function DomainSpiderwebGraph({
             })}
           </g>
 
-          {/* 03. Center Hub Node: Chapter Core */}
+          {/* 03. CENTRAL HUB NODE: IEI SIES GST CHAPTER */}
           <g 
-            className={`spiderweb-center-group ${isCoreActive ? 'is-active' : ''}`}
+            className={`constellation-center-group ${isCoreActive ? 'is-active' : ''}`}
             onClick={() => handleSelect('core')}
             onMouseEnter={() => handleMouseEnter('core')}
             onMouseLeave={handleMouseLeave}
             style={{ cursor: 'pointer' }}
             tabIndex={0}
             role="button"
-            aria-label="Chapter Core Central Hub"
+            aria-label="IEI SIES GST Central Core Hub"
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -214,58 +216,72 @@ export default function DomainSpiderwebGraph({
               }
             }}
           >
-            {/* Outer Aura Ring */}
+            {/* Outer Guide Aura Ring */}
             <circle
               cx={cx}
               cy={cy}
-              r={isMobile ? 40 : 48}
+              r={isMobile ? 48 : 58}
               fill="none"
-              stroke={isCoreActive ? 'rgba(0, 98, 255, 0.25)' : 'rgba(0, 0, 0, 0.05)'}
-              strokeWidth={isCoreActive ? 4 : 1.5}
+              stroke={isCoreActive ? 'rgba(0, 98, 255, 0.35)' : 'rgba(0, 98, 255, 0.12)'}
+              strokeWidth={isCoreActive ? 3 : 1}
+              strokeDasharray={isCoreActive ? 'none' : '3 3'}
             />
 
-            {/* Main Center Circle */}
+            {/* Center Circle */}
             <circle
               cx={cx}
               cy={cy}
-              r={isMobile ? 32 : 36}
+              r={isMobile ? 38 : 46}
               fill={isCoreActive ? '#0062FF' : '#ffffff'}
-              stroke={isCoreActive ? '#0062FF' : 'rgba(0, 0, 0, 0.14)'}
-              strokeWidth={2.5}
+              stroke={isCoreActive ? '#0062FF' : 'rgba(15, 23, 42, 0.14)'}
+              strokeWidth={2}
               filter={isCoreActive ? 'url(#activeGlow)' : 'url(#nodeShadow)'}
-              className="spiderweb-center-circle"
+              className="constellation-center-circle"
             />
 
-            {/* Central Monogram */}
+            {/* Central Typography: IEI / SIES GST / CHAPTER */}
             <text
               x={cx}
-              y={cy - (isMobile ? 3 : 4)}
+              y={cy - (isMobile ? 12 : 14)}
               textAnchor="middle"
               dominantBaseline="middle"
               fontFamily="var(--font-mono, monospace)"
-              fontSize={isMobile ? "11" : "12"}
-              fontWeight="800"
-              fill={isCoreActive ? '#ffffff' : '#09090b'}
-              letterSpacing="0.08em"
+              fontSize={isMobile ? "12" : "14"}
+              fontWeight="900"
+              fill={isCoreActive ? '#ffffff' : '#09090B'}
+              letterSpacing="0.1em"
             >
-              CORE
+              IEI
             </text>
             <text
               x={cx}
-              y={cy + (isMobile ? 9 : 10)}
+              y={cy + (isMobile ? 3 : 4)}
               textAnchor="middle"
               dominantBaseline="middle"
               fontFamily="var(--font-mono, monospace)"
-              fontSize={isMobile ? "7.5" : "8"}
-              fontWeight="700"
-              fill={isCoreActive ? 'rgba(255, 255, 255, 0.85)' : '#71717a'}
-              letterSpacing="0.06em"
+              fontSize={isMobile ? "8.5" : "9.5"}
+              fontWeight="800"
+              fill={isCoreActive ? 'rgba(255, 255, 255, 0.95)' : '#0062FF'}
+              letterSpacing="0.08em"
             >
-              APEX
+              SIES GST
+            </text>
+            <text
+              x={cx}
+              y={cy + (isMobile ? 16 : 19)}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontFamily="var(--font-mono, monospace)"
+              fontSize={isMobile ? "6.5" : "7.5"}
+              fontWeight="700"
+              fill={isCoreActive ? 'rgba(255, 255, 255, 0.75)' : '#71717A'}
+              letterSpacing="0.14em"
+            >
+              CHAPTER
             </text>
           </g>
 
-          {/* 04. Outer Domain Nodes */}
+          {/* 04. 6 RADIAL DOMAIN NODES */}
           {nodePositions.map((node) => {
             const isActive = selectedWingIndex === node.indexKey;
             const isHovered = hoveredNode === node.indexKey;
@@ -273,7 +289,7 @@ export default function DomainSpiderwebGraph({
             return (
               <g
                 key={`node-${node.id}`}
-                className={`spiderweb-node-group ${isActive ? 'is-active' : ''}`}
+                className={`constellation-node-group ${isActive ? 'is-active' : ''} ${isHovered ? 'is-hovered' : ''}`}
                 onClick={() => handleSelect(node.indexKey)}
                 onMouseEnter={() => handleMouseEnter(node.indexKey)}
                 onMouseLeave={handleMouseLeave}
@@ -287,66 +303,66 @@ export default function DomainSpiderwebGraph({
                   }
                 }}
               >
-                {/* Invisible large hit area */}
-                <circle cx={node.x} cy={node.y} r={isMobile ? 36 : 38} fill="transparent" />
+                {/* Generous touch target */}
+                <circle cx={node.x} cy={node.y} r={isMobile ? 34 : 38} fill="transparent" />
 
-                {/* Outer Halo on Active */}
+                {/* Outer Halo Ring when Active */}
                 {isActive && (
                   <circle
                     cx={node.x}
                     cy={node.y}
-                    r={isMobile ? 30 : 34}
+                    r={isMobile ? 28 : 32}
                     fill="none"
                     stroke="rgba(0, 98, 255, 0.25)"
-                    strokeWidth={4}
+                    strokeWidth={3}
                   />
                 )}
 
-                {/* Node Circle */}
+                {/* Node Main Circle */}
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r={isMobile ? 22 : 24}
+                  r={isMobile ? 20 : 24}
                   fill={isActive ? '#0062FF' : '#ffffff'}
-                  stroke={isActive ? '#0062FF' : isHovered ? '#0062FF' : 'rgba(0, 0, 0, 0.12)'}
-                  strokeWidth={isActive ? 3 : 1.75}
+                  stroke={isActive ? '#0062FF' : isHovered ? '#0062FF' : 'rgba(15, 23, 42, 0.14)'}
+                  strokeWidth={isActive ? 2.5 : 1.5}
                   filter={isActive ? 'url(#activeGlow)' : 'url(#nodeShadow)'}
-                  className="spiderweb-node-circle"
+                  className="constellation-node-circle"
                 />
 
-                {/* Node Code / Monogram */}
+                {/* Node Code: TECH, DSGN, EDIT, etc. */}
                 <text
                   x={node.x}
                   y={node.y}
                   textAnchor="middle"
                   dominantBaseline="central"
                   fontFamily="var(--font-mono, monospace)"
-                  fontSize={isMobile ? "8.5" : "9.5"}
+                  fontSize={isMobile ? "8" : "9"}
                   fontWeight="800"
-                  fill={isActive ? '#ffffff' : '#09090b'}
+                  fill={isActive ? '#ffffff' : '#09090B'}
                   letterSpacing="0.04em"
                 >
                   {node.code}
                 </text>
 
-                {/* Radial Outer Text Label */}
+                {/* Radial Outer Label (No Overlap, Completely Legible) */}
                 <g>
-                  {isMobile && (node.name.includes('&') || node.name.length > 12) ? (
+                  {node.name.includes('&') ? (
                     <text
                       x={node.labelX}
                       y={node.labelY}
                       textAnchor={node.labelAnchor}
-                      className="spiderweb-node-title"
+                      className={`constellation-node-label ${isActive ? 'is-active-label' : ''}`}
                     >
-                      <tspan x={node.labelX} dy="-5">Outreach</tspan>
-                      <tspan x={node.labelX} dy="13">& Admin</tspan>
+                      <tspan x={node.labelX} dy="-4">Outreach</tspan>
+                      <tspan x={node.labelX} dy="12">& Admin</tspan>
                     </text>
                   ) : (
                     <text
                       x={node.labelX}
                       y={node.labelY}
                       textAnchor={node.labelAnchor}
-                      className="spiderweb-node-title"
+                      className={`constellation-node-label ${isActive ? 'is-active-label' : ''}`}
                     >
                       {node.name}
                     </text>
