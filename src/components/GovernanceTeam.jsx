@@ -13,7 +13,7 @@ export default function GovernanceTeam() {
   // Top-level section view: 'domains' | 'senior' | 'junior'
   const [activeView, setActiveView] = useState('domains');
 
-  // State for Domain Universe active wing: 0..6 or 'core'
+  // State for Domain Universe active wing: 0..5 or 'core'
   const [selectedWingIndex, setSelectedWingIndex] = useState(0);
 
   const handleSelectWing = (target) => {
@@ -86,7 +86,7 @@ export default function GovernanceTeam() {
     }))
   };
 
-  // 6 Official Domains for Domain Universe: Technical, Industry Outreach & Admin, Design, Creative, Media, Editorial
+  // 6 Official Domains for Domain Universe
   const domainWings = [
     {
       id: "tech",
@@ -246,45 +246,57 @@ export default function GovernanceTeam() {
   return (
     <div id="team" className="relative text-zinc-900 bg-transparent">
       {/* ========================================================================= */}
-      {/* 03 — DIRECTORY SECTIONS: DOMAIN WINGS, SENIOR COUNCIL, JUNIOR COUNCIL     */}
+      {/* 03 — DOMAIN UNIVERSE (IEI ENGINEERING CONSTELLATION)                     */}
       {/* ========================================================================= */}
-      <section id="domains" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
+      <section id="domains" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
         
-        {/* Section Header & Subtitle */}
-        <div className="max-w-3xl mb-8 sm:mb-10">
+        {/* Section Header */}
+        <div className="leadership-section-header max-w-7xl mx-auto">
+          {/* Eyebrow */}
+          <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3 border-b border-zinc-100 pb-2">
+            <div className="flex items-center gap-2">
+              <span className="text-zinc-900 font-bold">TEAM</span>
+              <span className="inline-block w-8 sm:w-12 h-px bg-zinc-300"></span>
+            </div>
+            <div className="text-zinc-500 font-medium">IEI SIES GST</div>
+          </div>
 
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-tight mb-3">
-            {activeView === 'domains' && 'Domain Universe'}
-            {activeView === 'senior' && 'Senior Council'}
-            {activeView === 'junior' && 'Junior Council'}
-          </h2>
-          <p className="text-zinc-600 text-sm sm:text-base font-normal leading-relaxed">
-            {activeView === 'domains' && "Explore the chapter's multidisciplinary departments. Select any domain node or deck to inspect its coordinators and leadership."}
-            {activeView === 'senior' && "Executive leadership and domain mentors directing chapter strategy, multidisciplinary initiatives, and technical symposiums."}
-            {activeView === 'junior' && "Operational wing heads and student coordinators driving hands-on execution across technical, design, editorial, and outreach programs."}
+          {/* Section Title & Index */}
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-3">
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-light text-zinc-950 tracking-tight leading-none">
+              Domain <span className="font-black text-[#0062FF]">Universe</span>
+            </h2>
+            <div className="mt-2 sm:mt-0 font-mono text-sm sm:text-base font-bold text-zinc-400 tracking-wider">
+              <span className="inline-block w-6 sm:w-8 h-px bg-zinc-300 align-middle mr-2"></span>
+              03 / 03
+            </div>
+          </div>
+
+          <p className="text-zinc-600 text-sm sm:text-base max-w-2xl leading-relaxed font-normal mb-8 sm:mb-12">
+            Engineering constellation mapping multidisciplinary wings and specialized operational domains driving research, hackathons, and collegiate initiatives.
           </p>
         </div>
 
-        {/* Directory View Switcher Tabs (Simplified Minimal Design) */}
-        <div className="flex items-center gap-1.5 sm:gap-2 mb-8 overflow-x-auto pb-1 scrollbar-none">
+        {/* Directory View Switcher (Pure Typography Tabs) */}
+        <div className="flex items-center gap-4 sm:gap-6 mb-8 overflow-x-auto pb-1 scrollbar-none border-b border-zinc-100">
           <button
             type="button"
             onClick={() => handleViewChange('domains')}
-            className={`pb-3 px-3 text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
+            className={`pb-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
               activeView === 'domains'
                 ? 'border-[#0062FF] text-[#0062FF]'
-                : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                : 'border-transparent text-zinc-400 hover:text-zinc-900'
             }`}
           >
-            Domain Universe (6 Wings)
+            Engineering Constellation (6 Wings)
           </button>
           <button
             type="button"
             onClick={() => handleViewChange('senior')}
-            className={`pb-3 px-3 text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
+            className={`pb-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
               activeView === 'senior'
                 ? 'border-[#0062FF] text-[#0062FF]'
-                : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                : 'border-transparent text-zinc-400 hover:text-zinc-900'
             }`}
           >
             Senior Council ({seniorCouncil.length})
@@ -292,10 +304,10 @@ export default function GovernanceTeam() {
           <button
             type="button"
             onClick={() => handleViewChange('junior')}
-            className={`pb-3 px-3 text-xs sm:text-sm font-semibold transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
+            className={`pb-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shrink-0 cursor-pointer border-b-2 -mb-[1px] ${
               activeView === 'junior'
                 ? 'border-[#0062FF] text-[#0062FF]'
-                : 'border-transparent text-zinc-500 hover:text-zinc-900'
+                : 'border-transparent text-zinc-400 hover:text-zinc-900'
             }`}
           >
             Junior Council ({juniorCouncil.length})
@@ -303,11 +315,11 @@ export default function GovernanceTeam() {
         </div>
 
         {/* ===================================================================== */}
-        {/* VIEW 1: DOMAIN UNIVERSE & INTERACTIVE NODE GRAPH                     */}
+        {/* VIEW 1: DOMAIN UNIVERSE (CONSTELLATION & WING ROSTER)                 */}
         {/* ===================================================================== */}
         {activeView === 'domains' && (
           <div className="animate-fadeIn">
-            {/* Interactive Domain Spiderweb Graph */}
+            {/* Interactive Domain Engineering Constellation Graph */}
             <DomainSpiderwebGraph
               chapterCoreData={chapterCoreData}
               domainWings={domainWings}
@@ -315,16 +327,19 @@ export default function GovernanceTeam() {
               onSelectWing={handleSelectWing}
             />
 
-            {/* Selected Wing Detail Panel: MemberCard Responsive Directory */}
+            {/* Selected Wing Detail Roster: Pure Editorial Typography, No Heavy Card */}
             <div 
               ref={deckRef} 
               key={currentWing.id} 
-              className="bg-[#FAFBFD] rounded-3xl border border-black/[0.08] p-6 sm:p-10 shadow-xs animate-fadeIn scroll-mt-24"
+              className="mt-12 sm:mt-16 pt-8 border-t border-zinc-100 animate-fadeIn scroll-mt-24"
             >
               
               <div className="flex flex-col md:flex-row md:items-start justify-between pb-6 mb-8 gap-4">
                 <div>
-                  <h3 className="font-display text-2xl sm:text-4xl font-black text-zinc-950">
+                  <div className="font-mono text-xs font-bold text-[#0062FF] tracking-widest uppercase mb-1">
+                    {currentWing.fullCode}
+                  </div>
+                  <h3 className="font-display text-2xl sm:text-4xl font-black text-zinc-950 uppercase tracking-tight">
                     {currentWing.fullName}
                   </h3>
                 </div>
@@ -343,11 +358,11 @@ export default function GovernanceTeam() {
                 </div>
               </div>
 
-              {/* Sub-section 1: Advisory & Senior Mentors (if present) */}
+              {/* Advisory & Senior Mentors */}
               {currentWing.mentors && currentWing.mentors.length > 0 && (
-                <div className="mb-10">
-                  <div className="mb-4 pb-2">
-                    <h4 className="font-display font-bold text-sm text-zinc-950 uppercase tracking-wider">
+                <div className="mb-12">
+                  <div className="mb-4 pb-2 border-b border-zinc-100">
+                    <h4 className="font-mono font-bold text-xs text-zinc-900 uppercase tracking-widest">
                       Advisory & Mentorship ({currentWing.mentors.length})
                     </h4>
                   </div>
@@ -362,11 +377,11 @@ export default function GovernanceTeam() {
                 </div>
               )}
 
-              {/* Sub-section 2: Wing Leadership & Heads (if present) */}
+              {/* Wing Leadership & Heads */}
               {currentWing.heads && currentWing.heads.length > 0 && (
-                <div className="mb-10">
-                  <div className="mb-4 pb-2">
-                    <h4 className="font-display font-bold text-sm text-zinc-950 uppercase tracking-wider">
+                <div className="mb-12">
+                  <div className="mb-4 pb-2 border-b border-zinc-100">
+                    <h4 className="font-mono font-bold text-xs text-zinc-900 uppercase tracking-widest">
                       Wing Leadership ({currentWing.heads.length})
                     </h4>
                   </div>
@@ -381,11 +396,11 @@ export default function GovernanceTeam() {
                 </div>
               )}
 
-              {/* Sub-section 3: Domain Coordinators (if present) */}
+              {/* Domain Coordinators */}
               {currentWing.coordinators && currentWing.coordinators.length > 0 && (
                 <div>
-                  <div className="mb-4 pb-2">
-                    <h4 className="font-display font-bold text-sm text-zinc-950 uppercase tracking-wider">
+                  <div className="mb-4 pb-2 border-b border-zinc-100">
+                    <h4 className="font-mono font-bold text-xs text-zinc-900 uppercase tracking-widest">
                       Domain Coordinators ({currentWing.coordinators.length})
                     </h4>
                   </div>
@@ -408,7 +423,7 @@ export default function GovernanceTeam() {
         {/* VIEW 2: SENIOR COUNCIL (ALL 14 MEMBERS)                              */}
         {/* ===================================================================== */}
         {activeView === 'senior' && (
-          <div className="animate-fadeIn">
+          <div className="animate-fadeIn mt-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {seniorCouncil.map((member) => (
                 <MemberCard 
@@ -424,7 +439,7 @@ export default function GovernanceTeam() {
         {/* VIEW 3: JUNIOR COUNCIL (ALL 14 MEMBERS)                              */}
         {/* ===================================================================== */}
         {activeView === 'junior' && (
-          <div className="animate-fadeIn">
+          <div className="animate-fadeIn mt-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {juniorCouncil.map((member) => (
                 <MemberCard 
@@ -435,6 +450,15 @@ export default function GovernanceTeam() {
             </div>
           </div>
         )}
+
+        {/* Minimalist Section Progress Line Indicator */}
+        <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-400 mt-16 sm:mt-24 pt-4 border-t border-zinc-100 max-w-4xl mx-auto">
+          <span>01</span>
+          <div className="flex-1 mx-4 sm:mx-8 h-px bg-zinc-200 relative overflow-hidden">
+            <div className="absolute right-0 top-0 h-full w-1/3 bg-[#0062FF]"></div>
+          </div>
+          <span>03</span>
+        </div>
 
       </section>
 

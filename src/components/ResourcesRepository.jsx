@@ -81,7 +81,7 @@ export default function ResourcesRepository() {
     <div 
       className={`space-y-3.5 ${
         isBlurred 
-          ? 'absolute inset-0 filter blur-[7px] opacity-40 select-none pointer-events-none overflow-hidden scale-[0.99]' 
+          ? 'filter blur-[7px] opacity-35 select-none pointer-events-none scale-[0.99] transition-all' 
           : ''
       }`}
       aria-hidden={isBlurred ? 'true' : undefined}

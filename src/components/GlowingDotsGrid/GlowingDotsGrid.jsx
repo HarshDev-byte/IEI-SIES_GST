@@ -31,6 +31,13 @@ export default function GlowingDotsGrid({
   const stateRef = useRef(null);
 
   useEffect(() => {
+    // Detect mobile viewport or small touch screen (< 768px or touch screen < 1024px)
+    // Disabling on mobile eliminates canvas compositor memory overhead, preventing mobile browser crashes and lag
+    const isMobileScreen = typeof window !== 'undefined' && (window.innerWidth < 768 || ('ontouchstart' in window && window.innerWidth < 1024));
+    if (isMobileScreen) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 

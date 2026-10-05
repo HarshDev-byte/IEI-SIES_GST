@@ -22,8 +22,8 @@ const CHAPTER_SLIDES = [
     location: "Main Auditorium, SIES GST",
     date: "Annual Academic Session",
     desc: "Plenary assembly of 400+ engineering students, distinguished national fellows, and department faculty inaugurating the annual chapter symposium.",
-    bgUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1920&q=80",
-    maskUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=80"
+    bgUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=75",
+    maskUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=640&q=75"
   },
   {
     id: "hardware",
@@ -32,8 +32,8 @@ const CHAPTER_SLIDES = [
     location: "Hardware Lab 3, ECS Department",
     date: "Fall Semester Sprint",
     desc: "Oscilloscope and logic analyzer telemetry debugging during an intensive 32-bit ARM Cortex embedded systems sprint.",
-    bgUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80",
-    maskUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80"
+    bgUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=75",
+    maskUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=640&q=75"
   },
   {
     id: "hackathon",
@@ -42,8 +42,8 @@ const CHAPTER_SLIDES = [
     location: "Central Computing Arena",
     date: "Annual Flagship",
     desc: "36-hour sprint with collegiate teams fabricating embedded firmware, mobile architectures, and machine learning inference pipelines.",
-    bgUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1920&q=80",
-    maskUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80"
+    bgUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=75",
+    maskUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=640&q=75"
   },
   {
     id: "robotics",
@@ -52,8 +52,8 @@ const CHAPTER_SLIDES = [
     location: "IoT & Robotics Cell",
     date: "Innovation Division",
     desc: "Hands-on calibration of multi-axis robotic actuators and real-time industrial telemetry buses across student project tracks.",
-    bgUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1920&q=80",
-    maskUrl: "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1000&q=80"
+    bgUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=75",
+    maskUrl: "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=640&q=75"
   },
   {
     id: "investiture",
@@ -62,8 +62,8 @@ const CHAPTER_SLIDES = [
     location: "Seminar Hall, SIES GST",
     date: "Session 2026–2027",
     desc: "Formal investiture of student council executives, faculty advisors, and domain coordinators leading student chapter operations.",
-    bgUrl: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1920&q=80",
-    maskUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+    bgUrl: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=75",
+    maskUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=640&q=75"
   }
 ];
 
@@ -196,18 +196,33 @@ export default function SmoothChapterGallery() {
       });
     }
 
-    // Support a horizontal swipe gesture to navigate
+    // Support horizontal swipe gesture without blocking native vertical scrolling
     let gestureUsed = false;
-    const observer = Observer.create({
-      target: root,
-      type: "touch,pointer",
-      dragMinimum: 10,
-      tolerance: 25,
-      lockAxis: true,
-      onDragStart() { gestureUsed = false; },
-      onLeft() { if (!gestureUsed) { gestureUsed = true; goTo(1); } },
-      onRight() { if (!gestureUsed) { gestureUsed = true; goTo(-1); } },
-    });
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const handleTouchStart = (e) => {
+      if (e.touches && e.touches[0]) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        gestureUsed = false;
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (gestureUsed || !e.touches || !e.touches[0]) return;
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      // Only step slide if distinctly horizontal swipe (> 45px and dx > 2 * dy)
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 2) {
+        gestureUsed = true;
+        if (dx < 0) goTo(1);
+        else goTo(-1);
+      }
+    };
+
+    root.addEventListener("touchstart", handleTouchStart, { passive: true });
+    root.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     const onPrev = () => {
       audioEngine?.playHover && audioEngine.playHover();
@@ -250,7 +265,8 @@ export default function SmoothChapterGallery() {
     startAutoplay();
 
     return () => {
-      observer.kill();
+      root.removeEventListener("touchstart", handleTouchStart);
+      root.removeEventListener("touchmove", handleTouchMove);
       if (slideTween) slideTween.kill();
       if (autoTween) autoTween.kill();
       window.removeEventListener("resize", onResize);
