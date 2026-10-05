@@ -62,3 +62,5 @@ export { default as StudentHub } from './StudentHub';
 export { default as FuturisticComingSoon } from './FuturisticComingSoon';
 export { default as SponsorsSection } from './SponsorsSection';
 export { default as GlowingDotsGrid } from './GlowingDotsGrid/GlowingDotsGrid';
+export { default as ComingSoonCard } from './ComingSoonCard';
+export { default as MobileFloatingSocial } from './MobileFloatingSocial';

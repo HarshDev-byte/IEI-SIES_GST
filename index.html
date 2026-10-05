@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -10,7 +10,18 @@
     <meta property="og:title" content="IEI SIES GST | The Institution of Engineers (India)" />
     <meta property="og:description" content="Engineering. Community. Impact. Department of Electronics & Computer Science Engineering." />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <!-- Enforce Pure Light Mode & Clear any legacy theme preference -->
+    <script>
+      (function() {
+        try {
+          localStorage.removeItem('iei-theme');
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- Google Fonts: Outfit, Rajdhani, Orbitron, Syne, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

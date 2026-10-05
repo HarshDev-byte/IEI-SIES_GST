@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Terminal, Cpu, Users, Award, Calendar, ArrowRight, CheckCircle2, ChevronRight } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
+import ComingSoonCard from './ComingSoonCard';
+
+// TOGGLE COMING SOON BULLETIN (Set to false when activity registration schedules are published)
+const COMING_SOON_MODE = true;
 
 export default function ActivitiesSection({ onOpenMembership }) {
   const activities = [
@@ -53,6 +57,121 @@ export default function ActivitiesSection({ onOpenMembership }) {
   const [activeActivity, setActiveActivity] = useState(0);
   const current = activities[activeActivity];
 
+  const renderActivitiesContent = (isBlurred = false) => (
+    <div 
+      className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full ${
+        isBlurred ? 'filter blur-md opacity-40 pointer-events-none select-none transition-all duration-300' : ''
+      }`}
+      aria-hidden={isBlurred ? "true" : undefined}
+    >
+      {/* Left: Activity Selector */}
+      <div className="lg:col-span-5 space-y-2.5">
+        {activities.map((act, idx) => {
+          const isSelected = activeActivity === idx;
+
+          return (
+            <button
+              key={act.id}
+              onClick={() => {
+                if (isBlurred) return;
+                setActiveActivity(idx);
+                audioEngine.playClick();
+              }}
+              tabIndex={isBlurred ? -1 : 0}
+              className={`w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
+                isSelected 
+                  ? 'bg-zinc-900 border-zinc-900 text-white shadow-md' 
+                  : 'bg-white border-black/[0.08] text-zinc-600 hover:text-zinc-950 hover:border-black/20 hover:bg-zinc-50/50'
+              }`}
+            >
+              <div className="flex items-center gap-3.5">
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-semibold ${
+                  isSelected ? 'bg-white/15 text-white' : 'bg-black/[0.04] text-zinc-800'
+                }`}>
+                  {act.num}
+                </div>
+                <div>
+                  <div className={`text-xs flex items-center gap-1.5 ${
+                    isSelected ? 'text-zinc-300' : 'text-zinc-500'
+                  }`}>
+                    <span>{act.category}</span>
+                    <span>·</span>
+                    <span>{act.cadence}</span>
+                  </div>
+                  <div className={`font-display font-bold text-sm mt-0.5 ${
+                    isSelected ? 'text-white' : 'text-zinc-900'
+                  }`}>
+                    {act.title}
+                  </div>
+                </div>
+              </div>
+
+              <ChevronRight 
+                size={14} 
+                className={isSelected ? 'text-white' : 'text-zinc-400'} 
+              />
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Right: Detailed High-Precision Engineering Activity Dossier */}
+      <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-black/10 shadow-[0_20px_60px_rgba(0,0,0,0.06),_0_1px_2px_rgba(0,0,0,0.03)] relative overflow-hidden">
+        
+        <div className="flex items-center justify-between border-b border-black/[0.08] pb-4 mb-6 text-xs text-zinc-500 font-medium">
+          <span>{current.category}</span>
+          <span>{current.cadence}</span>
+        </div>
+
+        <h3 className="font-display text-2xl sm:text-3xl font-black text-zinc-950 mb-3 tracking-tight">
+          {current.title}
+        </h3>
+
+        <p className="text-zinc-600 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+          {current.description}
+        </p>
+
+        {/* Technical Modules & Lab Architecture */}
+        <div className="bg-[#FAFAFC] p-5 sm:p-6 rounded-2xl border border-black/[0.06] mb-6">
+          <div className="flex items-center justify-between mb-3 pb-2 border-b border-black/[0.04] text-xs font-semibold text-zinc-700">
+            <span>Core Syllabus &amp; Hardware Testbeds</span>
+          </div>
+
+          <div className="space-y-2.5 text-xs">
+            {current.specs.map((spec, sIdx) => (
+              <div key={sIdx} className="flex items-center gap-3 text-zinc-800 bg-white p-2.5 rounded-xl border border-black/5 shadow-xs">
+                <CheckCircle2 size={15} className="text-[#0066CC] shrink-0" />
+                <span className="font-medium">{spec}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Enrollment Action */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-black/[0.06]">
+          <div className="text-xs text-zinc-500 font-medium">
+            Active Semester Cohort Forming
+          </div>
+
+          <button
+            onClick={() => {
+              if (isBlurred) return;
+              audioEngine.playClick();
+              if (onOpenMembership) onOpenMembership(current.title);
+            }}
+            tabIndex={isBlurred ? -1 : 0}
+            className="btn-minimal-primary text-xs py-3 px-6 shadow-md flex items-center gap-2 group cursor-pointer"
+          >
+            <span>Enroll In Active Track</span>
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  );
+
   return (
     <section id="program-roster" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Featured Activities">
       
@@ -69,111 +188,28 @@ export default function ActivitiesSection({ onOpenMembership }) {
         </p>
       </div>
 
-      {/* 4 ACTIVITIES SPLIT VIEW */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        {/* Left: Activity Selector */}
-        <div className="lg:col-span-5 space-y-2.5">
-          {activities.map((act, idx) => {
-            const isSelected = activeActivity === idx;
+      {/* ACTIVITIES DISPLAY (Blurred with Coming Soon overlay or active grid) */}
+      {COMING_SOON_MODE ? (
+        <div className="relative rounded-3xl overflow-hidden p-2 sm:p-4">
+          {/* 1. Blurred background cards spanning full width */}
+          <div className="w-full pointer-events-none select-none" aria-hidden="true">
+            {renderActivitiesContent(true)}
+          </div>
 
-            return (
-              <button
-                key={act.id}
-                onClick={() => {
-                  setActiveActivity(idx);
-                  audioEngine.playClick();
-                }}
-                className={`w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
-                  isSelected 
-                    ? 'bg-zinc-900 border-zinc-900 text-white shadow-md' 
-                    : 'bg-white border-black/[0.08] text-zinc-600 hover:text-zinc-950 hover:border-black/20 hover:bg-zinc-50/50'
-                }`}
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-semibold ${
-                    isSelected ? 'bg-white/15 text-white' : 'bg-black/[0.04] text-zinc-800'
-                  }`}>
-                    {act.num}
-                  </div>
-                  <div>
-                    <div className={`text-xs flex items-center gap-1.5 ${
-                      isSelected ? 'text-zinc-300' : 'text-zinc-500'
-                    }`}>
-                      <span>{act.category}</span>
-                      <span>·</span>
-                      <span>{act.cadence}</span>
-                    </div>
-                    <div className={`font-display font-bold text-sm mt-0.5 ${
-                      isSelected ? 'text-white' : 'text-zinc-900'
-                    }`}>
-                      {act.title}
-                    </div>
-                  </div>
-                </div>
+          {/* 2. Subtle light ambient wash */}
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[3px] pointer-events-none z-10" aria-hidden="true" />
 
-                <ChevronRight 
-                  size={14} 
-                  className={isSelected ? 'text-white' : 'text-zinc-400'} 
-                />
-              </button>
-            );
-          })}
+          {/* 3. Overlaid Official Coming Soon Bulletin - Perfectly Centered */}
+          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            <ComingSoonCard 
+              title="Coming Soon"
+              description="We are finalizing our upcoming schedule of hands-on microcontroller masterclasses, research working groups, and flagship collegiate hackathons. Detailed syllabus, testbeds, and enrollment portals will be published here soon."
+            />
+          </div>
         </div>
-
-        {/* Right: Detailed High-Precision Engineering Activity Dossier */}
-        <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-black/10 shadow-[0_20px_60px_rgba(0,0,0,0.06),_0_1px_2px_rgba(0,0,0,0.03)] relative overflow-hidden">
-          
-          <div className="flex items-center justify-between border-b border-black/[0.08] pb-4 mb-6 text-xs text-zinc-500 font-medium">
-            <span>{current.category}</span>
-            <span>{current.cadence}</span>
-          </div>
-
-          <h3 className="font-display text-2xl sm:text-3xl font-black text-zinc-950 mb-3 tracking-tight">
-            {current.title}
-          </h3>
-
-          <p className="text-zinc-600 text-sm sm:text-base leading-relaxed mb-6 font-normal">
-            {current.description}
-          </p>
-
-          {/* Technical Modules & Lab Architecture */}
-          <div className="bg-[#FAFAFC] p-5 sm:p-6 rounded-2xl border border-black/[0.06] mb-6">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-black/[0.04] text-xs font-semibold text-zinc-700">
-              <span>Core Syllabus &amp; Hardware Testbeds</span>
-            </div>
-
-            <div className="space-y-2.5 text-xs">
-              {current.specs.map((spec, sIdx) => (
-                <div key={sIdx} className="flex items-center gap-3 text-zinc-800 bg-white p-2.5 rounded-xl border border-black/5 shadow-xs">
-                  <CheckCircle2 size={15} className="text-[#0066CC] shrink-0" />
-                  <span className="font-medium">{spec}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom Enrollment Action */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-black/[0.06]">
-            <div className="text-xs text-zinc-500 font-medium">
-              Active Semester Cohort Forming
-            </div>
-
-            <button
-              onClick={() => {
-                audioEngine.playClick();
-                if (onOpenMembership) onOpenMembership(current.title);
-              }}
-              className="btn-minimal-primary text-xs py-3 px-6 shadow-md flex items-center gap-2 group cursor-pointer"
-            >
-              <span>Enroll In Active Track</span>
-              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-            </button>
-          </div>
-
-        </div>
-
-      </div>
+      ) : (
+        renderActivitiesContent(false)
+      )}
 
     </section>
   );

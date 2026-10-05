@@ -5,6 +5,16 @@ import {
   Briefcase, Compass, FileText, Sparkles 
 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
+import ComingSoonCard from '../components/ComingSoonCard';
+
+/**
+ * ============================================================================
+ * MAINTENANCE / LAUNCH TOGGLE:
+ * Set COMING_SOON_MODE to false when technical coordinators are ready to
+ * publish the active cards unblurred.
+ * ============================================================================
+ */
+export const COMING_SOON_MODE = true;
 
 export default function ActivitiesPage({ onOpenMembership }) {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -88,6 +98,43 @@ export default function ActivitiesPage({ onOpenMembership }) {
     ? chapterInitiatives 
     : chapterInitiatives.filter(item => item.category === activeCategory);
 
+  const renderInitiativeCards = (items, isBlurred = false) => (
+    <div 
+      className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ${
+        isBlurred 
+          ? 'absolute inset-0 filter blur-[7px] opacity-40 select-none pointer-events-none overflow-hidden scale-[0.99]' 
+          : ''
+      }`}
+      aria-hidden={isBlurred ? 'true' : undefined}
+    >
+      {items.map((item, idx) => (
+        <div 
+          key={idx}
+          className="bg-white rounded-2xl p-6 border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:border-black/25 hover:shadow-[0_8px_25px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between"
+        >
+          <div>
+            <div className="text-xs font-semibold text-zinc-500 mb-2">
+              {item.categoryName}
+            </div>
+
+            <h3 className="font-display text-lg font-bold text-zinc-950 mb-2 leading-snug">
+              {item.title}
+            </h3>
+
+            <p className="text-zinc-600 text-xs leading-relaxed mb-4">
+              {item.desc}
+            </p>
+          </div>
+
+          <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs text-zinc-500 font-medium">
+            <span>{item.cadence}</span>
+            <span className="text-emerald-700 font-semibold">{item.stats}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className="animate-fadeIn">
       {/* CHAPTER ACTIVITY WINGS DIRECTORY */}
@@ -102,65 +149,62 @@ export default function ActivitiesPage({ onOpenMembership }) {
             </p>
           </div>
 
-          {/* Quick Filter */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
-            {[
-              { id: 'all', label: 'All' },
-              { id: 'workshops', label: 'Workshops' },
-              { id: 'lectures', label: 'Lectures' },
-              { id: 'placement', label: 'Placements' },
-              { id: 'visits', label: 'Site Visits' },
-              { id: 'publications', label: 'E-Magazine' },
-              { id: 'hackathons', label: 'Hackathons' }
-            ].map(f => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => {
-                  audioEngine.playClick();
-                  setActiveCategory(f.id);
-                }}
-                className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-all cursor-pointer ${
-                  activeCategory === f.id
-                    ? 'bg-zinc-950 text-white font-semibold'
-                    : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-zinc-950'
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* 8 INITIATIVES GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {filtered.map((item, idx) => (
-            <div 
-              key={idx}
-              className="bg-white rounded-2xl p-6 border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:border-black/25 hover:shadow-[0_8px_25px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="text-xs font-semibold text-zinc-500 mb-2">
-                  {item.categoryName}
-                </div>
-
-                <h3 className="font-display text-lg font-bold text-zinc-950 mb-2 leading-snug">
-                  {item.title}
-                </h3>
-
-                <p className="text-zinc-600 text-xs leading-relaxed mb-4">
-                  {item.desc}
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs text-zinc-500 font-medium">
-                <span>{item.cadence}</span>
-                <span className="text-emerald-700 font-semibold">{item.stats}</span>
-              </div>
+          {/* Quick Filter (Active when Coming Soon mode is toggled off) */}
+          {!COMING_SOON_MODE && (
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+              {[
+                { id: 'all', label: 'All' },
+                { id: 'workshops', label: 'Workshops' },
+                { id: 'lectures', label: 'Lectures' },
+                { id: 'placement', label: 'Placements' },
+                { id: 'visits', label: 'Site Visits' },
+                { id: 'publications', label: 'E-Magazine' },
+                { id: 'hackathons', label: 'Hackathons' }
+              ].map(f => (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => {
+                    audioEngine.playClick();
+                    setActiveCategory(f.id);
+                  }}
+                  className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-all cursor-pointer ${
+                    activeCategory === f.id
+                      ? 'bg-zinc-950 text-white font-semibold'
+                      : 'bg-white border border-black/[0.08] text-zinc-600 hover:text-zinc-950'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
             </div>
-          ))}
+          )}
         </div>
+
+        {/* INITIATIVES DISPLAY (Blurred with Coming Soon overlay or active grid) */}
+        {COMING_SOON_MODE ? (
+          <div className="relative rounded-3xl overflow-hidden p-2 sm:p-4">
+            {/* 1. Blurred background cards spanning full width */}
+            <div className="w-full pointer-events-none select-none" aria-hidden="true">
+              {renderInitiativeCards(chapterInitiatives, true)}
+            </div>
+
+            {/* 2. Subtle light ambient wash */}
+            <div className="absolute inset-0 bg-white/40 backdrop-blur-[3px] pointer-events-none z-10" aria-hidden="true" />
+
+            {/* 3. Overlaid Official Coming Soon Bulletin - Perfectly Centered */}
+            <div className="absolute inset-0 z-20 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+              <ComingSoonCard 
+                title="Coming Soon"
+                description="We are finalizing our upcoming schedule of flagship engineering conclaves, inter-collegiate hackathons, and intensive hands-on lab sprints with industry mentors. Full itineraries, dates, and registration portals will be published here soon."
+              />
+            </div>
+          </div>
+        ) : (
+          renderInitiativeCards(filtered, false)
+        )}
       </section>
     </div>
   );
 }
+

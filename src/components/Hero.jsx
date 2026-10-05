@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { audioEngine } from '../utils/audioEngine';
 
 /*
- * IEI SIES GST — HOMEPAGE HERO MOTION CHOREOGRAPHY
- * Sequential reveal sequence (0.00s – 2.20s). All entrance motions play once,
- * then everything settles into a completely calm, static editorial state.
+ * IEI SIES GST — HERO TYPOGRAPHY REDESIGN
+ * Minimal, editorial, typography-first IEI identity statement.
+ * "THE / I nstitution of E ngineers I ndia" with dominant I-E-I initials.
+ * All entrance motions play once, then settle into a completely calm, static editorial state.
  */
 
 const HERO_MOTION_STYLES = `
@@ -42,182 +43,447 @@ const HERO_MOTION_STYLES = `
     }
   }
 
-  /* 05. IEI Editorial Initial Letters: appear first (550ms ease) */
+  /* 04. Fade up entrance for editorial elements */
+  @keyframes hero-fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 05. IEI Editorial Initial Letters Reveal with crisp scale presence */
   @keyframes hero-initial-reveal {
     0% {
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(18px) scale(0.96);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
   }
 
-  /* 06. IEI Editorial Supporting Words: subtle slide & letter-spacing settle (650ms ease) */
-  @keyframes hero-word-reveal {
+  /* 06. IEI Editorial Subword Portion: Slides OUT from behind the initial letter */
+  @keyframes hero-subword-slide-out {
     0% {
       opacity: 0;
-      transform: translateY(10px);
-      letter-spacing: 0.03em;
+      transform: translateX(-104%);
+    }
+    30% {
+      opacity: 0.45;
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
-      letter-spacing: -0.025em;
+      transform: translateX(0);
     }
   }
 
-  /* Department right-side line entrance */
-  @keyframes hero-line-up {
+  /* 07. Outward kinetic wave rings pulsing OUT of the central blue E */
+  @keyframes hero-ring-pulse-out {
     0% {
+      transform: translate(-50%, -50%) scale(0.2);
       opacity: 0;
-      transform: translateY(20px);
+      box-shadow: 0 0 10px rgba(0, 98, 255, 0.75), inset 0 0 8px rgba(0, 98, 255, 0.5);
+    }
+    15% {
+      opacity: 0.8;
+    }
+    60% {
+      opacity: 0.35;
     }
     100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* 06. Major Title Lines & 'The' prefix styling */
-  .hero-the-line {
-    font-size: clamp(0.95rem, 1.5vw, 1.35rem);
-    line-height: 1.1;
-    letter-spacing: 0.14em;
-    font-weight: 700;
-  }
-
-  .hero-major-title-line {
-    font-size: clamp(2rem, 8vw, 2.75rem);
-    line-height: 1.04;
-    letter-spacing: -0.035em;
-    font-weight: 900;
-  }
-
-  @media (min-width: 640px) {
-    .hero-major-title-line {
-      font-size: clamp(2.5rem, 4.4vw, 4.35rem);
-    }
-  }
-
-  /* Dramatic Mask Entrance: lines slide up cleanly from below */
-  @keyframes hero-line-reveal {
-    0% {
+      transform: translate(-50%, -50%) scale(3.2);
       opacity: 0;
-      transform: translateY(115%);
-      filter: blur(4px);
-    }
-    40% {
-      opacity: 0.85;
-      filter: blur(1px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0px);
+      box-shadow: 0 0 30px rgba(0, 98, 255, 0);
     }
   }
 
-  /* Continuous Cascading Wave: INSTITUTION -> OF -> ENGINEERS -> INDIA */
-  @keyframes cascade-wave-zinc {
-    0%, 30%, 100% {
-      color: var(--fg-primary, #09090b);
-      transform: translateY(0);
-      filter: drop-shadow(0 0 0 rgba(0, 82, 214, 0));
-    }
-    12% {
-      color: #0052D6;
-      transform: translateY(-4px);
-      filter: drop-shadow(0 6px 18px rgba(0, 82, 214, 0.35));
-    }
-  }
-
-  @keyframes cascade-wave-blue {
-    0%, 30%, 100% {
-      color: #0052D6;
-      transform: translateY(0);
-      filter: drop-shadow(0 0 0 rgba(0, 82, 214, 0));
-    }
-    12% {
-      color: #38BDF8;
-      transform: translateY(-4px);
-      filter: drop-shadow(0 8px 22px rgba(56, 189, 248, 0.5));
-    }
-  }
-
-  /* 07. Department staggered reveal & live accent */
-  @keyframes hero-block-up {
-    0% {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes dept-accent-travel {
-    0% {
-      transform: translateX(-100%);
-      opacity: 0.3;
+  /* 08. Luminous aura breathing behind the blue E */
+  @keyframes hero-aura-breathe {
+    0%, 100% {
+      opacity: 0.4;
+      transform: translate(-50%, -50%) scale(0.9);
     }
     50% {
-      transform: translateX(100%);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(300%);
-      opacity: 0.3;
+      opacity: 0.85;
+      transform: translate(-50%, -50%) scale(1.18);
     }
   }
 
-  .hero-dept-live-accent-track {
-    position: relative;
-    height: 1.5px;
-    width: 2.75rem;
-    background: rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    border-radius: 9999px;
-  }
-
-  .hero-dept-accent-traveler {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 1.25rem;
-    background: #0052D6;
-    border-radius: 9999px;
-    animation: dept-accent-travel 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
-
-  /* 08. Facts items staggered */
-  @keyframes hero-fact-stagger {
+  /* 09. Energy motes drifting OUT of the typography into the background */
+  @keyframes hero-mote-drift {
     0% {
+      transform: translate(0, 0) scale(0.4);
       opacity: 0;
-      transform: translateY(8px);
+    }
+    20% {
+      opacity: 0.9;
+      transform: translate(calc(var(--tx) * 0.25), calc(var(--ty) * 0.25)) scale(1);
+    }
+    75% {
+      opacity: 0.45;
     }
     100% {
-      opacity: 1;
-      transform: translateY(0);
+      transform: translate(var(--tx), var(--ty)) scale(0.2);
+      opacity: 0;
     }
   }
+
+  /* =========================================================================
+     EDITORIAL HERO TYPOGRAPHY DESIGN SYSTEM (+20-25% Scale)
+     ========================================================================= */
+
+  /* Eyebrow: THE */
+  .hero-the-eyebrow {
+    font-family: var(--font-mono);
+    font-size: clamp(0.9rem, 1.38vw, 1.2rem);
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--fg-muted, #71717a);
+    text-align: center;
+    transition: color 0.3s ease;
+  }
+
+  /* =========================================================================
+     CINEMATIC MORPH SYSTEM: EXPANDED <-> MONUMENTAL ACRONYM "IEI"
+     ========================================================================= */
+
+  /* Main Typographic Identity Line */
+  .hero-identity-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+    line-height: 1;
+    text-align: center;
+    position: relative;
+    gap: 0;
+  }
+
+  /* Word Clusters: ensures initial and subword stay unified */
+  .hero-iei-word {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .hero-word-institution,
+  .hero-word-engineers {
+    transition: margin-right 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* In Acronym Mode: precisely balanced, proportional spacing between monumental I - E - I */
+  .hero-mode-acronym .hero-word-institution {
+    margin-right: clamp(1.2rem, 2.8vw, 3.2rem);
+  }
+
+  .hero-mode-acronym .hero-word-engineers {
+    margin-right: clamp(1.2rem, 2.8vw, 3.2rem);
+  }
+
+  .hero-word-india {
+    margin-left: clamp(1.6rem, 3.8vw, 4.4rem);
+    transition: margin-left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-mode-acronym .hero-word-india {
+    margin-left: 0 !important;
+  }
+
+  /* Large Initials (I, E, I) */
+  .hero-iei-initial {
+    font-family: var(--font-display);
+    font-size: clamp(4.0rem, 7.8vw, 8.45rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    transition: font-size 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                letter-spacing 0.85s ease;
+  }
+
+  /* In Acronym Mode: Initials scale up to massive, monumental font */
+  .hero-mode-acronym .hero-iei-initial {
+    font-size: clamp(8.5rem, 21vw, 19.5rem);
+    letter-spacing: -0.03em;
+    transform: scale(1.02);
+  }
+
+  /* First I: White / Primary */
+  .hero-initial-i1 {
+    color: var(--fg-primary, #09090b);
+  }
+
+  /* Middle E: IEI Blue with clean text shadow depth */
+  .hero-initial-e {
+    color: #0062FF;
+    text-shadow: 0 0 45px rgba(0, 98, 255, 0.65), 0 0 90px rgba(0, 98, 255, 0.25);
+  }
+
+  /* Final I: White / Primary */
+  .hero-initial-i2 {
+    color: var(--fg-primary, #09090b);
+  }
+
+  /* Subword Reveal Masks: expand/collapse smoothly */
+  .hero-iei-subword-mask {
+    display: inline-flex;
+    align-items: baseline;
+    overflow: hidden;
+    position: relative;
+    padding-top: 0.15em;
+    padding-bottom: 0.25em;
+    padding-right: 0.08em;
+    margin-top: -0.15em;
+    margin-bottom: -0.25em;
+    vertical-align: baseline;
+    max-width: 25ch;
+    opacity: 1;
+    transform: translateX(0);
+    transition: max-width 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.65s ease,
+                transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                padding 0.7s ease,
+                margin 0.7s ease;
+  }
+
+  /* In Acronym Mode: subwords retract into initials and disappear */
+  .hero-mode-acronym .hero-iei-subword-mask {
+    max-width: 0 !important;
+    opacity: 0 !important;
+    transform: translateX(-40px) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Subordinate word portions: nstitution, ngineers, ndia */
+  .hero-iei-subword {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.9vw, 3.15rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--fg-primary, #09090b);
+    display: inline-block;
+    margin-left: 0.04em;
+    will-change: transform, opacity;
+  }
+
+  /* Connector: of */
+  .hero-iei-connector {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.0vw, 2.15rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--fg-muted, #71717a);
+    display: inline-block;
+    max-width: 8ch;
+    opacity: 0.85;
+    transform: scale(1);
+    margin: 0 clamp(0.7rem, 1.8vw, 2.2rem);
+    overflow: hidden;
+    transition: max-width 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                margin 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.5s ease,
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* In Acronym Mode: connector collapses to absolute zero */
+  .hero-mode-acronym .hero-iei-connector {
+    width: 0 !important;
+    max-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    transform: scale(0) !important;
+    pointer-events: none !important;
+  }
+
+  /* Eyebrow: THE */
+  .hero-the-eyebrow {
+    font-family: var(--font-mono);
+    font-size: clamp(0.9rem, 1.38vw, 1.2rem);
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--fg-muted, #71717a);
+    text-align: center;
+    opacity: 1;
+    transform: translateY(0);
+    transition: color 0.3s ease,
+                opacity 0.6s ease,
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-mode-acronym .hero-the-eyebrow {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  /* Editorial Subtitle underneath Monumental Typography */
+  .hero-editorial-subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+    font-weight: 500;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    color: #27272a;
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 6px 12px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: color 0.3s ease,
+                opacity 0.75s ease,
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-mode-acronym .hero-editorial-subtitle {
+    opacity: 0.95;
+    transform: translateY(4px);
+  }
+
+  /* Subtitle animation choreography */
+  .hero-active .hero-editorial-subtitle {
+    animation: hero-fade-up 0.60s cubic-bezier(0.16, 1, 0.3, 1) 1.05s both;
+  }
+
+  /* =========================================================================
+     OUTWARD CONTINUOUS KINETIC SYSTEM (MOTES)
+     ========================================================================= */
+
+  /* Subtle kinetic motes emerging and moving out of the typography */
+  .hero-outward-mote {
+    position: absolute;
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: #70a6ff;
+    box-shadow: 0 0 6px #0062ff, 0 0 12px rgba(112, 166, 255, 0.85);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 5;
+  }
+
+  .hero-mote-1 {
+    top: 25%;
+    left: 20%;
+    --tx: -35px;
+    --ty: -45px;
+    animation: hero-mote-drift 4.2s ease-out 1.2s infinite;
+  }
+  .hero-mote-2 {
+    top: 40%;
+    left: 48%;
+    --tx: 10px;
+    --ty: -55px;
+    animation: hero-mote-drift 3.8s ease-out 2.1s infinite;
+  }
+  .hero-mote-3 {
+    top: 60%;
+    left: 53%;
+    --tx: 45px;
+    --ty: -35px;
+    animation: hero-mote-drift 4.5s ease-out 0.5s infinite;
+  }
+  .hero-mote-4 {
+    top: 30%;
+    left: 80%;
+    --tx: 30px;
+    --ty: -50px;
+    animation: hero-mote-drift 4.0s ease-out 2.8s infinite;
+  }
+
+  /* =========================================================================
+     RESPONSIVE ARCHITECTURE
+     ========================================================================= */
+
+  /* Mobile narrow viewports (< 640px): controlled editorial stacked rhythm */
+  @media (max-width: 639px) {
+    .hero-identity-line {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-iei-initial {
+      font-size: clamp(3.35rem, 14.5vw, 4.4rem);
+    }
+
+    .hero-iei-subword {
+      font-size: clamp(1.4rem, 5.8vw, 1.78rem);
+    }
+
+    .hero-iei-connector {
+      font-size: 1.25rem;
+      margin: 0.15rem 0;
+    }
+
+    .hero-editorial-subtitle {
+      font-size: clamp(0.88rem, 3.8vw, 1.05rem);
+      line-height: 1.6;
+      padding: 6px 8px;
+    }
+
+    .hero-word-india {
+      margin-left: 0 !important;
+    }
+
+    .hero-word-institution { order: 1; }
+    .hero-iei-connector   { order: 2; }
+    .hero-word-engineers   { order: 3; }
+    .hero-word-india       { order: 4; }
+
+    /* Acronym mode on mobile: letters align horizontally on one grand line */
+    .hero-mode-acronym .hero-identity-line {
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0 !important;
+    }
+
+    .hero-mode-acronym .hero-word-institution {
+      margin-right: clamp(0.85rem, 3.5vw, 1.6rem) !important;
+    }
+
+    .hero-mode-acronym .hero-word-engineers {
+      margin-right: clamp(0.85rem, 3.5vw, 1.6rem) !important;
+    }
+
+    .hero-mode-acronym .hero-iei-initial {
+      font-size: clamp(5.2rem, 23vw, 8.2rem) !important;
+    }
+  }
+
+  /* =========================================================================
+     ENTRANCE ANIMATIONS & SETTLED STATIC STATE
+     ========================================================================= */
 
   /* Pre-animation resting state when waiting for startup loader */
   .hero-waiting .hero-anim-emblem,
   .hero-waiting .hero-anim-title,
-  .hero-waiting .hero-anim-initial,
-  .hero-waiting .hero-anim-word,
-  .hero-waiting .hero-paren,
-  .hero-waiting .hero-anim-dept-label,
-  .hero-waiting .hero-anim-dept-line-1,
-  .hero-waiting .hero-anim-dept-line-2,
-  .hero-waiting .hero-anim-dept-line-3,
-  .hero-waiting .hero-anim-dept-school,
-  .hero-waiting .hero-anim-dept-meta,
-  .hero-waiting [class*="hero-anim-fact-"] {
+  .hero-waiting .hero-the-eyebrow,
+  .hero-waiting .hero-anim-initial-1,
+  .hero-waiting .hero-anim-initial-2,
+  .hero-waiting .hero-anim-initial-3,
+  .hero-waiting .hero-anim-subword-1,
+  .hero-waiting .hero-anim-subword-2,
+  .hero-waiting .hero-anim-subword-3,
+  .hero-waiting .hero-anim-connector,
+  .hero-waiting .hero-editorial-subtitle,
+  .hero-waiting .hero-outward-mote {
     opacity: 0 !important;
   }
 
@@ -227,7 +493,7 @@ const HERO_MOTION_STYLES = `
   }
 
   .hero-active .hero-anim-title {
-    animation: hero-title-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+    animation: hero-title-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both;
   }
 
   .hero-active .hero-anim-sweep {
@@ -246,8 +512,8 @@ const HERO_MOTION_STYLES = `
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation:
-      hero-title-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both,
-      hero-sweep-pass 0.45s cubic-bezier(0.2, 0, 0.4, 1) 0.60s both;
+      hero-title-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both,
+      hero-sweep-pass 0.45s cubic-bezier(0.2, 0, 0.4, 1) 0.55s both;
   }
 
   /* Post-sweep plain static text */
@@ -261,97 +527,69 @@ const HERO_MOTION_STYLES = `
     animation: none !important;
   }
 
-  /* 5 Title lines reveal sequence during entrance */
-  .hero-active .hero-anim-title-line-1 { animation: hero-line-reveal 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both; }
-  .hero-active .hero-anim-title-line-2 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both; }
-  .hero-active .hero-anim-title-line-3 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.70s both; }
-  .hero-active .hero-anim-title-line-4 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both; }
-  .hero-active .hero-anim-title-line-5 { animation: hero-line-reveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 1.20s both; }
-
-  /* Department Staggered Reveals */
-  .hero-active .hero-anim-dept-label {
-    animation: hero-block-up 0.50s cubic-bezier(0.16, 1, 0.3, 1) 0.82s both;
+  /* Editorial Typography Choreography */
+  .hero-active .hero-the-eyebrow {
+    animation: hero-fade-up 0.50s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
   }
 
-  .hero-active .hero-anim-dept-line-1 {
-    animation: hero-line-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.92s both;
+  .hero-active .hero-anim-initial-1 {
+    animation: hero-initial-reveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+  }
+  .hero-active .hero-anim-subword-1 {
+    animation: hero-subword-slide-out 0.70s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
   }
 
-  .hero-active .hero-anim-dept-line-2 {
-    animation: hero-line-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.02s both;
+  .hero-active .hero-anim-connector {
+    animation: hero-fade-up 0.50s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
   }
 
-  .hero-active .hero-anim-dept-line-3 {
-    animation: hero-line-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.10s both;
+  .hero-active .hero-anim-initial-2 {
+    animation: hero-initial-reveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.62s both;
+  }
+  .hero-active .hero-anim-subword-2 {
+    animation: hero-subword-slide-out 0.70s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
   }
 
-  .hero-active .hero-anim-dept-school {
-    animation: hero-block-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.18s both;
+  .hero-active .hero-anim-initial-3 {
+    animation: hero-initial-reveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.82s both;
+  }
+  .hero-active .hero-anim-subword-3 {
+    animation: hero-subword-slide-out 0.70s cubic-bezier(0.16, 1, 0.3, 1) 0.92s both;
   }
 
-  .hero-active .hero-anim-dept-meta {
-    animation: hero-block-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
-  }
-
-  .hero-active .hero-anim-fact-1 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.40s both; }
-  .hero-active .hero-anim-fact-2 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.48s both; }
-  .hero-active .hero-anim-fact-3 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.56s both; }
-  .hero-active .hero-anim-fact-4 { animation: hero-fact-stagger 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.64s both; }
-
-  /* Settled state: continuous cascade transition through INSTITUTION -> OF -> ENGINEERS -> INDIA */
-  .hero-settled .hero-anim-title-line-1 {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  .hero-settled .hero-anim-title-line-2 { animation: cascade-wave-zinc 4.8s cubic-bezier(0.4, 0, 0.2, 1) 0.0s infinite; }
-  .hero-settled .hero-anim-title-line-3 { animation: cascade-wave-zinc 4.8s cubic-bezier(0.4, 0, 0.2, 1) 1.0s infinite; }
-  .hero-settled .hero-anim-title-line-4 { animation: cascade-wave-blue 4.8s cubic-bezier(0.4, 0, 0.2, 1) 2.0s infinite; }
-  .hero-settled .hero-anim-title-line-5 { animation: cascade-wave-zinc 4.8s cubic-bezier(0.4, 0, 0.2, 1) 3.0s infinite; }
-
-  /* Final State for other elements: Stop, completely calm, static with no residual transforms */
+  /* Settled state: entrance animations turn off so fluid morphing transitions take over cleanly */
+  .hero-settled .hero-the-eyebrow,
+  .hero-settled .hero-anim-initial-1,
+  .hero-settled .hero-anim-initial-2,
+  .hero-settled .hero-anim-initial-3,
+  .hero-settled .hero-anim-subword-1,
+  .hero-settled .hero-anim-subword-2,
+  .hero-settled .hero-anim-subword-3,
+  .hero-settled .hero-anim-connector,
+  .hero-settled .hero-editorial-subtitle,
   .hero-settled .hero-anim-emblem,
-  .hero-settled .hero-anim-title,
-  .hero-settled .hero-anim-dept-label,
-  .hero-settled .hero-anim-dept-line-1,
-  .hero-settled .hero-anim-dept-line-2,
-  .hero-settled .hero-anim-dept-line-3,
-  .hero-settled .hero-anim-dept-school,
-  .hero-settled .hero-anim-dept-meta,
-  .hero-settled [class*="hero-anim-fact-"] {
+  .hero-settled .hero-anim-title {
     animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
   }
 
   /* Prefers-reduced-motion: instant static display */
   @media (prefers-reduced-motion: reduce) {
+    .hero-the-eyebrow,
+    .hero-anim-initial-1,
+    .hero-anim-initial-2,
+    .hero-anim-initial-3,
+    .hero-anim-subword-1,
+    .hero-anim-subword-2,
+    .hero-anim-subword-3,
+    .hero-anim-connector,
+    .hero-editorial-subtitle,
     .hero-anim-emblem,
     .hero-anim-title,
-    .hero-anim-sweep,
-    [class*="hero-anim-title-line-"],
-    .hero-anim-dept-label,
-    .hero-anim-dept-line-1,
-    .hero-anim-dept-line-2,
-    .hero-anim-dept-line-3,
-    .hero-anim-dept-school,
-    .hero-anim-dept-meta,
-    [class*="hero-anim-fact-"] {
+    .hero-outward-mote {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
-      clip-path: none !important;
-      background: none !important;
-      -webkit-background-clip: unset !important;
-      background-clip: unset !important;
-      -webkit-text-fill-color: unset !important;
-      color: inherit !important;
-    }
-    .hero-dept-accent-traveler {
-      animation: none !important;
-      transform: none !important;
-      opacity: 0.8 !important;
+      transition: none !important;
     }
   }
 `;
@@ -365,6 +603,10 @@ export default function Hero({
   const [sweepDone, setSweepDone] = useState(false);
   const [settled, setSettled] = useState(false);
 
+  // Cinematic Display Mode: 'expanded' ("Institution of Engineers India") vs 'acronym' ("IEI" in monumental font)
+  const [displayMode, setDisplayMode] = useState('expanded');
+  const [isHovered, setIsHovered] = useState(false);
+
   useEffect(() => {
     if (!isReady) {
       setSweepDone(false);
@@ -372,15 +614,15 @@ export default function Hero({
       return;
     }
 
-    // Sweep finishes at 1.10s -> reset to plain static text at 1.15s
+    // Sweep finishes at 1.00s -> reset to plain static text at 1.05s
     const sweepTimer = setTimeout(() => {
       setSweepDone(true);
-    }, 1150);
+    }, 1050);
 
-    // Full choreography finishes at 2.00s -> settle all motion to calm static at 2.10s
+    // Full choreography finishes at 1.65s -> settle typography entrance motion at 1.75s
     const settleTimer = setTimeout(() => {
       setSettled(true);
-    }, 2100);
+    }, 1750);
 
     return () => {
       clearTimeout(sweepTimer);
@@ -388,7 +630,29 @@ export default function Hero({
     };
   }, [isReady]);
 
+  // Cinematic Looping Morph: Expanded -> Big IEI Acronym -> Expanded
+  useEffect(() => {
+    if (!isReady || !settled) return;
+
+    // Display expanded for 4.2 seconds, display big IEI acronym for 2.8 seconds
+    const holdDuration = displayMode === 'expanded' ? 4200 : 2800;
+
+    const timer = setTimeout(() => {
+      if (!isHovered) {
+        setDisplayMode((prev) => (prev === 'expanded' ? 'acronym' : 'expanded'));
+      }
+    }, holdDuration);
+
+    return () => clearTimeout(timer);
+  }, [isReady, settled, displayMode, isHovered]);
+
+  const toggleDisplayMode = () => {
+    audioEngine.playClick();
+    setDisplayMode((prev) => (prev === 'expanded' ? 'acronym' : 'expanded'));
+  };
+
   const stateClass = isReady ? (settled ? 'hero-settled' : 'hero-active') : 'hero-waiting';
+  const morphClass = displayMode === 'acronym' ? 'hero-mode-acronym' : 'hero-mode-expanded';
 
   return (
     <div ref={heroWrapperRef} className="relative w-full overflow-hidden hero-wrapper">
@@ -396,189 +660,105 @@ export default function Hero({
         <style>{HERO_MOTION_STYLES}</style>
 
         {/* 01. TOP CHAPTER IDENTIFIER — High-impact Institutional Brand Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-10">
           <div className="flex items-center gap-3.5">
-            <div className="hero-anim-emblem w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white dark:bg-white/10 border border-black/[0.08] dark:border-white/15 p-1.5 shadow-2xs flex items-center justify-center shrink-0">
+            <div className="hero-anim-emblem relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white p-2 shadow-[0_4px_20px_rgba(0,98,255,0.18)] border border-black/[0.08] flex items-center justify-center shrink-0 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(0,98,255,0.35)]">
               <img
                 src="/iei-official-logo.png"
                 alt="The Institution of Engineers (India) Official Seal"
-                className="w-full h-full object-contain select-none"
+                className="w-full h-full object-contain select-none filter contrast-110"
                 draggable={false}
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col justify-center">
               <div className="flex items-center gap-2">
                 <span
-                  className={`${sweepDone ? 'hero-anim-title' : 'hero-anim-sweep'} font-sans font-bold tracking-tight text-xl sm:text-2xl leading-none select-none text-zinc-950 dark:text-white`}
+                  className={`${sweepDone ? 'hero-anim-title' : 'hero-anim-sweep'} font-sans font-bold tracking-tight text-xl sm:text-2xl leading-none select-none text-zinc-950`}
                   data-sweep-done={sweepDone ? 'true' : 'false'}
                 >
                   IEI SIES GST
                 </span>
               </div>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium mt-1">
-                Department of Electronics &amp; Computer Science Engineering
+            </div>
+          </div>
+        </div>
+
+        {/* 02. EDITORIAL TYPOGRAPHY-FIRST IEI IDENTITY WITH CINEMATIC MORPH */}
+        <div 
+          className={`flex-1 flex flex-col items-center justify-center select-none py-8 sm:py-12 md:py-16 w-full ${morphClass}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Eyebrow: THE */}
+          <div className="overflow-hidden pb-1 mb-3 sm:mb-4 md:mb-5">
+            <span className="hero-the-eyebrow block select-none">
+              THE
+            </span>
+          </div>
+
+          {/* Monumental Typographic Identity: I nstitution of E ngineers I ndia <-> I E I */}
+          <h1 
+            className="hero-identity-line select-none cursor-pointer"
+            onClick={toggleDisplayMode}
+            title="Click to toggle between IEI acronym and full title"
+            aria-label="The Institution of Engineers India"
+          >
+            {/* Ambient kinetic motes moving out of typography */}
+            <span className="hero-outward-mote hero-mote-1" aria-hidden="true" />
+            <span className="hero-outward-mote hero-mote-2" aria-hidden="true" />
+            <span className="hero-outward-mote hero-mote-3" aria-hidden="true" />
+            <span className="hero-outward-mote hero-mote-4" aria-hidden="true" />
+
+            {/* Word: Institution */}
+            <span className="hero-iei-word hero-word-institution">
+              <span className="hero-iei-initial hero-initial-i1 hero-anim-initial-1">
+                I
               </span>
-            </div>
-          </div>
-        </div>
-
-        {/* 02. EDITORIAL BALANCED GRID (Desktop: 2 Columns Aligned / Mobile: Segregated Stack) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center flex-1">
-          
-          {/* LEFT COLUMN: MONUMENTAL IEI EDITORIAL IDENTITY TYPOGRAPHY */}
-          <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center select-none py-2 sm:py-4 lg:py-0">
-            <h1 
-              className="flex flex-col space-y-1 sm:space-y-1.5 lg:space-y-2 font-display"
-              aria-label="The Institution Of Engineers India"
-            >
-              {/* Line 1: The (Refined smaller editorial prefix) */}
-              <div className="overflow-hidden pb-1">
-                <span className="hero-anim-title-line-1 text-[clamp(0.95rem,1.5vw,1.35rem)] font-mono font-bold uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500 block transition-colors duration-300 hover:text-zinc-600 dark:hover:text-zinc-300">
-                  The
+              <span className="hero-iei-subword-mask">
+                <span className="hero-iei-subword hero-anim-subword-1">
+                  nstitution
                 </span>
-              </div>
+              </span>
+            </span>
 
-              {/* Line 2: INSTITUTION */}
-              <div className="overflow-hidden pb-0.5">
-                <span className="hero-anim-title-line-2 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] block uppercase cursor-default">
-                  Institution
+            {/* Connector: of */}
+            <span className="hero-iei-connector hero-anim-connector">
+              of
+            </span>
+
+            {/* Word: Engineers (E in IEI Blue) */}
+            <span className="hero-iei-word hero-word-engineers">
+              <span className="hero-iei-initial hero-initial-e hero-anim-initial-2">
+                E
+              </span>
+              <span className="hero-iei-subword-mask">
+                <span className="hero-iei-subword hero-anim-subword-2">
+                  ngineers
                 </span>
-              </div>
+              </span>
+            </span>
 
-              {/* Line 3: OF */}
-              <div className="overflow-hidden pb-0.5">
-                <span className="hero-anim-title-line-3 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] block uppercase cursor-default">
-                  Of
+            {/* Word: India */}
+            <span className="hero-iei-word hero-word-india">
+              <span className="hero-iei-initial hero-initial-i2 hero-anim-initial-3">
+                I
+              </span>
+              <span className="hero-iei-subword-mask">
+                <span className="hero-iei-subword hero-anim-subword-3">
+                  ndia
                 </span>
-              </div>
-
-              {/* Line 4: ENGINEERS (IEI Royal Blue Highlight) */}
-              <div className="overflow-hidden pb-0.5">
-                <span className="hero-anim-title-line-4 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] text-[#0052D6] block uppercase cursor-default">
-                  Engineers
-                </span>
-              </div>
-
-              {/* Line 5: INDIA */}
-              <div className="overflow-hidden pb-0.5">
-                <span className="hero-anim-title-line-5 hero-major-title-line text-[clamp(2rem,8vw,2.75rem)] sm:text-[clamp(2.5rem,4.4vw,4.35rem)] font-display font-black tracking-[-0.035em] leading-[1.04] block uppercase cursor-default">
-                  India
-                </span>
-              </div>
-            </h1>
-          </div>
-
-          {/* RIGHT COLUMN: HIGH-IMPACT DEPARTMENT IDENTITY */}
-          <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center pt-8 sm:pt-10 lg:pt-0">
-            <div className="flex flex-col select-none">
-              
-              {/* DEPARTMENT OF Label + Subtle Restrained Live Accent */}
-              <div className="hero-anim-dept-label flex items-center gap-3 mb-3 sm:mb-4">
-                <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500">
-                  DEPARTMENT OF
-                </span>
-                <div className="hero-dept-live-accent-track" aria-hidden="true">
-                  <div className="hero-dept-accent-traveler" />
-                </div>
-              </div>
-
-              {/* Major Department Heading: Bold Helvetica with Responsive Clamp */}
-              <h2 
-                className="font-display font-black tracking-[-0.03em] text-zinc-950 dark:text-white leading-[1.06] mb-5 sm:mb-6"
-                aria-label="Department of Electronics and Computer Science Engineering"
-              >
-                {/* Desktop & Tablet: 2-line balanced hierarchy */}
-                <span className="hidden sm:block overflow-hidden pb-1">
-                  <span className="inline-block hero-anim-dept-line-1 text-[clamp(2.15rem,3.6vw,3.55rem)]">
-                    ELECTRONICS &amp; COMPUTER
-                  </span>
-                </span>
-                <span className="hidden sm:block overflow-hidden pb-1">
-                  <span className="inline-block hero-anim-dept-line-2 text-[clamp(2.15rem,3.6vw,3.55rem)]">
-                    SCIENCE ENGINEERING
-                  </span>
-                </span>
-
-                {/* Mobile: 3-line natural wrapping to prevent clipping & overflow */}
-                <span className="block sm:hidden overflow-hidden pb-0.5">
-                  <span className="inline-block hero-anim-dept-line-1 text-[clamp(1.75rem,7vw,2.35rem)]">
-                    ELECTRONICS &amp;
-                  </span>
-                </span>
-                <span className="block sm:hidden overflow-hidden pb-0.5">
-                  <span className="inline-block hero-anim-dept-line-2 text-[clamp(1.75rem,7vw,2.35rem)]">
-                    COMPUTER SCIENCE
-                  </span>
-                </span>
-                <span className="block sm:hidden overflow-hidden pb-0.5">
-                  <span className="inline-block hero-anim-dept-line-3 text-[clamp(1.75rem,7vw,2.35rem)]">
-                    ENGINEERING
-                  </span>
-                </span>
-              </h2>
-
-              {/* Institutional Supporting Lines (Hierarchy) */}
-              <div className="flex flex-col space-y-1.5">
-                <div className="hero-anim-dept-school overflow-hidden">
-                  <p className="font-sans font-semibold text-xs sm:text-sm tracking-wider text-zinc-700 dark:text-zinc-300 uppercase">
-                    SIES GRADUATE SCHOOL OF TECHNOLOGY
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-        {/* 03. BOTTOM EDITORIAL FACT STRIP */}
-        <div className="pt-12 sm:pt-16 lg:pt-20 mt-10 sm:mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-          <div className="flex flex-col hero-anim-fact-1">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
-              Royal Charter
+              </span>
             </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
-              1935
-            </span>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
-              King George V Statutory Warrant
-            </span>
-          </div>
+          </h1>
 
-          <div className="flex flex-col hero-anim-fact-2">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
-              Scientific Recognition
-            </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
-              DSIR SIRO
-            </span>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
-              Ministry of Science &amp; Technology
-            </span>
-          </div>
-
-          <div className="flex flex-col hero-anim-fact-3">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
-              Constitutional Standing
-            </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
-              Article 372
-            </span>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
-              Body Corporate of India
-            </span>
-          </div>
-
-          <div className="flex flex-col hero-anim-fact-4">
-            <span className="font-mono text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-semibold">
-              Apex Footprint
-            </span>
-            <span className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 dark:text-white tracking-tight mt-1 leading-tight break-words">
-              1,000,000+
-            </span>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
-              Global Alumni Across 15 Disciplines
-            </span>
+          {/* 03. EDITORIAL SUBTITLE — Institutional Chapter Identity */}
+          <div className="overflow-visible mt-6 sm:mt-8 md:mt-10 px-4">
+            <p className="hero-editorial-subtitle select-none text-zinc-700">
+              A dedicated Student Chapter of{' '}
+              <span className="text-zinc-950 font-bold tracking-normal">
+                Electronics and Computer Science Engineering
+              </span>
+            </p>
           </div>
         </div>
 

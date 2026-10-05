@@ -50,12 +50,12 @@ export default function StudentHub({ onApplyStudentMembership }) {
       {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
-          <h2 className="font-display text-4xl sm:text-5xl font-black text-zinc-950 dark:text-white tracking-ultra-tight">
+          <h2 className="font-display text-4xl sm:text-5xl font-black text-zinc-950 tracking-ultra-tight">
             Student Innovation Lab
           </h2>
         </div>
 
-        <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base max-w-md leading-relaxed font-normal">
+        <p className="text-zinc-600 text-sm sm:text-base max-w-md leading-relaxed font-normal">
           Personalized digital membership credentials, student hardware project incubator, and collegiate hackathons.
         </p>
       </div>
@@ -64,8 +64,8 @@ export default function StudentHub({ onApplyStudentMembership }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left: Interactive Live Student Pass Generator */}
-        <div className="lg:col-span-6 bg-white dark:bg-[#0A0A0C] rounded-2xl p-7 sm:p-8 border border-black/[0.08] dark:border-white/10 shadow-[0_4px_25px_rgba(0,0,0,0.03)]">
-          <div className="flex items-center justify-between border-b border-black/[0.06] dark:border-white/[0.08] pb-3 mb-6 text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+        <div className="lg:col-span-6 bg-white rounded-2xl p-7 sm:p-8 border border-black/[0.08] shadow-[0_4px_25px_rgba(0,0,0,0.03)]">
+          <div className="flex items-center justify-between border-b border-black/[0.06] pb-3 mb-6 text-xs text-zinc-500 font-medium">
             <span>Student Pass Preview</span>
             <span>Interactive</span>
           </div>
@@ -73,38 +73,38 @@ export default function StudentHub({ onApplyStudentMembership }) {
           {/* Form Inputs */}
           <div className="space-y-3 mb-6 text-xs">
             <div>
-              <label className="text-zinc-600 dark:text-zinc-400 text-xs font-medium block mb-1">
+              <label className="text-zinc-600 text-xs font-medium block mb-1">
                 Student Name:
               </label>
               <input
                 type="text"
                 value={studentName}
                 onChange={(e) => setStudentName(e.target.value)}
-                className="w-full bg-[#FAFAFC] dark:bg-[#141416] border border-black/[0.1] dark:border-white/15 rounded-lg px-3 py-2 text-zinc-950 dark:text-white font-sans focus:outline-none focus:border-[#0062FF] focus:bg-white dark:focus:bg-[#1A1A1E] transition-all"
+                className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3 py-2 text-zinc-950 font-sans focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-zinc-600 dark:text-zinc-400 text-xs font-medium block mb-1">
+                <label className="text-zinc-600 text-xs font-medium block mb-1">
                   College / Campus:
                 </label>
                 <input
                   type="text"
                   value={studentCollege}
                   onChange={(e) => setStudentCollege(e.target.value)}
-                  className="w-full bg-[#FAFAFC] dark:bg-[#141416] border border-black/[0.1] dark:border-white/15 rounded-lg px-3 py-2 text-zinc-950 dark:text-white font-sans focus:outline-none focus:border-[#0062FF] focus:bg-white dark:focus:bg-[#1A1A1E] transition-all"
+                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3 py-2 text-zinc-950 font-sans focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all"
                 />
               </div>
               <div>
-                <label className="text-zinc-600 dark:text-zinc-400 text-xs font-medium block mb-1">
+                <label className="text-zinc-600 text-xs font-medium block mb-1">
                   Engineering Branch:
                 </label>
                 <input
                   type="text"
                   value={studentBranch}
                   onChange={(e) => setStudentBranch(e.target.value)}
-                  className="w-full bg-[#FAFAFC] dark:bg-[#141416] border border-black/[0.1] dark:border-white/15 rounded-lg px-3 py-2 text-zinc-950 dark:text-white font-sans focus:outline-none focus:border-[#0062FF] focus:bg-white dark:focus:bg-[#1A1A1E] transition-all"
+                  className="w-full bg-[#FAFAFC] border border-black/[0.1] rounded-lg px-3 py-2 text-zinc-950 font-sans focus:outline-none focus:border-[#0062FF] focus:bg-white transition-all"
                 />
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function StudentHub({ onApplyStudentMembership }) {
 
           {/* 3D Holographic Interactive Student Pass Card */}
           <div 
-            className="p-7 rounded-3xl bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-[#121215] dark:via-[#0E0E11] dark:to-[#08080A] border-2 border-black/15 dark:border-white/15 relative shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden group transition-all duration-300 hover:shadow-[0_30px_70px_rgba(0,98,255,0.18)] cursor-pointer"
+            className="p-7 rounded-3xl bg-gradient-to-br from-white via-zinc-50 to-zinc-100 border-2 border-black/15 relative shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden group transition-all duration-300 hover:shadow-[0_30px_70px_rgba(0,98,255,0.18)] cursor-pointer"
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const x = e.clientX - rect.left;
@@ -151,22 +151,22 @@ export default function StudentHub({ onApplyStudentMembership }) {
             />
 
             {/* Top Pass Header */}
-            <div className="relative z-10 flex items-center justify-between border-b border-black/[0.08] dark:border-white/[0.08] pb-4 mb-5">
+            <div className="relative z-10 flex items-center justify-between border-b border-black/[0.08] pb-4 mb-5">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full border border-black/10 dark:border-white/20 bg-white dark:bg-white/10 p-1 shadow-sm flex items-center justify-center">
+                <div className="w-9 h-9 rounded-full border border-black/10 bg-white p-1 shadow-sm flex items-center justify-center">
                   <img src="/iei-official-logo.png" alt="IEI" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <div className="font-display font-black text-xs sm:text-sm text-zinc-950 dark:text-white tracking-tight">
+                  <div className="font-display font-black text-xs sm:text-sm text-zinc-950 tracking-tight">
                     THE INSTITUTION OF ENGINEERS (INDIA)
                   </div>
-                  <div className="text-[10px] text-zinc-500 dark:text-zinc-400 font-medium">
+                  <div className="text-[10px] text-zinc-500 font-medium">
                     SIES GST Student Chapter · Royal Charter 1935
                   </div>
                 </div>
               </div>
 
-              <div className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+              <div className="text-xs text-zinc-500 font-medium">
                 Session 2026–2027
               </div>
             </div>
@@ -174,44 +174,44 @@ export default function StudentHub({ onApplyStudentMembership }) {
             {/* Pass Body Content */}
             <div className="relative z-10 space-y-3 mb-5 text-xs">
               <div>
-                <span className="text-zinc-500 dark:text-zinc-400 text-xs block font-medium mb-0.5">
+                <span className="text-zinc-500 text-xs block font-medium mb-0.5">
                   Student Member
                 </span>
-                <span className="font-display font-black text-lg sm:text-xl text-zinc-950 dark:text-white tracking-tight">
+                <span className="font-display font-black text-lg sm:text-xl text-zinc-950 tracking-tight">
                   {studentName || 'Student Member'}
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 pt-2 border-t border-black/[0.05] dark:border-white/[0.08]">
+              <div className="grid grid-cols-2 gap-3 pt-2 border-t border-black/[0.05]">
                 <div>
-                  <span className="text-zinc-500 dark:text-zinc-400 text-xs block font-medium mb-0.5">
+                  <span className="text-zinc-500 text-xs block font-medium mb-0.5">
                     Institution
                   </span>
-                  <span className="text-zinc-800 dark:text-zinc-200 font-semibold">{studentCollege}</span>
+                  <span className="text-zinc-800 font-semibold">{studentCollege}</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-zinc-500 dark:text-zinc-400 text-xs block font-medium mb-0.5">
+                  <span className="text-zinc-500 text-xs block font-medium mb-0.5">
                     Discipline
                   </span>
-                  <span className="text-zinc-900 dark:text-zinc-100 font-semibold">{studentBranch}</span>
+                  <span className="text-zinc-900 font-semibold">{studentBranch}</span>
                 </div>
               </div>
             </div>
 
             {/* Bottom Pass Verification Strip */}
-            <div className="relative z-10 pt-3 border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+            <div className="relative z-10 pt-3 border-t border-black/[0.08] flex items-center justify-between text-xs text-zinc-500 font-medium">
               <div className="flex items-center gap-2">
-                <QrCode size={16} className="text-zinc-800 dark:text-zinc-200" />
-                <span className="font-semibold text-zinc-800 dark:text-zinc-200">IEI-GST-2026-PASS</span>
+                <QrCode size={16} className="text-zinc-800" />
+                <span className="font-semibold text-zinc-800">IEI-GST-2026-PASS</span>
               </div>
-              <div className="text-zinc-500 dark:text-zinc-400">
+              <div className="text-zinc-500">
                 Verified Credential
               </div>
             </div>
           </div>
 
           <div className="mt-5 flex items-center justify-between">
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Official Collegiate Pass</span>
+            <span className="text-xs text-zinc-500 font-medium">Official Collegiate Pass</span>
             <button
               onClick={() => {
                 audioEngine.playChime();
@@ -228,11 +228,11 @@ export default function StudentHub({ onApplyStudentMembership }) {
 
         {/* Right: Hackathons & Project Showcase */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="flex gap-2 p-1.5 bg-zinc-100/80 dark:bg-white/5 border border-black/[0.06] dark:border-white/10 rounded-xl w-fit mb-2">
+          <div className="flex gap-2 p-1.5 bg-zinc-100/80 border border-black/[0.06] rounded-xl w-fit mb-2">
             <button
               onClick={() => setActiveTab('projects')}
               className={`px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer ${
-                activeTab === 'projects' ? 'bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-semibold shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
+                activeTab === 'projects' ? 'bg-zinc-950 text-white font-semibold shadow-sm' : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
               Student Projects
@@ -240,7 +240,7 @@ export default function StudentHub({ onApplyStudentMembership }) {
             <button
               onClick={() => setActiveTab('hackathons')}
               className={`px-3.5 py-1.5 rounded-lg text-xs transition-all cursor-pointer ${
-                activeTab === 'hackathons' ? 'bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-semibold shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
+                activeTab === 'hackathons' ? 'bg-zinc-950 text-white font-semibold shadow-sm' : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
               Hackathons
@@ -250,14 +250,14 @@ export default function StudentHub({ onApplyStudentMembership }) {
           {activeTab === 'projects' && (
             <div className="space-y-3">
               {studentProjects.map((p, idx) => (
-                <div key={idx} className="bg-white dark:bg-[#0A0A0C] rounded-2xl border border-black/[0.08] dark:border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 hover:border-black/20 dark:hover:border-white/20 hover:shadow-[0_6px_20px_rgba(0,0,0,0.04)] transition-all">
+                <div key={idx} className="bg-white rounded-2xl border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 hover:border-black/20 hover:shadow-[0_6px_20px_rgba(0,0,0,0.04)] transition-all">
                   <div className="flex justify-between items-center text-xs mb-2">
-                    <span className="text-zinc-700 dark:text-zinc-300 font-semibold">{p.team}</span>
-                    <span className="text-emerald-700 dark:text-emerald-400 font-medium text-xs">{p.status}</span>
+                    <span className="text-zinc-700 font-semibold">{p.team}</span>
+                    <span className="text-emerald-700 font-medium text-xs">{p.status}</span>
                   </div>
-                  <h3 className="font-display text-base font-bold text-zinc-950 dark:text-white mb-1.5">{p.title}</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed mb-3">{p.desc}</p>
-                  <div className="text-xs text-zinc-500 dark:text-zinc-400 pt-2 border-t border-black/[0.06] dark:border-white/10">
+                  <h3 className="font-display text-base font-bold text-zinc-950 mb-1.5">{p.title}</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed mb-3">{p.desc}</p>
+                  <div className="text-xs text-zinc-500 pt-2 border-t border-black/[0.06]">
                     {p.grant}
                   </div>
                 </div>
@@ -268,16 +268,16 @@ export default function StudentHub({ onApplyStudentMembership }) {
           {activeTab === 'hackathons' && (
             <div className="space-y-3">
               {hackathons.map((h, idx) => (
-                <div key={idx} className="bg-white dark:bg-[#0A0A0C] rounded-2xl border border-black/[0.08] dark:border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 hover:border-black/20 dark:hover:border-white/20 hover:shadow-[0_6px_20px_rgba(0,0,0,0.04)] transition-all">
+                <div key={idx} className="bg-white rounded-2xl border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.02)] p-5 hover:border-black/20 hover:shadow-[0_6px_20px_rgba(0,0,0,0.04)] transition-all">
                   <div className="flex justify-between items-center text-xs mb-2">
-                    <span className="text-zinc-700 dark:text-zinc-300 font-semibold">{h.tag}</span>
-                    <span className="text-zinc-500 dark:text-zinc-400 text-xs">Deadline: {h.deadline}</span>
+                    <span className="text-zinc-700 font-semibold">{h.tag}</span>
+                    <span className="text-zinc-500 text-xs">Deadline: {h.deadline}</span>
                   </div>
-                  <h3 className="font-display text-base font-bold text-zinc-950 dark:text-white mb-1">{h.title}</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed mb-3">{h.theme}</p>
-                  <div className="flex justify-between text-xs text-zinc-700 dark:text-zinc-300 pt-2 border-t border-black/[0.06] dark:border-white/10">
-                    <span>Prize: <strong className="text-zinc-950 dark:text-white">{h.prize}</strong></span>
-                    <span className="text-zinc-600 dark:text-zinc-400 font-medium">{h.teams}</span>
+                  <h3 className="font-display text-base font-bold text-zinc-950 mb-1">{h.title}</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed mb-3">{h.theme}</p>
+                  <div className="flex justify-between text-xs text-zinc-700 pt-2 border-t border-black/[0.06]">
+                    <span>Prize: <strong className="text-zinc-950">{h.prize}</strong></span>
+                    <span className="text-zinc-600 font-medium">{h.teams}</span>
                   </div>
                 </div>
               ))}

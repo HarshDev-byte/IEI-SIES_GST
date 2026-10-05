@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ArrowLeft, Mail } from 'lucide-react';
 import { getMemberById, membersData, getInitials, getMemberBio } from '../data/membersData';
+import { getMemberPhotoCandidates } from '../utils/memberPhotoResolver';
 import { audioEngine } from '../utils/audioEngine';
 import './MemberProfilePage.css';
 
@@ -42,6 +43,74 @@ const GitHubIcon = ({ size = 15, className = '' }) => (
   </svg>
 );
 
+// Parse inline markdown (**bold**)
+function renderFormattedText(text) {
+  if (!text) return null;
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} className="font-semibold text-zinc-900">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
+// Structured Biographical Renderer for multi-paragraph, bulleted, and markdown content
+function BioRenderer({ content }) {
+  if (!content) return null;
+
+  const blocks = content.split(/\n\s*\n/);
+
+  return (
+    <div className="member-profile-bio-stack">
+      {blocks.map((block, idx) => {
+        const trimmed = block.trim();
+        if (!trimmed) return null;
+
+        // Heading 3 (### Heading)
+        if (trimmed.startsWith('### ')) {
+          return (
+            <h3 key={idx} className="member-profile-bio-heading">
+              {trimmed.replace(/^###\s*/, '')}
+            </h3>
+          );
+        }
+
+        // Bulleted lists (lines starting with - or •)
+        const lines = trimmed.split('\n').map(l => l.trim()).filter(Boolean);
+        const isBulletList = lines.length > 0 && lines.every(l => l.startsWith('- ') || l.startsWith('• '));
+
+        if (isBulletList) {
+          return (
+            <ul key={idx} className="member-profile-bio-list">
+              {lines.map((line, lIdx) => {
+                const itemText = line.replace(/^[-•]\s*/, '');
+                return (
+                  <li key={lIdx} className="member-profile-bio-item">
+                    <span className="bio-bullet-dot" aria-hidden="true" />
+                    <span>{renderFormattedText(itemText)}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          );
+        }
+
+        // Standard paragraph
+        return (
+          <p key={idx} className="member-profile-bio-para">
+            {renderFormattedText(trimmed)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 /**
  * ============================================================================
  * IEI SIES GST — SIMPLIFIED MEMBER PROFILE ARCHITECTURE
@@ -58,13 +127,29 @@ const GitHubIcon = ({ size = 15, className = '' }) => (
  * ============================================================================
  */
 export default function MemberProfilePage({ memberId }) {
-  const [imgFailed, setImgFailed] = useState(false);
-
   // Fallback to first member if ID/slug not found
   const member = getMemberById(memberId) || membersData[0];
   const initials = getInitials(member.name);
-  const photo = member.image || member.photo || null;
   const bio = getMemberBio(member);
+
+  // Dynamic photo candidates from /assets/sc/, /assets/jc/, /assets/vols/ or faculty
+  const photoCandidates = useMemo(() => getMemberPhotoCandidates(member), [member]);
+  const [candidateIdx, setCandidateIdx] = useState(0);
+
+  useEffect(() => {
+    setCandidateIdx(0);
+  }, [memberId]);
+
+  const currentPhoto = photoCandidates[candidateIdx] || null;
+  const hasValidPhoto = Boolean(currentPhoto) && candidateIdx < photoCandidates.length;
+
+  const handleImageError = () => {
+    if (candidateIdx + 1 < photoCandidates.length) {
+      setCandidateIdx(prev => prev + 1);
+    } else {
+      setCandidateIdx(photoCandidates.length);
+    }
+  };
 
   // Social handles (authoritative values with deterministic fallback)
   const cleanName = (member.name || '').replace(/^(Dr\.|Prof\.)\s*/i, '').trim();
@@ -73,8 +158,19 @@ export default function MemberProfilePage({ memberId }) {
   const firstName = nameParts[0] || 'member';
   const lastName = nameParts[nameParts.length - 1] || 'iei';
 
+  // Check if member is faculty leadership (HOD or Faculty Coordinator)
+  const isFaculty = member.category === 'faculty' || 
+    member.council === 'Faculty Leadership' ||
+    member.role === 'HOD' || 
+    member.position === 'HOD' || 
+    member.role === 'Student Branch Coordinator' || 
+    member.position === 'Student Branch Coordinator' || 
+    member.id === 'FAC-01' || 
+    member.id === 'FAC-02' ||
+    (member.name && (member.name.toLowerCase().includes('kharche') || member.name.toLowerCase().includes('hirani')));
+
   const linkedinUrl = member.linkedin || member.socials?.linkedin || `https://www.linkedin.com/in/${slug}`;
-  const githubUrl = member.github || member.socials?.github || `https://github.com/${slug}`;
+  const githubUrl = isFaculty ? null : (member.github || member.socials?.github || `https://github.com/${slug}`);
   const email = member.email || member.socials?.email || `${firstName}.${lastName}@siesgst.ac.in`;
   const hasAnySocial = Boolean(linkedinUrl || githubUrl || email);
 
@@ -105,11 +201,11 @@ export default function MemberProfilePage({ memberId }) {
           
           {/* 1. LARGE PORTRAIT */}
           <div className="member-portrait-frame">
-            {photo && !imgFailed ? (
+            {hasValidPhoto ? (
               <img 
-                src={photo} 
+                src={currentPhoto} 
                 alt={member.name}
-                onError={() => setImgFailed(true)}
+                onError={handleImageError}
                 className="member-portrait-img"
                 loading="eager"
               />
@@ -133,9 +229,9 @@ export default function MemberProfilePage({ memberId }) {
 
           {/* 4. BIOGRAPHY */}
           {bio && (
-            <p className="member-profile-bio">
-              {bio}
-            </p>
+            <div className="member-profile-bio">
+              <BioRenderer content={bio} />
+            </div>
           )}
 
           {/* 5. SOCIAL ACTIONS (Clean Standalone Action Group) */}

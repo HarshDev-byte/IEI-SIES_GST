@@ -111,19 +111,6 @@ export default function GlowingDotsGrid({
         coreG: 158,
         coreB: 11,
       },
-      dark: {
-        baseR: 161,
-        baseG: 161,
-        baseB: 170,
-        baseA: 0.16,
-        activeR: 0,
-        activeG: 98,
-        activeB: 255,
-        activeA: 0.92,
-        coreR: 56,
-        coreG: 189,
-        coreB: 248,
-      },
     };
 
     // Animation control
@@ -145,10 +132,10 @@ export default function GlowingDotsGrid({
       if (w < 640) {
         // Mobile: Optimized for 120Hz/240Hz mobile displays (reduced dot count for 0 frame drops)
         config = {
-          spacing: 36,
-          baseRadius: 1.1,
-          maxRadius: 1.9,
-          proximityRadius: 90,
+          spacing: 34,
+          baseRadius: 1.3,
+          maxRadius: 2.3,
+          proximityRadius: 95,
           maxDisplacement: 8,
           springK: 0.14,
           damping: 0.80,
@@ -159,9 +146,9 @@ export default function GlowingDotsGrid({
         // Tablet
         config = {
           spacing: 30,
-          baseRadius: 1.2,
-          maxRadius: 2.3,
-          proximityRadius: 130,
+          baseRadius: 1.4,
+          maxRadius: 2.6,
+          proximityRadius: 140,
           maxDisplacement: 14,
           springK: 0.11,
           damping: 0.83,
@@ -172,9 +159,9 @@ export default function GlowingDotsGrid({
         // Desktop
         config = {
           spacing: 32,
-          baseRadius: 1.35,
-          maxRadius: 2.8,
-          proximityRadius: 160,
+          baseRadius: 1.5,
+          maxRadius: 3.2,
+          proximityRadius: 165,
           maxDisplacement: 22,
           springK: 0.1,
           damping: 0.84,
@@ -274,7 +261,7 @@ export default function GlowingDotsGrid({
       // Clear Canvas
       ctx.clearRect(0, 0, width, height);
 
-      const activeTheme = colors[theme] || colors.light;
+      const activeTheme = colors.light;
 
       // If reduced motion is requested, render a clean, static, elegant dot grid once
       if (isReducedMotion) {
@@ -456,11 +443,12 @@ export default function GlowingDotsGrid({
         ctx.arc(dot.x, dot.y, currentRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        // Optional micro-halo for peak proximate dots (p > 0.85) without expensive canvas filter
-        if (p > 0.85 && currentRadius > 1.8) {
-          ctx.fillStyle = `rgba(${activeTheme.activeR}, ${activeTheme.activeG}, ${activeTheme.activeB}, ${(p - 0.85) * 0.35})`;
+        // Luminous micro-halo for proximate active dots in both dark and light modes
+        if (p > 0.65 && currentRadius > 1.6) {
+          const haloAlpha = isDark ? (p - 0.65) * 0.45 : (p - 0.85) * 0.35;
+          ctx.fillStyle = `rgba(${activeTheme.activeR}, ${activeTheme.activeG}, ${activeTheme.activeB}, ${haloAlpha})`;
           ctx.beginPath();
-          ctx.arc(dot.x, dot.y, currentRadius + 2.2, 0, Math.PI * 2);
+          ctx.arc(dot.x, dot.y, currentRadius + 3.0, 0, Math.PI * 2);
           ctx.fill();
         }
       }
@@ -621,6 +609,8 @@ export default function GlowingDotsGrid({
       }, 100);
     };
     window.addEventListener('resize', handleResize, { passive: true });
+
+
 
     // Initial build
     buildGrid();

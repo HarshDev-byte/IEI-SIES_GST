@@ -78,32 +78,32 @@ const EmailIcon = ({ size = 18, className = '' }) => (
 
 export default function Footer({ onReplayLoader }) {
   return (
-    <footer className="relative bg-[#FAFAFC] dark:bg-[#000000] pt-20 pb-28 sm:pb-32 px-4 sm:px-6 lg:px-8 z-10 transition-colors" aria-label="Site Footer">
+    <footer className="relative bg-[#FAFAFC] pt-20 pb-28 sm:pb-32 px-4 sm:px-6 lg:px-8 z-10 transition-colors" aria-label="Site Footer">
       <div className="max-w-7xl mx-auto">
         
         {/* Wordmark Header & Social Badges Row */}
-        <div className="pb-10 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black/[0.04] dark:border-white/[0.06]">
+        <div className="pb-10 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black/[0.04]">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <img src="/iei-official-logo.png" alt="IEI Logo" className="w-8 h-8 object-contain" />
-              <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 dark:text-white tracking-ultra-tight">
+              <h2 className="font-display text-3xl sm:text-5xl font-black text-zinc-950 tracking-ultra-tight">
                 IEI SIES GST
               </h2>
             </div>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+            <p className="text-xs text-zinc-500 mt-1">
               Official Student Chapter · Department of Electronics &amp; Computer Science Engineering
             </p>
           </div>
 
-          {/* Social Badges: Instagram · LinkedIn · GitHub · Email */}
-          <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap" role="list" aria-label="Official Social and Contact Channels">
+          {/* Social Badges: Instagram · LinkedIn · GitHub · Email (Desktop/Tablet only; Mobile uses floating @ menu) */}
+          <div className="hidden md:flex items-center gap-2.5 sm:gap-3 flex-wrap" role="list" aria-label="Official Social and Contact Channels">
             {/* 1. Instagram */}
             <a
               href="https://www.instagram.com/ieisiesgst/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => audioEngine?.playClick && audioEngine.playClick()}
-              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white dark:bg-[#0A0A0C] border border-black/[0.08] dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
+              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white border border-black/[0.08] text-zinc-700 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
               aria-label="Instagram"
               title="Instagram"
               role="listitem"
@@ -117,7 +117,7 @@ export default function Footer({ onReplayLoader }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => audioEngine?.playClick && audioEngine.playClick()}
-              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white dark:bg-[#0A0A0C] border border-black/[0.08] dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
+              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white border border-black/[0.08] text-zinc-700 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
               aria-label="LinkedIn"
               title="LinkedIn"
               role="listitem"
@@ -131,7 +131,7 @@ export default function Footer({ onReplayLoader }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => audioEngine?.playClick && audioEngine.playClick()}
-              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white dark:bg-[#0A0A0C] border border-black/[0.08] dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
+              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white border border-black/[0.08] text-zinc-700 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
               aria-label="GitHub"
               title="GitHub"
               role="listitem"
@@ -143,7 +143,7 @@ export default function Footer({ onReplayLoader }) {
             <a
               href="mailto:iei@sies.edu.in"
               onClick={() => audioEngine?.playClick && audioEngine.playClick()}
-              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white dark:bg-[#0A0A0C] border border-black/[0.08] dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
+              className="group relative flex items-center justify-center w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-xl bg-white border border-black/[0.08] text-zinc-700 hover:text-[#0062FF] hover:border-[#0062FF]/40 hover:bg-[#0062FF]/[0.03] transition-all duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#0062FF] focus-visible:outline-offset-2 shadow-2xs cursor-pointer"
               aria-label="Email"
               title="Email"
               role="listitem"
@@ -158,10 +158,10 @@ export default function Footer({ onReplayLoader }) {
           
           {/* Col 1: National Headquarters */}
           <div>
-            <div className="text-xs font-bold text-zinc-950 dark:text-white uppercase tracking-wide mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               National Headquarters
             </div>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-3">
+            <p className="text-xs text-zinc-600 leading-relaxed font-normal mb-3">
               <strong>The Institution of Engineers (India)</strong><br />
               8 Gokhale Road, Kolkata - 700020<br />
               West Bengal, India<br />
@@ -169,55 +169,55 @@ export default function Footer({ onReplayLoader }) {
                 ieindia.org
               </a>
             </p>
-            <div className="text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="text-xs text-zinc-500">
               Royal Charter 1935 · Recognized SIRO (DSIR)
             </div>
           </div>
 
           {/* Col 2: Directory */}
           <div>
-            <div className="text-xs font-bold text-zinc-950 dark:text-white uppercase tracking-wide mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               National Directory
             </div>
-            <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400 font-medium">
-              <li><a href="#/" className="hover:text-black dark:hover:text-white transition-colors">Home Page</a></li>
-              <li><a href="#/about" className="hover:text-black dark:hover:text-white transition-colors">About IEI &amp; Heritage</a></li>
-              <li><a href="#/what-we-do" className="hover:text-black dark:hover:text-white transition-colors">What IEI Does (AMIE / CEng)</a></li>
+            <ul className="space-y-2 text-xs text-zinc-600 font-medium">
+              <li><a href="#/" className="hover:text-black transition-colors">Home Page</a></li>
+              <li><a href="#/about" className="hover:text-black transition-colors">About IEI &amp; Heritage</a></li>
+              <li><a href="#/what-we-do" className="hover:text-black transition-colors">What IEI Does (AMIE / CEng)</a></li>
             </ul>
           </div>
 
           {/* Col 3: Chapter & Programs */}
           <div>
-            <div className="text-xs font-bold text-zinc-950 dark:text-white uppercase tracking-wide mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               SIES GST Chapter
             </div>
-            <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400 font-medium">
-              <li><a href="#/activities" className="hover:text-black dark:hover:text-white transition-colors">Workshops &amp; Activities</a></li>
-              <li><a href="#/events" className="hover:text-black dark:hover:text-white transition-colors">Events &amp; Symposia</a></li>
-              <li><a href="#/team" className="hover:text-black dark:hover:text-white transition-colors">Leadership &amp; 6 Wings</a></li>
-              <li><a href="#/resources" className="hover:text-black dark:hover:text-white transition-colors">Resources &amp; Publications</a></li>
+            <ul className="space-y-2 text-xs text-zinc-600 font-medium">
+              <li><a href="#/activities" className="hover:text-black transition-colors">Workshops &amp; Activities</a></li>
+              <li><a href="#/events" className="hover:text-black transition-colors">Events &amp; Symposia</a></li>
+              <li><a href="#/team" className="hover:text-black transition-colors">Leadership &amp; 6 Wings</a></li>
+              <li><a href="#/resources" className="hover:text-black transition-colors">Resources &amp; Publications</a></li>
             </ul>
           </div>
 
           {/* Col 4: Campus & Contact */}
           <div>
-            <div className="text-xs font-bold text-zinc-950 dark:text-white uppercase tracking-wide mb-3">
+            <div className="text-xs font-bold text-zinc-950 uppercase tracking-wide mb-3">
               Campus Headquarters
             </div>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-3">
+            <p className="text-xs text-zinc-600 leading-relaxed font-normal mb-3">
               Department of ECS<br />
               SIES Graduate School of Technology<br />
               Sector-V, Nerul, Navi Mumbai - 400706
             </p>
-            <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400 font-medium">
+            <ul className="space-y-2 text-xs text-zinc-600 font-medium">
               <li>
-                <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors flex items-center gap-1.5">
-                  <MapPin size={12} className="text-zinc-500 dark:text-zinc-400" />
+                <a href="#contact" className="hover:text-black transition-colors flex items-center gap-1.5">
+                  <MapPin size={12} className="text-zinc-500" />
                   <span>Campus Location</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:iei@sies.edu.in" className="hover:text-black dark:hover:text-white transition-colors flex items-center gap-1.5">
+                <a href="mailto:iei@sies.edu.in" className="hover:text-black transition-colors flex items-center gap-1.5">
                   <Mail size={12} className="text-[#0062FF]" />
                   <span>iei@sies.edu.in</span>
                 </a>
@@ -228,7 +228,7 @@ export default function Footer({ onReplayLoader }) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-black/[0.04] dark:border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+        <div className="pt-6 border-t border-black/[0.04] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 font-medium">
           <div>
             © 2026 The Institution of Engineers (India) · SIES GST Student Chapter.
           </div>
@@ -236,11 +236,11 @@ export default function Footer({ onReplayLoader }) {
             <button
               type="button"
               onClick={onReplayLoader}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/30 text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-all cursor-pointer text-[11px]"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-black/10 hover:border-black/30 text-zinc-600 hover:text-black transition-all cursor-pointer text-[11px]"
               title="Replay Startup Animation (or press R)"
             >
               <span>Replay Startup Animation</span>
-              <span className="font-mono text-[10px] px-1.5 py-0.5 bg-black/5 dark:bg-white/10 rounded text-zinc-500 dark:text-zinc-400">R</span>
+              <span className="font-mono text-[10px] px-1.5 py-0.5 bg-black/5 rounded text-zinc-500">R</span>
             </button>
           )}
         </div>
