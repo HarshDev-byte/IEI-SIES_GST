@@ -330,6 +330,20 @@
   transform: scale(1.08);
 }
 
+/* Copied to clipboard success state */
+.profile-social-btn.btn-email.is-copied {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.profile-social-btn.btn-email.is-copied:hover {
+  background-color: rgba(16, 185, 129, 0.16);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
 /* Accessible focus visible on keyboard navigation */
 .profile-social-btn:focus-visible {
   outline: 2px solid #0062FF;

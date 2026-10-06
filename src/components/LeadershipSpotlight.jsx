@@ -314,11 +314,13 @@ export default function LeadershipSpotlight() {
       </section>
 
       {/* ===================================================================== */}
-      {/* 02 — EXECUTIVE COUNCIL                                               */}
+      {/* 02 — EXECUTIVE COUNCIL (TEMPORARILY COMMENTED OUT)                   */}
       {/* "EDITORIAL GROUP PORTRAIT"                                            */}
       {/* Large Group Photo • Kinetic Horizontal Orbit Geometry                */}
       {/* Monochrome to Colour Selection • Pure Typography (No Cards / Boxes)  */}
       {/* ===================================================================== */}
+      {/* TEMPORARILY COMMENTED OUT: Uncomment when ready to display */}
+      {false && (
       <section className="mb-24 sm:mb-32 lg:mb-40" aria-labelledby="heading-executive-leadership">
         
         {/* Section Header */}
@@ -452,6 +454,7 @@ export default function LeadershipSpotlight() {
         </div>
 
       </section>
+      )}
 
     </div>
   );

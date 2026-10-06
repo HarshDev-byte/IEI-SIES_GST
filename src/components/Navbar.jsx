@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  Search, ArrowRight, Compass, 
-  Layers, Calendar, Users, FolderDown, 
-  Cpu, Menu, X, ChevronRight, ChevronUp, ChevronDown, Radio, Building2, Award, Camera
+  Compass, Calendar, Users, FolderDown, 
+  Cpu, Menu, X, ChevronRight
 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
@@ -13,93 +12,6 @@ export default function Navbar({
 }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-
-  // Collapsible Floating Navigation Orb state
-  const [isOpen, setIsOpen] = useState(false);
-  const [isPinned, setIsPinned] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [contentSize, setContentSize] = useState({ width: 0, height: 53 });
-
-  const navRef = useRef(null);
-  const contentRef = useRef(null);
-  const collapseTimerRef = useRef(null);
-
-  // Track prefers-reduced-motion
-  useEffect(() => {
-    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mql.matches);
-    const onChange = (e) => setReducedMotion(e.matches);
-    mql.addEventListener('change', onChange);
-    return () => mql.removeEventListener('change', onChange);
-  }, []);
-
-  // Measure content natural dimensions
-  useEffect(() => {
-    const updateSize = () => {
-      if (contentRef.current) {
-        const w = contentRef.current.scrollWidth;
-        const h = contentRef.current.scrollHeight;
-        if (w > 0) {
-          setContentSize({ width: w, height: h || 53 });
-        }
-      }
-    };
-    updateSize();
-    const t = setTimeout(updateSize, 120);
-    window.addEventListener('resize', updateSize);
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener('resize', updateSize);
-    };
-  }, []);
-
-  // Desktop Hover Handlers
-  const handleMouseEnter = () => {
-    if (collapseTimerRef.current) {
-      clearTimeout(collapseTimerRef.current);
-      collapseTimerRef.current = null;
-    }
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (isPinned) return;
-    if (collapseTimerRef.current) {
-      clearTimeout(collapseTimerRef.current);
-    }
-    collapseTimerRef.current = setTimeout(() => {
-      setIsOpen(false);
-    }, 600);
-  };
-
-  // Click / Tap Toggle (Pin Mode)
-  const handleToggle = (e) => {
-    if (e) e.stopPropagation();
-    if (collapseTimerRef.current) {
-      clearTimeout(collapseTimerRef.current);
-      collapseTimerRef.current = null;
-    }
-    if (!isOpen) {
-      setIsOpen(true);
-      setIsPinned(true);
-    } else {
-      setIsOpen(false);
-      setIsPinned(false);
-    }
-  };
-
-  // Mobile / Desktop Outside Click Detection
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleOutsideClick = (e) => {
-      if (navRef.current && !navRef.current.contains(e.target)) {
-        setIsOpen(false);
-        setIsPinned(false);
-      }
-    };
-    document.addEventListener('pointerdown', handleOutsideClick, { passive: true });
-    return () => document.removeEventListener('pointerdown', handleOutsideClick);
-  }, [isOpen]);
 
   // Track document scroll progress for the top laser depth line
   useEffect(() => {
@@ -127,15 +39,11 @@ export default function Navbar({
       }
       if (e.key === 'Escape') {
         if (mobileDrawerOpen) setMobileDrawerOpen(false);
-        if (isOpen) {
-          setIsOpen(false);
-          setIsPinned(false);
-        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onOpenSearch, mobileDrawerOpen, isOpen]);
+  }, [onOpenSearch, mobileDrawerOpen]);
 
   const navLinks = [
     { label: 'About', href: '#/', id: 'home', icon: Compass },
@@ -155,73 +63,19 @@ export default function Navbar({
         />
       </div>
 
-      {/* 2. COLLAPSIBLE FLOATING NAVIGATION ORB & BOTTOM NAVBAR */}
+      {/* 2. PERMANENT FLOATING BOTTOM NAVBAR */}
       <nav 
-        ref={navRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         className="fixed bottom-3.5 sm:bottom-6 inset-x-0 mx-auto w-fit max-w-[96vw] z-50 select-none flex items-center justify-center pb-[env(safe-area-inset-bottom,0px)]"
         aria-label="Bottom Navigation"
       >
-        <div
-          className={`relative flex items-center justify-center rounded-full overflow-hidden transition-all ${
-            isOpen
-              ? 'bg-white/94 backdrop-blur-2xl border border-black/10 shadow-[0_14px_44px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.05)] text-zinc-950'
-              : 'bg-[#0062FF] border-2 border-white/90 shadow-[0_6px_24px_rgba(0,98,255,0.55),0_0_16px_rgba(0,98,255,0.4)] cursor-pointer hover:scale-110 active:scale-95'
-          }`}
-          style={{
-            width: isOpen ? (contentSize.width ? `${contentSize.width}px` : 'max-content') : '46px',
-            height: isOpen ? (contentSize.height ? `${contentSize.height}px` : '53px') : '46px',
-            transitionProperty: reducedMotion ? 'none' : 'width, height, background-color, border-color, box-shadow, transform',
-            transitionDuration: isOpen ? '380ms' : '280ms',
-            transitionTimingFunction: isOpen ? 'cubic-bezier(0.16, 1, 0.3, 1)' : 'cubic-bezier(0.4, 0, 0.2, 1)',
-            transformOrigin: 'bottom center',
-          }}
-        >
-          {/* A. COLLAPSED ORB INDICATOR (High-visibility 46px diameter) */}
-          <button
-            type="button"
-            onClick={handleToggle}
-            aria-label="Open navigation menu"
-            aria-expanded={isOpen}
-            tabIndex={isOpen ? -1 : 0}
-            className={`absolute inset-0 w-full h-full flex items-center justify-center bg-transparent border-none p-0 cursor-pointer transition-opacity ${
-              isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
-            }`}
-            style={{
-              transitionDuration: '200ms',
-            }}
-          >
-            <ChevronUp size={20} strokeWidth={2.5} className="text-white shrink-0 drop-shadow-xs" />
-          </button>
-
-          {/* B. EXPANDED NAVBAR CONTENT */}
-          <div
-            ref={contentRef}
-            className={`flex items-center gap-1.5 sm:gap-2.5 p-2 sm:p-2.5 w-max shrink-0 transition-opacity ${
-              isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-            }`}
-            style={{
-              transitionDuration: isOpen ? '300ms' : '180ms',
-              transitionDelay: isOpen ? '50ms' : '0ms',
-            }}
-          >
+        <div className="relative flex items-center justify-center rounded-full overflow-hidden bg-white/94 backdrop-blur-2xl border border-black/10 shadow-[0_14px_44px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.05)] text-zinc-950">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 p-2 sm:p-2.5 w-max shrink-0">
             {/* BRAND ANCHOR */}
             <a
               href="#/"
               onClick={() => {
                 audioEngine.playClick();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              style={{
-                opacity: isOpen ? 1 : 0,
-                transform: isOpen ? 'translateY(0)' : 'translateY(6px)',
-                transition: reducedMotion
-                  ? 'none'
-                  : isOpen
-                  ? 'opacity 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 350ms cubic-bezier(0.16, 1, 0.3, 1)'
-                  : 'opacity 180ms ease, transform 180ms ease',
-                transitionDelay: isOpen ? '60ms' : '0ms',
               }}
               className="flex items-center gap-2.5 pl-1.5 sm:pl-2 pr-2.5 sm:pr-3.5 py-1.5 rounded-full hover:bg-black/[0.04] transition-colors group cursor-pointer shrink-0"
               title="IEI SIES GST — Return to About"
@@ -245,19 +99,11 @@ export default function Navbar({
             </a>
 
             {/* DIVIDER */}
-            <div 
-              style={{
-                opacity: isOpen ? 1 : 0,
-                transform: isOpen ? 'translateY(0)' : 'translateY(6px)',
-                transition: reducedMotion ? 'none' : 'opacity 300ms ease, transform 350ms ease',
-                transitionDelay: isOpen ? '90ms' : '0ms',
-              }}
-              className="h-6 w-[1px] bg-black/10 hidden sm:block shrink-0" 
-            />
+            <div className="h-6 w-[1px] bg-black/10 hidden sm:block shrink-0" />
 
             {/* DESKTOP & TABLET PRIMARY NAV CHIPS */}
             <div className="hidden lg:flex items-center gap-1.5">
-              {navLinks.map((link, idx) => {
+              {navLinks.map((link) => {
                 const isActive = currentRoute === link.id;
                 const Icon = link.icon;
 
@@ -267,16 +113,6 @@ export default function Navbar({
                     href={link.href}
                     onClick={() => {
                       audioEngine.playClick();
-                    }}
-                    style={{
-                      opacity: isOpen ? 1 : 0,
-                      transform: isOpen ? 'translateY(0)' : 'translateY(6px)',
-                      transition: reducedMotion
-                        ? 'none'
-                        : isOpen
-                        ? 'opacity 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 350ms cubic-bezier(0.16, 1, 0.3, 1)'
-                        : 'opacity 180ms ease, transform 180ms ease',
-                      transitionDelay: isOpen ? `${idx * 35 + 110}ms` : '0ms',
                     }}
                     className={`px-3.5 py-2 rounded-full text-[13px] font-medium transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                       isActive 
@@ -293,7 +129,7 @@ export default function Navbar({
 
             {/* MOBILE / COMPACT SCREEN CHIPS */}
             <div className="flex lg:hidden items-center gap-1.5 overflow-x-auto no-scrollbar max-w-[55vw] sm:max-w-[65vw] px-1">
-              {navLinks.map((link, idx) => {
+              {navLinks.map((link) => {
                 const isActive = currentRoute === link.id;
                 const Icon = link.icon;
 
@@ -303,16 +139,6 @@ export default function Navbar({
                     href={link.href}
                     onClick={() => {
                       audioEngine.playClick();
-                    }}
-                    style={{
-                      opacity: isOpen ? 1 : 0,
-                      transform: isOpen ? 'translateY(0)' : 'translateY(6px)',
-                      transition: reducedMotion
-                        ? 'none'
-                        : isOpen
-                        ? 'opacity 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 350ms cubic-bezier(0.16, 1, 0.3, 1)'
-                        : 'opacity 180ms ease, transform 180ms ease',
-                      transitionDelay: isOpen ? `${idx * 30 + 100}ms` : '0ms',
                     }}
                     className={`px-3 py-2 rounded-full text-[13px] transition-all duration-200 flex items-center gap-1.5 shrink-0 ${
                       isActive 
@@ -328,16 +154,8 @@ export default function Navbar({
               })}
             </div>
 
-            {/* UTILITY CONTROLS: Mobile Drawer & Close Toggle */}
-            <div 
-              style={{
-                opacity: isOpen ? 1 : 0,
-                transform: isOpen ? 'translateY(0)' : 'translateY(6px)',
-                transition: reducedMotion ? 'none' : 'opacity 300ms ease, transform 350ms ease',
-                transitionDelay: isOpen ? `${navLinks.length * 35 + 110}ms` : '0ms',
-              }}
-              className="flex items-center gap-1 shrink-0"
-            >
+            {/* UTILITY CONTROLS: Mobile Drawer Trigger */}
+            <div className="flex items-center gap-1 shrink-0">
               {/* Mobile Expand Drawer Trigger */}
               <button
                 type="button"
@@ -349,17 +167,6 @@ export default function Navbar({
                 aria-label="Toggle mobile directory menu"
               >
                 {mobileDrawerOpen ? <X size={17} /> : <Menu size={17} />}
-              </button>
-
-              {/* Close / Collapse Navigation Toggle */}
-              <button
-                type="button"
-                onClick={handleToggle}
-                className="p-2 rounded-full text-zinc-400 hover:text-zinc-700 hover:bg-black/[0.04] transition-colors cursor-pointer shrink-0"
-                aria-label="Close navigation"
-                title="Close navigation"
-              >
-                <ChevronDown size={16} />
               </button>
             </div>
           </div>

@@ -333,25 +333,18 @@ const HERO_MOTION_STYLES = `
 
   /* Editorial Subtitle underneath Monumental Typography */
   .hero-editorial-subtitle {
-    font-family: var(--font-sans);
-    font-size: clamp(0.95rem, 1.5vw, 1.3rem);
-    font-weight: 500;
-    line-height: 1.65;
-    letter-spacing: -0.01em;
-    color: #27272a;
     text-align: center;
-    max-width: 48rem;
+    max-width: 52rem;
     margin: 0 auto;
     padding: 6px 12px;
     opacity: 1;
     transform: translateY(0);
-    transition: color 0.3s ease,
-                opacity 0.75s ease,
+    transition: opacity 0.75s ease,
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .hero-mode-acronym .hero-editorial-subtitle {
-    opacity: 0.95;
+    opacity: 0.98;
     transform: translateY(4px);
   }
 
@@ -770,13 +763,16 @@ export default function Hero({
             </span>
           </h1>
 
-          {/* 03. EDITORIAL SUBTITLE — Institutional Chapter Identity */}
-          <div className="overflow-visible mt-6 sm:mt-8 md:mt-10 px-4">
-            <p className="hero-editorial-subtitle select-none text-zinc-700">
-              A dedicated Student Chapter of{' '}
-              <span className="text-zinc-950 font-bold tracking-normal">
-                Electronics and Computer Science Engineering
+          {/* 03. EDITORIAL HERO HEADLINE & MANIFESTO */}
+          <div className="hero-editorial-subtitle select-none overflow-visible mt-6 sm:mt-8 md:mt-10 px-4">
+            <h2 className="font-display font-extrabold text-xl sm:text-2xl md:text-3xl text-zinc-950 tracking-tight leading-snug sm:leading-tight">
+              Where Engineers Belong.{' '}
+              <span className="text-[#0062FF] font-black">
+                Where Tomorrow Leads.
               </span>
+            </h2>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-[17px] text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto">
+              Join India’s largest engineering network. Build practical skills, connect with industry leaders, and take your innovation beyond the classroom.
             </p>
           </div>
         </div>

@@ -45,11 +45,11 @@ She has authored and co-authored **45+ research publications** in national and i
 - Numerous **Expert Talks, Workshops & Faculty Development Programs**
 
 As Head of the Department, Dr. Kharche is committed to fostering **academic excellence, research, innovation, and industry-relevant learning**, empowering students to explore emerging technologies and develop solutions for the future.`,
-    email: "shubhangi.kharche@siesgst.ac.in",
+    email: "shubhangik@sies.edu.in",
     linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
     github: null,
     socials: {
-      email: "shubhangi.kharche@siesgst.ac.in",
+      email: "shubhangik@sies.edu.in",
       linkedin: "https://www.linkedin.com/school/sies-graduate-school-of-technology/",
       github: null,
     }
@@ -93,16 +93,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Executive",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7018.jpg",
+    photo: "/assets/sc/123A7018.jpg",
     description: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
     bio: "Oversees overall chapter governance, strategic planning, inter-institutional partnerships, and executive decision-making.",
     linkedin: "https://www.linkedin.com/in/tejraj-gujar-8707b9225/",
     github: "https://github.com/tejraj-gujar",
-    email: "tejraj.gujar@siesgst.ac.in",
+    email: "tejrajrgecs123@gst.sies.edu.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/tejraj-gujar-8707b9225/",
-      email: "tejraj.gujar@siesgst.ac.in",
+      email: "tejrajrgecs123@gst.sies.edu.in",
       github: "https://github.com/tejraj-gujar"
     }
   },
@@ -123,10 +123,10 @@ export const seniorCouncil = [
     bio: "Supports executive chapter operations, program execution, cross-domain coordination, and student representation.",
     linkedin: "https://www.linkedin.com/in/sarangpatil1/",
     github: "https://github.com/sarang-patil",
-    email: "sarang.patil@siesgst.ac.in",
+    email: "sarangdpaids123@gst.sies.edu.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/sarangpatil1/",
-      email: "sarang.patil@siesgst.ac.in",
+      email: "sarangdpaids123@gst.sies.edu.in",
       github: "https://github.com/sarang-patil"
     }
   },
@@ -141,16 +141,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Executive",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7016.jpg",
+    photo: "/assets/sc/123A7016.jpg",
     description: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
     bio: "Manages official chapter documentation, constitutional records, inter-council communication, and institutional reporting.",
     linkedin: "https://www.linkedin.com/in/shardul-gade-681304329/",
     github: "https://github.com/shardul-gade",
-    email: "shardul.gade@siesgst.ac.in",
+    email: "shardulugecs123@gst.sies.edu.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/shardul-gade-681304329/",
-      email: "shardul.gade@siesgst.ac.in",
+      email: "shardulugecs123@gst.sies.edu.in",
       github: "https://github.com/shardul-gade"
     }
   },
@@ -165,16 +165,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Executive",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7020.jpg",
+    photo: "/assets/sc/123A7020.jpg",
     description: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
     bio: "Responsible for financial budgeting, fiscal compliance, resource distribution, and audited accounting for chapter initiatives.",
     linkedin: "https://www.linkedin.com/in/harshad-jadhav-108a242b2/",
     github: "https://github.com/harshad-jadhav",
-    email: "harshad.jadhav@siesgst.ac.in",
+    email: "harshaddjecs123@gst.sies.edu.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/harshad-jadhav-108a242b2/",
-      email: "harshad.jadhav@siesgst.ac.in",
+      email: "harshaddjecs123@gst.sies.edu.in",
       github: "https://github.com/harshad-jadhav"
     }
   },
@@ -189,16 +189,16 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Community",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A8001.jpg",
+    photo: "/assets/sc/123A8001.jpg",
     description: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
     bio: "Directs flagship events, participant experience, community outreach, and institutional delegate engagements.",
     linkedin: "https://www.linkedin.com/in/a-s-lakshanya-150010314/",
     github: "https://github.com/a-s-lakshanya",
-    email: "lakshanya.as@siesgst.ac.in",
+    email: "lakshanyasaaids123@gst.sies.edu.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/a-s-lakshanya-150010314/",
-      email: "lakshanya.as@siesgst.ac.in",
+      email: "lakshanyasaaids123@gst.sies.edu.in",
       github: "https://github.com/a-s-lakshanya"
     }
   },
@@ -219,10 +219,10 @@ export const seniorCouncil = [
     bio: "Orchestrates symposia schedules, venue operations, community relations, and inter-collegiate technical competitions.",
     linkedin: "https://www.linkedin.com/in/anushka-pawar-91268b38a/",
     github: "https://github.com/anushka-pawar",
-    email: "anushka.pawar@siesgst.ac.in",
+    email: "anushkaapecs123@gst.sies.edu.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/anushka-pawar-91268b38a/",
-      email: "anushka.pawar@siesgst.ac.in",
+      email: "anushkaapecs123@gst.sies.edu.in",
       github: "https://github.com/anushka-pawar"
     }
   },
@@ -237,17 +237,17 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7019.jpg",
+    photo: "/assets/sc/123A7019.jpg",
     description: "Advises technical roadmap development, hackathon infrastructure, systems architecture, and engineering workshops.",
     bio: "Advises technical roadmap development, hackathon infrastructure, systems architecture, and engineering workshops.",
     github: "https://github.com/harshmhatre",
     linkedin: "https://www.linkedin.com/in/harsh-mhatre-7b9606320/",
-    email: "harsh.mhatre@siesgst.ac.in",
+    email: "harshpmecs123@gst.sies.edu.in",
     socials: {
       github: "https://github.com/harshmhatre",
       linkedin: "https://www.linkedin.com/in/harsh-mhatre-7b9606320/",
-      email: "harsh.mhatre@siesgst.ac.in"
+      email: "harshpmecs123@gst.sies.edu.in"
     }
   },
   {
@@ -261,17 +261,17 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7011.jpg",
+    photo: "/assets/sc/123A7011.jpg",
     description: "Provides technical leadership across software projects, developer bootcamps, and institutional digital platforms.",
     bio: "Provides technical leadership across software projects, developer bootcamps, and institutional digital platforms.",
     github: "https://github.com/sahilchavan",
     linkedin: "https://www.linkedin.com/in/sahil-chavan-066a252b2/",
-    email: "sahil.chavan@siesgst.ac.in",
+    email: "sahilrcecs123@gst.sies.edu.in",
     socials: {
       github: "https://github.com/sahilchavan",
       linkedin: "https://www.linkedin.com/in/sahil-chavan-066a252b2/",
-      email: "sahil.chavan@siesgst.ac.in"
+      email: "sahilrcecs123@gst.sies.edu.in"
     }
   },
   {
@@ -285,17 +285,17 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7009.jpg",
+    photo: "/assets/sc/123A7009.jpg",
     description: "Guides project governance, hardware-software integration, cloud infrastructure, and technical mentoring.",
     bio: "Guides project governance, hardware-software integration, cloud infrastructure, and technical mentoring.",
     github: "https://github.com/sohamchafale",
     linkedin: "https://www.linkedin.com/in/soham-chafale/",
-    email: "soham.chafale@siesgst.ac.in",
+    email: "sohamscecs123@gst.sies.edu.in",
     socials: {
       github: "https://github.com/sohamchafale",
       linkedin: "https://www.linkedin.com/in/soham-chafale/",
-      email: "soham.chafale@siesgst.ac.in"
+      email: "sohamscecs123@gst.sies.edu.in"
     }
   },
   {
@@ -309,17 +309,17 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Technical",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7027.jpg",
+    photo: "/assets/sc/123A7027.jpg",
     description: "Oversees research symposiums, technical paper reviews, coding competitions, and algorithmic workshops.",
     bio: "Oversees research symposiums, technical paper reviews, coding competitions, and algorithmic workshops.",
     github: "https://github.com/adityakinikar",
     linkedin: "https://www.linkedin.com/in/adityakinikar/",
-    email: "aditya.kinikar@siesgst.ac.in",
+    email: "adityamkecs123@gst.sies.edu.in",
     socials: {
       github: "https://github.com/adityakinikar",
       linkedin: "https://www.linkedin.com/in/adityakinikar/",
-      email: "aditya.kinikar@siesgst.ac.in"
+      email: "adityamkecs123@gst.sies.edu.in"
     }
   },
   {
@@ -333,18 +333,18 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Creative",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7001.jpg",
+    photo: "/assets/sc/123A7001.jpg",
     description: "Mentors creative branding, stage aesthetics, publication themes, and visual narrative direction.",
     bio: "Mentors creative branding, stage aesthetics, publication themes, and visual narrative direction.",
     instagram: "https://instagram.com/ananya_sid",
     linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar-5430a0320/",
     github: "https://github.com/ananya-siddayyanavar",
-    email: "ananya.sid@siesgst.ac.in",
+    email: "ananyasecs123@gst.sies.edu.in",
     socials: {
       instagram: "https://instagram.com/ananya_sid",
       linkedin: "https://www.linkedin.com/in/ananya-siddayyanavar-5430a0320/",
-      email: "ananya.sid@siesgst.ac.in",
+      email: "ananyasecs123@gst.sies.edu.in",
       github: "https://github.com/ananya-siddayyanavar"
     }
   },
@@ -366,11 +366,11 @@ export const seniorCouncil = [
     instagram: "https://instagram.com/ayushtandel",
     linkedin: "https://www.linkedin.com/in/ayush-t-aa6b202b2/",
     github: "https://github.com/ayush-tandel",
-    email: "ayush.tandel@siesgst.ac.in",
+    email: "ayushmtecs224@gst.sies.edu.in",
     socials: {
       instagram: "https://instagram.com/ayushtandel",
       linkedin: "https://www.linkedin.com/in/ayush-t-aa6b202b2/",
-      email: "ayush.tandel@siesgst.ac.in",
+      email: "ayushmtecs224@gst.sies.edu.in",
       github: "https://github.com/ayush-tandel"
     }
   },
@@ -391,10 +391,10 @@ export const seniorCouncil = [
     bio: "Mentors audiovisual documentation, press releases, social storytelling, and chapter media archives.",
     linkedin: "https://www.linkedin.com/in/kaushik-yadav",
     github: "https://github.com/kaushik-yadav",
-    email: "kaushik.yadav@siesgst.ac.in",
+    email: "kaushiksyecs122@gst.sies.edu.in",
     socials: {
       linkedin: "https://www.linkedin.com/in/kaushik-yadav",
-      email: "kaushik.yadav@siesgst.ac.in",
+      email: "kaushiksyecs122@gst.sies.edu.in",
       github: "https://github.com/kaushik-yadav"
     }
   },
@@ -409,18 +409,18 @@ export const seniorCouncil = [
     council: "Senior Council",
     domain: "Design",
     category: "executive",
-    image: null,
-    photo: null,
+    image: "/assets/sc/123A7053.jpg",
+    photo: "/assets/sc/123A7053.jpg",
     description: "Guides brand design systems, interface design, editorial layouts, and chapter brand identity guidelines.",
     bio: "Guides brand design systems, interface design, editorial layouts, and chapter brand identity guidelines.",
     instagram: "https://instagram.com/shravanikhedkar",
     linkedin: "https://www.linkedin.com/in/shravani-khedkar-9b893a369/",
     github: "https://github.com/shravani-khedkar",
-    email: "shravani.khedkar@siesgst.ac.in",
+    email: "shravanimkecs123@gst.sies.edu.in",
     socials: {
       instagram: "https://instagram.com/shravanikhedkar",
       linkedin: "https://www.linkedin.com/in/shravani-khedkar-9b893a369/",
-      email: "shravani.khedkar@siesgst.ac.in",
+      email: "shravanimkecs123@gst.sies.edu.in",
       github: "https://github.com/shravani-khedkar"
     }
   }
@@ -446,11 +446,11 @@ export const juniorCouncil = [
     domain: "Executive",
     photo: null,
     bio: "Assists the Secretariat in executing council administration, institutional record-keeping, and inter-departmental communication across the student chapter.",
-    email: "prathamesh.bhagwat@siesgst.ac.in",
+    email: "prathameshhbecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/prathamesh-bhagwat-191409298/",
     github: "https://github.com/prathamesh-bhagwat",
     socials: {
-      email: "prathamesh.bhagwat@siesgst.ac.in",
+      email: "prathameshhbecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/prathamesh-bhagwat-191409298/",
       github: "https://github.com/prathamesh-bhagwat"
     }
@@ -465,13 +465,14 @@ export const juniorCouncil = [
     role: "Joint Secretary",
     council: "Junior Council",
     domain: "Executive",
-    photo: null,
+    photo: "/assets/jc/124A1118.jpg",
+    image: "/assets/jc/124A1118.jpg",
     bio: "Supports chapter governance, institutional documentation, meeting agendas, and administrative coordination across student wings.",
-    email: "indrayani.patil@siesgst.ac.in",
+    email: "indrayaniapce124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/indrayani-patill/",
     github: "https://github.com/indrayani-patil",
     socials: {
-      email: "indrayani.patil@siesgst.ac.in",
+      email: "indrayaniapce124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/indrayani-patill/",
       github: "https://github.com/indrayani-patil"
     }
@@ -488,11 +489,11 @@ export const juniorCouncil = [
     domain: "Technical",
     photo: null,
     bio: "Directs core software development projects, technical workshops, and coding challenges for chapter members.",
-    email: "saran.rajasekhar@siesgst.ac.in",
+    email: "saranrecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/saran-rajasekhar-1162b9334/",
     github: "https://github.com/saran-rajasekhar",
     socials: {
-      email: "saran.rajasekhar@siesgst.ac.in",
+      email: "saranrecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/saran-rajasekhar-1162b9334/",
       github: "https://github.com/saran-rajasekhar"
     }
@@ -509,11 +510,11 @@ export const juniorCouncil = [
     domain: "Technical",
     photo: null,
     bio: "Oversees hackathon operations, technical infrastructure, development tracks, and peer mentorship in engineering practices.",
-    email: "manas.suryawanshi@siesgst.ac.in",
+    email: "suryawanshimanasvecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/manas-suryawanshi-51a00832b/",
     github: "https://github.com/manas-suryawanshi",
     socials: {
-      email: "manas.suryawanshi@siesgst.ac.in",
+      email: "suryawanshimanasvecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/manas-suryawanshi-51a00832b/",
       github: "https://github.com/manas-suryawanshi"
     }
@@ -530,11 +531,11 @@ export const juniorCouncil = [
     domain: "Technical",
     photo: null,
     bio: "Manages cloud infrastructure, system design bootcamps, and technical mentoring across multidisciplinary software projects.",
-    email: "hariom.mohare@siesgst.ac.in",
+    email: "hariommmecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/hariom-mohare-533b56349/",
     github: "https://github.com/hariom-mohare",
     socials: {
-      email: "hariom.mohare@siesgst.ac.in",
+      email: "hariommmecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/hariom-mohare-533b56349/",
       github: "https://github.com/hariom-mohare"
     }
@@ -549,13 +550,14 @@ export const juniorCouncil = [
     role: "Technical Head",
     council: "Junior Council",
     domain: "Technical",
-    photo: null,
+    photo: "/assets/jc/124A7045.jpg",
+    image: "/assets/jc/124A7045.jpg",
     bio: "Leads hardware-software integrations, technical competitions, paper review sessions, and engineering prototyping labs.",
-    email: "kaustubh.patil@siesgst.ac.in",
+    email: "kaustubhspecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/cos2patil/",
     github: "https://github.com/kaustubh-patil",
     socials: {
-      email: "kaustubh.patil@siesgst.ac.in",
+      email: "kaustubhspecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/cos2patil/",
       github: "https://github.com/kaustubh-patil"
     }
@@ -570,13 +572,14 @@ export const juniorCouncil = [
     role: "Industry Outreach & Admin Head",
     council: "Junior Council",
     domain: "Industry Outreach & Admin",
-    photo: null,
+    photo: "/assets/jc/124A7041.jpg",
+    image: "/assets/jc/124A7041.jpg",
     bio: "Spearheads corporate outreach, industry guest sessions, institutional sponsorship drives, and professional networking.",
-    email: "advaith.nair@siesgst.ac.in",
+    email: "advaithvnecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/advaith-nair",
     github: "https://github.com/advaith-nair",
     socials: {
-      email: "advaith.nair@siesgst.ac.in",
+      email: "advaithvnecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/advaith-nair",
       github: "https://github.com/advaith-nair"
     }
@@ -591,13 +594,14 @@ export const juniorCouncil = [
     role: "Industry Outreach & Admin Head",
     council: "Junior Council",
     domain: "Industry Outreach & Admin",
-    photo: null,
+    photo: "/assets/jc/124A7026.jpg",
+    image: "/assets/jc/124A7026.jpg",
     bio: "Coordinates administrative workflows, institutional liaisons, event authorizations, and corporate relations.",
-    email: "harshit.lahari@siesgst.ac.in",
+    email: "harshitnlecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/harshit-neeraj-lahari-17279434a/",
     github: "https://github.com/harshit-lahari",
     socials: {
-      email: "harshit.lahari@siesgst.ac.in",
+      email: "harshitnlecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/harshit-neeraj-lahari-17279434a/",
       github: "https://github.com/harshit-lahari"
     }
@@ -612,13 +616,14 @@ export const juniorCouncil = [
     role: "Design Head",
     council: "Junior Council",
     domain: "Design",
-    photo: null,
+    photo: "/assets/jc/124A3052.jpg",
+    image: "/assets/jc/124A3052.jpg",
     bio: "Leads the chapter's UI/UX systems, promotional brand collateral, typography hierarchy, and visual design guidelines.",
-    email: "gauri.shinde@siesgst.ac.in",
+    email: "gaurissit124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/gauri-shinde-1519b8388/",
     github: "https://github.com/gauri-shinde",
     socials: {
-      email: "gauri.shinde@siesgst.ac.in",
+      email: "gaurissit124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/gauri-shinde-1519b8388/",
       github: "https://github.com/gauri-shinde"
     }
@@ -633,13 +638,14 @@ export const juniorCouncil = [
     role: "Creative Head",
     council: "Junior Council",
     domain: "Creative",
-    photo: null,
+    photo: "/assets/jc/124A7028.jpg",
+    image: "/assets/jc/124A7028.jpg",
     bio: "Directs creative themes, stage scenography, event atmosphere concepts, and thematic marketing campaigns.",
-    email: "maadeshselvan.chidambarakuthala@siesgst.ac.in",
+    email: "maadeshselvancecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/2006maadeshselvan/",
     github: "https://github.com/maadeshselvan-chidambarakuthala",
     socials: {
-      email: "maadeshselvan.chidambarakuthala@siesgst.ac.in",
+      email: "maadeshselvancecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/2006maadeshselvan/",
       github: "https://github.com/maadeshselvan-chidambarakuthala"
     }
@@ -654,13 +660,14 @@ export const juniorCouncil = [
     role: "Creative Head",
     council: "Junior Council",
     domain: "Creative",
-    photo: null,
+    photo: "/assets/jc/124A2059.jpg",
+    image: "/assets/jc/124A2059.jpg",
     bio: "Orchestrates artistic installations, event styling, promotional exhibits, and creative student engagement initiatives.",
-    email: "sana.tankar@siesgst.ac.in",
+    email: "sanastextc124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/sana-tankar-08a9a8360/",
     github: "https://github.com/sana-tankar",
     socials: {
-      email: "sana.tankar@siesgst.ac.in",
+      email: "sanastextc124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/sana-tankar-08a9a8360/",
       github: "https://github.com/sana-tankar"
     }
@@ -675,13 +682,14 @@ export const juniorCouncil = [
     role: "Design & Media Head",
     council: "Junior Council",
     domain: "Design & Media",
-    photo: null,
+    photo: "/assets/jc/124A7051.jpg",
+    image: "/assets/jc/124A7051.jpg",
     bio: "Guides multidisciplinary visual assets, digital broadcast assets, cinematic event teasers, and brand aesthetic standards.",
-    email: "nimish.roge@siesgst.ac.in",
+    email: "nimishrrecs124@gst.sies.edu.in",
     linkedin: "https://www.linkedin.com/in/nimish-roge-38081b318/",
     github: "https://github.com/nimish-roge",
     socials: {
-      email: "nimish.roge@siesgst.ac.in",
+      email: "nimishrrecs124@gst.sies.edu.in",
       linkedin: "https://www.linkedin.com/in/nimish-roge-38081b318/",
       github: "https://github.com/nimish-roge"
     }

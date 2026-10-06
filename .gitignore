@@ -29,3 +29,6 @@ dist-ssr
 # Media & Recordings
 *.mp4
 *.webm
+
+# Raw Camera Uploads (optimized versions reside in public/assets/)
+Photos/

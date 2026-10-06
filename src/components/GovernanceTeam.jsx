@@ -131,17 +131,12 @@ export default function GovernanceTeam() {
         "Institutional administrative records & statutory liaison"
       ],
       mentors: [
-        { name: "Tejraj Gujar", role: "Chairperson", branch: "ECS", id: "123A7018", council: "Senior Council" },
-        { name: "Sarang Patil", role: "Vice Chairperson", branch: "AIDS", id: "123A8043", council: "Senior Council" },
-        { name: "Shardul Gade", role: "Secretary", branch: "ECS", id: "123A7016", council: "Senior Council" },
         { name: "A S Lakshanya", role: "Event & Community Manager", branch: "AIDS", id: "123A8001", council: "Senior Council" },
         { name: "Anushka Pawar", role: "Event & Community Manager", branch: "ECS", id: "123A7002", council: "Senior Council" }
       ],
       heads: [
         { name: "Advaith Nair", role: "Industry Outreach & Admin Head", branch: "ECS", id: "124A7041", council: "Junior Council" },
-        { name: "Harshit Lahari", role: "Industry Outreach & Admin Head", branch: "ECS", id: "124A7026", council: "Junior Council" },
-        { name: "Aditya Bagwe", role: "Joint Secretary", branch: "ECS", id: "124A7003", council: "Junior Council" },
-        { name: "Indrayani Patil", role: "Joint Secretary", branch: "CE", id: "124A1118", council: "Junior Council" }
+        { name: "Harshit Lahari", role: "Industry Outreach & Admin Head", branch: "ECS", id: "124A7026", council: "Junior Council" }
       ],
       coordinators: coordinatorsData.outreach || []
     },
@@ -216,7 +211,7 @@ export default function GovernanceTeam() {
     },
     {
       id: "editorial",
-      name: "Editorial",
+      name: "Secretary",
       code: "EDIT",
       fullName: "Editorial Wing",
       fullCode: "IEI-ECS-EDIT",
@@ -233,7 +228,7 @@ export default function GovernanceTeam() {
       ],
       heads: [
         { name: "Indrayani Patil", role: "Joint Secretary", branch: "CE", id: "124A1118", council: "Junior Council" },
-        { name: "Aditya Bagwe", role: "Joint Secretary", branch: "ECS", id: "124A7003", council: "Junior Council" }
+        { name: "Prathamesh Bhagwat", role: "Joint Secretary", branch: "ECS", id: "124A7003", council: "Junior Council" }
       ],
       coordinators: coordinatorsData.editorial || []
     }

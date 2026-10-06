@@ -59,6 +59,23 @@ const MailIcon = ({ size = 12, className = '' }) => (
   </svg>
 );
 
+const CheckIcon = ({ size = 12, className = '' }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2.5" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className} 
+    aria-hidden="true"
+  >
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
 /**
  * Fallback Avatar Component for members without photographs
  * Uses clean typographic initials with institutional silhouette styling.
@@ -138,6 +155,39 @@ export default function MemberCard({ member = {}, className = '' }) {
   const linkedinUrl = member.linkedin || member.socials?.linkedin || `https://www.linkedin.com/in/${slug}`;
   const githubUrl = isFaculty ? null : (member.github || member.socials?.github || `https://github.com/${slug}`);
   const email = member.email || member.socials?.email || `${firstName}.${lastName}@siesgst.ac.in`;
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = async (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!email) return;
+
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      if (audioEngine?.playSuccess) {
+        audioEngine.playSuccess();
+      } else if (audioEngine?.playClick) {
+        audioEngine.playClick();
+      }
+      setCopiedEmail(true);
+      setTimeout(() => {
+        setCopiedEmail(false);
+      }, 2200);
+    } catch (err) {
+      console.warn('Failed to copy email to clipboard', err);
+    }
+  };
 
   const hasAnySocial = Boolean(linkedinUrl || githubUrl || email);
 
@@ -234,17 +284,48 @@ export default function MemberCard({ member = {}, className = '' }) {
 
             {email && (
               <div className="relative inline-flex">
-                <a
-                  href={`mailto:${email}`}
-                  aria-label={`Email — ${name}`}
-                  onClick={(e) => e.stopPropagation()}
-                  className="peer flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-100 hover:bg-[#0062FF]/10 text-zinc-600 hover:text-[#0062FF] transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF]"
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  aria-label={copiedEmail ? `Copied ${email} to clipboard` : `Copy email: ${email}`}
+                  title={copiedEmail ? 'Copied to clipboard!' : `Copy ${email}`}
+                  className={`peer flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062FF] cursor-pointer ${
+                    copiedEmail
+                      ? 'bg-emerald-50 text-emerald-600 ring-1 ring-emerald-300'
+                      : 'bg-zinc-100 hover:bg-[#0062FF]/10 text-zinc-600 hover:text-[#0062FF]'
+                  }`}
                 >
-                  <MailIcon size={14} className="shrink-0" />
-                </a>
-                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-white text-[11px] font-semibold text-zinc-800 shadow-md transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap">
-                  Email
-                </span>
+                  {copiedEmail ? (
+                    <CheckIcon size={14} className="shrink-0 text-emerald-600" />
+                  ) : (
+                    <MailIcon size={14} className="shrink-0" />
+                  )}
+                </button>
+                <div 
+                  className={`pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 z-30 origin-bottom scale-0 opacity-0 px-2.5 py-1.5 rounded-lg border shadow-xl transition-all duration-150 ease-out peer-hover:scale-100 peer-hover:opacity-100 peer-focus-visible:scale-100 peer-focus-visible:opacity-100 whitespace-nowrap flex items-center gap-1.5 ${
+                    copiedEmail
+                      ? '!scale-100 !opacity-100 bg-emerald-950 text-emerald-200 border-emerald-700'
+                      : 'bg-zinc-950 text-white border-zinc-800'
+                  }`}
+                >
+                  {copiedEmail ? (
+                    <>
+                      <CheckIcon size={12} className="text-emerald-400 shrink-0" />
+                      <span className="text-[11px] font-semibold text-emerald-200 tracking-tight">Copied to clipboard!</span>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center leading-tight">
+                      <span className="text-[11px] font-mono font-medium text-zinc-100 max-w-[210px] truncate">{email}</span>
+                      <span className="text-[10px] text-zinc-400 font-normal mt-0.5">Click to copy</span>
+                    </div>
+                  )}
+                  {/* Tooltip downward pointer arrow */}
+                  <div 
+                    className={`absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent ${
+                      copiedEmail ? 'border-t-emerald-950' : 'border-t-zinc-950'
+                    }`} 
+                  />
+                </div>
               </div>
             )}
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ArrowLeft, Mail } from 'lucide-react';
+import { ArrowLeft, Mail, Check } from 'lucide-react';
 import { getMemberById, membersData, getInitials, getMemberBio } from '../data/membersData';
 import { getMemberPhotoCandidates } from '../utils/memberPhotoResolver';
 import { audioEngine } from '../utils/audioEngine';
@@ -172,6 +172,39 @@ export default function MemberProfilePage({ memberId }) {
   const linkedinUrl = member.linkedin || member.socials?.linkedin || `https://www.linkedin.com/in/${slug}`;
   const githubUrl = isFaculty ? null : (member.github || member.socials?.github || `https://github.com/${slug}`);
   const email = member.email || member.socials?.email || `${firstName}.${lastName}@siesgst.ac.in`;
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      if (audioEngine?.playSuccess) {
+        audioEngine.playSuccess();
+      } else if (audioEngine?.playClick) {
+        audioEngine.playClick();
+      }
+      setCopiedEmail(true);
+      setTimeout(() => {
+        setCopiedEmail(false);
+      }, 2200);
+    } catch (err) {
+      console.warn('Failed to copy email', err);
+    }
+  };
+
   const hasAnySocial = Boolean(linkedinUrl || githubUrl || email);
 
   const navigateBack = () => {
@@ -264,14 +297,20 @@ export default function MemberProfilePage({ memberId }) {
               )}
 
               {email && (
-                <a
-                  href={`mailto:${email}`}
-                  aria-label={`Email — ${member.name}`}
-                  className="profile-social-btn btn-email"
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  aria-label={copiedEmail ? `Copied ${email} to clipboard` : `Copy email: ${email}`}
+                  title={copiedEmail ? 'Copied to clipboard!' : `Click to copy ${email}`}
+                  className={`profile-social-btn btn-email cursor-pointer ${copiedEmail ? 'is-copied' : ''}`}
                 >
-                  <Mail size={15} />
-                  <span>Email</span>
-                </a>
+                  {copiedEmail ? (
+                    <Check size={15} className="text-emerald-600 shrink-0" />
+                  ) : (
+                    <Mail size={15} className="shrink-0" />
+                  )}
+                  <span>{copiedEmail ? 'Copied to Clipboard!' : email}</span>
+                </button>
               )}
             </div>
           )}
